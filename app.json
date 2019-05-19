@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/test/test",
+    "pages/report/report",
+    "pages/userAccount/userAccount",
+    "pages/myInfo/myInfo",
+    "pages/login/login",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1E9FFF",
+    "navigationBarTitleText": "现场检测",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+ "tabBar": {
+  "color": "#6e6d6b",
+  "selectedColor": "#e64340",
+  "borderStyle": "white",
+  "backgroundColor": "#fff",
+  "list": [
+    {
+      "pagePath": "pages/test/test",
+      "text": "现场检测"
+    },
+    {
+      "pagePath": "pages/report/report",
+      "iconPath": "",
+      "selectedIconPath": "",
+      "text": "报告流转"
+    },
+    {
+      "pagePath":"pages/myInfo/myInfo",
+      "iconPath": "",
+      "selectedIconPath": "",
+      "text": "我的"
+    }
+  ]
+}
+}
