@@ -1,13 +1,11 @@
 <view>
   <view class='nav bg-blue' style='height:{{navH}}px'>
-    <view class='nav-title'>
-     我的
-      <image src='../../images/back.png' mode='aspectFit' class='back' bindtap='navBack'></image> 
+    <view class='nav-title rs-title'>
+      我的
     </view>
   </view>
-  <scroll-view class='bg-gray overflow' style='height:calc(100vh - {{navH}}px)' scroll-y >
-    <view class='hidden'>
-      <!-- 正文 -->
-    </view>
+  <scroll-view class='bg-gray overflow' style='height:calc(100vh - {{navH}}px)' scroll-y>
+  <view class="search-area"></view>
+  
   </scroll-view>
 </view>

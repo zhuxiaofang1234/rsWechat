@@ -7,7 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    selectArray: [{
+      "id": "10",
+      "text": "会计类"
+    }, {
+      "id": "21",
+      "text": "工程类"
+    }]
   },
 
   /**
@@ -67,5 +73,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  bindPickerChange(e) {
+    console.log(e)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  getDate: function (e) {
+    console.log(e.detail)
   }
 })

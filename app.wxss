@@ -64,7 +64,12 @@ page{
   z-index: 10;
   font-family:PingFang-SC-Medium;
   font-size:36rpx;
-  letter-spacing:2px;
+  letter-spacing:1px;
+}
+.nav-title.rs-title{
+  font-size:48rpx;
+  color:#fff;
+  margin-left:10rpx;
 }
 .nav .back{
   width: 22px;
@@ -82,6 +87,9 @@ page{
 }
 .bg-gray{
   background-color: #f7f7f7;
+}
+.bg-black{
+  background-color: #000;
 }
 .overflow{
   overflow: auto;
