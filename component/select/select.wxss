@@ -1,29 +1,30 @@
 /* component/select/select.wxss */
 .com-selectBox{
-    width: 200rpx;
+    width: 250rpx;
+    display: inline-block;
 }
 .com-sContent{
     border: 1px solid #e2e2e2;
     background: white;
-    font-size: 36rpx;
     position: relative;
-    height: 30px;
-    line-height: 30px;
+    padding:32rpx 16rpx;
+    border-radius: 10rpx;
+    line-height: 1;
 }
 .com-sImg{
     position: absolute;
     right: 10px;
-    top: 11px;
+    top: 22px;
     width: 16px;
     height: 9px;
     transition: all .3s ease;
 }
 .com-sTxt{
     overflow: hidden;
+    display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding:0 20px 0 6px;
-    font-size: 14px;
+    font-size:36rpx;
 }
 .com-sList{
     background: white;
@@ -33,14 +34,14 @@
     border-top: none;
     box-sizing: border-box;
     z-index: 3;
-    max-height: 120px;
+    max-height: 400rpx;
     overflow: auto;
 }
 .com-sItem{
-    height: 30px;
-    line-height: 30px;
+    height: 100rpx;
+    line-height: 100rpx;
     border-top: 1px solid #e2e2e2;
-    padding: 0 6px;
+    padding: 0 20rpx;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;

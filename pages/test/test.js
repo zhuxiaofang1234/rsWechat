@@ -7,13 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    selectArray: [{
-      "id": "10",
-      "text": "会计类"
+    selectArray: [
+      {
+        "id": "0",
+        "text": "待检测"
+      },
+      {
+      "id": "1",
+      "text": "已检测"
     }, {
-      "id": "21",
-      "text": "工程类"
-    }]
+      "id": "2",
+      "text": "检测完成"
+    }
+    ],
+    inputShowed: false,
+    inputVal: ""
   },
 
   /**
@@ -83,5 +91,27 @@ Page({
   },
   getDate: function (e) {
     console.log(e.detail)
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
   }
+
 })

@@ -1,11 +1,4 @@
-<view>
-  <view class='nav bg-blue' style='height:{{navH}}px'>
-    <view class='nav-title rs-title'>
-      我的
-    </view>
-  </view>
-  <scroll-view class='bg-gray overflow' style='height:calc(100vh - {{navH}}px)' scroll-y>
-  <view class="search-area"></view>
-  
-  </scroll-view>
+<navbar back home text="{{navigationBarTitle}}"></navbar>
+<view class='main' style="{{'top:' + navigationBarHeight}}">
+  <text>Hello Wechat!</text>
 </view>

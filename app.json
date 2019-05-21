@@ -1,6 +1,7 @@
 {
   "pages": [
     "component/select/select",
+    "component/navbar/navbar",
     "pages/test/test",
     "pages/report/report",
     "pages/userAccount/userAccount",
