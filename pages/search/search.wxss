@@ -1,0 +1,54 @@
+/* pages/search/search.wxss */
+
+.weui-search-bar-1{
+ /* position:relative;*/
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  box-sizing:border-box;
+}
+  .search-form{
+    position:relative;
+    -webkit-box-flex:1;
+    -webkit-flex:auto;
+    flex:auto;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background-color:#fff;
+  }
+
+  .searchIcon{
+    position:absolute;
+     top:34rpx;
+     left:10px;  
+  }
+ 
+  .searchInput{
+    height:100rpx;
+    line-height:100rpx;
+    font-size:18px;
+    padding:0 10px;  
+  }
+
+  .delsearchIcon{
+    position:absolute;
+    top:20rpx;
+    right:10px;
+  }
+ 
+  .weui-search-bar__cancel-btn{
+    margin:0 10px;
+    line-height:50px;
+  }
+
+  .weui-search-bar__label{
+    line-height:50px;
+    border-radius:5px;
+  }
+  .weui-icon-search{
+    margin-top:6px;
+  }
+  .weui-search-bar__text{
+    font-size:18px;
+  }
+
