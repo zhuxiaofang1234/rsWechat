@@ -1,0 +1,27 @@
+/* pages/test/addTestData/addTestData.wxss */
+
+.test-title {
+  width: 240rpx;
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.test-info {
+  display: inline-block;
+  vertical-align: middle;
+  width: 420rpx;
+  padding: 32rpx 0 32rpx 30rpx;
+  margin-right: 30rpx;
+  border-bottom: 1px solid #ddd;
+  color: rgb(76, 217, 100);
+}
+
+.testItem:last-child .test-info {
+  border: none;
+}
+
+.rs-btn.btn-green {
+  color: rgb(76, 217, 100);
+  border-color: rgb(76, 217, 100);
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "Select": "/component/select/select"
+  },
+  "navigationBarTitleText": "检测数据查看"
+}

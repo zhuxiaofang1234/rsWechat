@@ -1,0 +1,50 @@
+<view class="details-wrap">
+  <view class="main">
+    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
+      <view class="details-container">
+        <view class="testItem">
+          <view class="test-title">检测编号</view>
+          <view class="test-info">E201901041</view>
+        </view>
+        <view class="testItem">
+          <view class="test-title">工程名称</view>
+          <view class="test-info">长江二桥填料压实质量工程</view>
+        </view>
+        <view class="testItem">
+          <view class="test-title">地基类型</view>
+          <view class="test-info">天然地基</view>
+        </view>
+        <view class="testItem">
+          <view class="test-title">检测孔编号</view>
+          <view class="test-info">100</view>
+        </view>
+        <view class="testItem">
+          <view class="test-title">检测日期</view>
+          <view class="test-info">请选择日期</view>
+        </view>
+      </view>
+      <view class="details-container mt-20">
+        <view class="testItem">
+          <view class="test-title">深度(m)</view>
+          <view class="test-info">0.3</view>
+        </view>
+        <view class="testItem">
+          <view class="test-title">实测锤击数</view>
+          <view class="test-info">45</view>
+        </view>
+         <view class="testItem">
+          <view class="test-title">土层描述</view>
+          <view class="test-info">45</view>
+        </view>
+         <view class="testItem">
+          <view class="test-title">备注</view>
+          <view class="test-info">100</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn btn-mr-50" plain="true" bindtap="toWtDetails">添加深度</button>
+     <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">保存</button>
+  </view>
+</view>

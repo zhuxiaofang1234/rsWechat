@@ -1,0 +1,42 @@
+/* pages/test/TestDataDetails/TestDataDetails.wxss */
+.test-title {
+  width: 240rpx;
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.test-info {
+  display: inline-block;
+  vertical-align: middle;
+  width: 420rpx;
+  padding: 32rpx 0 32rpx 30rpx;
+  margin-right: 30rpx;
+  border-bottom: 1px solid #ddd;
+  color: rgb(76, 217, 100);
+}
+
+.testItem:last-child .test-info {
+  border: none;
+}
+.select-area{
+  display:flex;
+  margin-top:20rpx;
+}
+.select-wrap{
+ flex:1;
+ display: inline-block;
+ vertical-align: middle;
+}
+.btn-sure{
+  flex:0 0 340rpx;
+  display: inline-block;
+ vertical-align: middle;
+}
+
+.select-wrap .com-selectBox {
+ width:490rpx;
+display:inline-block;
+
+}
+
