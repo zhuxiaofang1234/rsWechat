@@ -1,56 +1,60 @@
 <view class="details-wrap">
   <view class="main">
-    <scroll-view class="details-content" class="main-scroll" scroll-y style="height: 100%">
-      <view class="wt-items">
-        <text class="wt-title">委托编号</text>
-        <text class="wt-info">E20190104132048</text>
-      </view>
-      <view class="wt-items">
-        <text class="wt-title">委托日期</text>
-        <text class="wt-info">2019-01-04</text>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">工程名称</view>
-        <view class="wt-info">长江二桥填料压实质量工程123</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">工程地点</view>
-        <view class="wt-info">狮山</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">基装类型</view>
-        <view class="wt-info">灌注桩</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">检测数量</view>
-        <view class="wt-info">100</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">检测方法</view>
-        <view class="wt-info">抗压静载</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">检测依据</view>
-        <view class="wt-info">《建筑地基基础检测规范》</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">桩号</view>
-        <view class="wt-info">11#，23#，25#</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">进场时间</view>
-        <view class="wt-info">2019-01-24</view>
-      </view>
-      <view class="wt-items">
-        <view class="wt-title">预估完成时间</view>
-        <view class="wt-info">2019-01-24</view>
+    <scroll-view class="main-wrapper" scroll-y style="height: 100%">
+      <view class="details-container">
+        <view class="wt-items">
+          <text class="wt-title">委托编号</text>
+          <text class="wt-info">E20190104132048</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">委托日期</text>
+          <text class="wt-info">2019-01-04</text>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">工程名称</view>
+          <view class="wt-info">长江二桥填料压实质量工程123</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">工程地点</view>
+          <view class="wt-info text-green">狮山</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">基装类型</view>
+          <view class="wt-info text-green">灌注桩</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">检测数量</view>
+          <view class="wt-info text-green">100</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">检测方法</view>
+          <view class="wt-info text-green">抗压静载</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">检测依据</view>
+          <view class="wt-info text-green">《建筑地基基础检测规范》</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">桩号</view>
+          <view class="wt-info text-green">11#，23#，25#</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">进场时间</view>
+          <view class="wt-info text-green">2019-01-24</view>
+        </view>
+        <view class="wt-items">
+          <view class="wt-title">预估完成时间</view>
+          <view class="wt-info text-green">2019-01-24</view>
+        </view>
       </view>
     </scroll-view>
   </view>
-  <view class="btn-wrap footer">
-    <button class="rs-btn btn-mr-50 btn-mb-20" plain="true">人员设备信息</button>
-    <button class="rs-btn btn-mb-20" plain="true">检测依据</button>
-    <button class="rs-btn btn-mr-50" plain="true">报告结论</button>
-    <button class="rs-btn" plain="true">测点列表</button>
+  <view class="footer">
+    <view class="btn-wrap">
+      <button class="rs-btn btn-mr-50 btn-mb-20" plain="true" bindtap="toPersonInfo">人员设备信息</button>
+      <button class="rs-btn btn-mb-20" plain="true" bindtap="toTestStandard">检测依据</button>
+      <button class="rs-btn btn-mr-50" plain="true" bindtap="toReportRes">报告结论</button>
+      <button class="rs-btn" plain="true" bindtap="toTestList">测点列表</button>
+    </view>
   </view>
 </view>

@@ -8,5 +8,10 @@ App({
       }
     })
   },
-  statusBarHeight: 0
+  //全局变量
+  globalData: {
+    userInfo: null,
+    host: 'http://localhost:8080',
+    statusBarHeight: 0
+  }
 })

@@ -1,146 +1,153 @@
 <view>
-  <!-- 搜索区域-->
-  <view class='search-area area-flex'>
-    <view class="area-left">
-      <Select prop-array='{{selectArray}}'></Select>
+  <!--自定义导航栏--
+  <!--自定义导航栏结束-->
+
+  <!--主体检测列表-->
+  <scroll-view class='bg-black overflow' style='height:calc(100vh)' bindscrolltolower="scollFunc" scroll-y>
+    <view class="hidden">
+      <!-- 搜索区域-->
+      <view class='search-area area-flex'>
+        <view class="area-left">
+          <Select prop-array='{{selectArray}}'></Select>
+        </view>
+        <view class="area-right">
+          <view class="weui-search-bar-1">
+            <view class="search-form">
+              <!--搜索框-->
+              <view class="weui-search-bar__box">
+                <icon class="searchIcon" type="search" size="18"></icon>
+                <input type="text" class="searchInput" placeholder="工程名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+                <view class="delsearchIcon" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                  <icon type="clear" size="18"></icon>
+                </view>
+              </view>
+              <!--input搜索框结束-->
+              <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="18"></icon>
+                <view class="weui-search-bar__text">工程名称</view>
+              </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+          </view>
+        </view>
+      </view>
+      <!--搜索区域结束-->
+      <view class="main-content">
+        <view class="test-item area-flex" bindtap='toTestDetails'>
+          <view class="area-left">
+            <view class="test-number">105</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus waitTest">待检测</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="test-item area-flex">
+          <view class="area-left">
+            <view class="test-number">15</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus">待检测</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="test-item area-flex">
+          <view class="area-left">
+            <view class="test-number">15</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus">待检测</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="test-item area-flex">
+          <view class="area-left">
+            <view class="test-number">15</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus">待检测</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="test-item area-flex">
+          <view class="area-left">
+            <view class="test-number">15</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus">待检测</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="test-item area-flex">
+          <view class="area-left">
+            <view class="test-number">15</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus">待检测</view>
+            </view>
+
+          </view>
+        </view>
+        <view class="test-item area-flex">
+          <view class="area-left">
+            <view class="test-number">105</view>
+          </view>
+          <view class="area-right test-content">
+            <text class="pro-name">长江二桥填料压实质量工程123</text>
+            <view class="test-info">
+              <view class="test-way-info">
+                <text class="testWay">低应变</text>
+                <text class="testWay-num">(100)</text>
+              </view>
+              <view class="testStatus">待检测</view>
+            </view>
+
+          </view>
+        </view>
+      </view>
     </view>
-    <view class="area-right">
-      <view class="weui-search-bar">
-        <view class="weui-search-bar__form">
-          <view class="weui-search-bar__box">
-            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder="工程名称" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-              <icon type="clear" size="14"></icon>
-            </view>
-          </view>
-          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-            <icon class="weui-icon-search" type="search" size="14"></icon>
-            <view class="weui-search-bar__text">工程名称</view>
-          </label>
-        </view>
-        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-      </view>
-    </view>
-  </view>
-  <!--搜索区域结束-->
 
-<!--主体检测列表-->
-  <scroll-view class='bg-black overflow' style='height:calc(100vh - {{navH}}px)' scroll-y>
-    <view class="main-content">
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus waitTest">待检测</view>
-          </view>
-
-        </view>
-      </view>
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">15</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">待检测</view>
-          </view>
-
-        </view>
-      </view>
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">15</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">待检测</view>
-          </view>
-
-        </view>
-      </view>
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">15</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">待检测</view>
-          </view>
-
-        </view>
-      </view>
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">15</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">待检测</view>
-          </view>
-
-        </view>
-      </view>
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">15</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">待检测</view>
-          </view>
-
-        </view>
-      </view>
-      <view class="test-item area-flex">
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">待检测</view>
-          </view>
-
-        </view>
-      </view>
-    </view>
   </scroll-view>
   <!--主体检测列表结束-->
 </view>

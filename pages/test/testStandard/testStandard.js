@@ -1,4 +1,4 @@
-// pages/test/testDetails.js
+// pages/test/testStandard/testStandard.js
 Page({
 
   /**
@@ -48,29 +48,19 @@ Page({
    */
   onPullDownRefresh: function () {
 
-  }
-  ,
-  //页面跳转
-  toPersonInfo:function(){
-    wx.navigateTo({
-      url: '/pages/test/personInfo/personInfo'
-    });
   },
 
-  toTestStandard: function () {
-    wx.navigateTo({
-      url: '/pages/test/testStandard/testStandard'
-    });
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
   },
 
-  toReportRes:function(){
-    wx.navigateTo({
-      url: '/pages/test/reportRes/reportRes'
-    });
-  },
-  toTestList:function(){
-    wx.navigateTo({
-      url: '/pages/test/testList/testList'
-    });
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

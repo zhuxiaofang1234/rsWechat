@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
 	"appid": "wx236a6681ab29f6af",
-	"projectname": "rsTest",
+	"projectname": "rsWechat",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -80,6 +80,20 @@
 					"id": -1,
 					"name": "select",
 					"pathName": "component/select/select",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "testDetails",
+					"pathName": "pages/test/testDetails",
 					"scene": null
 				}
 			]

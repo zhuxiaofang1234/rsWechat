@@ -1,20 +1,28 @@
 {
   "pages": [
+    "pages/testpage/testpage",
     "component/select/select",
     "component/navbar/navbar",
     "pages/test/test",
+    "pages/test/testDetails",
+    "pages/test/personInfo/personInfo",
+    "pages/test/reportRes/reportRes",
+    "pages/test/testList/testList",
+    "pages/test/testStandard/testStandard",
     "pages/report/report",
     "pages/userAccount/userAccount",
     "pages/myInfo/myInfo",
     "pages/login/login",
-    "pages/logs/logs"
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#2198f2",
     "navigationBarTitleText": "现场检测",
     "navigationBarTextStyle": "white",
-    "navigationStyle": "custom"
+    "enablePullDownRefresh": true,
+    "backgroundColor":"#2198f2",
+    "onReachBottomDistance":20
   },
   "tabBar": {
     "color": "#6e6d6b",
