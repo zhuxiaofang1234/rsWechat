@@ -1,14 +1,4 @@
 /* pages/test/personInfo/personInfo.wxss */
-
-.footer {
-  flex: 0 0 170rpx;
-  text-align: center;
-  margin-top:0;
-}
-.rs-btn{
-  margin-top:50rpx;
-}
-
 .wt-title.mg-size{
   width:300rpx;
 }

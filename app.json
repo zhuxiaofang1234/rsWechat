@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/testpage/testpage",
-    "component/select/select",
-    "component/navbar/navbar",
+    "pages/test/TestDataDetails/TestDataDetails",
+    "pages/test/addTestData/addTestData",
     "pages/test/test",
+    "component/footer/footer",
+    "component/select/select",
     "pages/test/testDetails",
     "pages/test/personInfo/personInfo",
     "pages/test/reportRes/reportRes",
@@ -20,7 +21,6 @@
     "navigationBarBackgroundColor": "#2198f2",
     "navigationBarTitleText": "现场检测",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true,
     "backgroundColor":"#2198f2",
     "onReachBottomDistance":20
   },

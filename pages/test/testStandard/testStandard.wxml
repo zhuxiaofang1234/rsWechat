@@ -1,2 +1,18 @@
-<!--pages/test/testStandard/testStandard.wxml-->
-<text>pages/test/testStandard/testStandard.wxml</text>
+<view class="details-wrap">
+  <view class="main">
+    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
+      <view class="details-container">
+        <view class="wt-items">
+          <view class="text-white">《建筑地基基础技术规范》DBJ15-60-2008</view>
+        </view>
+        <view class="wt-items">
+          <view class="text-white">《建筑地基基础设计》（GB 50007-2012）</view>
+        </view>
+        <view class="wt-items">
+          <view class="text-white">《岩土工程勘察规范》（GB 50021-2001）</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <Footer btn-text="{{btnText}}"></Footer>
+</view>

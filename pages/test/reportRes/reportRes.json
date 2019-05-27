@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "Footer": "/component/footer/footer"
+  },
   "navigationBarTitleText": "报告结论"
 }

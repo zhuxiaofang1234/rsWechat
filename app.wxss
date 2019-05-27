@@ -207,3 +207,13 @@ button.rs-btn {
 .mt-20{
   margin-top:20rpx !important;
 }
+
+/***返回按钮***/
+.footer.backfooter {
+  flex: 0 0 170rpx;
+  text-align: center;
+  margin-top:0;
+}
+.rs-btn.backbtn{
+  margin-top:38rpx;
+}
