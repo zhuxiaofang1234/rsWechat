@@ -1,12 +1,12 @@
 /* component/select/select.wxss */
 .com-selectBox{
-    width: 250rpx;
+    width: 100%;
     display: inline-block;
 }
 .com-sContent{
     border: 1px solid #dfdfdf;
     position: relative;
-    padding:32rpx 16rpx;
+    padding:28rpx 16rpx;
     border-radius: 5px;
     line-height: 1;
     background-color:#dfdfdf;  
@@ -25,10 +25,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size:36rpx;
+    width:100%;
 }
 .com-sList{
-    width: inherit;
     position: absolute;
+    width: 100%;
     border: 1px solid #ccc;
     border-top: none;
     box-sizing: border-box;

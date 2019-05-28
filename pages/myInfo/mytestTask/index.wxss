@@ -16,24 +16,31 @@
 }
 
 .test-item.area-flex>.area-left {
-  width: 80rpx;
+  width:100rpx;
+  margin-right:0;
 }
 
 .area-right {
   flex: 1;
 }
-
 .test-item {
   background-color: #383838;
   height: 210rpx;
   margin-bottom:20rpx;
 }
+.test-item:last-child{
+  margin-bottom:0;
+}
 
-.test-item .test-number {
+.test-number {
   background-color: #dfdfdf;
   font-size: 30rpx;
   line-height: 210rpx;
   text-align: center;
+}
+
+.main-wrapper {
+  margin-top:0;
 }
 
 .test-content {

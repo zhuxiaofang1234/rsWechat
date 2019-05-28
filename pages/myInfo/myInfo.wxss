@@ -1,5 +1,13 @@
 /* pages/myInfo/myInfo.wxss */
-.main {
-  position: absolute;
+.weui-cell {
+  padding:32rpx 30rpx;
+  background-color: #383838;
+  color:#fff;
+  font-size:36rpx;
 }
-
+.weui-cell__ft_in-access:after{
+  height:10px;
+  width:10px;
+  border-color:#fff;
+  }
+  

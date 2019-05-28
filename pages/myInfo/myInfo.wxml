@@ -1,12 +1,18 @@
-<view>
-  <view class='nav bg-blue' style='height:{{navH}}px'>
-    <view class='nav-title rs-title'>
-     我的
-    </view>
-  </view>
-  <scroll-view class='bg-gray overflow' style='height:calc(100vh - {{navH}}px)' scroll-y >
-    <view class='hidden'>
-      <!-- 正文 -->
-    </view>
-  </scroll-view>
+ <view class="weui-cells weui-cells_after-title mt-20">
+    <navigator url="/pages/myInfo/userInfo/index" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">用户信息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/myInfo/systemInfo/index" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">系统消息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/myInfo/mytestTask/index"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">检测任务记录</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/myInfo/deviceInfo/index" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">设备申请记录</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
 </view>

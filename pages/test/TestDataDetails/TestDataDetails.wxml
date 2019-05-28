@@ -2,56 +2,108 @@
   <view class="fixedArea">
     <view class="select-area">
       <view class="select-wrap">
-        <Select prop-array='{{selectArray}}'></Select>
+       <Select prop-array='{{selectArray}}'></Select>     
       </view>
       <view class="btn-sure">
-        <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">返回数据列表</button>
+        <button class="rs-xs-btn btn-green" plain="true">确定</button>
       </view>
     </view>
-
-    <button class="rs-btn testDataEnter" plain="true" bindtap="toAddTestData">检测数据录入</button>
   </view>
   <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
-      <view class="details-container mt-20">
-        <view class="testItem">
-          <view class="test-title">深度(m)</view>
-          <view class="test-info">0.3</view>
+    <scroll-view class="main-wrapper" scroll-y style="height:(100%-20rpx;)">
+       <view class="details-container">
+        <view class="wt-items">
+          <text class="wt-title">深度(m)</text>
+          <text class="wt-info text-green">0.30</text>
         </view>
-        <view class="testItem">
-          <view class="test-title">实测锤击数</view>
-          <view class="test-info">45</view>
+        <view class="wt-items">
+          <text class="wt-title">实测锤击数</text>
+          <text class="wt-info text-green">45</text>
         </view>
-        <view class="testItem">
-          <view class="test-title">土层描述</view>
-          <view class="test-info">45</view>
+         <view class="wt-items">
+          <text class="wt-title">土层描述</text>
+          <text class="wt-info text-green">天然地基</text>
         </view>
-        <view class="testItem">
-          <view class="test-title">备注</view>
-          <view class="test-info">100</view>
+        <view class="wt-items">
+          <text class="wt-title">备注</text>
+          <text class="wt-info text-green">100</text>
         </view>
       </view>
       <view class="details-container mt-20">
-        <view class="testItem">
-          <view class="test-title">深度(m)</view>
-          <view class="test-info">0.3</view>
+        <view class="wt-items">
+          <text class="wt-title">深度(m)</text>
+          <text class="wt-info text-green">0.30</text>
         </view>
-        <view class="testItem">
-          <view class="test-title">实测锤击数</view>
-          <view class="test-info">45</view>
+        <view class="wt-items">
+          <text class="wt-title">实测锤击数</text>
+          <text class="wt-info text-green">45</text>
         </view>
-        <view class="testItem">
-          <view class="test-title">土层描述</view>
-          <view class="test-info">45</view>
+         <view class="wt-items">
+          <text class="wt-title">土层描述</text>
+          <text class="wt-info text-green">天然地基</text>
         </view>
-        <view class="testItem">
-          <view class="test-title">备注</view>
-          <view class="test-info">100</view>
+        <view class="wt-items">
+          <text class="wt-title">备注</text>
+          <text class="wt-info text-green">100</text>
+        </view>
+      </view>
+       <view class="details-container mt-20">
+        <view class="wt-items">
+          <text class="wt-title">深度(m)</text>
+          <text class="wt-info text-green">0.30</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">实测锤击数</text>
+          <text class="wt-info text-green">45</text>
+        </view>
+         <view class="wt-items">
+          <text class="wt-title">土层描述</text>
+          <text class="wt-info text-green">天然地基</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">备注</text>
+          <text class="wt-info text-green">100</text>
+        </view>
+      </view>
+       <view class="details-container mt-20">
+        <view class="wt-items">
+          <text class="wt-title">深度(m)</text>
+          <text class="wt-info text-green">0.30</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">实测锤击数</text>
+          <text class="wt-info text-green">45</text>
+        </view>
+         <view class="wt-items">
+          <text class="wt-title">土层描述</text>
+          <text class="wt-info text-green">天然地基</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">备注</text>
+          <text class="wt-info text-green">100</text>
+        </view>
+      </view>
+       <view class="details-container mt-20">
+        <view class="wt-items">
+          <text class="wt-title">深度(m)</text>
+          <text class="wt-info text-green">0.30</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">实测锤击数</text>
+          <text class="wt-info text-green">45</text>
+        </view>
+         <view class="wt-items">
+          <text class="wt-title">土层描述</text>
+          <text class="wt-info text-green">天然地基</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">备注</text>
+          <text class="wt-info text-green">100</text>
         </view>
       </view>
     </scroll-view>
   </view>
   <view class="footer backfooter">
-    <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">返回数据列表</button>
+    <button class="rs-btn backbtn btn-green" plain="true" bindtap="toTestList">返回数据列表</button>
   </view>
 </view>

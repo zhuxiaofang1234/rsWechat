@@ -1,4 +1,4 @@
-// pages/userAccount/userAccount.js
+// pages/myInfo/deviceInfo/index.js
 Page({
 
   /**

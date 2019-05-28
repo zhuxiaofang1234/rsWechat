@@ -1,4 +1,4 @@
-// pages/login/login.js
+// pages/myInfo/mytestTask/testTaskDetails.js
 Page({
 
   /**

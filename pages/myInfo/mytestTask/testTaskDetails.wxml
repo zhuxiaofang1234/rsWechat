@@ -1,6 +1,6 @@
 <view class="details-wrap">
-  <view class="main mt-20">
-    <scroll-view class="main-wrapper" scroll-y style="height:100%">
+  <view class="main">
+    <scroll-view class="main-wrapper" scroll-y style="height: 100%">
       <view class="details-container">
         <view class="wt-items">
           <text class="wt-title">委托编号</text>
@@ -47,14 +47,26 @@
           <view class="wt-info text-green">2019-01-24</view>
         </view>
       </view>
+      <view class="test-item area-flex mt-20">
+        <view class="area-left">
+          <view class="test-number">105</view>
+        </view>
+        <view class="area-right test-content">
+        <view class="test-info">
+            <view class="test-way-info">
+              <text class="testWay">低应变</text>
+              <text class="testWay-num">(100)</text>
+            </view>
+            <view class="testStatus waitTest">待检测</view>
+          </view>
+          <text class="pro-name">长江二桥填料压实质量工程123</text>
+        </view>
+      </view>
+
     </scroll-view>
   </view>
-  <view class="footer">
-    <view class="btn-wrap">
-      <button class="rs-btn ml-50 mt-20" plain="true" bindtap="toPersonInfo">人员设备信息</button>
-      <button class="rs-btn ml-50 mt-20" plain="true" bindtap="toTestStandard">检测依据</button>
-      <button class="rs-btn ml-50 mt-20" plain="true" bindtap="toReportRes">报告结论</button>
-      <button class="rs-btn ml-50" plain="true" bindtap="toTestList">测点列表</button>
-    </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn btn-mr-50" plain="true" bindtap="toWtDetails">添加深度</button>
+     <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">保存</button>
   </view>
 </view>

@@ -11,10 +11,12 @@
     "pages/test/testList/testList",
     "pages/test/testStandard/testStandard",
     "pages/report/report",
-    "pages/userAccount/userAccount",
     "pages/myInfo/myInfo",
-    "pages/login/login",
-    "pages/search/search"
+    "pages/myInfo/mytestTask/index",
+    "pages/myInfo/mytestTask/testTaskDetails",
+    "pages/myInfo/userInfo/index",
+    "pages/myInfo/systemInfo/index",
+    "pages/myInfo/deviceInfo/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
