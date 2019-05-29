@@ -1,4 +1,7 @@
 /* pages/myInfo/myInfo.wxss */
+page{
+ overflow-y: hidden;
+}
 .weui-cell {
   padding:32rpx 30rpx;
   background-color: #383838;

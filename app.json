@@ -24,7 +24,6 @@
     "navigationBarBackgroundColor": "#2198f2",
     "navigationBarTitleText": "现场检测",
     "navigationBarTextStyle": "white",
-    "backgroundColor":"#2198f2",
     "onReachBottomDistance":20
   },
   "tabBar": {
