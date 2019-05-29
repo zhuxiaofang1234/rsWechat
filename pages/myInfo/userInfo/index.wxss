@@ -1,1 +1,36 @@
 /* pages/myInfo/userInfo/index.wxss */
+.headImage-wrap{
+  position:relative;
+  margin:50rpx 275rpx;
+  font-size:36rpx;
+  color:#fff;
+}
+page{
+  width:unset;
+  heigth:unset;
+}
+
+.headImage{
+  width:200rpx;
+  height:200rpx;
+  border-radius: 50%;
+}
+
+.accountInfo{
+  margin-left:30rpx;
+   color:#fff;
+}
+.accountItem{
+  padding:32rpx 0;
+  border-bottom:1px solid rgb(221,221,221);
+
+}
+
+.accountTitle{
+  display: inline-block;
+  width:270rpx;
+}
+
+
+
+

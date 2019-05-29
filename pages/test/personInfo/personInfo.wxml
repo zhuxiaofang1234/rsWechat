@@ -1,24 +1,24 @@
 <view class="details-wrap">
-  <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
+  <view class="main mt-20">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
       <view class="details-container">
         <view class="wt-items">
           <text class="wt-title">李果</text>
-          <text class="wt-info text-white">15266785234</text>
+          <text class="wt-info mg-size text-white">15266785234</text>
         </view>
         <view class="wt-items">
           <text class="wt-title">夏未央</text>
-          <text class="wt-info text-white">15266785234</text>
+          <text class="wt-info mg-size text-white">15266785234</text>
         </view>
         <view class="wt-items">
           <text class="wt-title">夏未央</text>
-          <text class="wt-info text-white">15266785234</text>
+          <text class="wt-info mg-size text-white">15266785234</text>
         </view>
       </view>
       <view class="details-container mt-20">
         <view class="wt-items">
           <text class="wt-title mg-size">RS-JYD静载仪</text>
-          <text class="wt-info text-white">RS002</text>
+          <text class="wt-info mg-size text-white">RS002</text>
         </view>
         <view class="wt-items">
           <view class="text-white">RS2018050627</view>
@@ -27,7 +27,7 @@
       <view class="details-container mt-20">
         <view class="wt-items">
           <text class="wt-title mg-size">RS-JYD静载仪</text>
-          <text class="wt-info text-white">RS002</text>
+          <text class="wt-info mg-size text-white">RS002</text>
         </view>
         <view class="wt-items">
           <view class="text-white">RS2018050627</view>
@@ -36,7 +36,7 @@
       <view class="details-container mt-20">
         <view class="wt-items">
           <text class="wt-title mg-size">RS-JYD静载仪</text>
-          <text class="wt-info text-white">RS002</text>
+          <text class="wt-info mg-size text-white">RS002</text>
         </view>
         <view class="wt-items">
           <view class="text-white">RS2018050627</view>
@@ -45,7 +45,7 @@
       <view class="details-container mt-20">
         <view class="wt-items">
           <text class="wt-title mg-size">RS-JYD静载仪</text>
-          <text class="wt-info text-white">RS002</text>
+          <text class="wt-info mg-size text-white">RS002</text>
         </view>
         <view class="wt-items">
           <view class="text-white">RS2018050627</view>
@@ -54,7 +54,7 @@
       <view class="details-container mt-20">
         <view class="wt-items">
           <text class="wt-title mg-size">RS-JYD静载仪</text>
-          <text class="wt-info text-white">RS002</text>
+          <text class="wt-info mg-size text-white">RS002</text>
         </view>
         <view class="wt-items">
           <view class="text-white">RS2018050627</view>

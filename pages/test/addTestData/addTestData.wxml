@@ -1,6 +1,6 @@
 <view class="details-wrap">
-  <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
+  <view class="main mt-20">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
       <view class="details-container">
         <view class="testItem">
           <view class="test-title">检测编号</view>
@@ -44,7 +44,7 @@
     </scroll-view>
   </view>
   <view class="footer backfooter">
-    <button class="rs-btn backbtn btn-mr-50" plain="true" bindtap="toWtDetails">添加深度</button>
+    <button class="rs-btn backbtn mr-50" plain="true" bindtap="toWtDetails">添加深度</button>
      <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">保存</button>
   </view>
 </view>

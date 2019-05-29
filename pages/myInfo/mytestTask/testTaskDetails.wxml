@@ -1,5 +1,5 @@
 <view class="details-wrap">
-  <view class="main">
+  <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height: 100%">
       <view class="details-container">
         <view class="wt-items">
@@ -52,21 +52,33 @@
           <view class="test-number">105</view>
         </view>
         <view class="area-right test-content">
-        <view class="test-info">
+          <view class="test-info no-margin">
             <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
+              <text class="testWay">李果</text>
             </view>
-            <view class="testStatus waitTest">待检测</view>
+            <view class="testStatus text-orange">工作待确认</view>
           </view>
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
+          <view class="mt-30">15022669988</view>
         </view>
       </view>
-
+      <view class="test-item area-flex mt-20">
+        <view class="area-left">
+          <view class="test-number">105</view>
+        </view>
+        <view class="area-right test-content">
+          <view class="test-info no-margin">
+            <view class="test-way-info">
+              <text class="testWay">李果</text>
+            </view>
+            <view class="testStatus">检测中</view>
+          </view>
+          <view class="mt-30">15022669988</view>
+        </view>
+      </view>
     </scroll-view>
   </view>
   <view class="footer backfooter">
-    <button class="rs-btn backbtn btn-mr-50" plain="true" bindtap="toWtDetails">添加深度</button>
-     <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">保存</button>
+    <button class="rs-btn backbtn btn-orange mr-50" plain="true" bindtap="toWtDetails">驳回</button>
+    <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">保存</button>
   </view>
 </view>

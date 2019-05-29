@@ -1,6 +1,6 @@
 <view class="details-wrap">
-  <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
+  <view class="main mt-20">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
       <view class="details-container">
         <view class="wt-items">
           <view class="text-white">《建筑地基基础技术规范》DBJ15-60-2008</view>

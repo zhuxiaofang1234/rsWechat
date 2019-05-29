@@ -1,2 +1,23 @@
-<!--pages/myInfo/systemInfo/index.wxml-->
-<text>pages/myInfo/systemInfo/index.wxml</text>
+<view class="details-wrap">
+  <view class="main mt-20">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
+      <view class="details-container">
+        <view class="wt-items">
+          <text class="wt-title">李果</text>
+          <text class="wt-info mg-size text-white">15266785234</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">夏未央</text>
+          <text class="wt-info mg-size text-white">15266785234</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">夏未央</text>
+          <text class="wt-info mg-size text-white">15266785234</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn" plain="true" bindtap="toWtDetails">返回</button>
+  </view>
+</view>

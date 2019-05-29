@@ -1,9 +1,1 @@
 /* pages/test/personInfo/personInfo.wxss */
-.wt-title.mg-size{
-  width:300rpx;
-}
-
-.wt-info{
-  width:390rpx;
-}
-

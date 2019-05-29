@@ -1,0 +1,34 @@
+/* pages/login/login.wxss */
+.login-wrap{
+  margin:100rpx 0;
+  color:#fff;
+  margin-left:50rpx; 
+}
+
+.login-info{
+  font-size:48rpx; 
+   margin-bottom:68rpx;
+}
+.login-item{
+  font-size:0;
+}
+
+.login-title{
+  width:150rpx;
+  display:inline-block;
+  vertical-align: middle;
+  font-size:36rpx; 
+}
+
+.login-input{
+   display: inline-block;
+   vertical-align:middle;
+   width:500rpx;
+   font-size:36rpx;
+   border-bottom:1px solid #fff;
+   padding:31rpx 0;
+}
+
+.login-btn{
+  letter-spacing: 4rpx;
+}

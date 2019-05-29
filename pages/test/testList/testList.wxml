@@ -2,8 +2,8 @@
 <view class="fixedArea">
   <button class="rs-btn testDataEnter" plain="true" bindtap="toAddTestData">检测数据录入</button>
 </view>
-  <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100% - 20rpx;)">
+  <view class="main mt-20">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
         <view class="plie-items" bindtap="toTestDataDetails">
           <view class="pile-order">100</view>
           <view class="pile-no">1#</view>

@@ -1,0 +1,14 @@
+<view class="login-wrap hidden">
+  <view class="login-info">用户信息登录</view>
+  <view class="login-item">
+    <label class="login-title">账号</label>
+   <input class="login-input" placeholder='请输入帐号'></input>
+  </view>
+   <view class="login-item">
+    <label class="login-title">密码</label>
+   <input class="login-input" placeholder='请输入密码' password="true"></input>
+  </view>
+ <view class="bottom-wrap">
+     <button class="rs-btn btn-lg login-btn" plain="true" bindtap="login">登录</button>
+  </view>
+</view>
