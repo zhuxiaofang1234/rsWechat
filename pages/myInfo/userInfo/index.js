@@ -7,7 +7,6 @@ Page({
   data: {
 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,6 +25,7 @@ Page({
           wx.reLaunch({
             url: '/pages/login/login'
           })
+          wx.removeStorageSync('accessToken');
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

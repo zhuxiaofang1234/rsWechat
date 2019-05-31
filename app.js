@@ -6,12 +6,12 @@ App({
       success(res) {
         that.globalData.navHeight = res.statusBarHeight + 46;
       }
-    })
+    });
   },
   //全局变量
   globalData: {
     userInfo: null,
-    host: 'http://localhost:8080',
+    host: 'http://test.rocksea.net.cn:9001/',
     statusBarHeight: 0
   }
 })

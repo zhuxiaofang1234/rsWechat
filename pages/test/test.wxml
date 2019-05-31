@@ -1,7 +1,7 @@
 <view class="details-wrap">
    <view class='search-area area-flex'>
         <view class="area-left">
-          <Select prop-array='{{selectArray}}'></Select>
+          <Select prop-array='{{selectArray}}' bind:myget="getData"></Select>
         </view>
         <view class="area-right">
           <view class="weui-search-bar-1">
@@ -25,139 +25,20 @@
         </view>
       </view>
   <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100%)">
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
+    <scroll-view class="main-wrapper" scroll-y style="height:(100%)" bindscrolltolower="loadMore">
+      <view class="test-item area-flex" bindtap='toTestDetails' wx:for="{{testList}}" wx:key="{{index}}">
+        <view class="test-number area-flex">{{index+1}}</view>
         <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
+          <view class="testInfo mb-32">{{item.projectName}}</view>
+          <view class="testInfo mb-32">{{item.serialNo}}</view>
+          <view class="testInfo">
             <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
+              <text class="testWay">{{item.testModeName}}</text>
+              <text class="testWay-num">({{item.testMum}})</text>
             </view>
-            <view class="testStatus text-orange">工作待确认</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus">人员待安排</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">工作待确认</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">待检测</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">待检测</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">待检测</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">待检测</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">待检测</view>
-          </view>
-        </view>
-      </view>
-      <view class="test-item area-flex" bindtap='toTestDetails'>
-        <view class="area-left">
-          <view class="test-number">105</view>
-        </view>
-        <view class="area-right test-content">
-          <text class="pro-name">长江二桥填料压实质量工程123</text>
-          <view class="test-info">
-            <view class="test-way-info">
-              <text class="testWay">低应变</text>
-              <text class="testWay-num">(100)</text>
-            </view>
-            <view class="testStatus text-orange">待检测</view>
+            <view class="testStatus" wx:if="{{item.testStatus==5}}">检测中</view>
+            <view class="testStatus" wx:elif="{{item.testStatus==6}}">已检测</view>
+            <view class="testStatus text-orange" wx:else>待检测</view>
           </view>
         </view>
       </view>

@@ -29,7 +29,7 @@
 }
 .com-sList{
     position: absolute;
-    width: 100%;
+    width: 94%;
     border: 1px solid #ccc;
     border-top: none;
     box-sizing: border-box;
@@ -47,5 +47,5 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 36rpx;
 }

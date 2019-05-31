@@ -1,4 +1,5 @@
 /* pages/test/test.wxss */
+
 .weui-search-bar-1{
   display:-webkit-box;
   display:-webkit-flex;
@@ -52,4 +53,4 @@
   .weui-search-bar__text{
     font-size:18px;
   }
-
+  /******加载更多******/

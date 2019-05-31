@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import "weui.wxss";
+
 page {
   width: 100%;
   height: 100%;
@@ -8,23 +9,22 @@ page {
   overflow: hidden;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
+
 /***搜索区域****/
+
 .search-area {
   padding: 20rpx;
 }
+
 .area-flex {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
 }
+
 .area-left {
   width: 250rpx;
-  margin-right:10px;
-}
-
-.test-item.area-flex>.area-left {
-  width:100rpx;
-  margin-right:0;
+  margin-right: 10px;
 }
 
 .area-right {
@@ -33,18 +33,19 @@ page {
 
 .test-item {
   background-color: #383838;
-  height: 200rpx;
-  margin-bottom:20rpx;
+  margin-bottom: 20rpx;
 }
 
 .test-item .test-number {
   background-color: #dfdfdf;
   font-size: 30rpx;
-  line-height: 200rpx;
-  text-align: center;
+  width: 100rpx;
+  justify-content: center;
+  align-items: center;
 }
-.test-item:last-child{
-   margin-bottom:0;
+
+.test-item:last-child {
+  margin-bottom: 0;
 }
 
 .test-content {
@@ -61,23 +62,24 @@ page {
   display: inline-block;
   vertical-align: middle;
   color: #4cd964;
- margin-right:100rpx;
+  width: 330rpx;
 }
 
-.testWay{
-  margin-right:20rpx;
+.testWay {
+  margin-right: 20rpx;
 }
 
 .testStatus {
   display: inline-block;
   vertical-align: middle;
 }
-.testStatus.waitTest{
-  color:#ff7e00;
+
+.testStatus.waitTest {
+  color: #ff7e00;
 }
 
-
 /***************背景颜色*********************/
+
 .bg-white {
   background-color: #fff;
 }
@@ -95,14 +97,17 @@ page {
 }
 
 /****************文字颜色**************************/
-.text-green{
-   color: rgb(76, 217, 100);
+
+.text-green {
+  color: rgb(76, 217, 100);
 }
-.text-white{
-  color:#fff;
+
+.text-white {
+  color: #fff;
 }
-.text-orange{
-   color:#ff7e00;
+
+.text-orange {
+  color: #ff7e00;
 }
 
 .overflow {
@@ -114,6 +119,7 @@ page {
 }
 
 /*******************竖向固定区域*******************************/
+
 .details-wrap {
   display: flex;
   flex-direction: column;
@@ -133,9 +139,10 @@ page {
   top: 0;
   bottom: 0;
 }
-.details-container{
-  background-color: rgb(56,56,56);
-  padding-left:30rpx;
+
+.details-container {
+  background-color: rgb(56, 56, 56);
+  padding-left: 30rpx;
 }
 
 .wt-items {
@@ -162,28 +169,39 @@ page {
   vertical-align: middle;
   width: 450rpx;
 }
+
 /*********按钮间距***********/
-.ml-50{
-  margin-left:50rpx !important;
-}
-.mr-50{
-  margin-right:50rpx !important;
-}
-.mt-30{
-  margin-top:30rpx !important;
-}
-.mt-20{
-  margin-top:20rpx !important;
-}
-.mt-64{
-  margin-top:64rpx !important;
+
+.ml-50 {
+  margin-left: 50rpx !important;
 }
 
-.no-margin{
-  margin:0 !important;
+.mr-50 {
+  margin-right: 50rpx !important;
+}
+
+.mt-30 {
+  margin-top: 30rpx !important;
+}
+
+.mt-20 {
+  margin-top: 20rpx !important;
+}
+
+.mt-64 {
+  margin-top: 64rpx !important;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.mb-32 {
+  margin-bottom: 32rpx !important;
 }
 
 /***返回按钮***/
+
 button.rs-btn {
   color: rgb(0, 216, 255);
   border-color: rgb(0, 216, 255);
@@ -201,17 +219,19 @@ button.rs-btn {
   display: block;
   flex: 0 0 260rpx; /* 不放大不缩小固定100rpx */
 }
+
 .footer.backfooter {
   flex: 0 0 170rpx;
   text-align: center;
-  margin-top:0;
-}
-.rs-btn.backbtn{
-  margin-top:38rpx;
+  margin-top: 0;
 }
 
-.rs-btn.btn-lg{
-  width:650rpx;
+.rs-btn.backbtn {
+  margin-top: 38rpx;
+}
+
+.rs-btn.btn-lg {
+  width: 650rpx;
 }
 
 .rs-btn.btn-green {
@@ -224,8 +244,8 @@ button.rs-btn {
   border-color: rgb(255, 126, 0);
 }
 
-.bottom-wrap{
-  position:absolute;
-  left:50rpx;
-  bottom:50rpx;
+.bottom-wrap {
+  position: absolute;
+  left: 50rpx;
+  bottom: 50rpx;
 }

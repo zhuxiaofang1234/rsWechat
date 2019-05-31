@@ -2,11 +2,11 @@
   <view class="login-info">用户信息登录</view>
   <view class="login-item">
     <label class="login-title">账号</label>
-   <input class="login-input" placeholder='请输入帐号'></input>
+   <input class="login-input" placeholder='请输入帐号' confirm-type="done" bindinput='getAccount'></input>
   </view>
    <view class="login-item">
     <label class="login-title">密码</label>
-   <input class="login-input" placeholder='请输入密码' password="true"></input>
+   <input class="login-input" placeholder='请输入密码' password="true" bindinput='getPwd'></input>
   </view>
  <view class="bottom-wrap">
      <button class="rs-btn btn-lg login-btn" plain="true" bindtap="login">登录</button>

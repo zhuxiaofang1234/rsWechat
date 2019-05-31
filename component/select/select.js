@@ -13,9 +13,10 @@ Component({
    */
   data: {
     selectShow: false,//初始option不显示
-    nowText: "--请选择--",//初始内容
+    nowText: "",//初始内容
     animationData: {}//右边箭头的动画
   },
+
   /**
    * 组件的方法列表
    */
@@ -48,9 +49,15 @@ Component({
       var nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
       var nowIdx = e.target.dataset.index;//当前点击的索引
       var nowText = nowData[nowIdx].text;//当前点击的内容
-      //再次执行动画，注意这里一定，一定，一定是this.animation来使用动画
+      var nowId = nowData[nowIdx].code;//当前点击的内容 
       this.animation.rotate(0).step();
+
+      var nowDatas = {
+        code: nowId,
+        text: nowText
+      }
       
+      this.triggerEvent('myget', nowDatas); 
       this.setData({
         selectShow: false,
         nowText: nowText,

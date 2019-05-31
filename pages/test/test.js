@@ -9,29 +9,81 @@ Page({
   data: {
     selectArray: [
       {
-        "id": "0",
+        "code": "",
+        "text": "全部"
+      },
+      {
+        "code": "2",
         "text": "待检测"
       },
       {
-      "id": "1",
-      "text": "已检测"
+      "code": "5",
+      "text": "检测中"
     }, {
-      "id": "2",
-      "text": "检测完成"
+      "code": "6",
+      "text": "已检测"
     }
     ],
+    curTestStatus:'',
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    accessToken:'',
+    totalCount:null,
+    MaxResultCount:10,
+    page:1,
+    testList:[],
+    load:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      navH: App.globalData.navHeight
+    wx.showLoading({
+      title: '加载中',
     })
-
+    //初始化页面
+    this.setData({
+      "accessToken": wx.getStorageSync('accessToken')
+    })
+    var that = this;
+    var curTestStatus = this.data.curTestStatus;
+    var host = App.globalData.host;
+    var accessToken = this.data.accessToken;
+    wx.request({
+      url: host + '/api/services/app/WorkRecord/GetPaged',
+      method: "GET",
+      dataType:"json",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': "Bearer " + accessToken
+      },
+      success(res) {
+        wx.hideLoading();
+        if (res.statusCode == 200) {
+          var resData = res.data.result;
+          that.setData({
+            "testList": resData.items,
+            "totalCount": resData.totalCount
+          });   
+        } else if(res.statusCode == 401){
+          wx.showModal({
+            title: '登录过期',
+            content: '请重新登录',
+            showCancel: false,
+            confirmColor: '#4cd964',
+            success:function(){
+              wx.reLaunch({
+                url: '/pages/login/login'
+              })
+            }
+          })
+        }
+      },
+      fali() {
+        console.log('接口调用失败');
+      }
+    })   
   },
 
   /**
@@ -73,8 +125,62 @@ Page({
     },1000)
   },
 
-  scollFunc:function(){
-    console.log('滚动到底部了！');
+  //加载更多
+  loadMore:function(){
+    var that = this;
+    var total = this.data.totalCount;
+    var page = this.data.page;
+    var host = App.globalData.host;
+    var accessToken = this.data.accessToken;
+    var MaxResultCount = this.data.MaxResultCount;
+    var SkipCount = (this.data.page) * MaxResultCount;
+
+    if(that.data.load){
+      if (that.data.testList.length < total){
+        that.setData({
+          page: page+1
+        })
+
+        wx.request({
+          url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount,
+          method: "GET",
+          dataType: "json",
+          header: {
+            'content-type': 'application/json', // 默认值
+            'Authorization': "Bearer " + accessToken
+          },
+          success(res) {
+            wx.hideLoading();
+            if (res.statusCode == 200) {
+              var resData = res.data.result;
+              var oldData = that.data.testList;
+              that.setData({
+                "testList": oldData.concat(resData.items)
+              });
+            } else if (res.statusCode == 401) {
+              wx.showModal({
+                title: '登录过期',
+                content: '请重新登录',
+                showCancel: false,
+                confirmColor: '#4cd964',
+                success: function () {
+                  wx.reLaunch({
+                    url: '/pages/login/login'
+                  })
+                }
+              })
+            }
+          },
+          fali() {
+            console.log('接口调用失败');
+          }
+        })   
+      }
+    }
+   
+    //if(testList)
+
+   
   },
 
   /**
@@ -95,9 +201,7 @@ Page({
       index: e.detail.value
     })
   },
-  getDate: function (e) {
-    console.log(e.detail)
-  },
+  /***搜索***/
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -119,13 +223,19 @@ Page({
       inputVal: e.detail.value
     });
   },
-  //查看详情
+  //跳转到查看详情
   toTestDetails: function () {
-    console.log('查看详情');
     var title = '查看详情页面';
     wx.navigateTo({
       //去根目录下找pages
       url: '/pages/test/testDetails?title=' + title,
     })
+  },
+  //获取select子组件传过来的值
+  getData:function(e){
+    var testStatus = e.detail.code;
+    this.setData({
+      curTestStatus: testStatus
+    });
   }
 })
