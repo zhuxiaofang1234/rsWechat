@@ -27,93 +27,25 @@ Page({
     inputShowed: false,
     inputVal: "",
     accessToken: '',
-    totalCount: null,
+    totalCount: 0,
     MaxResultCount: 10,
-    page: 1,
+    page: 0,
     testList: [],
-    loadingData: false,/***数据是否正在加载**/
-    hidden:true
+    loadingData: false,
+    loadingText:'加载中.....',
+    /***数据是否正在加载**/
+    hidden: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.showLoading({
-      title: '加载中',
-    })
     //初始化页面
     this.setData({
-      "accessToken": wx.getStorageSync('accessToken')
+      "accessToken": wx.getStorageSync('accessToken'),
     })
-    var that = this;
-    var curTestStatus = this.data.curTestStatus;
-    var host = App.globalData.host;
-    var hidden = this.data.hidden;
-    var accessToken = this.data.accessToken;
-    wx.request({
-      url: host + '/api/services/app/WorkRecord/GetPaged',
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        wx.hideLoading();
-        if (res.statusCode == 200) {
-          var resData = res.data.result;
-          that.setData({
-            "testList": resData.items,
-            "totalCount": resData.totalCount,
-            "hidden":false
-          });
-        } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function() {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
-        }
-      },
-      fali() {
-        console.log('接口调用失败');
-      }
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
+    this.getPage();
   },
 
 
@@ -129,73 +61,35 @@ Page({
 
   //加载更多
   loadMore: function() {
-    var that = this;
     var total = this.data.totalCount;
-    var page = this.data.page;
-    var host = App.globalData.host;
-    var accessToken = this.data.accessToken;
-    var MaxResultCount = this.data.MaxResultCount;
-    var SkipCount = (this.data.page) * MaxResultCount;
-    var loadData = this.data.load;
-    var hidden = this.data.hidden;
-    if (!hidden){
-      this.setData({
-        hidden: true  
-      });
-    }
-    if (loadData){
+    var loadingData = this.data.loadingData;
+    console.log(loadingData);
+    //当前列表数据
+    var testList = this.data.testList;
+
+    if (loadingData) {
       return;
     }
+    this.setData({
+      loadingData: true
+    }); 
+    var that = this; 
 
-   
-    if (that.data.testList.length < total) {
-      that.setData({
-        page: page + 1
-      })
-      wx.request({
-        url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount,
-        method: "GET",
-        dataType: "json",
-        header: {
-          'content-type': 'application/json', // 默认值
-          'Authorization': "Bearer " + accessToken
-        },
-        success(res) {
-          wx.hideLoading();
-          if (res.statusCode == 200) {
-            var resData = res.data.result;
-            var oldData = that.data.testList;
-            that.setData({
-              "testList": oldData.concat(resData.items),
-              "load": true
-            });
-          } else if (res.statusCode == 401) {
-            wx.showModal({
-              title: '登录过期',
-              content: '请重新登录',
-              showCancel: false,
-              confirmColor: '#4cd964',
-              success: function() {
-                wx.reLaunch({
-                  url: '/pages/login/login'
-                })
-              }
-            })
-          }
-        },
-        fali() {
-          console.log('接口调用失败');
-        }
-      })
+    if (testList.length < total) {
+      wx.showLoading({
+        title: '加载中',
+      });
+      setTimeout(function(){
+        that.getPage()
+      },1000)
+
     } else {
-      //全部加载完毕
-      that.setData({
-        "load": false
-      })
-    }
-    //if(testList)
-
-
+      this.setData(
+        {
+        "hidden": false,
+        'loadingText': '已加载完所有数据'
+      });
+    } 
   },
 
   /**
@@ -206,16 +100,6 @@ Page({
   },
 
 
-  /**
-   * 用户点击右上角分享
-   */
-  bindPickerChange(e) {
-    console.log(e)
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
-  },
   /***搜索***/
   showInput: function() {
     this.setData({
@@ -252,5 +136,71 @@ Page({
     this.setData({
       curTestStatus: testStatus
     });
+  },
+  //获取列表数据
+  getPage: function() {
+    var that = this;
+    var curTestStatus = this.data.curTestStatus;
+    var host = App.globalData.host;
+    var hidden = this.data.hidden;
+    var accessToken = this.data.accessToken;
+    var page = this.data.page;
+    var total = this.data.totalCount;
+
+    var MaxResultCount = this.data.MaxResultCount;
+    var SkipCount = (page) * MaxResultCount;
+    var loadData = this.data.load;
+    var hidden = this.data.hidden;
+
+    if (hidden){
+      this.setData({
+        "hidden":false
+      });
+    }
+      wx.request({
+        url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount,
+        method: "GET",
+        dataType: "json",
+        header: {
+          'content-type': 'application/json', // 默认值
+          'Authorization': "Bearer " + accessToken
+        },
+        success(res) {
+          wx.hideLoading();
+          if (res.statusCode == 200) {
+            var resData = res.data.result;
+              //数据总条数小于每页要显示的总条数
+            var curList = that.data.testList;
+              if (resData.totalCount < MaxResultCount){
+                that.setData({
+                  "hidden": false,
+                  'loadingText': '已加载完所有数据',
+                });
+              } 
+            that.setData({
+              "testList": curList.concat(resData.items),
+              "totalCount": resData.totalCount,
+              "page": page + 1,
+              "hidden":true,
+              'loadingData':false
+            });
+          } else if (res.statusCode == 401) {
+            wx.showModal({
+              title: '登录过期',
+              content: '请重新登录',
+              showCancel: false,
+              confirmColor: '#4cd964',
+              success: function () {
+                wx.reLaunch({
+                  url: '/pages/login/login'
+                })
+              }
+            })
+          }
+        },
+        fali() {
+          console.log('接口调用失败');
+        }
+      })    
   }
 })

@@ -43,7 +43,7 @@
         </view>
       </view>
       <view class='data-loading' hidden='{{hidden}}'>
-    数据加载中...
+    {{loadingText}}
     </view>
     </scroll-view>
   </view>
