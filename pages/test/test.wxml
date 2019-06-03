@@ -25,7 +25,7 @@
         </view>
       </view>
   <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:(100%)" bindscrolltolower="loadMore">
+    <scroll-view class="main-wrapper" scroll-y style="height:(100%)" bindscrolltolower="loadMore" lower-threshold="0">
       <view class="test-item area-flex" bindtap='toTestDetails' wx:for="{{testList}}" wx:key="{{index}}">
         <view class="test-number area-flex">{{index+1}}</view>
         <view class="area-right test-content">
@@ -42,6 +42,9 @@
           </view>
         </view>
       </view>
+      <view class='data-loading' hidden='{{hidden}}'>
+    数据加载中...
+    </view>
     </scroll-view>
   </view>
 </view>
