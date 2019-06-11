@@ -164,8 +164,6 @@ page {
 .wt-info {
   overflow: hidden;
   display: inline-block;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   vertical-align: middle;
   width: 450rpx;
 }
@@ -248,4 +246,12 @@ button.rs-btn {
   position: absolute;
   left: 50rpx;
   bottom: 50rpx;
+}
+/***列表底部***/
+.data-loading {
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #eee;
+  text-align: center;
+  font-size: 14px;
 }

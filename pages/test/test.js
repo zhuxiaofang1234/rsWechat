@@ -32,7 +32,7 @@ Page({
     page: 0,
     testList: [],
     loadingData: false,
-    loadingText:'加载中.....',
+    loadingText: '加载中.....',
     /***数据是否正在加载**/
     hidden: true
   },
@@ -56,14 +56,21 @@ Page({
     wx.showNavigationBarLoading() //在标题栏中显示加载
     setTimeout(function() {
       wx.stopPullDownRefresh();
-    }, 1000)
+      wx.hideNavigationBarLoading();
+    }, 2000)
+
+    this.setData({
+      inputVal: '',
+      page: 0,
+      testList: []
+    });
+    this.getPage();
   },
 
   //加载更多
   loadMore: function() {
     var total = this.data.totalCount;
     var loadingData = this.data.loadingData;
-    console.log(loadingData);
     //当前列表数据
     var testList = this.data.testList;
 
@@ -72,24 +79,23 @@ Page({
     }
     this.setData({
       loadingData: true
-    }); 
-    var that = this; 
+    });
+    var that = this;
 
     if (testList.length < total) {
       wx.showLoading({
         title: '加载中',
       });
-      setTimeout(function(){
+      setTimeout(function() {
         that.getPage()
-      },1000)
+      }, 1000)
 
     } else {
-      this.setData(
-        {
+      this.setData({
         "hidden": false,
         'loadingText': '已加载完所有数据'
       });
-    } 
+    }
   },
 
   /**
@@ -117,25 +123,31 @@ Page({
       inputVal: ""
     });
   },
-  inputTyping: function(e) {
+  search:function(e){
     this.setData({
-      inputVal: e.detail.value
+      inputVal: e.detail.value,
+      page: 0,
+      testList: []
     });
+    this.getPage();
   },
   //跳转到查看详情
-  toTestDetails: function() {
-    var title = '查看详情页面';
+  toTestDetails: function(e) {
+    var wtId = e.currentTarget.dataset.id;
     wx.navigateTo({
       //去根目录下找pages
-      url: '/pages/test/testDetails?title=' + title,
+      url: '/pages/test/testDetails?wtId=' + wtId,
     })
   },
   //获取select子组件传过来的值
   getData: function(e) {
     var testStatus = e.detail.code;
     this.setData({
-      curTestStatus: testStatus
+      curTestStatus: testStatus,
+      page: 0,
+      testList: []
     });
+    this.getPage();
   },
   //获取列表数据
   getPage: function() {
@@ -146,61 +158,64 @@ Page({
     var accessToken = this.data.accessToken;
     var page = this.data.page;
     var total = this.data.totalCount;
+    var Filter = this.data.inputVal;
 
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
     var loadData = this.data.load;
     var hidden = this.data.hidden;
 
-    if (hidden){
+    console.log(this.data.inputVal);
+
+    if (hidden) {
       this.setData({
-        "hidden":false
+        "hidden": false
       });
     }
-      wx.request({
-        url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount,
-        method: "GET",
-        dataType: "json",
-        header: {
-          'content-type': 'application/json', // 默认值
-          'Authorization': "Bearer " + accessToken
-        },
-        success(res) {
-          wx.hideLoading();
-          if (res.statusCode == 200) {
-            var resData = res.data.result;
-              //数据总条数小于每页要显示的总条数
-            var curList = that.data.testList;
-              if (resData.totalCount < MaxResultCount){
-                that.setData({
-                  "hidden": false,
-                  'loadingText': '已加载完所有数据',
-                });
-              } 
+    wx.request({
+      url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&status=' + curTestStatus + '&Filter=' + Filter,
+      method: "GET",
+      dataType: "json",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': "Bearer " + accessToken
+      },
+      success(res) {
+        wx.hideLoading();
+        if (res.statusCode == 200) {
+          var resData = res.data.result;
+          //数据总条数小于每页要显示的总条数
+          var curList = that.data.testList;
+          if (resData.totalCount < MaxResultCount) {
             that.setData({
-              "testList": curList.concat(resData.items),
-              "totalCount": resData.totalCount,
-              "page": page + 1,
-              "hidden":true,
-              'loadingData':false
+              "hidden": false,
+              'loadingText': '已加载完所有数据',
             });
-          } else if (res.statusCode == 401) {
-            wx.showModal({
-              title: '登录过期',
-              content: '请重新登录',
-              showCancel: false,
-              confirmColor: '#4cd964',
-              success: function () {
-                wx.reLaunch({
-                  url: '/pages/login/login'
-                })
-              }
-            })
           }
-        },
-        fali() {
-          console.log('接口调用失败');
+          that.setData({
+            "testList": curList.concat(resData.items),
+            "totalCount": resData.totalCount,
+            "page": page + 1,
+            "hidden": true,
+            'loadingData': false
+          });
+        } else if (res.statusCode == 401) {
+          wx.showModal({
+            title: '登录过期',
+            content: '请重新登录',
+            showCancel: false,
+            confirmColor: '#4cd964',
+            success: function() {
+              wx.reLaunch({
+                url: '/pages/login/login'
+              })
+            }
+          })
         }
-      })    
+      },
+      fali() {
+        console.log('接口调用失败');
+      }
+    })
   }
 })

@@ -1,0 +1,6 @@
+/* pages/myInfo/mytestTask/workReject.wxss */
+.weui-cells.weui-cells_after-title{
+  background: #383838;
+  color:#b2b2b2;
+
+}

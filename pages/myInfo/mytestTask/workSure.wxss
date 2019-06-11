@@ -1,0 +1,16 @@
+/* pages/test/addTestData/addTestData.wxss */
+.details-container{
+  padding-left:16rpx; 
+}
+.weui-cell{
+  color:#fff;
+  padding:20rpx 15px;
+}
+.weui-label {
+width:300rpx;
+word-wrap:break-word;
+word-break:break-all;
+}
+.weui-cells.weui-cells_after-title{
+  background: #383838;
+}

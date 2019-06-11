@@ -2,15 +2,12 @@
   <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height:100%">
       <view class="details-container">
-        <view class="wt-items">
-          <view class="text-white">《建筑地基基础技术规范》DBJ15-60-2008</view>
-        </view>
-        <view class="wt-items">
-          <view class="text-white">《建筑地基基础设计》（GB 50007-2012）</view>
-        </view>
-        <view class="wt-items">
-          <view class="text-white">《岩土工程勘察规范》（GB 50021-2001）</view>
-        </view>
+        <block wx:if="{{testStandard.length>0}}">
+          <view class="wt-items" wx:for="{{testStandard}}" wx:key="{{index}}">
+            <view class="text-white">{{item}}</view>
+          </view>
+        </block>
+        <view wx:else>暂无检测依据！</view>
       </view>
     </scroll-view>
   </view>

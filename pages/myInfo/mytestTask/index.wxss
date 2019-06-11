@@ -53,3 +53,9 @@
     font-size:18px;
   }
 
+  .nodata{
+    background-color: #383838;
+    color:#fff;
+    text-align: center;
+  }
+

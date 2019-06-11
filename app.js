@@ -1,5 +1,5 @@
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     //获取系统信息
     var that = this;
     wx.getSystemInfo({
@@ -12,6 +12,7 @@ App({
   globalData: {
     userInfo: null,
     host: 'http://test.rocksea.net.cn:9001/',
-    statusBarHeight: 0
+    statusBarHeight: 0,
+    testData: 123
   }
 })

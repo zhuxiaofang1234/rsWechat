@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    App.globalData.testData=345
   },
   getAccount:function(e){
     this.setData({
@@ -55,6 +55,7 @@ Page({
             var accessToken = res.data.result.accessToken;
         //存储token值
             wx.setStorageSync('accessToken', accessToken);
+
             wx.showToast({
               title: '登录成功',
               icon: 'success',
