@@ -1,5 +1,6 @@
 <form bindsubmit='reg'>
   <view class="details-wrap">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
     <view class="main mt-20">
       <scroll-view class="main-wrapper" scroll-y style="height:100%">
         <view class="weui-cells__title">轴线位置</view>
@@ -45,7 +46,7 @@
       </scroll-view>
     </view>
     <view class="footer backfooter">
-      <button class="rs-btn backbtn mr-50" plain="true" bindtap="toWtDetails">取消</button>
+      <button class="rs-btn backbtn mr-50" plain="true" bindtap="cancel">取消</button>
       <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">提交</button>
     </view>
   </view>
