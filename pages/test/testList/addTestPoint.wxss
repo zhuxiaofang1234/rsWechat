@@ -31,7 +31,11 @@
 }
 
 .input-wrap {
-  background-color: #383838;
+  background-color: #111;
   padding:16rpx;
+  width:95%;
+  margin:0 auto;
+  border-radius: 10px;
+  font-size:36rpx;
   color: rgb(76, 217, 100)
 }

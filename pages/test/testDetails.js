@@ -63,6 +63,7 @@ Page({
     });
   },
 
+//检测依据
   toTestStandard: function() {
     var testStandard = this.data.testStandard;
     wx.navigateTo({
@@ -70,9 +71,11 @@ Page({
     });
   },
 
-  toReportRes: function() {
+  //检测数据
+  toTestData: function() {
+    var serialNo = this.data.serialNo;
     wx.navigateTo({
-      url: '/pages/test/reportRes/reportRes'
+      url: '/pages/test/testData/index?serialNo=' + serialNo
     });
   },
   //检测列表
@@ -108,8 +111,14 @@ Page({
           that.setData({
             wtDetails: resData,
             testStandard: resData.testStandard,
-            pileList: resData.pileList
+            pileList: resData.pileList,
+            serialNo: resData.serialNo
           });
+          //缓存桩列表
+          wx.setStorageSync('pileList', resData.pileList);
+          wx.setStorageSync('serialNo', resData.serialNo);
+
+
         } else if (res.statusCode == 401) {
           wx.showModal({
             title: '登录过期',

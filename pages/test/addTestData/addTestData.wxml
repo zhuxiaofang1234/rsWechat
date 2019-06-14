@@ -1,50 +1,93 @@
-<view class="details-wrap">
-  <view class="main mt-20">
-    <scroll-view class="main-wrapper" scroll-y style="height:100%">
-      <view class="details-container">
-        <view class="testItem">
-          <view class="test-title">检测编号</view>
-          <view class="test-info">E201901041</view>
+<form bindsubmit='reg'>
+  <view class="details-wrap">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+    <view class="main mt-20">
+      <scroll-view class="main-wrapper" scroll-y style="height:100%">
+        <view class="details-container no-padding">
+          <view class="weui-cells__title">测点号</view>
+          <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__bd">{{pileNo}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+          <view class="weui-cells__title">现场记录号</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input" name="orderNo" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title">设备编号</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input" name="machineId" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title">每级测试深度值(m)</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input" value="{{dGrade}}" name="dGrade"/>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title">测试类型</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+              <view class="weui-cell__bd">
+                <picker bindchange="bindTestTypeChange" value="{{testTypeCode[testTypeIndex]}}" range="{{testType}}">
+                  <view class="weui-select">{{testType[testTypeIndex]}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title">天然地基岩土性状</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+              <view class="weui-cell__bd">
+                <picker bindchange="bindRdjlxTypeChange" value="{{rdjlxIndex}}" range="{{rdjlx}}">
+                  <view class="weui-select">{{rdjlx[rdjlxIndex]}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title">GPS位置</view>
+         <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_switch">
+                <view class="weui-cell__bd">{{gpstext}}</view>
+                <view class="weui-cell__ft">
+                    <switch checked="{{gpsIsValid}}" bindchange="switchChange"/>
+                </view>
+            </view>
         </view>
-        <view class="testItem">
-          <view class="test-title">工程名称</view>
-          <view class="test-info">长江二桥填料压实质量工程</view>
         </view>
-        <view class="testItem">
-          <view class="test-title">地基类型</view>
-          <view class="test-info">天然地基</view>
+        <view class="details-container mt-30">
+          <view class="wt-items">
+            <text class="wt-title">试验最大荷载(kN)</text>
+            <text class="wt-info text-green">{{testLoad}}</text>
+          </view>
+          <view class="wt-items">
+            <text class="wt-title">设计地基标高(m)</text>
+            <text class="wt-info text-green">{{height1}}</text>
+          </view>
+          <view class="wt-items">
+            <text class="wt-title">检测起始标高(m)</text>
+            <text class="wt-info text-green">{{height2}}</text>
+          </view>
+          <view class="wt-items">
+            <text class="wt-title">设计承载力特征值(Kpa)</text>
+            <text class="wt-info text-green">{{pileBearing}}</text>
+          </view>
         </view>
-        <view class="testItem">
-          <view class="test-title">检测孔编号</view>
-          <view class="test-info">100</view>
-        </view>
-        <view class="testItem">
-          <view class="test-title">检测日期</view>
-          <view class="test-info">请选择日期</view>
-        </view>
-      </view>
-      <view class="details-container mt-20">
-        <view class="testItem">
-          <view class="test-title">深度(m)</view>
-          <view class="test-info">0.3</view>
-        </view>
-        <view class="testItem">
-          <view class="test-title">实测锤击数</view>
-          <view class="test-info">45</view>
-        </view>
-         <view class="testItem">
-          <view class="test-title">土层描述</view>
-          <view class="test-info">45</view>
-        </view>
-         <view class="testItem">
-          <view class="test-title">备注</view>
-          <view class="test-info">100</view>
-        </view>
-      </view>
-    </scroll-view>
+      </scroll-view>
+    </view>
+    <view class="footer backfooter">
+      <button class="rs-btn backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">开始试验</button>
+    </view>
   </view>
-  <view class="footer backfooter">
-    <button class="rs-btn backbtn mr-50" plain="true" bindtap="toWtDetails">添加深度</button>
-     <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtDetails">保存</button>
-  </view>
-</view>
+</form>

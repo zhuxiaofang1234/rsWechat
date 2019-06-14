@@ -1,23 +1,52 @@
 /* pages/test/addTestData/addTestData.wxss */
 
-.test-title {
-  width: 240rpx;
-  display: inline-block;
-  vertical-align: middle;
-  color: #fff;
+.details-container {
+  font-size:36rpx;
+}
+.details-container.no-padding{
+  padding-left:0 !important;
+  padding-top:20rpx;
+  padding-bottom:40rpx;
+}
+.weui-cells__title{
+  color:#fff;
+}
+.weui-cells:before {
+  top: 0;
+  border-top: 1rpx solid #383838;
 }
 
-.test-info {
-  display: inline-block;
-  vertical-align: middle;
-  width: 420rpx;
-  padding: 32rpx 0 32rpx 30rpx;
-  margin-right: 30rpx;
-  border-bottom: 1px solid #ddd;
-  color: rgb(76, 217, 100);
+
+.weui-cells:after, .weui-cells:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height:1px;
+  color: #383838;
 }
 
-.testItem:last-child .test-info {
-  border: none;
+.weui-cells:after {
+  bottom: 0;
+  border-bottom: 1rpx solid #383838;
 }
 
+.weui-cells__title {
+  font-size: 36rpx;
+}
+
+.input-wrap {
+  background-color: #383838;
+  padding:12rpx;
+  width:95%;
+  margin:0 auto;
+  border-radius: 10rpx;
+  font-size:36rpx;
+  color: rgb(76, 217, 100)
+}
+.wt-title{
+ width:500rpx; 
+}
+.wt-info{
+  width:200rpx;
+}

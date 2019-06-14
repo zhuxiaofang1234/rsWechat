@@ -122,12 +122,20 @@ new Page({
                 var PileList = prevPage.data.pileList;
                 var item = {};
                 item.pileNo = that.data.pileNo;
-                item.id=100;
+                item.id = res.data.result;
+                item.height1 = data.height1;
+                item.height2 = data.height2;
+                item.pileBearing = data.pileBearing;
+                item.testLoad = data.testLoad;
+                
+
                 setTimeout(() => {
                  PileList.push(item);  
                   prevPage.setData({
                     pileList: PileList
                   });
+                  //缓存桩列表
+                  wx.setStorageSync('pileList', PileList)
                   wx.navigateBack({
                     delta: 1 //想要返回的层级
                   })

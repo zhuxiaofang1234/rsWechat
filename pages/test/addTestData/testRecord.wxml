@@ -1,0 +1,31 @@
+<view class="details-wrap">
+  <view class="main mt-20">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
+       <view class="details-container">
+        <view class="wt-items">
+          <text class="wt-title">深度(m)</text>
+          <text class="wt-info text-green">0.30</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">实测锤击数</text>
+          <text class="wt-info text-green">45</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">修正锤击数</text>
+          <text class="wt-info text-green">33</text>
+        </view>
+         <view class="wt-items">
+          <text class="wt-title">土层描述</text>
+          <text class="wt-info text-green">天然地基</text>
+        </view>
+        <view class="wt-items">
+          <text class="wt-title">备注</text>
+          <text class="wt-info text-green">100</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn btn-green" plain="true" bindtap="toTestList">返回数据列表</button>
+  </view>
+</view>

@@ -165,15 +165,13 @@ Page({
     var loadData = this.data.load;
     var hidden = this.data.hidden;
 
-    console.log(this.data.inputVal);
-
     if (hidden) {
       this.setData({
         "hidden": false
       });
     }
     wx.request({
-      url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&status=' + curTestStatus + '&Filter=' + Filter,
+      url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&status=' + curTestStatus + '&Filter=' + Filter +'&TestModeCode=ZT',
       method: "GET",
       dataType: "json",
       header: {
