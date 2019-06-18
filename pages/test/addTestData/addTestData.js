@@ -14,10 +14,10 @@ Page({
     dGrade: 0.3,
     pileNo: '请选择测点号',
     orderNo: '',
-    testLoad:'',
+    testLoad: '',
     pileBearing: '',
     height1: '',
-    height2:'',
+    height2: '',
     showTopTips: false,
     erroInfo: "错误提示",
     baseInfoId: "",
@@ -80,7 +80,7 @@ Page({
       erroInfo = "请选择测点号";
       this.errorTips(erroInfo);
       return;
-    }else{
+    } else {
       data.pileNo = this.data.pileNo;
     }
     if (!data.orderNo) {
@@ -97,9 +97,18 @@ Page({
       erroInfo = "请填写每级测试深度值";
       this.errorTips(erroInfo);
       return;
+    } else if (!App.isNumber(data.dGrade)){
+      erroInfo = "每级测试深度值只能为数值";
+      this.errorTips(erroInfo);
+      return;
+    }else{
+      wx.setStorageSync('dGrade', data.dGrade);
     }
-    data.baseInfoId = this.data.baseInfoId;
-    data.serialNo=wx.getStorageSync('serialNo');
+
+    var baseInfoId = this.data.baseInfoId;
+    data.baseInfoId = baseInfoId;
+    wx.setStorageSync('baseInfoId', baseInfoId);
+    data.serialNo = wx.getStorageSync('serialNo');
     data.rdjlx = this.data.rdjlxCode;
     data.testType = this.data.testTypeCode;
     data.dValue = this.data.pileBearing;
@@ -108,19 +117,18 @@ Page({
     data.testTime = App.format(nowDate);
 
     //GPS位置
-    if (!gpsIsValid){
-      data.gpsIsValid=0; 
-    }else{
-      data.gpsIsValid = 1; 
-      data.gpsLongitude = this.data.gpsLongitude; 
+    if (!gpsIsValid) {
+      data.gpsIsValid = 0;
+    } else {
+      data.gpsIsValid = 1;
+      data.gpsLongitude = this.data.gpsLongitude;
       data.gpsLatitude = this.data.gpsLatitude;
     }
     this.submit(data);
-    // //跳转到试验采样记录
+    //跳转到试验采样记录
     // wx.navigateTo({
     //   url: '/pages/test/addTestData/testRecord',
     // })
-
   },
   //提交数据
   submit: function(data) {
@@ -149,7 +157,6 @@ Page({
               wx.navigateTo({
                 url: '/pages/test/addTestData/testRecord',
               })
-
             }
           })
         } else {
@@ -165,19 +172,6 @@ Page({
         console.log('接口调用失败');
       }
     })
-  },
-  //错误提示
-  errorTips: function(erroInfo) {
-    var that = this;
-    this.setData({
-      showTopTips: true,
-      erroInfo: erroInfo
-    });
-    setTimeout(function() {
-      that.setData({
-        showTopTips: false
-      });
-    }, 3000);
   },
   //检测数据唯一标识
   getbaseInfoId: function() {
@@ -215,11 +209,11 @@ Page({
     })
   },
   //打开GPS
-  switchChange:function(e){
+  switchChange: function(e) {
     var GPSIspen = e.detail.value;
-    if (GPSIspen){
+    if (GPSIspen) {
       this.getGps();
-    }else{
+    } else {
       this.setData({
         gpsIsValid: false,
         gpstext: 'GPS无效'
@@ -237,12 +231,12 @@ Page({
         that.setData({
           gpsLongitude: longitude,
           gpsLatitude: latitude,
-          gpsIsValid:true,
-          gpstext:'GPS有效',
+          gpsIsValid: true,
+          gpstext: 'GPS有效',
         });
         console.log(latitude);
       },
-      fail:function(){
+      fail: function() {
         that.setData({
           gpsIsValid: false,
           gpstext: 'GPS无效',
@@ -250,7 +244,20 @@ Page({
       }
     })
   },
-  cancel:function(){
+  cancel: function() {
     App.back();
+  },
+  //错误提示
+  errorTips: function (erroInfo) {
+    var that = this;
+    this.setData({
+      showTopTips: true,
+      erroInfo: erroInfo
+    });
+    setTimeout(function () {
+      that.setData({
+        showTopTips: false
+      });
+    }, 3000);
   }
 })

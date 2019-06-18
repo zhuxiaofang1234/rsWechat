@@ -34,5 +34,23 @@ App({
     var S = Date.getSeconds();
     S = S < 10 ? '0' + S : S;
     return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
-  }
+  },
+  isNumber: function (val) {
+    var regPos = /^\d+(\.\d+)?$/; //非负浮点数
+    var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+    if (regPos.test(val) || regNeg.test(val)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  //判断是否为整数
+  isInt: function (value) {
+    var ex = /^\d+$/;
+    if (!ex.test(value)) {
+      return false;
+    } else {
+      return true
+    }
+  }  
 })

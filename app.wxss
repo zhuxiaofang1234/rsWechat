@@ -144,6 +144,11 @@ page {
   background-color: #000;
   padding-left: 30rpx;
 }
+.details-container.no-padding {
+  padding-left: 0 !important;
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+}
 
 .wt-items {
   padding: 32rpx 0;

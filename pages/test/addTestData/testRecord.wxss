@@ -1,10 +1,15 @@
 /* pages/test/TestDataDetails/TestDataDetails.wxss */
+
 .test-title {
   width: 240rpx;
   display: inline-block;
   vertical-align: middle;
   color: #fff;
 }
+.details-container{
+  padding-left:0 !important;
+}
+
 
 .test-info {
   display: inline-block;
@@ -19,35 +24,77 @@
 .testItem:last-child .test-info {
   border: none;
 }
-.select-area{
-  display:flex;
-  margin-top:20rpx;
+
+.select-area {
+  display: flex;
+  margin-top: 20rpx;
 }
-.select-wrap{
- flex:1;
- display: inline-block;
- vertical-align: middle;
- padding-left:20rpx;
-}
-.btn-sure{
-  flex:0 0 240rpx;
+
+.select-wrap {
+  flex: 1;
   display: inline-block;
- vertical-align: middle;
+  vertical-align: middle;
+  padding-left: 20rpx;
 }
 
-.rs-xs-btn{
-  width:200rpx;
- padding:22rpx 0;
- line-height:unset; 
-}
-.rs-xs-btn.btn-green{
-  color:#4cd964;
-  border:1px solid #4cd964;
+.btn-sure {
+  flex: 0 0 240rpx;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.rs-btn.testDataEnter{
-  float:right;
+.rs-xs-btn {
+  width: 200rpx;
+  padding: 22rpx 0;
+  line-height: unset;
+}
+
+.rs-xs-btn.btn-green {
+  color: #4cd964;
+  border: 1px solid #4cd964;
+}
+
+.rs-btn.testDataEnter {
+  float: right;
+  margin-right: 100rpx;
+  margin-top: 20rpx;
+}
+
+.weui-cell::before {
+  border: none;
+}
+
+.weui-cell.weui-cell_access {
+  padding:0 30rpx 0 0;
+}
+
+.weui-cell__bd {
+  color: #fff;
+}
+
+.depthNum {
+  flex: 0 0 100rpx;
   margin-right:100rpx;
-  margin-top:20rpx;
+  line-height:100rpx;
+  text-align: center;
+  background-color: rgb(223, 223, 223);
 }
 
+.testNum {
+  display: inline-block;
+  vertical-align: middle;
+  color: #4cd964;
+  margin-right: 30rpx;
+}
+
+.weui-cell_active {
+  background-color: #383838;
+}
+
+.weui-textarea, .weui-input {
+  color: #4cd964;
+}
+
+.weui-flex__item {
+  width: 30%;
+}

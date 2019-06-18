@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -100,13 +100,6 @@
 				},
 				{
 					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "workSure",
 					"pathName": "pages/myInfo/mytestTask/workSure",
 					"query": "",
@@ -124,6 +117,19 @@
 					"name": "workReject",
 					"pathName": "pages/test/testList/addTestPoint",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "addTestData",
+					"pathName": "pages/test/addTestData/addTestData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "22",
+					"pathName": "pages/test/addTestData/testRecord",
 					"scene": null
 				}
 			]
