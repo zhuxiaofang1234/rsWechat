@@ -1,18 +1,35 @@
 // pages/myInfo/mytestTask/testTaskDetails.js
+const App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    Id:null,
+    confirmStatus:null,
+    hidden:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options);
+    var wtId = options.Id;
+    var confirmStatus = options.confirm;
+    if (confirmStatus==0){
+      this.setData({
+        hidden:false
+      });
+    }else{
+      this.setData({
+        hidden: true
+      });
+    }
+    
+  //加载委托单详情信息
+    this.getEntrustDetails(wtId);
   },
 
   /**
@@ -48,5 +65,53 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  //获取委托单详情信息
+  getEntrustDetails: function (wtId) {
+    var that = this;
+    var host = App.globalData.host;
+    var accessToken = wx.getStorageSync('accessToken');
+    var url = host + '/api/services/app/WorkSures/GetById?Id=' + wtId;
+
+    wx.showLoading({
+      title: '加载中',
+    });
+
+    wx.request({
+      url: url,
+      method: "GET",
+      dataType: "json",
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': "Bearer " + accessToken
+      },
+      success(res) {
+        if (res.statusCode == 200) {
+          wx.hideLoading();
+          var resData = res.data.result;
+          that.setData({
+            wtDetails: resData
+          });
+         
+        } else if (res.statusCode == 401) {
+          wx.showModal({
+            title: '登录过期',
+            content: '请重新登录',
+            showCancel: false,
+            confirmColor: '#4cd964',
+            success: function () {
+              wx.reLaunch({
+                url: '/pages/login/login'
+              })
+            }
+          })
+        } else {
+          wx.hideLoading(); 
+        }
+      },
+      fali() {
+        wx.hideLoading();
+      }
+    })
   }
 })
