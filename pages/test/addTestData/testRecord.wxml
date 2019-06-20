@@ -1,39 +1,39 @@
 <view class="details-wrap">
   <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-  <view class="main mt-20">
+  <view class="main">
     <scroll-view class="main-wrapper" scroll-y style="height:100%">
-      <view class="details-container no-padding">
+      <view class="details-container no-padding pb-10 bg-gray38">
         <form bindsubmit='reg'>
-          <view class="weui-cells__title">当前深度(m)</view>
-          <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cells__title rs-title">当前深度(m)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input" name="depth" bindblur="getDepth" value="{{depth}}" disabled="{{isDisabled}}" />
+                <input class="weui-input rs-text" name="depth" bindblur="getDepth" value="{{depth}}" disabled="{{isDisabled}}"  focus="{{autoFocus}}"/>
               </view>
             </view>
           </view>
 
-          <view class="weui-cells__title">实测锤击数</view>
-          <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cells__title rs-title">实测锤击数</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" />
+                <input class="weui-input rs-text" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" />
               </view>
             </view>
           </view>
-          <view class="weui-cells__title">土层描述</view>
-          <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cells__title rs-title">土层描述</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input" name="description" bindblur="getDesc" value="{{description}}" />
+                <input class="weui-input rs-text" name="description" bindblur="getDesc" value="{{description}}" />
               </view>
             </view>
           </view>
-          <view class="weui-cells__title">备注</view>
-          <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
+          <view class="weui-cells__title rs-title">备注</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <textarea class="weui-textarea" name="remark" value="{{remark}}" style="height: 3.3em;" bindblur="getRemark" />
+                <textarea class="weui-textarea rs-text" name="remark" value="{{remark}}" style="height: 3.3em;" bindblur="getRemark" />
                 <view class="weui-textarea-counter">0/200</view>
               </view>
             </view>
@@ -41,8 +41,8 @@
         </form>
       </view>
       <block wx:if="{{depthList.length>0}}">
-        <view class="details-container mt-20" wx:for="{{depthList}}" wx:key="{{index}}">
-          <navigator url="/pages/test/addTestData/updateTestRecord?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="details-container no-padding mt-20" wx:for="{{depthList}}" wx:key="{{index}}">
+          <navigator url="/pages/test/addTestData/updateTestRecord?id={{item.id}}" class="weui-cell weui-cell_access">
             <view class="depthNum">{{index+1}}</view>
             <view class="weui-cell__bd weui-flex" style="color:#fff;">
             <view class="weui-flex__item">{{item.depth}}</view>

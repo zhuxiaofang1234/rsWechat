@@ -5,16 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    radioItems: [{
-        name: 'cell standard',
-        value: '0'
-      },
-      {
-        name: 'cell standard',
-        value: '1',
-        checked: true
-      }
-    ],
     pileList: []
   },
 
@@ -23,7 +13,6 @@ Page({
    */
   onLoad: function(options) {
     var pileList = wx.getStorageSync('pileList');
-    console.log(pileList);
     this.setData({
       pileList: pileList
     });

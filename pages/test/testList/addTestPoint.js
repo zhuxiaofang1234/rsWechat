@@ -119,6 +119,7 @@ new Page({
                 //返回上一页并刷新页面 
                 var pages = getCurrentPages();
                 var prevPage = pages[pages.length - 2];
+                var wtDetailsPage = pages[pages.length - 3];
                 var PileList = prevPage.data.pileList;
                 var item = {};
                 item.pileNo = that.data.pileNo;
@@ -128,16 +129,18 @@ new Page({
                 item.pileBearing = data.pileBearing;
                 item.testLoad = data.testLoad;
                 
-
                 setTimeout(() => {
                  PileList.push(item);  
                   prevPage.setData({
                     pileList: PileList
                   });
-                  //缓存桩列表
+                  wtDetailsPage.setData({
+                    pileList: PileList
+                  });
+                  //更新缓存桩列表
                   wx.setStorageSync('pileList', PileList)
                   wx.navigateBack({
-                    delta: 1 //想要返回的层级
+                    delta: 1
                   })
                 }, 2000)
               }

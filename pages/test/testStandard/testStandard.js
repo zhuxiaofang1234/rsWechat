@@ -17,8 +17,7 @@ Page({
     }
   },
 
-
-// //返回委托单详情
+ //返回委托单详情
   toWtDetails: function () { 
     wx.navigateBack({
       delta: 1

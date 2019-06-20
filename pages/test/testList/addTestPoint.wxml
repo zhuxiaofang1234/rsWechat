@@ -1,45 +1,47 @@
 <form bindsubmit='reg'>
   <view class="details-wrap">
-  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-    <view class="main mt-20">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+    <view class="main">
       <scroll-view class="main-wrapper" scroll-y style="height:100%">
-        <view class="weui-cells__title">轴线位置</view>
-        <view class="weui-cells weui-cells_after-title input-wrap">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" focus="{{focus}}" type="text" name="pileNo" />
+        <view class="details-container no-padding bg-gray38">
+          <view class="weui-cells__title rs-title">轴线位置</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" focus="{{focus}}" type="text" name="pileNo" />
+              </view>
             </view>
           </view>
-        </view>
-        <view class="weui-cells__title">试验最大荷载(kN)</view>
-        <view class="weui-cells weui-cells_after-title input-wrap">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" type="digit" name="testLoad" />
+          <view class="weui-cells__title rs-title">试验最大荷载(kN)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" type="digit" name="testLoad" />
+              </view>
             </view>
           </view>
-        </view>
-        <view class="weui-cells__title">设计基底标高(m)</view>
-        <view class="weui-cells weui-cells_after-title input-wrap">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" type="digit" name="height1" />
+          <view class="weui-cells__title rs-title">设计基底标高(m)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" type="digit" name="height1" />
+              </view>
             </view>
           </view>
-        </view>
-        <view class="weui-cells__title">检测起始试验标高(m)</view>
-        <view class="weui-cells weui-cells_after-title input-wrap">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" type="digit" name="height2" />
+          <view class="weui-cells__title rs-title">检测起始试验标高(m)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" type="digit" name="height2" />
+              </view>
             </view>
           </view>
-        </view>
-        <view class="weui-cells__title">设计地基承载力特征值(kPa)</view>
-        <view class="weui-cells weui-cells_after-title input-wrap">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd">
-              <input class="weui-input" type="digit" name="pileBearing" />
+          <view class="weui-cells__title rs-title">设计地基承载力特征值(kPa)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" type="digit" name="pileBearing" />
+              </view>
             </view>
           </view>
         </view>

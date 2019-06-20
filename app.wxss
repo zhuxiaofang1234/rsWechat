@@ -96,6 +96,10 @@ page {
   background-color: #000;
 }
 
+.bg-gray38{
+  background-color: #383838 !important;
+}
+
 /****************文字颜色**************************/
 
 .text-green {
@@ -146,8 +150,6 @@ page {
 }
 .details-container.no-padding {
   padding-left: 0 !important;
-  padding-top: 20rpx;
-  padding-bottom: 40rpx;
 }
 
 .wt-items {
@@ -189,6 +191,9 @@ page {
 
 .mt-20 {
   margin-top: 20rpx !important;
+}
+.mt-16{
+   margin-top: 16rpx !important;
 }
 
 .mt-64 {
@@ -260,3 +265,49 @@ button.rs-btn {
   text-align: center;
   font-size: 14px;
 }
+
+/****/
+.weui-cells:before {
+  border-top: 1rpx solid #555;
+}
+.weui-cells:after {
+  border-bottom: 1rpx solid #555;
+}
+.rs-title.weui-cells__title {
+  margin:18rpx 0;
+  font-size: 30rpx;
+  color:#ddd;
+}
+
+.rs-text{
+  color:#4cd964;
+  font-size:36rpx;
+}
+.weui-select{
+  border-right:none;
+  color:#4cd964;
+  font-size:36rpx;
+}
+.weui-cell_switch {
+padding-top:8px;
+padding-bottom:8px;
+}
+
+/***详情页面**/
+.details-item{
+  padding:20rpx;
+  border-bottom:1rpx solid #898989;
+}
+.details-item:last-child{
+  border-bottom:none;
+}
+.details-title{
+  color:#ddd;
+  font-size:30rpx;
+}
+.details-info{
+  line-height: 1;
+}
+
+
+

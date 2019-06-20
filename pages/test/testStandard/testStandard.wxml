@@ -11,5 +11,7 @@
       </view>
     </scroll-view>
   </view>
-  <Footer btn-text="{{btnText}}"></Footer>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn" plain="true" bindtap="toWtDetails">返回</button>
+  </view>
 </view>

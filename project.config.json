@@ -40,82 +40,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
 					"name": "index",
 					"pathName": "pages/userAccount/userAccount",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "myInfo",
-					"pathName": "pages/myInfo/myInfo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "report",
-					"pathName": "pages/report/report",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "test",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "select",
-					"pathName": "component/select/select",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "search",
-					"pathName": "pages/search/search",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "testDetails",
-					"pathName": "pages/test/testDetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "testList",
-					"pathName": "pages/test/testList/testList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "workSure",
-					"pathName": "pages/myInfo/mytestTask/workSure",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "workReject",
-					"pathName": "pages/myInfo/mytestTask/workReject",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "workReject",
-					"pathName": "pages/test/testList/addTestPoint",
 					"query": "",
 					"scene": null
 				},
@@ -127,9 +57,38 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "22",
+					"id": 8,
+					"name": "testRecord",
 					"pathName": "pages/test/addTestData/testRecord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "updateTestRecord",
+					"pathName": "pages/test/addTestData/updateTestRecord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "addTestData",
+					"pathName": "pages/test/testList/addTestPoint",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "testList",
+					"pathName": "pages/test/addTestData/testList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "TestDataDetails",
+					"pathName": "pages/test/TestDataDetails/TestDataDetails",
+					"query": "",
 					"scene": null
 				}
 			]

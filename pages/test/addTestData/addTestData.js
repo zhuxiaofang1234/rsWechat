@@ -13,7 +13,7 @@ Page({
     rdjlxIndex: 0,
     dGrade: 0.3,
     pileNo: '请选择测点号',
-    orderNo: '',
+    orderNo: '223',
     testLoad: '',
     pileBearing: '',
     height1: '',
@@ -62,7 +62,6 @@ Page({
       testTypeIndex: e.detail.value,
       testTypeCode: testTypeCode[e.detail.value]
     })
-    console.log(testTypeCode[e.detail.value]);
   },
   //天然地基岩土性状
   bindRdjlxTypeChange: function(e) {
@@ -125,10 +124,6 @@ Page({
       data.gpsLatitude = this.data.gpsLatitude;
     }
     this.submit(data);
-    //跳转到试验采样记录
-    // wx.navigateTo({
-    //   url: '/pages/test/addTestData/testRecord',
-    // })
   },
   //提交数据
   submit: function(data) {
@@ -234,7 +229,6 @@ Page({
           gpsIsValid: true,
           gpstext: 'GPS有效',
         });
-        console.log(latitude);
       },
       fail: function() {
         that.setData({
@@ -244,7 +238,7 @@ Page({
       }
     })
   },
-  cancel: function() {
+  cancel:function() {
     App.back();
   },
   //错误提示

@@ -1,4 +1,0 @@
-<!--component/footer/footer.wxml-->
-<view class="footer">
-    <button class="rs-btn" plain="true" bindtap="toLastPage">{{btnText}}</button>
-</view>

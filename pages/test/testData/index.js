@@ -33,14 +33,6 @@ Page({
   onShow: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
   //获取桩列表
   getPileList: function (serialNo) {
     var that = this;
@@ -63,7 +55,6 @@ Page({
         if (res.statusCode == 200) {
           wx.hideLoading();
           var resData = res.data.result;
-          console.log(resData);
           that.setData({
             pileList: resData
           });
@@ -89,5 +80,12 @@ Page({
     wx.navigateTo({
       url: '/pages/test/addTestData/addTestData'
     })
+  },
+  //查看数据详情
+  toTestDataDetails:function(e){
+    wx.navigateTo({
+      url: '/pages/test/TestDataDetails/TestDataDetails'
+    })
   }
+
 })

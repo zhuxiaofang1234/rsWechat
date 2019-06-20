@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "Footer": "/component/footer/footer"
   },
   "navigationBarTitleText": "检测依据"
 }

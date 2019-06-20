@@ -1,75 +1,31 @@
 /* pages/test/TestDataDetails/TestDataDetails.wxss */
-
-.test-title {
-  width: 240rpx;
-  display: inline-block;
-  vertical-align: middle;
-  color: #fff;
+.details-container.pb-10{
+  padding-bottom:10rpx;
 }
-.details-container{
-  padding-left:0 !important;
-}
-
-
-.test-info {
-  display: inline-block;
-  vertical-align: middle;
-  width: 420rpx;
-  padding: 32rpx 0 32rpx 30rpx;
-  margin-right: 30rpx;
-  border-bottom: 1px solid #ddd;
-  color: rgb(76, 217, 100);
-}
-
-.testItem:last-child .test-info {
-  border: none;
-}
-
-.select-area {
-  display: flex;
-  margin-top: 20rpx;
-}
-
-.select-wrap {
-  flex: 1;
-  display: inline-block;
-  vertical-align: middle;
-  padding-left: 20rpx;
-}
-
 .btn-sure {
   flex: 0 0 240rpx;
   display: inline-block;
   vertical-align: middle;
 }
-
 .rs-xs-btn {
   width: 200rpx;
   padding: 22rpx 0;
   line-height: unset;
 }
-
 .rs-xs-btn.btn-green {
   color: #4cd964;
   border: 1px solid #4cd964;
 }
-
 .rs-btn.testDataEnter {
   float: right;
   margin-right: 100rpx;
   margin-top: 20rpx;
 }
-
 .weui-cell::before {
   border: none;
 }
-
 .weui-cell.weui-cell_access {
   padding:0 30rpx 0 0;
-}
-
-.weui-cell__bd {
-  color: #fff;
 }
 
 .depthNum {

@@ -1,33 +1,23 @@
 // pages/test/TestDataDetails/TestDataDetails.js
+var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    selectArray: [
-      {
-        "id": "0",
-        "text": "0.3"
-      },
-      {
-        "id": "1",
-        "text": "0.6"
-      }, {
-        "id": "2",
-        "text": "0.9"
-      }
-    ],
+    tabs: ["基本信息", "深度"],
+    activeIndex: 0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log(options.Id);
-
+  onLoad: function () {
+    var that = this;
   },
-
+  tabClick: function (e) {
+    this.setData({
+      activeIndex: e.currentTarget.id
+    });
+  },
   toTestList:function(){
     //返回上一页
     wx.navigateBack({

@@ -7,7 +7,6 @@
     "pages/test/addTestData/testList",
     "pages/test/addTestData/testRecord",
     "pages/test/addTestData/updateTestRecord",
-    "component/footer/footer",
     "component/select/select",
     "pages/test/testDetails",
     "pages/test/personInfo/personInfo",

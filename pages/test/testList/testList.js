@@ -11,24 +11,12 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
+    var plieList = wx.getStorageSync('pileList')
     this.setData({
-      pileList:JSON.parse(options.pileList)  
+      pileList: plieList 
     });
   },
-
-  toWtDetails: function () {
-    //返回上一页
-    wx.navigateBack({
-      delta: 1
-    })
-  },
-  //录入检测数据
-  toAddTestData:function(){
-    wx.navigateTo({
-      url: '/pages/test/testList/addTestPoint'
-    })
-  },
-
+  
   //新增测点信息
   toAddTestPoint:function(){
     wx.navigateTo({

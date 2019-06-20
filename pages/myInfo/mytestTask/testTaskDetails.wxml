@@ -2,42 +2,42 @@
   <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height: 100%">
       <view class="details-container">
-        <view class="wt-items">
-          <text class="wt-title">委托编号</text>
-          <text class="wt-info text-green">{{wtDetails.entrustNo}}</text>
+        <view class="details-item">
+          <text class="details-title">委托编号</text>
+          <text class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</text>
         </view>
-        <view class="wt-items">
-          <text class="wt-title">委托日期</text>
-          <text class="wt-info text-green">{{wtDetails.creationTime}}</text>
+        <view class="details-item">
+          <text class="details-title">委托日期</text>
+          <text class="details-info rs-text mt-16">{{wtDetails.creationTime}}</text>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">工程名称</view>
-          <view class="wt-info text-green">{{wtDetails.projectName}}</view>
+        <view class="details-item">
+          <view class="details-title">工程名称</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.projectName}}</view>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">工程地点</view>
-          <view class="wt-info text-green">{{wtDetails.projectAddress}}</view>
+        <view class="details-item">
+          <view class="details-title">工程地点</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.projectAddress}}</view>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">地基类型</view>
-          <view class="wt-info text-green" wx:if="{{wtDetails.foundationType}}">{{wtDetails.foundationType}}</view>
-          <view class="wt-info text-green" wx:else>-</view>
+        <view class="details-item">
+          <view class="details-title">地基类型</view>
+          <view class="details-info rs-text mt-16" wx:if="{{wtDetails.foundationType}}">{{wtDetails.foundationType}}</view>
+          <view class="details-info rs-text mt-16" wx:else>-</view>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">检测数量</view>
-          <view class="wt-info text-green">{{wtDetails.testMum}}</view>
+        <view class="details-item">
+          <view class="details-title">检测数量</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.testMum}}</view>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">检测方法</view>
-          <view class="wt-info text-green">{{wtDetails.testModeName}}</view>
+        <view class="details-item">
+          <view class="details-title">检测方法</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.testModeName}}</view>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">进场时间</view>
-          <view class="wt-info text-green">{{wtDetails.workDate}}</view>
+        <view class="details-item">
+          <view class="details-title">进场时间</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.workDate}}</view>
         </view>
-        <view class="wt-items">
-          <view class="wt-title">预估完成时间</view>
-          <view class="wt-info text-green">{{wtDetails.finishDate}}</view>
+        <view class="details-item">
+          <view class="details-title">预估完成时间</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.finishDate}}</view>
         </view>
       </view>
       <view class="test-item area-flex mt-20" wx:for="{{personList}}" wx:key="{{index}}">

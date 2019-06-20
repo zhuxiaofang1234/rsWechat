@@ -9,8 +9,5 @@
         </view>
       </label>
     </radio-group>
-    <view class="weui-cell weui-cell_link">
-      <view class="weui-cell__bd">添加更多</view>
-    </view>
   </view>
 </view>
