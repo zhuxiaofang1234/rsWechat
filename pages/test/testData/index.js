@@ -7,7 +7,7 @@ Page({
    */
   data: {
     serialNo: '',
-    pileList:[]
+    pileList: []
   },
 
   /**
@@ -34,7 +34,7 @@ Page({
 
   },
   //获取桩列表
-  getPileList: function (serialNo) {
+  getPileList: function(serialNo) {
     var that = this;
     var host = App.globalData.host;
     var accessToken = wx.getStorageSync('accessToken');
@@ -58,7 +58,7 @@ Page({
           that.setData({
             pileList: resData
           });
-         
+
         } else if (res.statusCode == 401) {
           wx.showModal({
             title: '登录过期',
@@ -76,15 +76,16 @@ Page({
     })
   },
   //新增试验数据
-  toAddTestData:function(){
+  toAddTestData: function() {
     wx.navigateTo({
       url: '/pages/test/addTestData/addTestData'
     })
   },
   //查看数据详情
-  toTestDataDetails:function(e){
+  toTestDataDetails: function(e) {
+    var baseInfoId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/test/TestDataDetails/TestDataDetails'
+      url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId
     })
   }
 
