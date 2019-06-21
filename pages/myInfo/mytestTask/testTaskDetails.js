@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Id:null,
+    wtId:null,
     confirmStatus:null,
     hidden:true
   },
@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     var wtId = options.Id;
     var confirmStatus = options.confirm;
     if (confirmStatus==0){
@@ -26,8 +25,10 @@ Page({
       this.setData({
         hidden: true
       });
-    }
-    
+    } 
+    this.setData({
+      wtId: wtId
+    }); 
   //加载委托单详情信息
     this.getEntrustDetails(wtId);
   },
@@ -60,12 +61,6 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   //获取委托单详情信息
   getEntrustDetails: function (wtId) {
     var that = this;
@@ -112,6 +107,18 @@ Page({
       fali() {
         wx.hideLoading();
       }
+    })
+  },
+  toWtReject:function(){
+    var wtId = this.data.wtId;
+    wx.navigateTo({
+      url: '/pages/myInfo/mytestTask/workReject?wtId=' + wtId
+    })
+  },
+  toWtSure:function(){
+    var wtId = this.data.wtId;
+    wx.navigateTo({
+      url: '/pages/myInfo/mytestTask/workSure?wtId=' + wtId
     })
   }
 })
