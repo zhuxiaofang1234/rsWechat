@@ -8,16 +8,16 @@ Page({
   data: {
     tabs: ["基本信息", "深度"],
     activeIndex: 0,
-    baseInfoId:null,
-    depthList:[]
+    depthList:[],
+    dGrade:''
   },
 
   onLoad: function(options) {
-    this.setData({
-      baseInfoId: options.baseInfoId
-    });
-    this.getTestDatadetails(options.baseInfoId);
+    var baseInfoId = options.baseInfoId;
+    wx.setStorageSync('baseInfoId', baseInfoId);
+    this.getTestDatadetails(baseInfoId);
   },
+
   tabClick: function(e) {
     this.setData({
       activeIndex: e.currentTarget.id
@@ -43,6 +43,7 @@ Page({
           var resData = res.data.result;
           that.setData({
             details: resData,
+            dGrade: resData.dGrade,
             depthList: resData.detailsData,
 
           });
@@ -69,8 +70,10 @@ Page({
     })
   },
   continueTest:function(e){
+    var dGrade = this.data.dGrade;
+    console.log(dGrade);
     wx.navigateTo({
-      url: '/pages/test/addTestData/testRecord'
+      url: '/pages/test/addTestData/testRecord?dGrade=' + dGrade
     })
   }
 })

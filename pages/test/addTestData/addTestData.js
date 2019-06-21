@@ -101,7 +101,9 @@ Page({
       this.errorTips(erroInfo);
       return;
     }else{
-      wx.setStorageSync('dGrade', data.dGrade);
+      this.setData({
+        dGrade: data.dGrade
+      });
     }
 
     var baseInfoId = this.data.baseInfoId;
@@ -130,6 +132,7 @@ Page({
     var accessToken = wx.getStorageSync('accessToken');
     var host = App.globalData.host;
     var that = this;
+    var dGrade = this.data.dGrade;
 
     // 成功跳转的页面
     wx.request({
@@ -150,7 +153,7 @@ Page({
             success: function() {
               //跳转到试验采样记录
               wx.navigateTo({
-                url: '/pages/test/addTestData/testRecord',
+                url: '/pages/test/addTestData/testRecord?dGrade=' + dGrade,
               })
             }
           })

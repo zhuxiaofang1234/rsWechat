@@ -8,6 +8,7 @@ Page({
   data: {
     index: 1,
     depth: '',
+    dGrade:'',
     hammerValue: '',
     description: '',
     remark: '',
@@ -25,8 +26,10 @@ Page({
   onLoad: function(options) {
     var baseInfoId = wx.getStorageSync('baseInfoId');
     this.setData({
-      baseInfoId: baseInfoId
+      baseInfoId: baseInfoId,
+      dGrade: options.dGrade
     });
+    console.log(baseInfoId);
   },
 
   /**
@@ -106,7 +109,7 @@ Page({
     data.hammerValue = hammerValue;
     data.description = this.data.description;
     data.remark = this.data.remark;
-    var dGrade = wx.getStorageSync('dGrade');
+    var dGrade = this.data.dGrade;
 
     // 成功跳转的页面
     wx.request({

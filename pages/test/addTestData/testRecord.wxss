@@ -50,7 +50,6 @@
 .weui-textarea, .weui-input {
   color: #4cd964;
 }
-
-.weui-flex__item {
-  width: 30%;
+.weui-textarea{
+  padding-top:18rpx;
 }
