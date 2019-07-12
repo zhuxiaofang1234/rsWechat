@@ -1,0 +1,14 @@
+<view class="login-wrap hidden">
+  <view class="login-info">检测方法选择</view>
+  <view class="testMode-wrap" catchtap="selectTestMode">
+    <view class="testMode-item rs-inline {{testModeCode=='TQ'? 'selected' : ''}}"  data-code="TQ">轻型动力触探</view>
+    <view class="testMode-item rs-inline {{testModeCode=='TZ'? 'selected' : ''}}"  data-code="TZ">重型动力触探</view>
+    <view class="testMode-item rs-inline {{testModeCode=='PB' ? 'selected' : ''}}"  data-code="PB">复合地基平板试验</view>
+    <view class="testMode-item rs-inline {{testModeCode=='DY' ? 'selected' : ''}}"  data-code="DY">低应变</view>
+    <view class="testMode-item rs-inline {{testModeCode=='GY' ? 'selected' : ''}}"  data-code="GY">高应变</view>
+    <view class="testMode-item rs-inline {{testModeCode=='JZ' ? 'selected' : ''}}"  data-code="JZ">静载</view>
+  </view>
+  <view class="bottom-wrap">
+    <button class="rs-btn btn-lg login-btn" plain="true" bindtap="toWorkRecord">下一步</button>
+  </view>
+</view>

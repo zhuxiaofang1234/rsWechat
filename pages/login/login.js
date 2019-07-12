@@ -6,7 +6,10 @@ Page({
    */
   data: {
     account:'',
-    paasword:''
+    paasword:'',
+    serverType: ["N10轻型", "N63.5重型", "N120超重型"],
+    serverIndex: 0,
+    defaultPicker:'请选择服务器'
   },
 
   /**
@@ -23,6 +26,15 @@ Page({
   getPwd: function (e) {
     this.setData({
       paasword: e.detail.value
+    })
+  },
+
+  //服务器类型
+  bindServerChange: function (e) {
+    var serverType = this.data.serverType;
+    var serverIndex = e.detail.value;
+    this.setData({
+      defaultPicker: serverType[serverIndex]
     })
   },
 
@@ -62,8 +74,9 @@ Page({
               duration: 3000,
               mask:true,
               success: function () {
-                wx.switchTab({
-                  url: '/pages/test/test',
+                //跳转到选择检测方法页面
+                wx.redirectTo({
+                  url: '/pages/testMode/index',
                 })
               }
             }) 

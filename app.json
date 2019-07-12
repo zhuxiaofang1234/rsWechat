@@ -2,6 +2,7 @@
   "pages": [
     "pages/test/test",
     "pages/login/login",
+    "pages/testMode/index",
     "pages/test/TestDataDetails/TestDataDetails",
     "pages/test/addTestData/addTestData",
     "pages/test/addTestData/testList",

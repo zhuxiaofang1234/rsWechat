@@ -130,7 +130,7 @@ Page({
             success: function() {
               that.setData({
                 index: index + 1,
-                depth: parseFloat(depth) + parseFloat(dGrade),
+                depth: (parseFloat(depth) + parseFloat(dGrade)).toFixed(2),
                 isDisabled: true,
                 hammerValue: '',
               });

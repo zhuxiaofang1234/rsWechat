@@ -1,5 +1,4 @@
 // pages/test/test.js
-
 const App = getApp();
 Page({
 
@@ -48,7 +47,6 @@ Page({
     this.getPage();
   },
 
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -57,7 +55,7 @@ Page({
     setTimeout(function() {
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading();
-    }, 2000)
+    }, 1000)
 
     this.setData({
       inputVal: '',
@@ -165,13 +163,16 @@ Page({
     var loadData = this.data.load;
     var hidden = this.data.hidden;
 
+    var TestModeCode = wx.getStorageSync('testModeCode');
+    console.log(TestModeCode);
+
     if (hidden) {
       this.setData({
         "hidden": false
       });
     }
     wx.request({
-      url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&status=' + curTestStatus + '&Filter=' + Filter +'&TestModeCode=ZT',
+      url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&status=' + curTestStatus + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
       method: "GET",
       dataType: "json",
       header: {

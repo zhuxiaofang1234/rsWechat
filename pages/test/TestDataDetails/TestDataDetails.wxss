@@ -24,3 +24,13 @@
 .details-info{
   line-height: 1;
 }
+.rs-text.text-c{
+  text-align: center;
+  color:#fff;
+}
+
+.noTestRecord{
+ flex-direction:column;
+  justify-content: center;
+
+}

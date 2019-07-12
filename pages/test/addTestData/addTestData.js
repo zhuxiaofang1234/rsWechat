@@ -13,7 +13,7 @@ Page({
     rdjlxIndex: 0,
     dGrade: 0.3,
     pileNo: '请选择测点号',
-    orderNo: '223',
+    orderNo: '',
     testLoad: '',
     pileBearing: '',
     height1: '',

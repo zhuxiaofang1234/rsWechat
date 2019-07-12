@@ -1,34 +1,29 @@
-/* pages/login/login.wxss */
+page{
+background-color:#383838;
+}
 .login-wrap{
-  margin:100rpx 0;
-  color:#fff;
-  margin-left:50rpx; 
+margin:80rpx 50rpx;
+color:#fff;
+}
+.weui-cells_after-title{
+  margin-bottom:35rpx;
+  border:1px solid #555;
 }
 
 .login-info{
-  font-size:48rpx; 
-   margin-bottom:68rpx;
-}
-.login-item{
-  font-size:0;
+font-size:48rpx; 
+margin-bottom:74rpx;
 }
 
-.login-title{
-  width:150rpx;
-  display:inline-block;
-  vertical-align: middle;
-  font-size:36rpx; 
+.round{
+  border-radius: 45rpx;
 }
 
-.login-input{
-   display: inline-block;
-   vertical-align:middle;
-   width:500rpx;
-   font-size:36rpx;
-   border-bottom:1px solid #fff;
-   padding:31rpx 0;
+.login-text{
+font-size:36rpx;
+color: #4cd964;
 }
 
 .login-btn{
-  letter-spacing: 4rpx;
+letter-spacing: 4rpx;
 }

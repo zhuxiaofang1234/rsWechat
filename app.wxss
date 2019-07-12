@@ -101,6 +101,10 @@ page {
 }
 
 /****************文字颜色**************************/
+.rs-inline{
+  display: inline-block;
+  vertical-align: middle;
+}
 
 .text-green {
   color: rgb(76, 217, 100);

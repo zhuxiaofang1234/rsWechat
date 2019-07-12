@@ -12,10 +12,10 @@
             </navigator>
           </view>
           <view class="weui-cells__title rs-title">现场记录号</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}"/>
+                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" />
               </view>
             </view>
           </view>
@@ -31,7 +31,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade"/>
+                <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade" />
               </view>
             </view>
           </view>
@@ -56,14 +56,14 @@
             </view>
           </view>
           <view class="weui-cells__title rs-title">GPS位置</view>
-         <view class="weui-cells weui-cells_after-title bg-black">
+          <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_switch">
-                <view class="weui-cell__bd rs-text">{{gpstext}}</view>
-                <view class="weui-cell__ft">
-                    <switch checked="{{gpsIsValid}}" bindchange="switchChange"/>
-                </view>
+              <view class="weui-cell__bd rs-text">{{gpstext}}</view>
+              <view class="weui-cell__ft">
+                <switch checked="{{gpsIsValid}}" bindchange="switchChange" />
+              </view>
             </view>
-        </view>
+          </view>
         </view>
         <view class="details-container mt-30">
           <view class="wt-items">

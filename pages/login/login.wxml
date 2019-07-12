@@ -1,14 +1,30 @@
 <view class="login-wrap hidden">
-  <view class="login-info">用户信息登录</view>
-  <view class="login-item">
-    <label class="login-title">账号</label>
-   <input class="login-input" placeholder='请输入帐号' confirm-type="done" bindinput='getAccount'></input>
+  <view class="login-info">账号信息登录</view>
+  <view class="weui-cells_after-title bg-black round">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd">
+        <picker bindchange="bindServerChange" value="{{index}}" range="{{serverType}}">
+          <view class="weui-select">{{defaultPicker}}</view>
+        </picker>
+      </view>
+    </view>
   </view>
-   <view class="login-item">
-    <label class="login-title">密码</label>
-   <input class="login-input" placeholder='请输入密码' password="true" bindinput='getPwd'></input>
+
+  <view class="weui-cells_after-title bg-black round">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input rs-text" placeholder="请输入账号" placeholder-class="login-text" bindinput='getAccount'/>
+      </view>
+    </view>
   </view>
- <view class="bottom-wrap">
-     <button class="rs-btn btn-lg login-btn" plain="true" bindtap="login">登录</button>
+  <view class="weui-cells_after-title bg-black round">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input class="weui-input rs-text" placeholder="请输入密码" placeholder-class="login-text" bindinput='getPwd'/>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-wrap">
+    <button class="rs-btn btn-green btn-lg login-btn" plain="true" bindtap="login">登录</button>
   </view>
 </view>
