@@ -20,7 +20,7 @@
   <view class="weui-cells_after-title bg-black round">
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__bd">
-        <input class="weui-input rs-text" placeholder="请输入密码" placeholder-class="login-text" bindinput='getPwd'/>
+        <input class="weui-input rs-text" placeholder="请输入密码" password="true" placeholder-class="login-text" bindinput='getPwd'/>
       </view>
     </view>
   </view>

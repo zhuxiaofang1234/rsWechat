@@ -7,7 +7,7 @@ Page({
    */
   data: {
     wtDetails: null,
-    pileList:[]
+    pileList:[],
   },
 
   /**
@@ -28,10 +28,12 @@ Page({
 
   },
 
-  //页面跳转
+  //人员信息
   toPersonInfo: function() {
+    var personList = JSON.stringify(this.data.personList);
+    var equipList = JSON.stringify(this.data.equipList);
     wx.navigateTo({
-      url: '/pages/test/personInfo/personInfo'
+      url: '/pages/test/personInfo/personInfo?personList=' + personList + '&equipList=' + equipList
     });
   },
 
@@ -52,8 +54,6 @@ Page({
   },
   //检测列表
   toTestList: function() {
-    //var pileList = JSON.stringify(this.data.pileList);
-    //保留当前页
     wx.navigateTo({
       url: '/pages/test/testList/testList'
     });
@@ -85,7 +85,8 @@ Page({
             wtDetails: resData,
             testStandard: resData.testStandard,
             pileList: resData.pileList,
-            serialNo: resData.serialNo
+            serialNo: resData.serialNo,
+            personList: resData.personList
           });
           //缓存桩列表
           wx.setStorageSync('pileList', resData.pileList);

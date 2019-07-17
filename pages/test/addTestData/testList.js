@@ -57,9 +57,10 @@ Page({
   radioChange: function(e) {
     var pileList = this.data.pileList;
     for (var i = 0, len = pileList.length; i < len; ++i) {
+    
       pileList[i].checked = pileList[i].id == e.detail.value;
     }
-
+    console.log(e.detail.value);
     this.setData({
       pileList: pileList
     });

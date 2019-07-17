@@ -3,12 +3,12 @@
     <scroll-view class="main-wrapper" scroll-y style="height: 100%">
       <view class="details-container">
         <view class="details-item">
-          <text class="details-title">委托编号</text>
-          <text class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</text>
+          <view class="details-title">委托编号</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</view>
         </view>
         <view class="details-item">
-          <text class="details-title">委托日期</text>
-          <text class="details-info rs-text mt-16">{{wtDetails.creationTime}}</text>
+          <view class="details-title">委托日期</view>
+          <view class="details-info rs-text mt-16">{{wtDetails.creationTime}}</view>
         </view>
         <view class="details-item">
           <view class="details-title">工程名称</view>

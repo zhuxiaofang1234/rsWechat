@@ -97,8 +97,9 @@
               </view>
             </block>
           </scroll-view>
-          <block wx:if="{{depthList.length==0 && details.isTesting==1}}">
+          <block wx:if="{{details.isTesting==1}}">
           <view class="footer backfooter">
+            <button class="rs-btn backbtn mr-50" plain="true"bindtap="endTest">结束实验</button>
             <button class="rs-btn backbtn btn-green" plain="true" bindtap="continueTest">继续试验</button>
           </view>
           </block>

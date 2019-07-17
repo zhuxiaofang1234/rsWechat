@@ -25,11 +25,15 @@ Page({
    */
   onLoad: function(options) {
     var baseInfoId = wx.getStorageSync('baseInfoId');
+    if (options.recordCount){
+      this.setData({
+        index: parseInt(options.recordCount)+1
+      });
+    }
     this.setData({
       baseInfoId: baseInfoId,
       dGrade: options.dGrade
     });
-    console.log(baseInfoId);
   },
 
   /**
@@ -209,7 +213,7 @@ Page({
     var accessToken = wx.getStorageSync('accessToken');
     var host = App.globalData.host;
     var that = this;
-    var baseInfoId = this.data.baseInfoId;
+    var baseInfoId = wx.getStorageSync('baseInfoId');
     wx.showModal({
       title: '结束试验',
       content: '确定要结束当前试验吗？',

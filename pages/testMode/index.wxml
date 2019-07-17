@@ -8,7 +8,7 @@
     <view class="testMode-item rs-inline {{testModeCode=='GY' ? 'selected' : ''}}"  data-code="GY">高应变</view>
     <view class="testMode-item rs-inline {{testModeCode=='JZ' ? 'selected' : ''}}"  data-code="JZ">静载</view>
   </view>
-  <view class="bottom-wrap">
+  <view class="bottom-wrap" hidden="{{hidden}}">
     <button class="rs-btn btn-lg login-btn" plain="true" bindtap="toWorkRecord">下一步</button>
   </view>
 </view>

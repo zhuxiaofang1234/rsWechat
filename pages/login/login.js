@@ -7,7 +7,7 @@ Page({
   data: {
     account:'',
     paasword:'',
-    serverType: ["N10轻型", "N63.5重型", "N120超重型"],
+    serverType: ["http://test.rocksea.net.cn:9000/", "N63.5重型", "N120超重型"],
     serverIndex: 0,
     defaultPicker:'请选择服务器'
   },
@@ -16,7 +16,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    App.globalData.testData=345
+    this.connectToSoap();
+   
   },
   getAccount:function(e){
     this.setData({
@@ -36,6 +37,7 @@ Page({
     this.setData({
       defaultPicker: serverType[serverIndex]
     })
+    App.globalData.host = this.data.defaultPicker
   },
 
   login:function(e){
@@ -67,7 +69,7 @@ Page({
             var accessToken = res.data.result.accessToken;
         //存储token值
             wx.setStorageSync('accessToken', accessToken);
-
+           
             wx.showToast({
               title: '登录成功',
               icon: 'success',
@@ -76,7 +78,7 @@ Page({
               success: function () {
                 //跳转到选择检测方法页面
                 wx.redirectTo({
-                  url: '/pages/testMode/index',
+                  url: '/pages/testMode/index?page=first',
                 })
               }
             }) 
@@ -94,5 +96,45 @@ Page({
         }
       })
     }
-  }
+  },
+
+  //webService接口
+  connectToSoap: function () {
+    var that = this;
+    var method = 'ServerTransferShortInfoJsonListV3';                                  
+    var wsdlurl='http://update.rocksea.com.cn/rsservice.asmx';       
+    var tmpNamespace ='http://rsonline.net.cn/';
+
+    var datacopy = '<?xml version="1.0" encoding="utf-8"?>';
+    datacopy += '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://rsonline.net.cn/">';
+    datacopy += '<soapenv:Header/>';
+    datacopy += '<soapenv:Body>';
+    datacopy += '<ser:ServerTransferShortInfoJsonListV3>';
+    datacopy += '</ser:ServerTransferShortInfoJsonListV3>';
+    datacopy += '</soapenv:Body>';
+    datacopy += '</soapenv:Envelope>';
+    
+    wx.request({
+      url: wsdlurl,
+      data: datacopy,
+      method: 'POST',
+      header: {
+        'content-type': 'text/xml; charset=utf-8',
+        'SOAPAction': tmpNamespace + method,              
+},
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+    
+      }
+})
+},
+//解析XML
+
+
+
 })

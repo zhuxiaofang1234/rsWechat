@@ -1,23 +1,23 @@
 <view class="details-wrap">
-<view class="fixedArea">
+  <!--view class="fixedArea">
   <button class="rs-btn testDataEnter" plain="true" bindtap="toAddTestPoint">新增测点</button>
-</view>
+</view-->
   <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height:100%">
-    <block wx:if="{{pileList.length>0}}">
-    <view class="plie-items" bindtap="toTestDataDetails" wx:for="{{pileList}}" wx:key="{{index}}" data-id="{{item.id}}">
+      <block wx:if="{{pileList.length>0}}">
+        <view class="plie-items" bindtap="toEditTestPoint" wx:for="{{pileList}}" wx:key="{{index}}" data-id="{{item.id}}">
           <view class="pile-order">{{index+1}}</view>
-          <view class="pile-no">{{item.pileNo}}</view>
+          <view class="pile-no">{{item.pileNo ? item.pileNo:'-'}}</view>
         </view>
-    </block>
-     <view wx:else style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+      </block>
+      <view wx:else style="color:#fff; height:100%;" class="noData-wrap weui-flex">
         <view style="margin-top:200rpx;">
           <view class="img-wrap">
             <image src="../../../images/noData.png" class="img-response"></image>
           </view>
           <view class="error-tips">暂无试验数据</view>
         </view>
-      </view>     
+      </view>
     </scroll-view>
   </view>
 </view>

@@ -5,14 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    personList:[],
+    equipList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var personList = JSON.parse(options.personList);
+    var equipList = JSON.parse(options.equipList);
 
+    this.setData({
+      personList: personList,
+      equipList: equipList
+    });
+  
   },
 
   /**

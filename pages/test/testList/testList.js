@@ -17,17 +17,11 @@ Page({
     });
   },
   
-  //新增测点信息
-  toAddTestPoint:function(){
-    wx.navigateTo({
-      url: '/pages/test/testList/addTestPoint'
-    })
-  },
-  //查看数据详情
-  toTestDataDetails:function(e){
+  //编辑测点信息
+  toEditTestPoint:function(e){
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/test/TestDataDetails/TestDataDetails?Id=' + id
+      url: '/pages/test/testList/EditTestPoint?id='+id
     })
-  } 
+  }
 })

@@ -14,7 +14,7 @@
     "pages/test/reportRes/reportRes",
     "pages/test/testList/testList",
     "pages/test/testData/index",
-    "pages/test/testList/addTestPoint",
+    "pages/test/testList/EditTestPoint",
     "pages/test/testStandard/testStandard",
     "pages/report/report",
     "pages/myInfo/myInfo",
