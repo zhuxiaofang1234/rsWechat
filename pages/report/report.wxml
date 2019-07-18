@@ -1,12 +1,3 @@
 <view>
-  <view class='nav bg-blue' style='height:{{navH}}px'>
-    <view class='nav-title rs-title'>
-     报告流转
-    </view>
-  </view>
-  <scroll-view class='bg-gray overflow' style='height:calc(100vh - {{navH}}px)' scroll-y >
-    <view class='hidden'>
-      <!-- 正文 -->
-    </view>
-  </scroll-view>
+  暂待开发！
 </view>

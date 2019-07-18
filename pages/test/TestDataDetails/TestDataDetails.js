@@ -8,8 +8,10 @@ Page({
   data: {
     tabs: ["基本信息", "深度"],
     activeIndex: 0,
-    depthList:[],
-    dGrade:''
+    depthList: [],
+    dGrade: '',
+    depthHeight: null,
+    isTesting: 0
   },
 
   onLoad: function(options) {
@@ -19,12 +21,29 @@ Page({
   },
 
   tabClick: function(e) {
+    var that = this;
+    var curIndex = e.currentTarget.id;
     this.setData({
-      activeIndex: e.currentTarget.id
+      activeIndex: curIndex
     });
+    //获取测试情况
+    var isTesting = this.data.isTesting;
+    if (curIndex == 1) {
+      //获取tab的高度
+      var h = App.globalData.windowHeight;
+      if (isTesting == 1) {
+        that.setData({
+          depthHeight: h-106
+        });
+      } else {
+        that.setData({
+          depthHeight: h - 20
+        });
+      }
+    }
   },
   //获取指定数据详情
-  getTestDatadetails: function (baseInfoId) {
+  getTestDatadetails: function(baseInfoId) {
     var that = this;
     var host = App.globalData.host;
     var accessToken = wx.getStorageSync('accessToken');
@@ -44,8 +63,8 @@ Page({
             details: resData,
             dGrade: resData.dGrade,
             depthList: resData.detailsData,
-            recordCount: resData.recordCount
-
+            recordCount: resData.recordCount,
+            isTesting: resData.isTesting
           });
         } else if (res.statusCode == 401) {
           wx.showModal({
@@ -70,15 +89,16 @@ Page({
     })
   },
   //继续试验
-  continueTest:function(e){
+  continueTest: function(e) {
     var dGrade = this.data.dGrade;
     var recordCount = this.data.recordCount;
     wx.navigateTo({
       url: '/pages/test/addTestData/testRecord?dGrade=' + dGrade + '&recordCount=' + recordCount
     })
   },
+
   //结束实验
-  endTest: function () {
+  endTest: function() {
     var accessToken = wx.getStorageSync('accessToken');
     var host = App.globalData.host;
     var that = this;

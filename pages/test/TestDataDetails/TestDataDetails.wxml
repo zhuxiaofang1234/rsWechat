@@ -68,7 +68,7 @@
         </view>
         <!--深度值-->
         <view class="weui-tab__content mt-20" hidden="{{activeIndex != 1}}">
-          <scroll-view scroll-y style="height:calc(100vh - 284rpx);">
+          <scroll-view scroll-y style="height:{{depthHeight}}px">
             <block wx:if="{{depthList.length>0}}" wx:for="{{depthList}}" wx:key="{{index}}">
               <view class="details-container {{index !==0 ? 'mt-20':''}}">
                 <view class="details-item">

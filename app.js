@@ -5,6 +5,7 @@ App({
     wx.getSystemInfo({
       success(res) {
         that.globalData.navHeight = res.statusBarHeight + 46;
+        that.globalData.windowHeight = res.windowHeight
       }
     });
   },
@@ -13,6 +14,7 @@ App({
     userInfo: null,
     host: 'http://test.rocksea.net.cn:9000/',
     statusBarHeight: 0,
+    windowHeight:0,
     testData: 123
   },
   back:function(){

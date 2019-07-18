@@ -7,7 +7,7 @@ Page({
   data: {
     account:'',
     paasword:'',
-    serverType: ["http://test.rocksea.net.cn:9000/", "N63.5重型", "N120超重型"],
+    serverType: ["http://test.rocksea.net.cn:9000/"],
     serverIndex: 0,
     defaultPicker:'请选择服务器'
   },
@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.connectToSoap();
+    //this.connectToSoap();
    
   },
   getAccount:function(e){
