@@ -60,7 +60,7 @@
             <view class="weui-cell weui-cell_switch">
               <view class="weui-cell__bd rs-text">{{gpstext}}</view>
               <view class="weui-cell__ft">
-                <switch checked="{{gpsIsValid}}" bindchange="switchChange" />
+                <switch checked="{{gpsIsValid}}" bindchange="switchChange"/>
               </view>
             </view>
           </view>
@@ -85,6 +85,15 @@
         </view>
       </scroll-view>
     </view>
+    <view class="ui-toast-box" hidden="{{isShowToast}}">
+    <view class="ui-toast-content dir-top main-justify">
+        <view class="ui-content">
+            <view class="cell-title">温馨提示</view>
+            <view class="cell-content">去设置允许访问相册</view>
+        </view>
+        <button open-type="openSetting" bindopensetting='getSetting'>确定</button>
+    </view>
+</view>
     <view class="footer backfooter">
       <button class="rs-btn backbtn mr-50" plain="true" bindtap="cancel">取消</button>
       <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">开始试验</button>

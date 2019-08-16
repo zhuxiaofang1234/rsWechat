@@ -86,7 +86,8 @@ Page({
             testStandard: resData.testStandard,
             pileList: resData.pileList,
             serialNo: resData.serialNo,
-            personList: resData.personList
+            personList: resData.personList,
+            equipList: resData.equipList
           });
           //缓存桩列表
           wx.setStorageSync('pileList', resData.pileList);

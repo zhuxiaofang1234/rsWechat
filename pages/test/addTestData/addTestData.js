@@ -24,14 +24,16 @@ Page({
     gpsIsValid: false,
     gpstext: 'GPS无效',
     gpsLongitude: '',
-    gpsLatitude: ''
+    gpsLatitude: '',
+    isShowToast:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getGps();
+   this.getGps();
+  
   },
 
   /**
@@ -209,12 +211,16 @@ Page({
   //打开GPS
   switchChange: function(e) {
     var GPSIspen = e.detail.value;
+    console.log(GPSIspen);
+    var that = this;
     if (GPSIspen) {
-      this.getGps();
+      this.setData({
+        isShowToast:false
+      });
     } else {
       this.setData({
         gpsIsValid: false,
-        gpstext: 'GPS无效'
+        gpstext: 'GPS无效',
       });
     }
   },
@@ -232,15 +238,18 @@ Page({
           gpsIsValid: true,
           gpstext: 'GPS有效',
         });
+        console.log('获取到地址');
       },
       fail: function() {
         that.setData({
           gpsIsValid: false,
           gpstext: 'GPS无效',
         });
+        console.log('获取不到地址');
       }
     })
   },
+
   cancel:function() {
     App.back();
   },
@@ -256,5 +265,35 @@ Page({
         showTopTips: false
       });
     }, 3000);
+  },
+  //再次获取地理位置权限
+  getSetting: function (event){
+    var that = this;
+    this.setData({
+      isShowToast:true
+    });
+
+    if (!event.detail.authSetting['scope.userLocation']) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '你关闭了获取用户·当前地理位置的权限',
+        showCancel: false,
+        success(res){
+          that.setData({
+            gpsIsValid: false,
+            gpstext: 'GPS无效',
+          });
+        }
+      })
+    }else{
+      wx.showToast({
+        icon: 'success',
+        title: `授权成功`,
+        success(res) {
+          that.getGps();
+        }
+      })
+    }
   }
+
 })

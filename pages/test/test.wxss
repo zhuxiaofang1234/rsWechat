@@ -19,13 +19,13 @@
 
   .searchIcon{
     position:absolute;
-     top:34rpx;
+     top:28rpx;
      left:10px;  
   }
  
   .searchInput{
-    height:98rpx;
-    line-height:98rpx;
+    height:80rpx;
+    line-height:80rpx;
     font-size:18px;
     padding:0 10px;
   }
@@ -37,13 +37,13 @@
   }
  
   .weui-search-bar__cancel-btn{
-   margin-left:10px;
-    line-height:98rpx;
-    font-size:18px;
+      margin-left:10px;
+      line-height:80rpx;
+      font-size:18px;
   }
 
   .weui-search-bar__label{
-    line-height:50px;
+    line-height:40px;
     border-radius:5px;
     background-color:#dfdfdf;  
   }
@@ -54,3 +54,6 @@
     font-size:18px;
   }
   /******加载更多******/
+.search-area {
+padding: 14rpx;
+}

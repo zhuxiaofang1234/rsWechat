@@ -12,7 +12,8 @@ App({
   //全局变量
   globalData: {
     userInfo: null,
-    host: 'http://test.rocksea.net.cn:9000/',
+    //host: 'http://test.rocksea.net.cn:9000/',
+    host:null,
     statusBarHeight: 0,
     windowHeight:0,
     testData: 123

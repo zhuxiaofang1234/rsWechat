@@ -152,6 +152,7 @@ Page({
     var that = this;
     var curTestStatus = this.data.curTestStatus;
     var host = App.globalData.host;
+    console.log(host);
     var hidden = this.data.hidden;
     var accessToken = this.data.accessToken;
     var page = this.data.page;

@@ -7,9 +7,9 @@ Page({
   data: {
     account:'',
     paasword:'',
-    serverType: ["http://test.rocksea.net.cn:9000/"],
+    serverType: ["https://nanhai.rocksea.vip/",'http://test.rocksea.net.cn:9000'],
     serverIndex: 0,
-    defaultPicker:'请选择服务器'
+    defaultPicker:'请选择服务器',
   },
 
   /**
@@ -37,13 +37,24 @@ Page({
     this.setData({
       defaultPicker: serverType[serverIndex]
     })
-    App.globalData.host = this.data.defaultPicker
+
+    App.globalData.host = serverType[serverIndex];
   },
 
   login:function(e){
     var account = this.data.account;
     var password = this.data.paasword;
     var host = App.globalData.host;
+    if (!host){
+        wx.showModal({
+          title: '提示',
+          content: '请选择服务器',
+          showCancel: false,
+          confirmColor: '#4cd964'
+        })
+        return;
+    }
+  
     if (account.length == 0 || password.length == 0) {
       wx.showModal({
         title: '登录失败',
@@ -69,7 +80,6 @@ Page({
             var accessToken = res.data.result.accessToken;
         //存储token值
             wx.setStorageSync('accessToken', accessToken);
-           
             wx.showToast({
               title: '登录成功',
               icon: 'success',
