@@ -9,6 +9,7 @@
     "pages/test/addTestData/testRecord",
     "pages/test/addTestData/updateTestRecord",
     "component/select/select",
+    "component/dialog/dialog",
     "pages/test/testDetails",
     "pages/test/personInfo/personInfo",
     "pages/test/reportRes/reportRes",

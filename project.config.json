@@ -39,6 +39,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 3,
 			"list": [
@@ -67,6 +71,27 @@
 					"id": -1,
 					"name": "pages/test/test",
 					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/testpage",
+					"pathName": "pages/test/testpage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "component/dialog/dialog",
+					"pathName": "component/dialog/dialog",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/addTestData/addTestData",
+					"pathName": "pages/test/addTestData/addTestData",
 					"scene": null
 				}
 			]

@@ -25,7 +25,6 @@ Page({
     gpstext: 'GPS无效',
     gpsLongitude: '',
     gpsLatitude: '',
-    isShowToast:true
   },
 
   /**
@@ -33,22 +32,26 @@ Page({
    */
   onLoad: function(options) {
    this.getGps();
-  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
     this.getbaseInfoId();
-
+  },
+  showDialog: function () {
+    this.dialog.showDialog();
   },
 
+  confirmEvent: function (e) {
+    this.dialog.hideDialog();
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+   
 
   },
   /**
@@ -214,9 +217,9 @@ Page({
     console.log(GPSIspen);
     var that = this;
     if (GPSIspen) {
-      this.setData({
-        isShowToast:false
-      });
+      //获得dialog组件
+      this.dialog = this.selectComponent("#dialog");
+      this.showDialog();
     } else {
       this.setData({
         gpsIsValid: false,
@@ -267,13 +270,9 @@ Page({
     }, 3000);
   },
   //再次获取地理位置权限
-  getSetting: function (event){
+  getSetting: function (event){  
     var that = this;
-    this.setData({
-      isShowToast:true
-    });
-
-    if (!event.detail.authSetting['scope.userLocation']) {
+    if (!event.detail['scope.userLocation']) {
       wx.showModal({
         title: '温馨提示',
         content: '你关闭了获取用户·当前地理位置的权限',
@@ -295,5 +294,4 @@ Page({
       })
     }
   }
-
 })

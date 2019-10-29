@@ -7,7 +7,8 @@ Page({
   data: {
     account:'',
     paasword:'',
-    serverType: ["https://nanhai.rocksea.vip/",'http://test.rocksea.net.cn:9000'],
+    serverType: ["佛山南海检测站",'武汉岩海检测'],
+    serverValue: ["https://nanhai.rocksea.vip/", 'http://test.rocksea.net.cn:9000'],
     serverIndex: 0,
     defaultPicker:'请选择服务器',
   },
@@ -34,11 +35,12 @@ Page({
   bindServerChange: function (e) {
     var serverType = this.data.serverType;
     var serverIndex = e.detail.value;
+    var serverValue = this.data.serverValue
     this.setData({
       defaultPicker: serverType[serverIndex]
     })
 
-    App.globalData.host = serverType[serverIndex];
+    App.globalData.host = serverValue[serverIndex];
   },
 
   login:function(e){
@@ -143,8 +145,4 @@ Page({
       }
 })
 },
-//解析XML
-
-
-
 })

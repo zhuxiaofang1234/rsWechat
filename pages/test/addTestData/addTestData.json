@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "dialog": "/component/dialog/dialog"
+  },
   "navigationBarTitleText": "检测数据录入"
 }

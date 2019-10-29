@@ -12,7 +12,7 @@
             </navigator>
           </view>
           <view class="weui-cells__title rs-title">现场记录号</view>
-            <view class="weui-cells weui-cells_after-title bg-black">
+          <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
                 <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" />
@@ -60,7 +60,7 @@
             <view class="weui-cell weui-cell_switch">
               <view class="weui-cell__bd rs-text">{{gpstext}}</view>
               <view class="weui-cell__ft">
-                <switch checked="{{gpsIsValid}}" bindchange="switchChange"/>
+                <switch checked="{{gpsIsValid}}" bindchange="switchChange" />
               </view>
             </view>
           </view>
@@ -72,11 +72,11 @@
           </view>
           <view class="wt-items">
             <text class="wt-title">设计地基标高(m)</text>
-            <text class="wt-info text-green">{{height1}}</text>
+            <text class="wt-info text-green">{{height2}}</text>
           </view>
           <view class="wt-items">
             <text class="wt-title">检测起始标高(m)</text>
-            <text class="wt-info text-green">{{height2}}</text>
+            <text class="wt-info text-green">{{height1}}</text>
           </view>
           <view class="wt-items">
             <text class="wt-title">设计承载力特征值(Kpa)</text>
@@ -85,18 +85,18 @@
         </view>
       </scroll-view>
     </view>
-    <view class="ui-toast-box" hidden="{{isShowToast}}">
-    <view class="ui-toast-content dir-top main-justify">
-        <view class="ui-content">
-            <view class="cell-title">温馨提示</view>
-            <view class="cell-content">去设置允许访问相册</view>
-        </view>
-        <button open-type="openSetting" bindopensetting='getSetting'>确定</button>
-    </view>
-</view>
+    <!--main结束->
+    
+    <!--弹出框组件-->
+    <dialog id='dialog' title='温馨提示' content='小程序需要您的授权获取地理位置' confirmText='去设置'
+      bind:myconfirmEvent='confirmEvent' 
+      bind:bindopensetting='getSetting'>
+    </dialog>
+    <!--弹出框结束-->
     <view class="footer backfooter">
       <button class="rs-btn backbtn mr-50" plain="true" bindtap="cancel">取消</button>
       <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">开始试验</button>
     </view>
   </view>
+  <!--details-wrap结束-->
 </form>
