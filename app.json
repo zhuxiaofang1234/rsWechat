@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/test/test",
+    "pages/index/index",
     "pages/login/login",
+    "pages/test/test",
     "pages/testMode/index",
     "pages/test/TestDataDetails/TestDataDetails",
     "pages/test/addTestData/addTestData",
@@ -41,17 +42,18 @@
     "backgroundColor": "#fff",
     "list": [
       {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/index@2x.png",
+        "selectedIconPath": "images/sindex@2x.png",
+        "text": "首页"
+      },
+      {
         "pagePath": "pages/test/test",
         "iconPath": "images/test@2x.png",
         "selectedIconPath": "images/stest@2x.png",
-        "text": "现场检测"
+        "text": "现场记录"
       },
-      {
-        "pagePath": "pages/report/report",
-        "iconPath": "images/report@2x.png",
-        "selectedIconPath": "images/sreport@2x.png",
-        "text": "报告流转"
-      },
+    
       {
         "pagePath": "pages/myInfo/myInfo",
         "iconPath": "images/myInfo@2x.png",

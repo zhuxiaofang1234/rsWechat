@@ -23,7 +23,6 @@ Page({
       "text": "已检测"
     }
     ],
-    curTestStatus: '',
     inputShowed: false,
     inputVal: "",
     accessToken: '',
@@ -42,12 +41,27 @@ Page({
    */
   onLoad: function (options) {
     //初始化页面
-    this.setData({
-      "accessToken": wx.getStorageSync('accessToken'),
-    })
-    this.getPage();
+    var accessToken = App.globalData.accessToken;
+    if (accessToken) {
+      this.setData({
+        "accessToken": accessToken
+      })
+    } else {
+      App.redirectToLogin();
+    }  
   },
 
+   /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      inputVal: '',
+      page: 0,
+      testList: []
+    });
+    this.getPage();
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -131,20 +145,9 @@ Page({
     });
     this.getPage();
   },
-  //获取select子组件传过来的值
-  getData: function (e) {
-    var testStatus = e.detail.code;
-    this.setData({
-      curTestStatus: testStatus,
-      page: 0,
-      testList: []
-    });
-    this.getPage();
-  },
   //获取列表数据
   getPage: function () {
     var that = this;
-    var curTestStatus = this.data.curTestStatus;
     var host = App.globalData.host;
     var hidden = this.data.hidden;
     var accessToken = this.data.accessToken;
@@ -156,16 +159,14 @@ Page({
     var SkipCount = (page) * MaxResultCount;
     var loadData = this.data.load;
     var hidden = this.data.hidden;
-
-    console.log(this.data.inputVal);
-
+    var TestModeCode = wx.getStorageSync('testModeCode');
     if (hidden) {
       this.setData({
         "hidden": false
       });
     }
     wx.request({
-      url: host + '/api/services/app/WorkSures/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&status=' + curTestStatus + '&Filter=' + Filter,
+      url: host + '/api/services/app/WorkSures/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
       method: "GET",
       dataType: "json",
       header: {

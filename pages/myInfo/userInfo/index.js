@@ -5,13 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userAccount:'',
+    userName:''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var userAccount = wx.getStorageSync('userAccount');
+    var userName = wx.getStorageSync('userName');  
+    this.setData({
+      userAccount: userAccount,
+      userName: userName
+    });
   },
 
   loginOut: function() {
@@ -25,7 +31,7 @@ Page({
           wx.reLaunch({
             url: '/pages/login/login'
           })
-          wx.removeStorageSync('accessToken');
+          wx.removeStorageSync('rsAccessToken');
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

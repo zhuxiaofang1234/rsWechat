@@ -40,7 +40,7 @@ Page({
     var message = this.data.message;
     var id = this.data.wtId;
     var that = this;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
 
     var host = App.globalData.host;
     if (message.length==0) {

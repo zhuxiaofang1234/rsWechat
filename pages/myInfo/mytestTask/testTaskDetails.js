@@ -65,7 +65,7 @@ Page({
   getEntrustDetails: function (wtId) {
     var that = this;
     var host = App.globalData.host;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var url = host + '/api/services/app/WorkSures/GetById?Id=' + wtId;
 
     wx.showLoading({

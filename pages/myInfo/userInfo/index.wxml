@@ -5,14 +5,14 @@
   <view class="accountInfo">
     <view class="accountItem">
       <label class="accountTitle">用户名</label>
-      <text class="accountText">深圳万科</text>
+      <text class="accountText">{{userName}}</text>
     </view>
       <view class="accountItem">
       <label class="accountTitle">账号信息</label>
-      <text class="accountText">13387525755</text>
+      <text class="accountText">{{userAccount}}</text>
     </view>
   </view>
   <view class="bottom-wrap">
-     <button class="rs-btn btn-lg" plain="true" bindtap="loginOut">退出登录</button>
+     <button class="rs-btn btn-blue btn-lg" plain="true" bindtap="loginOut">退出登录</button>
   </view> 
 </view>

@@ -1,5 +1,5 @@
 <view class="login-wrap hidden">
-  <view class="login-info">嘉测地基基础现场检测试验</view>
+  <view class="login-info">账号信息登录</view>
   <view class="weui-cells_after-title bg-black round">
     <view class="weui-cell weui-cell_select">
       <view class="weui-cell__bd">

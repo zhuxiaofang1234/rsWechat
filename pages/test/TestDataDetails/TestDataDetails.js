@@ -46,7 +46,7 @@ Page({
   getTestDatadetails: function(baseInfoId) {
     var that = this;
     var host = App.globalData.host;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var url = host + '/api/services/app/ZTData/GetById?BaseInfoId=' + baseInfoId;
     wx.request({
       url: url,
@@ -99,7 +99,7 @@ Page({
 
   //结束实验
   endTest: function() {
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var host = App.globalData.host;
     var that = this;
     var baseInfoId = wx.getStorageSync('baseInfoId');

@@ -1,3 +1,4 @@
+
 App({
   onLaunch: function() {
     //获取系统信息
@@ -12,16 +13,36 @@ App({
   //全局变量
   globalData: {
     userInfo: null,
-    host: 'http://test.rocksea.net.cn:9000/',
-    host:null,
     statusBarHeight: 0,
     windowHeight:0,
-    testData: 123
+    host:null,
+    accessToken:null
   },
   back:function(){
     wx.navigateBack({
       delta: 1 //想要返回的层级
     })
+  },
+  //重定向到登录页
+  redirectToLogin: function () {
+    wx.showModal({
+      title: '温馨提示',
+      content: '登录后可使用更多功能，前往登录？',
+      cancelText:'暂不登录',
+      cancelColor	:'#ddd',
+      confirmText:'立即登录',
+      confirmColor: '#4cd964',
+      success(res) {
+        if (res.confirm) {
+          wx.redirectTo({
+            url: '/pages/login/login'
+          })
+          wx.removeStorageSync('accessToken');
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })     
   },
   //获取当前系统时间
   format:function(Date){

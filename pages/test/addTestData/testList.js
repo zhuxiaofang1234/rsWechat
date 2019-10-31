@@ -60,7 +60,6 @@ Page({
     
       pileList[i].checked = pileList[i].id == e.detail.value;
     }
-    console.log(e.detail.value);
     this.setData({
       pileList: pileList
     });

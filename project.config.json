@@ -44,15 +44,8 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "index",
-					"pathName": "pages/userAccount/userAccount",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "pages/login/login",
@@ -62,36 +55,9 @@
 				},
 				{
 					"id": -1,
-					"name": "testMode",
-					"pathName": "pages/testMode/index",
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/test/test",
-					"pathName": "pages/test/test",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/test/testpage",
-					"pathName": "pages/test/testpage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "component/dialog/dialog",
-					"pathName": "component/dialog/dialog",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/test/addTestData/addTestData",
-					"pathName": "pages/test/addTestData/addTestData",
 					"scene": null
 				}
 			]

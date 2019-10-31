@@ -6,7 +6,6 @@ page {
   height: 100%;
   background-color: #383838;
   font-size: 18px;
-  overflow: hidden;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
@@ -225,6 +224,12 @@ button.rs-btn {
   line-height: 94rpx;
   font-size: 36rpx;
   box-sizing: border-box;
+}
+
+button.rs-btn.btn-blue{
+   color: rgb(0, 216, 255);
+  border-color: rgb(0, 216, 255);
+
 }
 
 .footer {

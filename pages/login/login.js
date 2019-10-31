@@ -1,5 +1,4 @@
 // pages/login/login.js
-const App = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -39,14 +38,14 @@ Page({
     this.setData({
       defaultPicker: serverType[serverIndex]
     })
-
-    App.globalData.host = serverValue[serverIndex];
+    //缓存主机名
+    wx.setStorageSync('rshostName', serverValue[serverIndex]);
   },
 
   login:function(e){
     var account = this.data.account;
     var password = this.data.paasword;
-    var host = App.globalData.host;
+    var host = wx.getStorageSync('rshostName');
     if (!host){
         wx.showModal({
           title: '提示',
@@ -79,18 +78,18 @@ Page({
         },
         success(res) {
           if (res.statusCode==200){
-            var accessToken = res.data.result.accessToken;
+          var accessToken = res.data.result.accessToken;
         //存储token值
-            wx.setStorageSync('accessToken', accessToken);
+            wx.setStorageSync('rsAccessToken', accessToken);
             wx.showToast({
               title: '登录成功',
               icon: 'success',
               duration: 3000,
               mask:true,
               success: function () {
-                //跳转到选择检测方法页面
-                wx.redirectTo({
-                  url: '/pages/testMode/index?page=first',
+                //跳转到首页
+                wx.switchTab({
+                  url: '/pages/index/index'
                 })
               }
             }) 
@@ -144,5 +143,5 @@ Page({
     
       }
 })
-},
+}
 })

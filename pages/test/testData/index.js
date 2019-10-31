@@ -37,7 +37,7 @@ Page({
   getPileList: function(serialNo) {
     var that = this;
     var host = App.globalData.host;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
 
     var url = host + '/api/services/app/ZTData/GetPileList?SerialNo=' + serialNo;
     wx.showLoading({

@@ -134,7 +134,7 @@ Page({
   },
   //提交数据
   submit: function(data) {
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var host = App.globalData.host;
     var that = this;
     var dGrade = this.data.dGrade;
@@ -180,7 +180,7 @@ Page({
   getbaseInfoId: function() {
     var that = this;
     var host = App.globalData.host;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var url = host + '/api/Tools/UUIDGenerator';
     wx.request({
       url: url,
