@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "检测数据"
+  "navigationBarTitleText": "检测数据",
+  "enablePullDownRefresh":true
 }

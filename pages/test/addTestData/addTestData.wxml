@@ -23,7 +23,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="machineId" />
+                <input class="weui-input rs-text" name="machineId"  value="{{machineId}}"/>
               </view>
             </view>
           </view>
@@ -67,10 +67,6 @@
         </view>
         <view class="details-container mt-30">
           <view class="wt-items">
-            <text class="wt-title">试验最大荷载(kN)</text>
-            <text class="wt-info text-green">{{testLoad}}</text>
-          </view>
-          <view class="wt-items">
             <text class="wt-title">设计地基标高(m)</text>
             <text class="wt-info text-green">{{height2}}</text>
           </view>
@@ -86,7 +82,7 @@
       </scroll-view>
     </view>
     <!--main结束->
-    
+  
     <!--弹出框组件-->
     <dialog id='dialog' title='温馨提示' content='小程序需要您的授权获取地理位置' confirmText='去设置'
       bind:myconfirmEvent='confirmEvent' 
@@ -94,7 +90,7 @@
     </dialog>
     <!--弹出框结束-->
     <view class="footer backfooter">
-      <button class="rs-btn backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+      <button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
       <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">开始试验</button>
     </view>
   </view>

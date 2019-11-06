@@ -1,35 +1,39 @@
 // pages/test/addTestData/testList.js
+/*选择测点号的桩列表 */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    pileList: []
+    pileList: [],
+    hasVaildPile:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var pileList = wx.getStorageSync('pileList');
-    this.setData({
-      pileList: pileList
-    });
+    
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var pileList = wx.getStorageSync('pileList');
+    console.log(pileList);
+    this.filterPileList(pileList);
+    this.setData({
+      pileList: pileList
+    });
   },
 
   /**
@@ -76,7 +80,6 @@ Page({
         
           prevPage.setData({
             pileNo: pileList[i].pileNo,
-            testLoad: pileList[i].testLoad,
             pileBearing: pileList[i].pileBearing,
             height1: pileList[i].height1,
             height2: pileList[i].height2
@@ -89,5 +92,21 @@ Page({
           },100) 
       }
     }
+  },
+  filterPileList: function (pileList){
+    if (pileList.length!=0){
+      for (var item in pileList) {
+        if (pileList[item].pileNo != "") {
+          this.setData({
+            hasVaildPile: true
+          });
+        }
+      }
+    }
+  },
+  toUpdateTestList:function(){
+    wx.navigateTo({
+      url: '/pages/test/testList/testList',
+    })
   }
 })

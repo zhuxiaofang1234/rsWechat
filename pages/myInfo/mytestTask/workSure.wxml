@@ -35,7 +35,7 @@
     </scroll-view>
   </view>
   <view class="footer backfooter">
-    <button class="rs-btn backbtn mr-50" plain="true" bindtap="toList">取消</button>
+    <button class="rs-btn backbtn btn-blue mr-50" plain="true" bindtap="toList">取消</button>
     <button class="rs-btn backbtn btn-green" plain="true" bindtap="toSure">保存</button>
   </view>
 </view>

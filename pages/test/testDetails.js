@@ -92,6 +92,8 @@ Page({
           //缓存桩列表
           wx.setStorageSync('pileList', resData.pileList);
           wx.setStorageSync('serialNo', resData.serialNo);
+          wx.setStorageSync('foundationType', resData.foundationType);
+          wx.setStorageSync('testModeCode', resData.testModeCode);
 
         } else if (res.statusCode == 401) {
           wx.showModal({

@@ -55,12 +55,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      inputVal: '',
-      page: 0,
-      testList: []
-    });
-    this.getPage();
+    if(this.data.accessToken){
+      this.setData({
+        inputVal: '',
+        page: 0,
+        testList: []
+      });
+      this.getPage();
+    }  
   },
 
   /**
@@ -72,13 +74,14 @@ Page({
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading();
     }, 2000)
-
+    if (this.data.accessToken) {
     this.setData({
       inputVal: '',
       page: 0,
       testList: []
     });
     this.getPage();
+    }
   },
 
   //加载更多
@@ -166,7 +169,7 @@ Page({
       });
     }
     wx.request({
-      url: host + '/api/services/app/WorkSures/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
+      url: host + '/api/services/app/WorkSures/GetPaged?Sorting=id%20desc&SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
       method: "GET",
       dataType: "json",
       header: {

@@ -24,10 +24,11 @@ App({
     })
   },
   //重定向到登录页
-  redirectToLogin: function () {
+  redirectToLogin: function (content) {
+    var content = content ||'登录后可使用更多功能，前往登录?';
     wx.showModal({
       title: '温馨提示',
-      content: '登录后可使用更多功能，前往登录？',
+      content: content,
       cancelText:'暂不登录',
       cancelColor	:'#ddd',
       confirmText:'立即登录',
@@ -43,6 +44,12 @@ App({
         }
       }
     })     
+  },
+  removeLoginInfo: function(){
+    wx.removeStorageSync('rsAccessToken');
+    wx.removeStorageSync('userAccount');
+    wx.removeStorageSync('userName');
+    this.globalData.accessToken = null;   
   },
   //获取当前系统时间
   format:function(Date){

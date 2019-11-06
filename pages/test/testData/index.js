@@ -1,5 +1,6 @@
 // pages/test/testData/index.js
 const App = getApp();
+var until = require('../../../utils/util.js');
 Page({
 
   /**
@@ -31,7 +32,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+      wx.hideNavigationBarLoading();
+    }, 1000)
+    var serialNo = this.data.serialNo;
+    this.getPileList(serialNo);
   },
   //获取桩列表
   getPileList: function(serialNo) {
@@ -39,7 +51,7 @@ Page({
     var host = App.globalData.host;
     var accessToken = App.globalData.accessToken;
 
-    var url = host + '/api/services/app/ZTData/GetPileList?SerialNo=' + serialNo;
+    var url = host + '/api/services/app/ZTData/GetPileList?SerialNo=' + serialNo +'&OrderBy=4';
     wx.showLoading({
       title: '加载中',
     });
@@ -60,26 +72,39 @@ Page({
           });
 
         } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function() {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
+          var content = '登录过期，重新登录？';
+          App.redirectToLogin(content);
         }
       }
     })
   },
   //新增试验数据
   toAddTestData: function() {
-    wx.navigateTo({
-      url: '/pages/test/addTestData/addTestData'
-    })
+    var isTesting = wx.getStorageSync('isTesting');
+    console.log(isTesting);
+    if (isTesting) { //当前有试验在进行
+      wx.showModal({
+        title: '温馨提示',
+        content: '有中断的试验，是否继续?',
+        cancelText: '结束试验',
+        cancelColor: '#ddd',
+        confirmText: '继续试验',
+        confirmColor: '#4cd964',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/test/addTestData/testRecord',
+            });
+          } else if (res.cancel) {
+            until.endTest();
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/test/addTestData/addTestData'
+      })
+    }
   },
   //查看数据详情
   toTestDataDetails: function(e) {

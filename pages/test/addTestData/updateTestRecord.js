@@ -55,7 +55,7 @@ Page({
   },
   //提交
   submitRecord: function(e) {
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var host = App.globalData.host;
     var that = this;
     var erroInfo;
@@ -126,7 +126,7 @@ Page({
   getDepthDetails: function(id) {
     var that = this;
     var host = App.globalData.host;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var BaseInfoId = this.data.baseInfoId;
     var url = host + '/api/services/app/ZTData/GetDetailById?BaseInfoId=' + BaseInfoId + '&Id=' + id;
     wx.request({
@@ -162,9 +162,7 @@ Page({
       }
     })
   },
-  endTest:function(){
-    
-  },
+  
   //错误提示
   errorTips: function(erroInfo) {
     var that = this;
@@ -177,5 +175,8 @@ Page({
         showTopTips: false
       });
     }, 3000);
+  },
+  cancel:function(){
+    App.back()
   }
 })

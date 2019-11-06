@@ -1,6 +1,6 @@
 <view class="details-wrap">
   <view class="fixedArea">
-    <button class="rs-btn testDataEnter" plain="true" bindtap="toAddTestData">新增试验数据</button>
+    <button class="rs-btn btn-blue testDataEnter" plain="true" bindtap="toAddTestData">新增试验数据</button>
   </view>
   <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height:100%">

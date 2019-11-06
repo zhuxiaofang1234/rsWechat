@@ -1,5 +1,6 @@
 // pages/test/test.js
 const App = getApp();
+var until = require('../../utils/util.js');
 Page({
 
   /**
@@ -53,14 +54,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      inputVal: '',
-      page: 0,
-      testList: []
-    });
-    this.getPage();   
-  },
-
+      if (this.data.accessToken){
+        this.setData({
+          inputVal: '',
+          page: 0,
+          testList: []
+        });
+        this.getPage();
+      }
+    },
+    
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -70,13 +73,14 @@ Page({
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading();
     }, 1000)
-
+    if (this.data.accessToken) {
     this.setData({
       inputVal: '',
       page: 0,
       testList: []
     });
     this.getPage();
+    }
   },
 
   //加载更多
@@ -167,14 +171,13 @@ Page({
     var hidden = this.data.hidden;
 
     var TestModeCode = wx.getStorageSync('testModeCode');
-    console.log(TestModeCode);
     if (hidden) {
       this.setData({
         "hidden": false
       });
     }
     wx.request({
-      url: host + '/api/services/app/WorkRecord/GetPaged?SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
+      url: host + '/api/services/app/WorkRecord/GetPaged?Sorting=id%20desc&SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
       method: "GET",
       dataType: "json",
       header: {
@@ -201,17 +204,7 @@ Page({
             'loadingData': false
           });
         } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function() {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
+          App.redirectToLogin();
         }
       },
       fali() {

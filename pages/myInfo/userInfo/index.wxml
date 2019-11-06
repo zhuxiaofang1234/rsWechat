@@ -1,18 +1,31 @@
 <view class="hidden">
+<block wx:if="{{accessToken}}">
   <view class="headImage-wrap">
-    <image src="../../../images/headImg.jpeg" class="headImage"></image>
-  </view>
-  <view class="accountInfo">
-    <view class="accountItem">
-      <label class="accountTitle">用户名</label>
-      <text class="accountText">{{userName}}</text>
+      <image src="../../../images/profile-pic.jpg" class="headImage"></image>
     </view>
+    <view class="accountInfo">
       <view class="accountItem">
-      <label class="accountTitle">账号信息</label>
-      <text class="accountText">{{userAccount}}</text>
+        <label class="accountTitle">用户名</label>
+        <text class="accountText">{{userName}}</text>
+      </view>
+        <view class="accountItem">
+        <label class="accountTitle">账号信息</label>
+        <text class="accountText">{{userAccount}}</text>
+      </view>
     </view>
-  </view>
-  <view class="bottom-wrap">
-     <button class="rs-btn btn-blue btn-lg" plain="true" bindtap="loginOut">退出登录</button>
-  </view> 
+    <view class="bottom-wrap">
+      <button class="rs-btn btn-blue btn-lg" plain="true" bindtap="loginOut">退出登录</button>
+    </view> 
+</block>
+ <block wx:else>
+     <view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+        <view class="noData-tip-content">
+          <view class="img-wrap">
+            <image src="../../../images/noMsg.png" class="img-response"></image>
+          </view>
+          <view class="login-tips">点击登录获取用户信息</view>
+           <button class="rs-btn gologinBtn" plain="true" bindtap="toLogin">登录</button>
+        </view>
+      </view>
+  </block>
 </view>

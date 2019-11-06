@@ -1,23 +1,28 @@
 // pages/myInfo/userInfo/index.js
+const App = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     userAccount:'',
-    userName:''
+    userName:'',
+    accessToken:''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var userAccount = wx.getStorageSync('userAccount');
-    var userName = wx.getStorageSync('userName');  
-    this.setData({
-      userAccount: userAccount,
-      userName: userName
-    });
+    var accessToken = App.globalData.accessToken;
+    if (accessToken){
+      var userAccount = wx.getStorageSync('userAccount');
+      var userName = wx.getStorageSync('userName');
+      this.setData({
+        userAccount: userAccount,
+        userName: userName,
+        accessToken: accessToken
+      });
+    }  
   },
 
   loginOut: function() {
@@ -31,11 +36,16 @@ Page({
           wx.reLaunch({
             url: '/pages/login/login'
           })
-          wx.removeStorageSync('rsAccessToken');
+          App.removeLoginInfo();
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })   
+  },
+  toLogin:function(){
+    wx.reLaunch({
+      url: '/pages/login/login'
+    })
   }
 })

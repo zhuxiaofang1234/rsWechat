@@ -1,11 +1,11 @@
 /* pages/myInfo/myInfo.wxss */
 page{
  overflow-y: hidden;
- background: #000;
+  background-color: #383838;
 }
 .weui-cell {
   padding:32rpx 30rpx;
-  background-color: #383838;
+  background: #000;
   color:#fff;
   font-size:36rpx;
 }

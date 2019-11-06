@@ -1,5 +1,6 @@
 // pages/test/addTestData/testRecord.js
 const App = getApp();
+var until = require('../../../utils/util.js');
 Page({
 
   /**
@@ -17,7 +18,8 @@ Page({
     isDisabled: false,
     depthList: [],
     baseInfoId: null,
-    autoFocus:true
+    autoFocus:true,
+    lastDepthData:null
   },
 
   /**
@@ -25,17 +27,28 @@ Page({
    */
   onLoad: function(options) {
     var baseInfoId = wx.getStorageSync('baseInfoId');
-    if (options.recordCount){
-      this.setData({
-        index: parseInt(options.recordCount)+1
-      });
-    }
     this.setData({
-      baseInfoId: baseInfoId,
-      dGrade: options.dGrade
+      baseInfoId: baseInfoId
     });
+    //获取缓存的上一条数据
+    var lastDepthData = wx.getStorageSync('lastDepthData');
+    var dGrade = wx.getStorageSync('dGrade');
+    if (lastDepthData){
+      this.setData({
+        dGrade: lastDepthData.dGrade,
+        depth: (parseFloat(lastDepthData.depth) + parseFloat(lastDepthData.dGrade)).toFixed(2),
+        description: lastDepthData.description,
+        remark: lastDepthData.remark,
+        index: (lastDepthData.index)+1
+      });
+    }else {
+      this.setData({
+        dGrade: dGrade,
+        depth: dGrade
+      }); 
+    }
+    this.getDepthList();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -81,7 +94,7 @@ Page({
   },
   //提交
   submitRecord: function(e) {
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var host = App.globalData.host;
     var that = this;
     var erroInfo;
@@ -114,7 +127,7 @@ Page({
     data.description = this.data.description;
     data.remark = this.data.remark;
     var dGrade = this.data.dGrade;
-
+    data.dGrade = dGrade
     // 成功跳转的页面
     wx.request({
       url: host + '/api/services/app/ZTData/CreateDetails',
@@ -129,9 +142,11 @@ Page({
           wx.showToast({
             title: '操作成功',
             icon: 'success',
-            duration: 3000,
+            duration: 2000,
             mask: true,
             success: function() {
+              //缓存提交的数据
+              wx.setStorageSync('lastDepthData', data)
               that.setData({
                 index: index + 1,
                 depth: (parseFloat(depth) + parseFloat(dGrade)).toFixed(2),
@@ -140,7 +155,7 @@ Page({
               });
               setTimeout(function() {
                 that.getDepthList();
-              }, 2000)
+              }, 600)
             }
           })
         } else {
@@ -174,7 +189,7 @@ Page({
   getDepthList: function() {
     var that = this;
     var host = App.globalData.host;
-    var accessToken = wx.getStorageSync('accessToken');
+    var accessToken = App.globalData.accessToken;
     var baseInfoId = this.data.baseInfoId;
     var url = host + '/api/services/app/ZTData/GetById?BaseInfoId=' + baseInfoId;
     wx.request({
@@ -186,70 +201,20 @@ Page({
         'Authorization': "Bearer " + accessToken
       },
       success(res) {
-        console.log(res);
         if (res.statusCode == 200) {
           var resData = res.data.result;
           that.setData({
             depthList: resData.detailsData
           });
         } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function() {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
+          var content = '登录过期，重新登录？';
+          App.redirectToLogin(content);
         }
       }
     })
   },
   //结束试验
   endTest: function() {
-    var accessToken = wx.getStorageSync('accessToken');
-    var host = App.globalData.host;
-    var that = this;
-    var baseInfoId = wx.getStorageSync('baseInfoId');
-    wx.showModal({
-      title: '结束试验',
-      content: '确定要结束当前试验吗？',
-      confirmColor: '#4cd964',
-      success(res) {
-        if (res.confirm) {
-          wx.request({
-            url: host + '/api/services/app/ZTData/Finish?BaseInfoId=' + baseInfoId,
-            method: "POST",
-            header: {
-              'content-type': 'application/json', // 默认值
-              'Authorization': "Bearer " + accessToken
-            },
-            success(res) {
-              if (res.statusCode == 200) {    
-                var serialNo = wx.getStorageSync('serialNo');  
-                wx.redirectTo({
-                  url: '/pages/test/testData/index?serialNo=' + serialNo
-                })
-              } else {
-                wx.showModal({
-                  title: '操作失败',
-                  content: '当前状态已锁定',
-                  showCancel: false,
-                  confirmColor: '#4cd964'
-                })
-              }
-            },
-            fali() {
-              console.log('接口调用失败');
-            }
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
+    until.endTest()
   }
 })

@@ -45,9 +45,9 @@
     </scroll-view>
   </view>
   <view class="footer">
-    <button class="rs-btn ml-50 mt-20" plain="true" bindtap="toPersonInfo">人员设备信息</button>
-    <button class="rs-btn ml-50 mt-20" plain="true" bindtap="toTestStandard">检测依据</button>
-    <button class="rs-btn mt-20 ml-50" plain="true" bindtap="toTestList">测点列表</button>
-    <button class="rs-btn ml-50" plain="true" bindtap="toTestData">检测数据</button>
+    <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toPersonInfo">人员设备信息</button>
+    <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toTestStandard">检测依据</button>
+    <button class="rs-btn btn-blue mt-20 ml-50" plain="true" bindtap="toTestList">测点列表</button>
+    <button class="rs-btn btn-blue ml-50" plain="true" bindtap="toTestData">检测数据</button>
   </view>
 </view>

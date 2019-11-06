@@ -14,7 +14,6 @@ Page({
     dGrade: 0.3,
     pileNo: '请选择测点号',
     orderNo: '',
-    testLoad: '',
     pileBearing: '',
     height1: '',
     height2: '',
@@ -25,6 +24,7 @@ Page({
     gpstext: 'GPS无效',
     gpsLongitude: '',
     gpsLatitude: '',
+    machineId: ''
   },
 
   /**
@@ -32,6 +32,26 @@ Page({
    */
   onLoad: function(options) {
    this.getGps();
+    var testModeCode = wx.getStorageSync('testModeCode');
+    if (testModeCode == 'TQ'){
+      this.setData({
+        testTypeCode: 10,
+        testTypeIndex: 0,
+      });
+    } else if (testModeCode=='TZ'){
+      this.setData({
+        testTypeCode: 63,
+        testTypeIndex: 1,
+        dGrade: 0.1,
+      });
+    }
+    //默认填写上次设备编号
+    var machineId = wx.getStorageSync('machineId');
+    if (machineId) {
+      this.setData({
+        machineId: machineId
+      });    
+    }
   },
 
   /**
@@ -115,12 +135,16 @@ Page({
     data.baseInfoId = baseInfoId;
     wx.setStorageSync('baseInfoId', baseInfoId);
     data.serialNo = wx.getStorageSync('serialNo');
+    data.foundationType = wx.getStorageSync('foundationType');
     data.rdjlx = this.data.rdjlxCode;
     data.testType = this.data.testTypeCode;
     data.dValue = this.data.pileBearing;
     data.djsjbg = this.data.height1;
     var nowDate = new Date();
     data.testTime = App.format(nowDate);
+    
+    //存储设备编号
+    wx.setStorageSync('machineId', data.machineId);
 
     //GPS位置
     if (!gpsIsValid) {
@@ -138,6 +162,8 @@ Page({
     var host = App.globalData.host;
     var that = this;
     var dGrade = this.data.dGrade;
+
+  
 
     // 成功跳转的页面
     wx.request({
@@ -157,9 +183,15 @@ Page({
             mask: true,
             success: function() {
               //跳转到试验采样记录
+              wx.setStorageSync('isTesting', 1);
+              //清除上一条的数据
+              wx.removeStorageSync('lastDepthData');
+              //缓存dGrade
+              wx.setStorageSync('dGrade', dGrade);
               wx.navigateTo({
                 url: '/pages/test/addTestData/testRecord?dGrade=' + dGrade,
               })
+
             }
           })
         } else {
@@ -196,17 +228,8 @@ Page({
             baseInfoId: res.data[0],
           });
         } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function() {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
+          var content = '登录过期，重新登录？';
+          App.redirectToLogin(content);
         }
       }
     })
@@ -214,7 +237,6 @@ Page({
   //打开GPS
   switchChange: function(e) {
     var GPSIspen = e.detail.value;
-    console.log(GPSIspen);
     var that = this;
     if (GPSIspen) {
       //获得dialog组件

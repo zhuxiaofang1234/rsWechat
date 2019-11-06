@@ -25,7 +25,6 @@ Page({
 
   //详情信息
   messageConfirm: function (e) {
-    console.log(e.detail.value);
     this.setData({
       message: e.detail.value
     });
@@ -35,13 +34,11 @@ Page({
       delta: 1
     })
   },
-
   toReject: function (e) {
     var message = this.data.message;
     var id = this.data.wtId;
     var that = this;
     var accessToken = App.globalData.accessToken;
-
     var host = App.globalData.host;
     if (message.length==0) {
       wx.showModal({

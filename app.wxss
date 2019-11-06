@@ -338,6 +338,35 @@ padding-bottom:8px;
   text-align: center;
 }
 
+.noData-tip-content{
+  margin-top:200rpx;
+  text-align: center;
+}
+
+.login-tips{
+  font-size:28rpx;
+  margin-top:20rpx;
+  text-align: center;
+}
+.login-tips{
+  font-size:32rpx;
+  margin-top:20rpx;
+  margin-bottom:30rpx;
+  text-align: center;
+}
+.rs-btn.gologinBtn{
+  color: rgb(0, 216, 255);
+  border-color: rgb(0, 216, 255);
+  background-color: transparent;
+  display: inline-block;
+  padding: 0;
+  width: 240rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+
 
 
 
