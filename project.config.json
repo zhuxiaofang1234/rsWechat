@@ -59,6 +59,12 @@
 					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/addTestData/testRecord",
+					"pathName": "pages/test/addTestData/testRecord",
+					"scene": null
 				}
 			]
 		}

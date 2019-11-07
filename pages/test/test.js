@@ -41,7 +41,7 @@ Page({
    */
   onLoad: function(options) {
     //初始化页面
-    var accessToken= App.globalData.accessToken;
+    var accessToken = App.globalData.accessToken;
     if (accessToken){
       this.setData({
         "accessToken": accessToken

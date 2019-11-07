@@ -25,27 +25,31 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    var baseInfoId = wx.getStorageSync('baseInfoId');
-    this.setData({
-      baseInfoId: baseInfoId
-    });
-    //获取缓存的上一条数据
+  onLoad: function(options) { 
+    console.log('onLoad加载了吗'); 
+    //获取缓存的试验基本数据
+    var BaseTestData = wx.getStorageSync('BaseTestData');
+    console.log(BaseTestData);
+    if (BaseTestData){
+      this.setData({
+        baseInfoId: BaseTestData.baseInfoId,
+        dGrade: BaseTestData.dGrade,  
+      });
+    }
+    //获取缓存的上一条试验记录数据 
     var lastDepthData = wx.getStorageSync('lastDepthData');
-    var dGrade = wx.getStorageSync('dGrade');
+    console.log(lastDepthData);
     if (lastDepthData){
       this.setData({
-        dGrade: lastDepthData.dGrade,
-        depth: (parseFloat(lastDepthData.depth) + parseFloat(lastDepthData.dGrade)).toFixed(2),
+        depth: (parseFloat(lastDepthData.depth) + parseFloat(this.data.dGrade)).toFixed(2),
         description: lastDepthData.description,
         remark: lastDepthData.remark,
         index: (lastDepthData.index)+1
       });
-    }else {
+    }else{
       this.setData({
-        dGrade: dGrade,
-        depth: dGrade
-      }); 
+        depth: BaseTestData.dGrade
+      });
     }
     this.getDepthList();
   },
@@ -127,7 +131,6 @@ Page({
     data.description = this.data.description;
     data.remark = this.data.remark;
     var dGrade = this.data.dGrade;
-    data.dGrade = dGrade
     // 成功跳转的页面
     wx.request({
       url: host + '/api/services/app/ZTData/CreateDetails',

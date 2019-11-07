@@ -1,9 +1,10 @@
 const App = getApp();
-
 function endTest(){
   var accessToken = App.globalData.accessToken;
   var host = App.globalData.host;
-  var baseInfoId = wx.getStorageSync('baseInfoId');
+  var BaseTestData = wx.getStorageSync('BaseTestData');
+  var baseInfoId = BaseTestData.baseInfoId;
+  var serialNo = BaseTestData.serialNo;
   wx.showModal({
     title: '结束试验',
     content: '确定要结束当前试验吗？',
@@ -18,8 +19,7 @@ function endTest(){
             'Authorization': "Bearer " + accessToken
           },
           success(res) {
-            if (res.statusCode == 200) {
-              var serialNo = wx.getStorageSync('serialNo');
+            if (res.statusCode == 200) {  
               wx.showToast({
                 title: '当前试验已结束',
                 icon: 'success',
@@ -30,12 +30,13 @@ function endTest(){
                   wx.setStorageSync('isTesting', 0);
                   //清除上一条的数据
                   wx.removeStorageSync('lastDepthData');
+                  //清除基本数据
+                  wx.removeStorageSync('BaseTestData');
                   wx.redirectTo({
                     url: '/pages/test/testData/index?serialNo=' + serialNo
                   })
                 }
-              })
-              
+              })     
             } else {
               wx.showModal({
                 title: '操作失败',
@@ -58,7 +59,14 @@ function endTest(){
 
 //是否正在试验中
 function isTesting (){
-  if (isTesting) { //当前有试验在进行
+  var TestModeCode = wx.getStorageSync('testModeCode');
+  var content = "";
+  switch (TestModeCode){
+    case 'TQ':
+      content = ''
+
+    break;
+  }
     wx.showModal({
       title: '温馨提示',
       content: '有中断的试验，是否继续?',
@@ -76,7 +84,6 @@ function isTesting (){
         }
       }
     })
-  }
 }
 
 module.exports = {

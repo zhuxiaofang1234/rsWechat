@@ -17,7 +17,6 @@ Page({
 
   onLoad: function(options) {
     var baseInfoId = options.baseInfoId;
-    wx.setStorageSync('baseInfoId', baseInfoId);
     this.getTestDatadetails(baseInfoId);
   },
 
@@ -81,15 +80,6 @@ Page({
   },
   //继续试验
   continueTest: function(e) {
-    var dGrade = this.data.dGrade;
-    var recordCount = this.data.recordCount;
-    //获取最后一条试验的深度
-    var depthList = this.data.depthList;
-    var len = depthList.length; 
-    if (len!=0){
-      var lastDepth = JSON.stringify(depthList[len - 1]);
-      console.log(lastDepth);
-    }
     wx.navigateTo({
       url: '/pages/test/addTestData/testRecord' 
     })

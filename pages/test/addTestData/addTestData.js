@@ -133,7 +133,6 @@ Page({
 
     var baseInfoId = this.data.baseInfoId;
     data.baseInfoId = baseInfoId;
-    wx.setStorageSync('baseInfoId', baseInfoId);
     data.serialNo = wx.getStorageSync('serialNo');
     data.foundationType = wx.getStorageSync('foundationType');
     data.rdjlx = this.data.rdjlxCode;
@@ -184,14 +183,14 @@ Page({
             success: function() {
               //跳转到试验采样记录
               wx.setStorageSync('isTesting', 1);
-              //清除上一条的数据
+              //清除上一条的试验记录数据
               wx.removeStorageSync('lastDepthData');
-              //缓存dGrade
-              wx.setStorageSync('dGrade', dGrade);
-              wx.navigateTo({
-                url: '/pages/test/addTestData/testRecord?dGrade=' + dGrade,
-              })
+              //缓存基本数据
+              wx.setStorageSync('BaseTestData', data);
 
+              wx.navigateTo({
+                url: '/pages/test/addTestData/testRecord'
+              })
             }
           })
         } else {
@@ -263,14 +262,12 @@ Page({
           gpsIsValid: true,
           gpstext: 'GPS有效',
         });
-        console.log('获取到地址');
       },
       fail: function() {
         that.setData({
           gpsIsValid: false,
           gpstext: 'GPS无效',
         });
-        console.log('获取不到地址');
       }
     })
   },

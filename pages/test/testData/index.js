@@ -81,25 +81,8 @@ Page({
   //新增试验数据
   toAddTestData: function() {
     var isTesting = wx.getStorageSync('isTesting');
-    console.log(isTesting);
     if (isTesting) { //当前有试验在进行
-      wx.showModal({
-        title: '温馨提示',
-        content: '有中断的试验，是否继续?',
-        cancelText: '结束试验',
-        cancelColor: '#ddd',
-        confirmText: '继续试验',
-        confirmColor: '#4cd964',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/test/addTestData/testRecord',
-            });
-          } else if (res.cancel) {
-            until.endTest();
-          }
-        }
-      })
+      until.isTesting();  
     }else{
       wx.navigateTo({
         url: '/pages/test/addTestData/addTestData'

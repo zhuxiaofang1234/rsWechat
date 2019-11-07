@@ -65,6 +65,9 @@ Page({
       })
     } else {
       // 成功跳转的页面
+      wx.showLoading({
+        title: '登录中....',
+      })
       wx.request({
         url: host +'/api/TokenAuth/Authenticate',
         method: "POST",
@@ -102,8 +105,8 @@ Page({
             })
           } 
         },
-        fali(){
-          console.log('接口调用失败');
+        complete(){
+          wx.hideLoading()
         }
       })
     }

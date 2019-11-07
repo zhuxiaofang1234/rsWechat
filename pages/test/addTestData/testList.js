@@ -29,7 +29,6 @@ Page({
    */
   onShow: function() {
     var pileList = wx.getStorageSync('pileList');
-    console.log(pileList);
     this.filterPileList(pileList);
     this.setData({
       pileList: pileList
