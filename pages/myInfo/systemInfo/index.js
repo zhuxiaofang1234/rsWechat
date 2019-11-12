@@ -5,14 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (options) { 
+    wx.startPullDownRefresh()
+    wx.showNavigationBarLoading()   //在标题栏中显示加载
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+      wx.hideNavigationBarLoading();
+    }, 1000)
   },
 
   /**
@@ -47,14 +52,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('用户进行了下拉动作');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('用户进行了上拉动作');
   },
 
   /**

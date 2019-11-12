@@ -63,13 +63,15 @@ function isTesting (){
   var content = "";
   switch (TestModeCode){
     case 'TQ':
-      content = ''
-
+      content+= '有中断的轻型动力触探试验，是否继续？'
+      break;
+      case 'TZ':
+      content += '有中断的重型动力触探试验，是否继续？'
     break;
   }
     wx.showModal({
       title: '温馨提示',
-      content: '有中断的试验，是否继续?',
+      content: content,
       cancelText: '结束试验',
       cancelColor: '#ddd',
       confirmText: '继续试验',

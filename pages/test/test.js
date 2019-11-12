@@ -30,7 +30,7 @@ Page({
     MaxResultCount: 10,
     page: 0,
     testList: [],
-    loadingData: false,
+    loadingData: true,
     loadingText: '加载中.....',
     /***数据是否正在加载**/
     hidden: true
@@ -59,6 +59,9 @@ Page({
           inputVal: '',
           page: 0,
           testList: []
+        });
+        wx.showLoading({
+          title: '加载中',
         });
         this.getPage();
       }
@@ -90,11 +93,11 @@ Page({
     //当前列表数据
     var testList = this.data.testList;
 
-    if (loadingData) {
+    if (!loadingData) {
       return;
     }
     this.setData({
-      loadingData: true
+      loadingData: false
     });
     var that = this;
 
@@ -104,7 +107,7 @@ Page({
       });
       setTimeout(function() {
         that.getPage()
-      }, 1000)
+      }, 600)
 
     } else {
       this.setData({
@@ -113,14 +116,6 @@ Page({
       });
     }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    console.log('页面上拉触底');
-  },
-
 
   /***搜索***/
   showInput: function() {
@@ -167,9 +162,7 @@ Page({
 
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
-    var loadData = this.data.load;
     var hidden = this.data.hidden;
-
     var TestModeCode = wx.getStorageSync('testModeCode');
     if (hidden) {
       this.setData({
@@ -201,7 +194,7 @@ Page({
             "totalCount": resData.totalCount,
             "page": page + 1,
             "hidden": true,
-            'loadingData': false
+            'loadingData': true
           });
         } else if (res.statusCode == 401) {
           App.redirectToLogin();

@@ -12,7 +12,7 @@ Page({
     dGrade:'',
     hammerValue: '',
     description: '',
-    remark: '',
+    remark:'',
     showTopTips: false,
     erroInfo: "错误提示",
     isDisabled: false,
@@ -26,19 +26,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) { 
-    console.log('onLoad加载了吗'); 
     //获取缓存的试验基本数据
     var BaseTestData = wx.getStorageSync('BaseTestData');
-    console.log(BaseTestData);
     if (BaseTestData){
       this.setData({
         baseInfoId: BaseTestData.baseInfoId,
         dGrade: BaseTestData.dGrade,  
       });
     }
+    
     //获取缓存的上一条试验记录数据 
     var lastDepthData = wx.getStorageSync('lastDepthData');
-    console.log(lastDepthData);
     if (lastDepthData){
       this.setData({
         depth: (parseFloat(lastDepthData.depth) + parseFloat(this.data.dGrade)).toFixed(2),
@@ -58,6 +56,20 @@ Page({
    */
   onReady: function() {
 
+  },
+  /**
+  * 生命周期函数--监听页面隐藏
+  */
+  onHide: function () {
+    console.log('onHide');
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
   },
 
   //获取深度
@@ -131,6 +143,7 @@ Page({
     data.description = this.data.description;
     data.remark = this.data.remark;
     var dGrade = this.data.dGrade;
+   
     // 成功跳转的页面
     wx.request({
       url: host + '/api/services/app/ZTData/CreateDetails',
@@ -158,7 +171,7 @@ Page({
               });
               setTimeout(function() {
                 that.getDepthList();
-              }, 600)
+              }, 100)
             }
           })
         } else {

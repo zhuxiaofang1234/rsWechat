@@ -26,9 +26,16 @@ Page({
   },
 
   loginOut: function() {
+    var isTesting = wx.getStorageSync('isTesting');
+    var content="";
+    if (isTesting) {
+      content = '有正在进行的试验,确定退出登录？'
+    }else{
+      content = '退出后不会删除任何数据'
+    }
     wx.showModal({
       title: '退出当前账号',
-      content: '退出后不会删除任何数据',
+      content: content,
       confirmColor:'#4cd964',
       success(res) {
         if (res.confirm) {

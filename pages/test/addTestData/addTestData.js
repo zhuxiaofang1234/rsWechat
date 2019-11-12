@@ -188,7 +188,7 @@ Page({
               //缓存基本数据
               wx.setStorageSync('BaseTestData', data);
 
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '/pages/test/addTestData/testRecord'
               })
             }

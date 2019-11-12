@@ -26,14 +26,15 @@
     "pages/myInfo/mytestTask/workReject",
     "pages/myInfo/userInfo/index",
     "pages/myInfo/systemInfo/index",
-    "pages/myInfo/deviceInfo/index"
+    "pages/myInfo/deviceInfo/index",
+    "pages/testIndex/testIndex"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#2198f2",
     "navigationBarTitleText": "现场检测",
     "navigationBarTextStyle": "white",
-    "onReachBottomDistance":20
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "color": "#6e6d6b",
@@ -53,7 +54,6 @@
         "selectedIconPath": "images/stest@2x.png",
         "text": "现场记录"
       },
-    
       {
         "pagePath": "pages/myInfo/myInfo",
         "iconPath": "images/myInfo@2x.png",

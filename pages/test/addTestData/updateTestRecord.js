@@ -20,7 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var baseInfoId = wx.getStorageSync('baseInfoId');
+    var BaseTestData = wx.getStorageSync('BaseTestData');
+    var baseInfoId = BaseTestData.baseInfoId;
     var id = options.id;
     this.setData({
       baseInfoId: baseInfoId,
@@ -104,7 +105,6 @@ Page({
                 wx.navigateBack({
                   delta: 1
                 })
-
               }, 2000)
             }
           })

@@ -82,8 +82,21 @@ Page({
         success(res) {
           if (res.statusCode==200){
           var accessToken = res.data.result.accessToken;
-        //存储token值
+          var userId = res.data.result.userId;
+           
+            //从缓存中读取上一次缓存的用户id，不一致清空上一个账户的所有保留的试验数据
+            var lastUserId = wx.getStorageSync('userId');
+            
+            if (lastUserId != userId){
+              wx.setStorageSync('userId', userId);
+              wx.removeStorageSync('isTesting');
+              wx.removeStorageSync('BaseTestData');
+              wx.removeStorageSync('lastDepthData');
+              wx.removeStorageSync('machineId');
+            }
+            //存储token值
             wx.setStorageSync('rsAccessToken', accessToken);
+
             wx.showToast({
               title: '登录成功',
               icon: 'success',
