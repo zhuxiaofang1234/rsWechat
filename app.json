@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "template/loadingPage/loadingPage",
     "pages/login/login",
     "pages/test/test",
     "pages/testMode/index",

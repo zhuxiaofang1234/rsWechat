@@ -1,6 +1,7 @@
 // pages/test/TestDataDetails/TestDataDetails.js
 const App = getApp();
-var until = require('../../../utils/util.js');
+const until = require('../../../utils/util.js');
+const WXAPI = require('../../../utils/main.js')
 Page({
 
   /**
@@ -37,7 +38,7 @@ Page({
       var h = App.globalData.windowHeight;
       if (isTesting == 1) {
         that.setData({
-          depthHeight: h-138
+          depthHeight: h-106
         });
       } else {
         that.setData({
@@ -46,7 +47,6 @@ Page({
       }
     }
   },
-
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     setTimeout(function () {
@@ -56,35 +56,21 @@ Page({
     this.getTestDatadetails(this.data.baseInfoId);
   },
 
-
   //获取指定数据详情
   getTestDatadetails: function(baseInfoId) {
     var that = this;
-    var host = App.globalData.host;
-    var accessToken = App.globalData.accessToken;
-    var url = host + '/api/services/app/ZTData/GetById?BaseInfoId=' + baseInfoId;
-    wx.request({
-      url: url,
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          var resData = res.data.result;
-          that.setData({
-            details: resData,
-            dGrade: resData.dGrade,
-            depthList: resData.detailsData,
-            recordCount: resData.recordCount,
-            isTesting: resData.isTesting
-          });
-        } else if (res.statusCode == 401) {
-            App.redirectToLogin();
-        }
-      }
+    var queryData= {
+      'BaseInfoId': baseInfoId
+    }
+    WXAPI.GetZTDatadetails(queryData).then(res=>{
+      var resData = res.result;
+      that.setData({
+        details: resData,
+        dGrade: resData.dGrade,
+        depthList: resData.detailsData,
+        recordCount: resData.recordCount,
+        isTesting: resData.isTesting
+      });
     })
   },
   toTestList: function() {

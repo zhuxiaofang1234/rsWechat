@@ -1,5 +1,6 @@
 // pages/test/addTestData/testRecord.js
 const App = getApp();
+const WXAPI = require('../../../utils/main.js')
 Page({
   /**
    * 页面的初始数据
@@ -56,8 +57,6 @@ Page({
   },
   //提交
   submitRecord: function(e) {
-    var accessToken = App.globalData.accessToken;
-    var host = App.globalData.host;
     var that = this;
     var erroInfo;
     var data = {};
@@ -80,86 +79,48 @@ Page({
     data.description = this.data.description;
     data.remark = this.data.remark;
 
-    // 成功跳转的页面
-    wx.request({
-      url: host + '/api/services/app/ZTData/UpdateDetails',
-      method: "PUT",
-      data: data,
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          wx.showToast({
-            title: '操作成功',
-            icon: 'success',
-            duration: 3000,
-            mask: true,
-            success: function() {
-              setTimeout(function() {
-                //返回上一页并刷新页面 
-                var pages = getCurrentPages();
-                var prevPage = pages[pages.length - 2];
-                prevPage.getDepthList();
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 2000)
-            }
-          })
-        } else {
-          wx.showModal({
-            title: '操作失败',
-            content: '当前状态已锁定',
-            showCancel: false,
-            confirmColor: '#4cd964'
-          })
+    WXAPI.UpdateDepthDetails(data).then(res=>{
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 3000,
+        mask: true,
+        success: function () {
+          setTimeout(function () {
+            //返回上一页并刷新页面 
+            var pages = getCurrentPages();
+            var prevPage = pages[pages.length - 2];
+            prevPage.getDepthList();
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 2000)
         }
-      },
-      fali() {
-        console.log('接口调用失败');
-      }
+      })
+    },err=>{
+      wx.showModal({
+        title: '操作失败',
+        content: '当前状态已锁定',
+        showCancel: false,
+        confirmColor: '#4cd964'
+      })
     })
   },
   //获取测点详情信息
   getDepthDetails: function(id) {
     var that = this;
-    var host = App.globalData.host;
-    var accessToken = App.globalData.accessToken;
-    var BaseInfoId = this.data.baseInfoId;
-    var url = host + '/api/services/app/ZTData/GetDetailById?BaseInfoId=' + BaseInfoId + '&Id=' + id;
-    wx.request({
-      url: url,
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          var resData = res.data.result;
-          that.setData({
-            depth: resData.depth,
-            hammerValue: resData.hammerValue,
-            description: resData.description,
-            remark: resData.remark,
-          });
-        } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function() {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
-        }
-      }
+    var queryData= {
+      'BaseInfoId': this.data.baseInfoId,
+      'Id':id
+    }
+    WXAPI.GetDepthDetails(queryData).then(res=>{
+      var resData = res.result;
+      that.setData({
+        depth: resData.depth,
+        hammerValue: resData.hammerValue,
+        description: resData.description,
+        remark: resData.remark,
+      });   
     })
   },
   

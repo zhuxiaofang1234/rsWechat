@@ -1,6 +1,6 @@
 // pages/test/test.js
-
 const App = getApp();
+const WXAPI = require('../../../utils/main.js')
 Page({
 
   /**
@@ -33,7 +33,8 @@ Page({
     loadingData: true,
     loadingText: '加载中.....',
     /***数据是否正在加载**/
-    hidden: true
+    hidden: true,
+    loadingPage: true
   },
 
   /**
@@ -41,7 +42,7 @@ Page({
    */
   onLoad: function (options) {
     //初始化页面
-    var accessToken = App.globalData.accessToken;
+    var accessToken = wx.getStorageSync('rsAccessToken');
     if (accessToken) {
       this.setData({
         "accessToken": accessToken
@@ -55,14 +56,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(this.data.accessToken){
+    if (this.data.accessToken) {
+      var that = this;
       this.setData({
-        inputVal: '',
-        page: 0,
-        testList: []
+        loadingPage: false
       });
-      this.getPage();
-    }  
+      setTimeout(function () {
+        that.setData({
+          inputVal: '',
+          page: 0,
+          testList: []
+        });
+        that.getPage();
+      }, 500)
+    }
   },
 
   /**
@@ -105,7 +112,7 @@ Page({
       });
       setTimeout(function () {
         that.getPage()
-      }, 1000)
+      }, 600)
 
     } else {
       this.setData({
@@ -141,23 +148,26 @@ Page({
     });
   },
   search: function (e) {
+    var that = this;
     this.setData({
-      inputVal: e.detail.value,
-      page: 0,
-      testList: []
+      loadingPage: false
     });
-    this.getPage();
+    setTimeout(function () {
+      that.setData({
+        inputVal: e.detail.value,
+        page: 0,
+        testList: []
+      });
+      that.getPage();
+    }, 500)
   },
   //获取列表数据
   getPage: function () {
     var that = this;
-    var host = App.globalData.host;
     var hidden = this.data.hidden;
-    var accessToken = this.data.accessToken;
     var page = this.data.page;
     var total = this.data.totalCount;
     var Filter = this.data.inputVal;
-
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
     var hidden = this.data.hidden;
@@ -167,51 +177,41 @@ Page({
         "hidden": false
       });
     }
-    wx.request({
-      url: host + '/api/services/app/WorkSures/GetPaged?Sorting=id%20desc&SkipCount=' + SkipCount + '&MaxResultCount=' + MaxResultCount + '&Filter=' + Filter + '&TestModeCode=' + TestModeCode,
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        wx.hideLoading();
-        if (res.statusCode == 200) {
-          var resData = res.data.result;
-          //数据总条数小于每页要显示的总条数
-          var curList = that.data.testList;
-          if (resData.totalCount < MaxResultCount) {
-            that.setData({
-              "hidden": false,
-              'loadingText': '已加载完所有数据',
-            });
-          }
-          that.setData({
-            "testList": curList.concat(resData.items),
-            "totalCount": resData.totalCount,
-            "page": page + 1,
-            "hidden": true,
-            'loadingData': true
-          });
-        } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function () {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
-        }
-      },
-      fali() {
-        console.log('接口调用失败');
+    var queryData = {
+      'SkipCount': SkipCount,
+      'MaxResultCount': MaxResultCount,
+      'TestModeCode': TestModeCode,
+      'Filter': Filter
+    };
+    WXAPI.GetMyTestTask(queryData).then(res => {
+      wx.hideLoading();
+      that.setData({
+        loadingPage: true
+      });
+
+      var resData = res.result;
+      //数据总条数小于每页要显示的总条数
+      var curList = that.data.testList;
+      if (resData.totalCount < MaxResultCount) {
+        that.setData({
+          "hidden": false,
+          'loadingText': '已加载完所有数据',
+        });
       }
-    })
+      that.setData({
+        "testList": curList.concat(resData.items),
+        "totalCount": resData.totalCount,
+        "page": page + 1,
+        "hidden": true,
+        'loadingData': true
+      });
+
+    }, err => {
+      //请求出错也关闭加载状态页面
+      that.setData({
+        loadingPage: true
+      });
+    });
   },
   //检测任务详情页
   toTestTaskDetails: function (e) {

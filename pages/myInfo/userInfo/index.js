@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var accessToken = App.globalData.accessToken;
+    var accessToken = wx.getStorageSync('rsAccessToken');
     if (accessToken){
       var userAccount = wx.getStorageSync('userAccount');
       var userName = wx.getStorageSync('userName');
@@ -44,6 +44,7 @@ Page({
             url: '/pages/login/login'
           })
           App.removeLoginInfo();
+          
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

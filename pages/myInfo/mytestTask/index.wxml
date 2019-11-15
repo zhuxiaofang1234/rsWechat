@@ -1,9 +1,7 @@
 <view class="details-wrap">
+<view class="loading-container" hidden="{{loadingPage}}"><image src="../../../images/loading.gif" class="img-loading"></image></view>
   <block wx:if="{{testList.length>0}}">
     <view class='search-area area-flex'>
-      <!--view class="area-left">
-        <Select prop-array='{{selectArray}}' bind:myget="getData"></Select>
-      </view-->
       <view class="area-right">
         <view class="weui-search-bar-1">
           <view class="search-form">

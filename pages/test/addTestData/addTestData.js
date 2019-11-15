@@ -1,5 +1,6 @@
 // pages/test/addTestData/addTestData.js
 const App = getApp();
+const WXAPI = require('../../../utils/main.js')
 Page({
   /**
    * 页面的初始数据
@@ -130,7 +131,6 @@ Page({
         dGrade: data.dGrade
       });
     }
-
     var baseInfoId = this.data.baseInfoId;
     data.baseInfoId = baseInfoId;
     data.serialNo = wx.getStorageSync('serialNo');
@@ -157,80 +157,41 @@ Page({
   },
   //提交数据
   submit: function(data) {
-    var accessToken = App.globalData.accessToken;
-    var host = App.globalData.host;
     var that = this;
-    var dGrade = this.data.dGrade;
-
-  
-
-    // 成功跳转的页面
-    wx.request({
-      url: host + '/api/services/app/ZTData/Create',
-      method: "POST",
-      data: data,
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          wx.showToast({
-            title: '操作成功',
-            icon: 'success',
-            duration: 3000,
-            mask: true,
-            success: function() {
-              //跳转到试验采样记录
-              wx.setStorageSync('isTesting', 1);
-              //清除上一条的试验记录数据
-              wx.removeStorageSync('lastDepthData');
-              //缓存基本数据
-              wx.setStorageSync('BaseTestData', data);
-
-              wx.redirectTo({
-                url: '/pages/test/addTestData/testRecord'
-              })
-            }
-          })
-        } else {
-          wx.showModal({
-            title: '操作失败',
-            content: '当前状态已锁定',
-            showCancel: false,
-            confirmColor: '#4cd964'
+    WXAPI.AddZtBaseData(data).then(res=>{
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 3000,
+        mask: true,
+        success: function () {
+          //跳转到试验采样记录
+          wx.setStorageSync('isTesting', 1);
+          //清除上一条的试验记录数据
+          wx.removeStorageSync('lastDepthData');
+          //缓存基本数据
+          wx.setStorageSync('BaseTestData', data);
+          wx.redirectTo({
+            url: '/pages/test/addTestData/testRecord'
           })
         }
-      },
-      fali() {
-        console.log('接口调用失败');
-      }
-    })
+      })
+    },err=>{
+      wx.showModal({
+        title: '操作失败',
+        content: '当前状态已锁定',
+        showCancel: false,
+        confirmColor: '#4cd964'
+      })
+    });
   },
   //检测数据唯一标识
   getbaseInfoId: function() {
     var that = this;
-    var host = App.globalData.host;
-    var accessToken = App.globalData.accessToken;
-    var url = host + '/api/Tools/UUIDGenerator';
-    wx.request({
-      url: url,
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          that.setData({
-            baseInfoId: res.data[0],
-          });
-        } else if (res.statusCode == 401) {
-          var content = '登录过期，重新登录？';
-          App.redirectToLogin(content);
-        }
-      }
+    WXAPI.UUIDGenerator().then(res=>{
+      that.setData({
+        baseInfoId: res[0],
+      });
     })
   },
   //打开GPS

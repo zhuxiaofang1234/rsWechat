@@ -1,5 +1,6 @@
 // pages/myInfo/mytestTask/testTaskDetails.js
 const App = getApp();
+const WXAPI = require('../../../utils/main.js')
 Page({
 
   /**
@@ -64,51 +65,23 @@ Page({
   //获取委托单详情信息
   getEntrustDetails: function (wtId) {
     var that = this;
-    var host = App.globalData.host;
-    var accessToken = App.globalData.accessToken;
-    var url = host + '/api/services/app/WorkSures/GetById?Id=' + wtId;
-
     wx.showLoading({
       title: '加载中',
     });
-
-    wx.request({
-      url: url,
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          wx.hideLoading();
-          var resData = res.data.result;
-          that.setData({
-            wtDetails: resData
-          });
-         
-        } else if (res.statusCode == 401) {
-          wx.showModal({
-            title: '登录过期',
-            content: '请重新登录',
-            showCancel: false,
-            confirmColor: '#4cd964',
-            success: function () {
-              wx.reLaunch({
-                url: '/pages/login/login'
-              })
-            }
-          })
-        } else {
-          wx.hideLoading(); 
-        }
-      },
-      fali() {
-        wx.hideLoading();
-      }
+    var queryData={
+      'Id': wtId
+    };
+    WXAPI.GetTaskDetails(queryData).then(res=>{
+      wx.hideLoading();
+      var resData = res.result;
+      that.setData({
+        wtDetails: resData
+      });
+    },err=>{
+      wx.hideLoading(); 
     })
   },
+  
   toWtReject:function(){
     var wtId = this.data.wtId;
     wx.navigateTo({

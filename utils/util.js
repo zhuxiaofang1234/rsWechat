@@ -1,7 +1,7 @@
 const App = getApp();
+const WXAPI = require('./main.js')
+
 function endTest(){
-  var accessToken = App.globalData.accessToken;
-  var host = App.globalData.host;
   var BaseTestData = wx.getStorageSync('BaseTestData');
   var baseInfoId = BaseTestData.baseInfoId;
   var serialNo = BaseTestData.serialNo;
@@ -11,44 +11,34 @@ function endTest(){
     confirmColor: '#4cd964',
     success(res) {
       if (res.confirm) {
-        wx.request({
-          url: host + '/api/services/app/ZTData/Finish?BaseInfoId=' + baseInfoId,
-          method: "POST",
-          header: {
-            'content-type': 'application/json', // 默认值
-            'Authorization': "Bearer " + accessToken
-          },
-          success(res) {
-            if (res.statusCode == 200) {  
-              wx.showToast({
-                title: '当前试验已结束',
-                icon: 'success',
-                duration: 3000,
-                mask: true,
-                success: function () {
-                  //跳转到检测数据列表页
-                  wx.setStorageSync('isTesting', 0);
-                  //清除上一条的数据
-                  wx.removeStorageSync('lastDepthData');
-                  //清除基本数据
-                  wx.removeStorageSync('BaseTestData');
-                  wx.redirectTo({
-                    url: '/pages/test/testData/index?serialNo=' + serialNo
-                  })
-                }
-              })     
-            } else {
-              wx.showModal({
-                title: '操作失败',
-                content: '当前状态已锁定',
-                showCancel: false,
-                confirmColor: '#4cd964'
+        var queryData =  {
+          "BaseInfoId": baseInfoId
+        }
+        WXAPI.FinishZTtest(queryData).then(res=>{
+          wx.showToast({
+            title: '当前试验已结束',
+            icon: 'success',
+            duration: 3000,
+            mask: true,
+            success: function () {
+              //跳转到检测数据列表页
+              wx.setStorageSync('isTesting', 0);
+              //清除上一条的数据
+              wx.removeStorageSync('lastDepthData');
+              //清除基本数据
+              wx.removeStorageSync('BaseTestData');
+              wx.redirectTo({
+                url: '/pages/test/testData/index?serialNo=' + serialNo
               })
             }
-          },
-          fali() {
-            console.log('接口调用失败');
-          }
+          })
+        },err=>{
+          wx.showModal({
+            title: '操作失败',
+            content: '当前状态已锁定',
+            showCancel: false,
+            confirmColor: '#4cd964'
+          })
         })
       } else if (res.cancel) {
         console.log('用户点击取消')

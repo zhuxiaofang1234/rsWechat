@@ -14,9 +14,7 @@ App({
   globalData: {
     userInfo: null,
     statusBarHeight: 0,
-    windowHeight:0,
-    host:null,
-    accessToken:null
+    windowHeight:0
   },
   back:function(){
     wx.navigateBack({

@@ -1,6 +1,7 @@
 // pages/test/testData/index.js
 const App = getApp();
 var until = require('../../../utils/util.js');
+const WXAPI = require('../../../utils/main.js')
 Page({
 
   /**
@@ -48,34 +49,21 @@ Page({
   //获取桩列表
   getPileList: function(serialNo) {
     var that = this;
-    var host = App.globalData.host;
-    var accessToken = App.globalData.accessToken;
-
-    var url = host + '/api/services/app/ZTData/GetPileList?SerialNo=' + serialNo +'&OrderBy=4';
     wx.showLoading({
       title: '加载中',
     });
-    wx.request({
-      url: url,
-      method: "GET",
-      dataType: "json",
-      header: {
-        'content-type': 'application/json', // 默认值
-        'Authorization': "Bearer " + accessToken
-      },
-      success(res) {
-        if (res.statusCode == 200) {
-          wx.hideLoading();
-          var resData = res.data.result;
-          that.setData({
-            pileList: resData
-          });
-
-        } else if (res.statusCode == 401) {
-          var content = '登录过期，重新登录？';
-          App.redirectToLogin(content);
-        }
-      }
+    var queryData = {
+      'SerialNo': serialNo,
+      'OrderBy': 4 
+    }
+    WXAPI.GetPileList(queryData).then(res=>{
+      wx.hideLoading();
+      var resData = res.result;
+      that.setData({
+        pileList: resData
+      });
+    },err=>{
+      wx.hideLoading();
     })
   },
   //新增试验数据
@@ -96,5 +84,4 @@ Page({
       url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId
     })
   }
-
 })
