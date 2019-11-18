@@ -1,0 +1,11 @@
+ <template name="noData-page">
+  <view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+      <view style="margin-top:200rpx;">
+        <view class="img-wrap">
+          <image src="../../../images/noData.png" class="img-response"></image>
+        </view>
+        <view class="error-tips">暂无试验数据</view>
+      </view>
+    </view>
+ </template>
+ 

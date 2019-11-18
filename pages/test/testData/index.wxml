@@ -10,14 +10,10 @@
           <view class="pile-no">{{item.pileNo}}</view>
         </view>
       </block>
-      <view wx:else style="color:#fff; height:100%;" class="noData-wrap weui-flex">
-        <view style="margin-top:200rpx;">
-          <view class="img-wrap">
-            <image src="../../../images/noData.png" class="img-response"></image>
-          </view>
-          <view class="error-tips">暂无试验数据</view>
-        </view>
-      </view>
+      <block wx:else>
+        <import src="../../../template/noDataPage/noDataPage.wxml"/>
+        <template is="noData-page"></template>
+      </block>
     </scroll-view>
   </view>
 </view>
