@@ -64,6 +64,27 @@
 					"id": -1,
 					"name": "pages/test/addTestData/testRecord",
 					"pathName": "pages/test/addTestData/testRecord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "AddZXRecordData",
+					"pathName": "pages/AddZXRecordData/AddZXRecordData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "AddZXTestData",
+					"pathName": "pages/AddZXTestData/AddZXTestData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "EndHole",
+					"pathName": "pages/EndHole/EndHole",
 					"scene": null
 				}
 			]

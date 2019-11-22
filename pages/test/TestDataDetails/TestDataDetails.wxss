@@ -11,7 +11,6 @@
   border-right:none;
 }
 .details-item{
-  padding:20rpx;
   border-bottom:1rpx solid #898989;
 }
 .details-item:last-child{

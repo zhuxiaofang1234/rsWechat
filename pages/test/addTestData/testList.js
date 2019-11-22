@@ -78,6 +78,7 @@ Page({
         var prevPage = pages[pages.length - 2];
         
           prevPage.setData({
+            id: pileList[i].id,
             pileNo: pileList[i].pileNo,
             pileBearing: pileList[i].pileBearing,
             height1: pileList[i].height1,

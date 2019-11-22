@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/EndHole/EndHole",
+    "pages/AddZXTestData/AddZXTestData",
+    "pages/AddZXRecordData/AddZXRecordData",
     "pages/index/index",
     "template/loadingPage/loadingPage",
     "template/noDataPage/noDataPage",

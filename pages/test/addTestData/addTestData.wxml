@@ -4,38 +4,38 @@
     <view class="main">
       <scroll-view class="main-wrapper" scroll-y style="height:100%">
         <view class="details-container no-padding bg-gray38">
-          <view class="weui-cells__title rs-title">测点号</view>
+          <view class="weui-cells__title rs-title">测点号<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
               <view class="weui-cell__bd rs-text">{{pileNo}}</view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
           </view>
-          <view class="weui-cells__title rs-title">现场记录号</view>
+          <view class="weui-cells__title rs-title">现场记录号<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" />
+                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" placeholder="请输入现场记录号" placeholder-class="tipStyles"/>
               </view>
             </view>
           </view>
-          <view class="weui-cells__title rs-title">设备编号</view>
+          <view class="weui-cells__title rs-title">设备编号<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="machineId"  value="{{machineId}}"/>
+                <input class="weui-input rs-text" name="machineId"  value="{{machineId}}" placeholder="请输入设备编号" placeholder-class="tipStyles"/>
               </view>
             </view>
           </view>
-          <view class="weui-cells__title rs-title">每级测试深度值(m)</view>
+          <view class="weui-cells__title rs-title">每级测试深度值(m)<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade" />
+                <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade" placeholder="请输入每级测试深度" placeholder-class="tipStyles"/>
               </view>
             </view>
           </view>
-          <view class="weui-cells__title rs-title">测试类型</view>
+          <view class="weui-cells__title rs-title">测试类型<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_select">
               <view class="weui-cell__bd">
@@ -45,7 +45,7 @@
               </view>
             </view>
           </view>
-          <view class="weui-cells__title rs-title">天然地基岩土性状</view>
+          <view class="weui-cells__title rs-title">天然地基岩土性状<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_select">
               <view class="weui-cell__bd">
@@ -65,7 +65,7 @@
             </view>
           </view>
         </view>
-        <view class="details-container mt-30">
+        <view class="details-container mt-30" bindtap="toEditTestPoint">
           <view class="wt-items">
             <text class="wt-title">设计地基标高(m)</text>
             <text class="wt-info text-green">{{height2}}</text>

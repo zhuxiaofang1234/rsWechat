@@ -9,17 +9,22 @@ Page({
    */
   data: {
     serialNo: '',
-    pileList: []
+    pileList: [],
+    loadingPage: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this;
     this.setData({
-      serialNo: options.serialNo
+      serialNo: options.serialNo,
+      loadingPage: false
     });
-    this.getPileList(options.serialNo);
+    setTimeout(function () {
+      that.getPileList(options.serialNo);
+    }, 500)  
   },
 
   /**
@@ -49,21 +54,23 @@ Page({
   //获取桩列表
   getPileList: function(serialNo) {
     var that = this;
-    wx.showLoading({
-      title: '加载中',
-    });
     var queryData = {
       'SerialNo': serialNo,
       'OrderBy': 4 
     }
     WXAPI.GetPileList(queryData).then(res=>{
-      wx.hideLoading();
+  
+      that.setData({
+        loadingPage: true
+      });
       var resData = res.result;
       that.setData({
         pileList: resData
       });
     },err=>{
-      wx.hideLoading();
+      that.setData({
+        loadingPage: true
+      });
     })
   },
   //新增试验数据
@@ -72,8 +79,21 @@ Page({
     if (isTesting) { //当前有试验在进行
       until.isTesting();  
     }else{
+      var url;
+      var TestModeCode = wx.getStorageSync('testModeCode');
+      switch (TestModeCode) {
+        case 'TQ':
+        case 'TZ':
+          url = '/pages/test/addTestData/addTestData';
+          break;
+        case 'ZG':
+        case 'ZJ':
+        case 'ZY':
+          url = '/pages/AddZXTestData/AddZXTestData';
+          break;
+      }
       wx.navigateTo({
-        url: '/pages/test/addTestData/addTestData'
+        url: url
       })
     }
   },

@@ -1,14 +1,14 @@
 <view class="details-wrap">
   <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height:100%">
-      <view class="details-container">
-        <block wx:if="{{personList.length>0}}" wx:for="{{personList}}" wx:key="{{index}}">
+      <block wx:if="{{personList.length>0}}" wx:for="{{personList}}" wx:key="{{index}}">
+        <view class="details-container">
           <view class="wt-items">
             <text class="wt-title">{{item.personName}}</text>
             <text class="wt-info mg-size text-white">{{item.personPhone}}</text>
           </view>
-        </block>
-      </view>
+        </view>
+      </block>
       <block wx:if="{{equipList.length>0}}" wx:for="{{equipList}}" wx:key="{{index}}">
         <view class="details-container mt-20">
           <view class="wt-items">
@@ -19,7 +19,7 @@
             <view class="text-white">{{item.equipNo}}</view>
           </view>
         </view>
-      </block>
+      </block>        
     </scroll-view>
   </view>
   <view class="footer backfooter">

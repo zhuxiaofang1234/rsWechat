@@ -76,6 +76,11 @@ page {
 .testStatus.waitTest {
   color: #ff7e00;
 }
+.blue{
+  color:#1e9fff;
+  margin-right:2px;
+
+}
 
 /***************背景颜色*********************/
 
@@ -304,7 +309,7 @@ padding-bottom:8px;
 
 /***详情页面**/
 .details-item{
-  padding:20rpx;
+  padding:20rpx 20rpx 20rpx 0;
   border-bottom:1rpx solid #898989;
 }
 .details-item:last-child{
@@ -365,6 +370,24 @@ padding-bottom:8px;
   line-height: 86rpx;
   font-size: 32rpx;
   box-sizing: border-box;
+}
+
+/***加载层***/
+.loading-container{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: #373737;
+  z-index:99;
+  display: flex;
+  justify-content: center;
+}
+.img-loading{
+  width:750rpx;
+  height:422rpx;
+  margin-top:240rpx;
 }
 
 

@@ -13,3 +13,7 @@
 .wt-info {
   width: 200rpx;
 }
+.tipStyles{
+  font-size:28rpx;
+}
+

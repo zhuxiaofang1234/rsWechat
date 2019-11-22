@@ -110,6 +110,7 @@ Page({
               }
             }) 
           }else{
+            console.log(res);
             wx.showModal({
               title: '登录失败',
               content: '账号或密码错误',
@@ -117,6 +118,8 @@ Page({
               confirmColor: '#4cd964'
             })
           } 
+        },fail(res){
+          console.log(res)
         },
         complete(){
           wx.hideLoading()

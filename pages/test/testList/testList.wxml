@@ -1,7 +1,4 @@
 <view class="details-wrap">
-  <!--view class="fixedArea">
-  <button class="rs-btn testDataEnter" plain="true" bindtap="toAddTestPoint">新增测点</button>
-</view-->
   <view class="main mt-20">
     <scroll-view class="main-wrapper" scroll-y style="height:100%">
       <block wx:if="{{pileList.length>0}}">

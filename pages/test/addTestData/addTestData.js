@@ -13,6 +13,7 @@ Page({
     rdjlxCode: 0,
     rdjlxIndex: 0,
     dGrade: 0.3,
+    id:null,
     pileNo: '请选择测点号',
     orderNo: '',
     pileBearing: '',
@@ -273,5 +274,15 @@ Page({
         }
       })
     }
+  },
+  //去编辑现场记录
+  toEditTestPoint:function(){
+    var id = this.data.id;
+    var lastPage = 'AddTestData'
+    if(id){ //测点id
+      wx.navigateTo({
+        url: '/pages/test/testList/EditTestPoint?id=' + id + '&lastPage=' + lastPage
+      })
+    }  
   }
 })

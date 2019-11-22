@@ -80,7 +80,7 @@ Page({
         personList: resData.personList,
         equipList: resData.equipList
       });
-      //缓存桩列表
+      //缓存委托单数据
       wx.setStorageSync('pileList', resData.pileList);
       wx.setStorageSync('serialNo', resData.serialNo);
       wx.setStorageSync('foundationType', resData.foundationType);

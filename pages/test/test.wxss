@@ -61,20 +61,3 @@ padding: 14rpx;
 .details-wrap{
   position:relative;
 }
-
-.loading-container{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background-color: #373737;
-  z-index:99;
-  display: flex;
-  justify-content: center;
-}
-.img-loading{
-  width:750rpx;
-  height:422rpx;
-  margin-top:240rpx;
-}

@@ -20,8 +20,9 @@ Page({
   //编辑测点信息
   toEditTestPoint:function(e){
     var id = e.currentTarget.dataset.id;
+    var lastPage = 'TestList'
     wx.navigateTo({
-      url: '/pages/test/testList/EditTestPoint?id='+id
+      url: '/pages/test/testList/EditTestPoint?id=' + id + '&lastPage=' + lastPage
     })
   }
 })

@@ -1,4 +1,5 @@
 <view class="details-wrap">
+<view class="loading-container" hidden="{{loadingPage}}"><image src="../../../images/loading.gif" class="img-loading"></image></view>
   <view class="fixedArea">
     <button class="rs-btn btn-blue testDataEnter" plain="true" bindtap="toAddTestData">新增试验数据</button>
   </view>
