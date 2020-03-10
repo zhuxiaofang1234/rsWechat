@@ -1,9 +1,10 @@
 <view class="page">
+<view class="loading-container" hidden="{{loadingPage}}"><image src="../../../images/loading.gif" class="img-loading"></image></view>
 <block  wx:if="{{hasVaildPile}}">
 <view class="weui-cells weui-cells_after-title mt-20">
     <radio-group bindchange="radioChange">
       <label class="weui-cell weui-check__label" wx:for="{{pileList}}" wx:key="value" wx:if="{{item.pileNo!=''}}">
-        <radio class="weui-check" value="{{item.id}}" checked="{{item.checked}}" />
+        <radio class="weui-check" value="{{item.id ? item.id : item.basicInfoId}}" checked="{{item.checked}}" />
         <view class="weui-cell__bd">{{item.pileNo ? item.pileNo:'-'}}</view>
         <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
           <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>

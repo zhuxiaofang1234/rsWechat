@@ -1,5 +1,12 @@
 {
   "pages": [
+    "pages/ZXSceneRecordBaseData/ZXSceneRecordBaseData",
+    "pages/SceneRecordZXsample/SceneRecordZXsample",
+    "pages/SceneRecordZXDefect/SceneRecordZXDefect",
+    "pages/SceneRecordZXForceLayer/SceneRecordZXForceLayer",
+    "pages/SceneRecordZXFlSample/SceneRecordZXFlSample",
+    "pages/SceneRecordZXGather/SceneRecordZXGather",
+    "pages/ZXSceneRecordData/ZXSceneRecordData",
     "pages/EndHole/EndHole",
     "pages/AddZXTestData/AddZXTestData",
     "pages/AddZXRecordData/AddZXRecordData",

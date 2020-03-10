@@ -142,6 +142,7 @@ Page({
     data.djsjbg = this.data.height1;
     var nowDate = new Date();
     data.testTime = App.format(nowDate);
+    data.pileId = this.data.id;
     
     //存储设备编号
     wx.setStorageSync('machineId', data.machineId);

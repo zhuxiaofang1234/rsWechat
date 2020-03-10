@@ -62,13 +62,6 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/test/addTestData/testRecord",
-					"pathName": "pages/test/addTestData/testRecord",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "AddZXRecordData",
 					"pathName": "pages/AddZXRecordData/AddZXRecordData",
 					"query": "",
@@ -83,8 +76,15 @@
 				},
 				{
 					"id": -1,
-					"name": "EndHole",
-					"pathName": "pages/EndHole/EndHole",
+					"name": "SceneRecordZXForceLayer",
+					"pathName": "pages/SceneRecordZXForceLayer/SceneRecordZXForceLayer",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "SceneRecordZXFlSample",
+					"pathName": "pages/SceneRecordZXFlSample/SceneRecordZXFlSample",
 					"scene": null
 				}
 			]

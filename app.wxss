@@ -215,6 +215,9 @@ page {
 .mb-32 {
   margin-bottom: 32rpx !important;
 }
+.mb-40{
+  margin-bottom:40rpx !important;
+}
 
 /***返回按钮***/
 
@@ -288,7 +291,6 @@ button.rs-btn.btn-blue{
   border-bottom: 1rpx solid #555;
 }
 .rs-title.weui-cells__title {
-  margin:18rpx 0;
   font-size: 30rpx;
   color:#ddd;
 }
@@ -342,6 +344,9 @@ padding-bottom:8px;
   margin-top:100rpx;
   text-align: center;
 }
+.tipsSyle{
+  font-size:14px;
+}
 
 .noData-tip-content{
   margin-top:200rpx;
@@ -389,6 +394,61 @@ padding-bottom:8px;
   height:422rpx;
   margin-top:240rpx;
 }
+
+/**input框**/
+.rs_input_wrap{
+  padding:0 15rpx;
+}
+.rs-input{
+  border: 1px solid #666;
+  font-size:36rpx;
+  line-height:36rpx;
+  padding:26rpx 30rpx;
+  border-radius:15rpx;
+  background-color:#000; 
+}
+.rs_input_wrap.rs-inline{
+  width:44%
+}
+
+/***列表样式***/
+
+.plie-items{
+  display: flex;
+  margin-bottom:20rpx;
+  background-color: #000;
+}
+.pile-order{
+  flex:0 0 100rpx;
+  height:50px;
+  line-height: 50px;
+  text-align: center;
+  background-color:rgb(223,223,223);
+}
+.pile-no{
+  flex:1;
+  line-height: 50px;
+  padding-left:50rpx;
+  color:#4cd964
+}
+
+.content-number{
+  flex: 0 0 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(223,223,223);
+}
+.content-info{
+  flex:1;
+  display: flex;
+  align-items: center;
+  padding-left: 50rpx;
+  color: #4cd964;
+}
+
+
+
 
 
 
