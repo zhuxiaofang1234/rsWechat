@@ -1,0 +1,26 @@
+ <view class="weui-cells weui-cells_after-title mt-20">
+    <navigator url="/pages/ZXSceneRecordBaseData/ZXSceneRecordBaseData" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">试验基本信息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+     <navigator url="/pages/SceneRecordZXsample/SceneRecordZXsample?type=1" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">芯样取样</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/SceneRecordZXDefect/SceneRecordZXDefect"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">芯样缺陷描述</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/SceneRecordZXForceLayer/SceneRecordZXForceLayer" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">持力层</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/SceneRecordZXsample/SceneRecordZXsample?type=2" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">持力层取样</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="/pages/SceneRecordZXGather/SceneRecordZXGather" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">试验情况汇总</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+</view>

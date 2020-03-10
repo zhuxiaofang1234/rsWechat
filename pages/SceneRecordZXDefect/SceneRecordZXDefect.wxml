@@ -1,0 +1,57 @@
+<view class="details-wrap">
+  <view class="main">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+      <view class="details-container no-padding pb-10 bg-gray38">
+        <form bindsubmit='reg'>
+          <view class="weui-cells__title rs-title">缺陷起始位置(m)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" type="number" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" focus="{{autoFocus}}" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">缺陷终止位置(m)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" type="number" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" focus="{{autoFocus}}" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">缺陷类型
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" value="轻度蜂窝麻面，中度蜂窝麻面，重度蜂窝麻面,骨料分布不均匀,芯样破碎"/>
+              </view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+        </form>
+      </view>
+      <block wx:if="{{depthList.length>0}}">
+        <view class="details-container no-padding mt-20" wx:for="{{depthList}}" wx:key="{{index}}">
+          <navigator url="/pages/test/addTestData/updateTestRecord?id={{item.id}}" class="weui-cell weui-cell_access">
+            <view class="depthNum">{{index+1}}</view>
+            <view class="weui-cell__bd weui-flex" style="color:#fff;">
+              <view class="weui-flex__item">{{item.depth}}</view>
+              <view class="weui-flex__item">
+                <text class="testNum">{{item.hammerValue}}</text>
+                <text wx:if="{{item.correctValue}}">（{{item.correctValue}})</text>
+              </view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          </navigator>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn mr-50" plain="true" bindtap="">取消</button>
+    <button class="rs-btn backbtn btn-green" plain="true" bindtap="submitRecord">保存</button>
+  </view>
+</view>

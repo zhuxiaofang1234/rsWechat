@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="index-title">JC-ETMOP工程检测移动办公平台</view>
+  <view class="loginWrap">
+    <view class="headImg-wrap rs-inline"><image src="{{headImg}}" class="headImg"/></view>
+    <view class="login-status rs-inline" bindtap="goLogin">{{loginName}}</view>
+    <view class="item-wrap">
+      <view class="item" bindtap="toMytestTask">
+        <image src="../../images/testTask@2x.png" class="item-img"></image>
+        <view class="item-desc">检测任务</view>
+      </view>
+      <view class="item" bindtap="toTestRecord">
+        <image src="../../images/testing@2x.png" class="item-img"></image>
+        <view class="item-desc">进行中试验</view>
+      </view>
+      <view class="item">
+        <image src="../../images/testData@2x.png" class="item-img"></image>
+        <view class="item-desc">检测数据</view>
+      </view>
+    </view> 
+  </view>
+  <view class="testMode-wrap">
+    <text class="testMode-title">试验方法</text>
+      <view class="weui-cells weui-cells_after-title">
+            <radio-group bindchange="radioChange" classs="radio-group">
+                <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
+                    <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+                    <view class="weui-cell__bd">
+                      <image src="../../images/JCLogo.png" class="logo-img rs-inline"></image>
+                      <text class="testMode-name rs-inline {{item.checked ? 'cur' :''}}">{{item.name}}</text>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+                        <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+                    </view>
+                </label>
+            </radio-group>
+        </view>
+  </view>
+</view>

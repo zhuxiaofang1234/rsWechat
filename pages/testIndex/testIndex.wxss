@@ -1,0 +1,4 @@
+/* pages/testIndex/testIndex.wxss */
+.tui-content{
+  height:100%;
+}

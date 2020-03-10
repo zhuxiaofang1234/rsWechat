@@ -1,0 +1,15 @@
+/* pages/ZXSceneRecordData/ZXSceneRecordData.wxss */
+page{
+ overflow-y: hidden;
+  background-color: #383838;
+}
+.weui-cell {
+  padding:32rpx 30rpx;
+  background: #000;
+  color:#fff;
+  font-size:36rpx;
+}
+.weui-cell:before{
+  border-top:1rpx solid #898989;
+  }
+  

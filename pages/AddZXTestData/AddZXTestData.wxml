@@ -1,0 +1,69 @@
+<form bindsubmit='reg'>
+  <view class="details-wrap">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+    <view class="main">
+      <scroll-view class="main-wrapper" scroll-y style="height:100%">
+        <view class="details-container no-padding bg-gray38">
+          <view class="weui-cells__title rs-title">孔号</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
+              <view class="weui-cell__bd rs-text">{{detailsData.pileNo ? detailsData.pileNo: '请选择孔号'}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+        </view>
+        <view class="details-container mt-30">
+          <view class="details-item">
+            <view class="details-title">测试流水号</view>
+            <view class="details-info rs-text mt-20">{{detailsData.serialNo ? detailsData.serialNo : '-'}}</view>
+          </view>
+          <view class="details-item">
+            <view class="details-title">桩型</view>
+            <view class="details-info rs-text mt-20">-</view>
+          </view>
+          <view class="details-item">
+            <view class="details-title">桩径(mm)</view>
+            <view class="details-info rs-text mt-20">-</view>
+          </view>
+          <view class="details-item">
+            <view class="details-title">设计桩长(m)</view>
+            <view class="details-info rs-text mt-20">-</view>
+          </view>
+           <view class="details-item">
+            <view class="details-title">实际桩长(m)</view>
+            <view class="details-info rs-text mt-20">-</view>
+          </view>
+           <view class="details-item">
+            <view class="details-title">开孔时间</view>
+            <view class="details-info rs-text mt-20">2019-08-04 15:23:04</view>
+          </view>
+           <view class="details-item">
+            <view class="details-title">终孔时间</view>
+            <view class="details-info rs-text mt-20">2019-08-04 15:23:04</view>
+          </view>
+          <view class="details-item">
+            <view class="details-title">终孔原因</view>
+            <view class="details-info rs-text mt-20">达到预定深度</view>
+          </view>
+           <view class="details-item">
+            <view class="details-title">备注</view>
+            <view class="details-info rs-text mt-20">----</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!--main结束->
+  
+    <!--弹出框组件-->
+    <dialog id='dialog' title='温馨提示' content='小程序需要您的授权获取地理位置' confirmText='去设置' bind:myconfirmEvent='confirmEvent' bind:bindopensetting='getSetting'>
+    </dialog>
+    <!--弹出框结束-->
+    <view class="footer">
+      <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toAddZXTestData">添加钻进记录</button>
+      <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toEndHole">添加终孔操作</button>
+      <button class="rs-btn btn-blue mt-20 ml-50" plain="true" bindtap="toZXSceneRecord">现场编录表</button>
+      <button class="rs-btn btn-blue ml-50" plain="true" bindtap="toTestData">查看</button>
+    </view>
+  </view>
+  <!--details-wrap结束-->
+</form>

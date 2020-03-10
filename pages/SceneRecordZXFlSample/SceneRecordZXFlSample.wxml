@@ -1,0 +1,33 @@
+<view class="details-wrap">
+  <view class="main">
+    <scroll-view class="main-wrapper" scroll-y style="height:100%">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+      <view class="details-container no-padding pb-10 bg-gray38 mb-40">
+        <form bindsubmit='reg'>
+          <view class="weui-cells__title rs-title">取样编号</view>
+          <view class="rs_input_wrap">
+            <input class="rs-input rs-text" type="text" name="sampleNo" value="{{sampleNo}}" bindblur="getSampleNo" />
+          </view>
+          <view class="weui-cells__title rs-title">深度起至位置(m)</view>
+          <view class="rs_input_wrap rs-inline">
+            <input class="rs-input rs-text" type="text" name="startPosition" value="{{startPosition}}" bindblur="getStartPosition" />
+          </view>
+          <span style="color:#666">~</span>
+          <view class="rs_input_wrap rs-inline">
+            <input class="rs-input rs-text" type="text" name="endPosition" value="{{endPosition}}" bindblur="getEndPosition" />
+          </view>
+        </form>
+      </view>
+      <block wx:if="{{sampleList.length>0}}">
+        <view class="plie-items" bindtap="zxHoleSampleEdit" wx:for="{{sampleList}}" wx:key="{{index}}" data-id="{{item.id}}">
+          <view class="pile-order">{{item.sampleNo}}</view>
+          <view class="pile-no">{{item.startPosition}}~{{item.endPosition}}m</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn mr-50" plain="true" bindtap="">取消</button>
+    <button class="rs-btn backbtn btn-green" plain="true" bindtap="submitRecord">保存</button>
+  </view>
+</view>

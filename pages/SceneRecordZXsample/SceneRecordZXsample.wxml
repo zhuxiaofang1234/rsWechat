@@ -1,0 +1,41 @@
+<view class="details-wrap">
+  <form bindsubmit='reg' class="rs-form">
+    <view class="main">
+      <scroll-view class="main-wrapper" scroll-y style="height:100%">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+        <view class="details-container no-padding pb-10 bg-gray38">
+
+          <view class="weui-cells__title rs-title">取样编号</view>
+          <view class="rs_input_wrap">
+            <input class="rs-input rs-text" type="text" name="sampleNo" value="{{sampleNo}}" />
+          </view>
+          <view class="weui-cells__title rs-title">岩层起至深度(m)</view>
+          <view class="rs_input_wrap rs-inline">
+            <input class="rs-input rs-text" type="text" name="startPosition" value="{{startPosition}}" />
+          </view>
+          <span style="color:#666">~</span>
+          <view class="rs_input_wrap rs-inline">
+            <input class="rs-input rs-text" type="text" name="endPosition" value="{{endPosition}}" />
+          </view>
+        </view>
+        <block wx:if="{{sampleList.length>0}}">
+          <movable-area class="movable-area" wx:for="{{sampleList}}" wx:key="{{index}}">
+            <movable-view class="movable-view">
+              <view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="ZxHoleForceLayerEdit" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
+                <view class="content">
+                  <view class="content-number">{{item.sampleNo}}</view>
+                  <view class="content-info">{{item.startPosition}}~{{item.endPosition}}m</view>
+                </view>
+                <view class="del" catchtap="del" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+              </view>
+            </movable-view>
+          </movable-area>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="footer backfooter">
+      <button class="rs-btn btn-blue backbtn mr-50" plain="true" form-type="reset">取消</button>
+      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+    </view>
+  </form>
+</view>
