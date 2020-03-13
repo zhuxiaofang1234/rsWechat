@@ -1,5 +1,6 @@
 // pages/test/addTestData/testList.js
-const WXAPI = require('../../../utils/main.js')
+const WXAPI = require('../../../utils/main.js');
+const Until = require('../../../utils/util.js');
 /*选择测点号的桩列表 */
 Page({
   /**
@@ -22,13 +23,10 @@ Page({
       TestModeCode: TestModeCode,
       SerialNo:SerialNo,
       loadingPage: false
-    });
-    if (TestModeCode == 'ZG' || TestModeCode == 'ZJ' || TestModeCode == 'ZY') {
+    }); 
      setTimeout(()=>{
        that.getPileList()
-     },500)
-    
-    }  
+     },500)   
   },
 
   /**
@@ -81,7 +79,7 @@ Page({
   radioChange: function(e) {
     var pileList = this.data.pileList;
     for (var i = 0, len = pileList.length; i < len; ++i) {
-      var id = pileList[i].id ? pileList[i].id : pileList[i].basicInfoId
+      var id = pileList[i].id;
       pileList[i].checked = id == e.detail.value;
     }
     this.setData({
@@ -92,8 +90,9 @@ Page({
   //根据id获取选择测点的信息
   getPointInfo: function(id) {
     var pileList = this.data.pileList;
+    console.log(pileList);
     for (var i = 0, len = pileList.length; i < len; ++i) {
-      var pileId = pileList[i].id ? pileList[i].id : pileList[i].basicInfoId;
+      var pileId = pileList[i].id;
       if (pileId == id) {
         //返回上一页并刷新页面 
         var pages = getCurrentPages();
@@ -112,6 +111,7 @@ Page({
           break;
           case 'TQ':
           case 'TZ':
+            console.log(pileList[i]);
             obj = this.refreshZTPile(pileList[i]);
             prevPage.setData(obj);
         }
@@ -141,15 +141,14 @@ Page({
       url: '/pages/test/testList/testList',
     })
   },
-  //获取待检测的桩列表
+  //获取桩列表
   getPileList: function() {
     var that = this;
-    var queryData = {
-      'IsTesting': 1,
-      'SerialNo': this.data.SerialNo
-    };
-    WXAPI.GetZXPileList(queryData).then(res => {
+    var modeType = Until.getModeType();
+    var wtId = wx.getStorageSync('wtId');
+    WXAPI.GetPileListByEntrustId(wtId, modeType).then(res => {
       var resData = res.result;
+      console.log(resData);
       that.setData({
         loadingPage: true
       });
@@ -171,8 +170,8 @@ Page({
       id: pileList.id,
       pileNo: pileList.pileNo,
       pileBearing: pileList.pileBearing,
-      height1: pileList.height1,
-      height2: pileList.height2
+      height1: pileList.height1,//检测起始标高
+      height2: pileList.height2 //地基起始标高
     }
     return obj
   },

@@ -11,6 +11,7 @@ Page({
   * 生命周期函数--监听页面加载
   */
   onLoad: function (options) {
+    //来自委托单详情接口
     var plieList = wx.getStorageSync('pileList')
     this.setData({
       pileList: plieList 

@@ -78,7 +78,25 @@ function isTesting (){
     })
 }
 
+function getModeType(){
+  var TestModeCode = wx.getStorageSync('testModeCode');
+  var ModeType;
+  switch (TestModeCode) {
+    case 'TQ':
+    case 'TZ':
+      ModeType = 'ZT';
+      break;
+    case 'ZG':
+    case 'ZJ':
+    case 'ZY':
+      ModeType = 'ZX';
+      break;
+  }
+  return ModeType;
+}
+
 module.exports = {
   endTest,
-  isTesting
+  isTesting,
+  getModeType
 }

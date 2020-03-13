@@ -8,3 +8,11 @@
 
 .weui-cell:before{border-top:1rpx solid #898989;}
 
+.red{
+  color:red;
+}
+.green{
+  color:green;
+}
+
+

@@ -56,9 +56,11 @@ Page({
     var that = this;
     var queryData = {
       'SerialNo': serialNo,
-      'OrderBy': 4 
+      'OrderBy': 4,
+      'IsTesting':0
     }
-    WXAPI.GetPileList(queryData).then(res=>{
+    var modeType = until.getModeType();
+    WXAPI.GetPileList(queryData, modeType).then(res=>{
   
       that.setData({
         loadingPage: true

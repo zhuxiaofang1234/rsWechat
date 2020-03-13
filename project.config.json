@@ -85,6 +85,21 @@
 					"id": -1,
 					"name": "SceneRecordZXFlSample",
 					"pathName": "pages/SceneRecordZXFlSample/SceneRecordZXFlSample",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "addTestData",
+					"pathName": "pages/test/addTestData/addTestData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "choseList",
+					"pathName": "pages/test/addTestData/testList",
+					"query": "",
 					"scene": null
 				}
 			]

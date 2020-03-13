@@ -17,8 +17,8 @@ Page({
     pileNo: '请选择测点号',
     orderNo: '',
     pileBearing: '',
-    height1: '',
-    height2: '',
+    height1: '', //检测起始标高
+    height2: '', //
     showTopTips: false,
     erroInfo: "错误提示",
     baseInfoId: "",
@@ -139,7 +139,8 @@ Page({
     data.rdjlx = this.data.rdjlxCode;
     data.testType = this.data.testTypeCode;
     data.dValue = this.data.pileBearing;
-    data.djsjbg = this.data.height1;
+    data.jcqsbg = this.data.height1; //检测起始标高
+    data.sjdjbg = this.data.height2; //地基设计标高
     var nowDate = new Date();
     data.testTime = App.format(nowDate);
     data.pileId = this.data.id;

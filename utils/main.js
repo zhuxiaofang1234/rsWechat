@@ -85,14 +85,17 @@ module.exports = {
   GetEntrustDetails:(data) => { //获取委托单详情
     return request('/api/services/app/WorkRecord/GetEntrustInfoById', 'GET', data)
   },
+  GetPileListByEntrustId:(wtId,modeType)=>{//根据委托单id获取测点列表
+    return request('/api/services/app/' + modeType + 'Data/GetPileListByEntrustId?EntrustId=' + wtId, 'GET')
+  },
   GetPileDetails:(data) => { //获取单根桩的详情信息
     return request('/api/services/app/WorkRecord/GetPileById', 'GET', data)
   },
   UpdatePile:(data) => { //更新测点信息
     return request('/api/services/app/WorkRecord/UpdatePile', 'PUT', data)
   },
-  GetPileList:(data) => {//根据检测编号获取桩列表
-    return request('/api/services/app/ZTData/GetPileList', 'GET', data)
+  GetPileList: (data, modeType) => {//根据检测编号获取桩列表
+    return request('/api/services/app/' + modeType +'Data/GetPileList', 'GET', data)
   },
   UUIDGenerator:() => { //生成baseInfoId
     return request('/api/Tools/UUIDGenerator', 'GET')
