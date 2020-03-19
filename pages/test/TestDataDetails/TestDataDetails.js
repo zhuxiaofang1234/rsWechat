@@ -22,7 +22,7 @@ Page({
     this.setData({
       baseInfoId: baseInfoId
     });
-    this.getTestDatadetails(baseInfoId);
+   this.getTestDatadetails(baseInfoId);
   },
 
   tabClick: function(e) {
@@ -38,7 +38,7 @@ Page({
       var h = App.globalData.windowHeight;
       if (isTesting == 1) {
         that.setData({
-          depthHeight: h-106
+          depthHeight: h-136
         });
       } else {
         that.setData({
@@ -71,7 +71,9 @@ Page({
         recordCount: resData.recordCount,
         isTesting: resData.isTesting
       });
-    })
+      //缓存实验基本信息
+      wx.setStorageSync('ZTBaseData', resData);
+    })  
   },
   toTestList: function() {
     //返回上一页
@@ -109,5 +111,19 @@ Page({
   //结束实验
   endTest: function() {
     until.endTest()
+  },
+  //编辑实验基本信息
+  toEditTestData:function(e){
+    wx.navigateTo({
+      url:'/pages/test/editTestData/editTestData'
+    });
+  },
+  //编辑实验深度
+  toEditZTDepth:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/test/EditZTdepth/EditZTdepth',
+    })
   }
+
 })

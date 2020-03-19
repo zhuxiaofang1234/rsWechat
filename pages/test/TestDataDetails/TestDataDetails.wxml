@@ -4,13 +4,17 @@
       <view class="weui-navbar">
         <block wx:for="{{tabs}}" wx:key="*this">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
-            <view class="weui-navbar__title">{{item}}</view>
+            <view class="weui-navbar__title rs-inline">{{item}}</view>
+              <view bindtap="toEditTestData" class="rs-inline" wx:if="{{index==0}}" hidden="{{activeIndex!=0}}">
+                <span class="iconfont icon-edit edit-baseInfo"></span>
+              </view>     
           </view>
         </block>
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content mt-20" hidden="{{activeIndex != 0}}">
-          <scroll-view scroll-y style="height:calc(100vh - 134rpx);">
+          <scroll-view scroll-y style="height:calc(100vh - 136rpx);">
+           <!--view class="operation_bar"><span class="iconfont icon-edit"></span></view-->
             <view class="details-container">
               <view class="details-item">
                 <view class="details-title">测点号</view>
@@ -43,7 +47,7 @@
                 <view class="details-title">天然地基岩土性状</view>
                 <view class="details-info rs-text mt-20" wx:if="{{details.rdjlx==0}}">一般黏性土</view>
                 <view class="details-info rs-text mt-20" wx:elif="{{details.rdjlx==1}}">粘性素填土</view>
-                <view class="details-info rs-text mt-20" wx:elif="{{details.testType==2}}">粉土、粉细砂土</view>
+                <view class="details-info rs-text mt-20" wx:elif="{{details.rdjlx==2}}">粉土、粉细砂土</view>
                 <view class="details-info rs-text mt-20" wx:else>未知</view>
               </view>
               <view class="details-item">
@@ -52,8 +56,8 @@
                 <view class="details-info rs-text mt-20" wx:elif="{{details.gpsIsValid==1}}">GPS有效</view>
               </view>
               <view class="details-item">
-                <view class="details-title">设计地基标高(m)</view>
-                <view class="details-info rs-text mt-20">{{details.djsjbg}}</view>
+                <view class="details-title">检测起始标高(m)</view>
+                <view class="details-info rs-text mt-20">{{details.jcqsbg}}</view>
               </view>
               <view class="details-item">
                 <view class="details-title">地基承载力特征值(kPa)</view>
@@ -66,7 +70,10 @@
         <view class="weui-tab__content mt-20" hidden="{{activeIndex != 1}}">
           <scroll-view scroll-y style="height:{{depthHeight}}px">
             <block wx:if="{{depthList.length>0}}" wx:for="{{depthList}}" wx:key="{{index}}">
-              <view class="details-container {{index !==0 ? 'mt-20':''}}">
+              <view class="details-container depth-container {{index !==0 ? 'mt-20':''}}">
+               <view class="operation_bar">
+                  <span class="iconfont depth-icon icon-bianji" data-id="{{id}}" bindtap="toEditZTDepth"></span>
+               </view>
                 <view class="details-item">
                   <view class="details-title">深度(m)</view>
                   <view class="details-info rs-text mt-20">{{item.depth}}</view>

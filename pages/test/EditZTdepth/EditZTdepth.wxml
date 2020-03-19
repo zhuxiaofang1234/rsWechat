@@ -1,0 +1,56 @@
+<view class="details-wrap">
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+  <view class="main">
+    <scroll-view class="main-wrapper">
+      <view class="details-container no-padding bg-gray38">
+        <form bindsubmit='reg'>
+          <view class="weui-cells__title rs-title">当前深度(m)</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="depth" bindblur="getDepth" value="{{depth}}" disabled="{{isDisabled}}" />
+              </view>
+            </view>
+          </view>
+           <view class="weui-cells__title rs-title">实测锤击数</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">修正锤击数</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="correctValue" value="{{correctValue}}" bindblur="getcorrectValue" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">土层描述</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="description" bindblur="getDesc" value="{{description}}" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">备注</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">
+                <textarea class="weui-textarea rs-text" name="remark" value="{{remark}}" style="height: 3.3em;" bindblur="getRemark" />
+                <view class="weui-textarea-counter">0/200</view>
+              </view>
+            </view>
+          </view>
+        </form>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="footer backfooter">
+    <button class="rs-btn backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+    <button class="rs-btn backbtn btn-green" plain="true" bindtap="submitRecord">保存</button>
+  </view>
+</view>

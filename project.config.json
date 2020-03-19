@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.4",
+	"libVersion": "2.7.7",
 	"appid": "wxa98e67a22359a1d3",
 	"projectname": "rsWechat",
 	"debugOptions": {
@@ -100,6 +100,54 @@
 					"name": "choseList",
 					"pathName": "pages/test/addTestData/testList",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "TestDataDetails",
+					"pathName": "pages/test/TestDataDetails/TestDataDetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "TestDataDetails",
+					"pathName": "pages/test/TestDataDetails/TestDataDetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "/testData/index",
+					"pathName": "pages/test/testData/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "editTestData",
+					"pathName": "pages/test/editTestData/editTestData",
 					"scene": null
 				}
 			]

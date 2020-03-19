@@ -22,11 +22,11 @@ Page({
     this.setData({
       TestModeCode: TestModeCode,
       SerialNo:SerialNo,
-      loadingPage: false
+      loadingPage: false //显示加载页面
     }); 
-     setTimeout(()=>{
-       that.getPileList()
-     },500)   
+     
+     //加载桩列表
+    that.getPileList();
   },
 
   /**
@@ -40,18 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that = this;
-    var TestModeCode = this.data.TestModeCode;
-    if (TestModeCode == 'TQ' || TestModeCode == 'TZ') {
-      var pileList = wx.getStorageSync('pileList');
-      setTimeout(()=>{
-        this.filterPileList(pileList);
-        this.setData({
-          pileList: pileList,
-          loadingPage: true
-        });  
-      },500);
-    }
+   
   },
 
   /**
@@ -124,18 +113,7 @@ Page({
       }
     }
   },
-  //过滤桩列表
-  filterPileList: function(pileList) {
-    if (pileList.length != 0) {
-      for (var item in pileList) {
-        if (pileList[item].pileNo != "") {
-          this.setData({
-            hasVaildPile: true
-          });
-        }
-      }
-    }
-  },
+
   toUpdateTestList: function() {
     wx.navigateTo({
       url: '/pages/test/testList/testList',
@@ -147,16 +125,25 @@ Page({
     var modeType = Until.getModeType();
     var wtId = wx.getStorageSync('wtId');
     WXAPI.GetPileListByEntrustId(wtId, modeType).then(res => {
-      var resData = res.result;
-      console.log(resData);
-      that.setData({
-        loadingPage: true
-      });
+      var resData = res.result; 
       if (resData.length!=0){
-        that.setData({
-          hasVaildPile: true,
-          pileList: resData,
+        //过滤测点号不存在的列表
+        var newPileList = resData.filter(function(item){
+          return item.pileNo != "" && item.pileNo!="-";
         });
+
+        if (newPileList.length!=0){
+          that.setData({
+            loadingPage: true, //隐藏加载页面啊  
+            hasVaildPile: true, //显示有效桩列表
+            pileList: newPileList.sort(this.compare('isStartTest'))
+          });
+        } else{
+          that.setData({
+            loadingPage: true,
+            hasVaildPile: false  //显示去完善桩列表
+          });
+        }
       }
     }, err => {
       that.setData({
@@ -187,5 +174,13 @@ Page({
       pileType: pileList.pileType
     }
     return obj
+  },
+  //数组排序
+  compare:function(property){
+    return function(a,b){
+      var value1 = a[property];
+      var value2 = b[property];
+      return value1-value2
+    }
   }
 })

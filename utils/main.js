@@ -109,8 +109,14 @@ module.exports = {
  GetDepthList: (data)=> { //获取触探深度列表
    return request('/api/services/app/ZTData/GetById', 'GET', data)
  },
- GetDepthDetails: (data) => { //获取深度详情
+  ReviseDetails: (data) => {//修订未分析触探的试验采样数据
+    return request('/api/services/app/ZTData/ReviseDetails', 'POST', data)
+  },
+ GetDepthDetails: (data) => { //获取a深度详情
    return request('/api/services/app/ZTData/GetDetailById', 'GET', data)
+  },
+  UpDateZTDataBaseData:(data)=>{//更新圆锥动力触探基本实验信息
+    return request('/api/services/app/ZTData/Update', 'PUT', data)
   },
   UpdateDepthDetails: (data) => { //更新深度信息
     return request('/api/services/app/ZTData/UpdateDetails', 'PUT', data)   
