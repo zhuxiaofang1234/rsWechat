@@ -18,15 +18,15 @@ Page({
       },
       {
         name: '灌注桩钻芯',
-        value: 'ZG'
+        value: 'q'
       },
       {
         name: '搅拌桩钻芯',
-        value: 'ZJ'
+        value: 'e'
       },
       {
         name: '岩基钻芯',
-        value: 'ZY'
+        value: 'r'
       }
     ],
     loginName: '未登录',
@@ -131,8 +131,9 @@ Page({
       if (isTesting){
         var BaseTestData = wx.getStorageSync('BaseTestData');
         var baseInfoId = BaseTestData.baseInfoId;
+        var pileId = BaseTestData.pileId
         wx.navigateTo({
-          url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId,
+          url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId + '&pileId=' + pileId,
         });
       }else{
         wx.showModal({

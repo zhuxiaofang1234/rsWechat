@@ -17,7 +17,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" type="number" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" focus="{{autoFocus}}"/>
+                <input class="weui-input rs-text" type="text" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" focus="{{autoFocus}}"/>
               </view>
             </view>
           </view>
@@ -42,7 +42,7 @@
       <block wx:if="{{depthList.length>0}}">
         <view class="details-container no-padding mt-20" wx:for="{{depthList}}" wx:key="{{index}}">
           <navigator url="/pages/test/addTestData/updateTestRecord?id={{item.id}}" class="weui-cell weui-cell_access">
-            <view class="depthNum">{{index+1}}</view>
+            <view class="depthNum">{{item.index}}</view>
             <view class="weui-cell__bd weui-flex" style="color:#fff;">
             <view class="weui-flex__item">{{item.depth}}</view>
             <view class="weui-flex__item"><text class="testNum">{{item.hammerValue}}</text>

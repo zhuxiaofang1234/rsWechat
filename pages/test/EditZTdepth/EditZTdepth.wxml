@@ -8,7 +8,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="depth" bindblur="getDepth" value="{{depth}}" disabled="{{isDisabled}}" />
+                <input class="weui-input rs-text" name="depth" bindblur="getDepth" value="{{depth}}" disabled="true" />
               </view>
             </view>
           </view>
@@ -40,7 +40,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell">
               <view class="weui-cell__bd">
-                <textarea class="weui-textarea rs-text" name="remark" value="{{remark}}" style="height: 3.3em;" bindblur="getRemark" />
+                <textarea class="weui-textarea rs-text" name="remark" value="{{remark}}" style="height: 3.3em;" bindblur="getRemark"/>
                 <view class="weui-textarea-counter">0/200</view>
               </view>
             </view>

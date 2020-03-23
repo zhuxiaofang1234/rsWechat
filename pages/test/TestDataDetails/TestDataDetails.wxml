@@ -1,5 +1,4 @@
 <view class="details-wrap">
-  <view class="main">
     <view class="weui-tab">
       <view class="weui-navbar">
         <block wx:for="{{tabs}}" wx:key="*this">
@@ -67,39 +66,41 @@
           </scroll-view>
         </view>
         <!--深度值-->
-        <view class="weui-tab__content mt-20" hidden="{{activeIndex != 1}}">
-          <scroll-view scroll-y style="height:{{depthHeight}}px">
-            <block wx:if="{{depthList.length>0}}" wx:for="{{depthList}}" wx:key="{{index}}">
-              <view class="details-container depth-container {{index !==0 ? 'mt-20':''}}">
-               <view class="operation_bar">
-                  <span class="iconfont depth-icon icon-bianji" data-id="{{id}}" bindtap="toEditZTDepth"></span>
-               </view>
-                <view class="details-item">
-                  <view class="details-title">深度(m)</view>
-                  <view class="details-info rs-text mt-20">{{item.depth}}</view>
+        <view class="weui-tab__content mt-20 depth_content" hidden="{{activeIndex != 1}}">
+          <view class="depth_body">
+            <scroll-view scroll-y style="height:100%;">
+              <block wx:if="{{depthList.length>0}}" wx:for="{{depthList}}" wx:key="{{index}}">
+                <view class="details-container depth-container {{index !==0 ? 'mt-20':''}}">
+                <view class="operation_bar">
+                    <span class="iconfont depth-icon icon-bianji" data-id="{{item.id}}" bindtap="toEditZTDepth"></span>
                 </view>
-                <view class="details-item">
-                  <view class="details-title">实测锤击数</view>
-                  <view class="details-info rs-text mt-20">{{item.hammerValue}}</view>
+                  <view class="details-item">
+                    <view class="details-title">深度(m)</view>
+                    <view class="details-info rs-text mt-20">{{item.depth}}</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">实测锤击数</view>
+                    <view class="details-info rs-text mt-20">{{item.hammerValue}}</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">修正锤击数</view>
+                    <view class="details-info rs-text mt-20" wx:if="{{item.correctValue}}">{{item.correctValue}}</view>
+                    <view class="details-info rs-text mt-20" wx:else>-</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">土层描述</view>
+                    <view class="details-info rs-text mt-20" wx:if="{{item.description}}">{{item.description}}</view>
+                    <view class="details-info rs-text mt-20" wx:else>-</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">备注</view>
+                    <view class="details-info rs-text mt-20" style="line-height:1.5" wx:if="{{item.remark}}">{{item.remark}}</view>
+                    <view class="details-info rs-text mt-20" wx:else>-</view>
+                  </view>
                 </view>
-                <view class="details-item">
-                  <view class="details-title">修正锤击数</view>
-                  <view class="details-info rs-text mt-20" wx:if="{{item.correctValue}}">{{item.correctValue}}</view>
-                  <view class="details-info rs-text mt-20" wx:else>-</view>
-                </view>
-                <view class="details-item">
-                  <view class="details-title">土层描述</view>
-                  <view class="details-info rs-text mt-20" wx:if="{{item.description}}">{{item.description}}</view>
-                  <view class="details-info rs-text mt-20" wx:else>-</view>
-                </view>
-                <view class="details-item">
-                  <view class="details-title">备注</view>
-                  <view class="details-info rs-text mt-20" style="line-height:1.5" wx:if="{{item.remark}}">{{item.remark}}</view>
-                  <view class="details-info rs-text mt-20" wx:else>-</view>
-                </view>
-              </view>
-            </block>
-          </scroll-view>
+              </block>
+            </scroll-view>
+          </view>
           <block wx:if="{{details.isTesting==1}}">
             <view class="footer backfooter">
               <button class="rs-btn backbtn btn-blue mr-50" plain="true"bindtap="endTest">结束实验</button>
@@ -109,5 +110,4 @@
         </view>
       </view>
     </view>
-  </view>
 </view>

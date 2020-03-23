@@ -17,15 +17,32 @@ Page({
     showTopTips: false,
     erroInfo: "错误提示",
     isDisabled: true,
-    baseInfoId: null
+    baseInfoId: null,
+    currentDepth:null,
+    depthList:[]  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-   
+    var pileId =  wx.getStorageSync('pileId');
+    var depthList = wx.getStorageSync('depthList');
+    var id = options.Id;
+    var currentDepth = depthList.filter(function(item){
+      return item.id == id
+    });
+    this.setData({
+      id: id,
+      pileId: pileId,
+      baseInfoId: options.baseInfoId,
+      index: currentDepth[0].index,
+      depth: currentDepth[0].depth,
+      hammerValue: currentDepth[0].hammerValue,
+      correctValue: currentDepth[0].correctValue,
+      description: currentDepth[0].description,
+      remark: currentDepth[0].remark,
+    });  
   },
 
   //实测锤击数
@@ -70,6 +87,7 @@ Page({
     data.id = this.data.id;
     data.baseInfoId = this.data.baseInfoId;
 
+
     if (!hammerValue) {
       erroInfo = "请填写实测锤击数";
       this.errorTips(erroInfo);
@@ -79,17 +97,20 @@ Page({
       this.errorTips(erroInfo);
       return
     }
-    if (!App.isInt(correctValue)){
+    if (correctValue && !App.isInt(correctValue)){
       erroInfo = "修改锤击数只能是整数";
       this.errorTips(erroInfo);
       return
     };
     data.depth = depth;
-    data.correctValue = hammerValue;
+    data.pileId = this.data.pileId;
+    data.index = this.data.index;
+    data.correctValue = parseInt(correctValue);
+    data.hammerValue = parseInt(hammerValue);
     data.description = this.data.description;
     data.remark = this.data.remark;
 
-    WXAPI.UpdateDepthDetails(data).then(res => {
+    WXAPI.ReviseDetails(data).then(res => {
       wx.showToast({
         title: '操作成功',
         icon: 'success',
@@ -100,11 +121,25 @@ Page({
             //返回上一页并刷新页面 
             var pages = getCurrentPages();
             var prevPage = pages[pages.length - 2];
-            prevPage.getDepthList();
+            var depthList = wx.getStorageSync('depthList');
+            for (var i = 0; i < depthList.length;i++){
+              if (data.id == depthList[i].id){
+                depthList[i].correctValue = data.correctValue;
+                depthList[i].hammerValue = data.hammerValue;
+                depthList[i].description = data.description;
+                depthList[i].remark = data.remark;    
+              }
+            }
+            //缓存实验深度
+            wx.setStorageSync('depthList', depthList);
+            prevPage.setData({
+              depthList: depthList
+            });
+            //刷新深度列表
             wx.navigateBack({
               delta: 1
             })
-          }, 2000)
+          }, 500)
         }
       })
     }, err => {

@@ -8,7 +8,7 @@ Page({
    */
   data: {
     pileList: [],
-    hasVaildPile: false,
+    hasVaildPile: true,
     loadingPage: true
   },
 
@@ -79,7 +79,6 @@ Page({
   //根据id获取选择测点的信息
   getPointInfo: function(id) {
     var pileList = this.data.pileList;
-    console.log(pileList);
     for (var i = 0, len = pileList.length; i < len; ++i) {
       var pileId = pileList[i].id;
       if (pileId == id) {
@@ -100,7 +99,6 @@ Page({
           break;
           case 'TQ':
           case 'TZ':
-            console.log(pileList[i]);
             obj = this.refreshZTPile(pileList[i]);
             prevPage.setData(obj);
         }

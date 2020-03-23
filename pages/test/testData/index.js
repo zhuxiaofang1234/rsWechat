@@ -101,9 +101,11 @@ Page({
   },
   //查看数据详情
   toTestDataDetails: function(e) {
+    console.log(e)
     var baseInfoId = e.currentTarget.dataset.id;
+    var pileId = e.currentTarget.dataset.pileid;
     wx.navigateTo({
-      url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId
+      url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId + '&pileId=' + pileId
     })
   }
 })

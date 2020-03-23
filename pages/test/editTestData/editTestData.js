@@ -46,7 +46,10 @@ Page({
       rdjlxCode: ZTBaseData.rdjlx,
       rdjlxIndex: ZTBaseData.rdjlx,
       serialNo: ZTBaseData.serialNo,
-      testTime: ZTBaseData.testTime 
+      testTime: ZTBaseData.testTime,
+      gpsIsValid: ZTBaseData.gpsIsValid,
+      gpsLatitude: ZTBaseData.gpsLatitude,
+      gpsLongitude: ZTBaseData.gpsLongitude,
     });
   },
 
@@ -141,6 +144,9 @@ Page({
     data.jcqsbg = data.jcqsbg; //检测起始标高
     data.dGroup =[2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
     data.testTime = this.data.testTime;
+    data.gpsIsValid = this.data.gpsIsValid,
+    data.gpsLatitude = this.data.gpsLatitude,
+    data.gpsLongitude = this.data.gpsLongitude,
     this.submit(data);
   },
   //提交数据

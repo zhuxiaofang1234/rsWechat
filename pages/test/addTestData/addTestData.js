@@ -1,6 +1,7 @@
 // pages/test/addTestData/addTestData.js
 const App = getApp();
-const WXAPI = require('../../../utils/main.js')
+const WXAPI = require('../../../utils/main.js');
+var flag=true;
 Page({
   /**
    * 页面的初始数据
@@ -134,6 +135,7 @@ Page({
     }
     var baseInfoId = this.data.baseInfoId;
     data.baseInfoId = baseInfoId;
+    data.testModeCode = wx.getStorageSync('testModeCode');
     data.serialNo = wx.getStorageSync('serialNo');
     data.foundationType = wx.getStorageSync('foundationType');
     data.rdjlx = this.data.rdjlxCode;
@@ -156,7 +158,10 @@ Page({
       data.gpsLongitude = this.data.gpsLongitude;
       data.gpsLatitude = this.data.gpsLatitude;
     }
-    this.submit(data);
+    if(flag){
+      flag = false;
+      this.submit(data);
+    }   
   },
   //提交数据
   submit: function(data) {
@@ -168,6 +173,7 @@ Page({
         duration: 3000,
         mask: true,
         success: function () {
+          flag = true;
           //跳转到试验采样记录
           wx.setStorageSync('isTesting', 1);
           //清除上一条的试验记录数据
@@ -180,6 +186,7 @@ Page({
         }
       })
     },err=>{
+      flag = true;
       wx.showModal({
         title: '操作失败',
         content: '当前状态已锁定',

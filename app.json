@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/login/login",
     "pages/ZXSceneRecordBaseData/ZXSceneRecordBaseData",
     "pages/SceneRecordZXsample/SceneRecordZXsample",
     "pages/SceneRecordZXDefect/SceneRecordZXDefect",
@@ -10,10 +12,8 @@
     "pages/EndHole/EndHole",
     "pages/AddZXTestData/AddZXTestData",
     "pages/AddZXRecordData/AddZXRecordData",
-    "pages/index/index",
     "template/loadingPage/loadingPage",
     "template/noDataPage/noDataPage",
-    "pages/login/login",
     "pages/test/test",
     "pages/testMode/index",
     "pages/test/TestDataDetails/TestDataDetails",

@@ -49,7 +49,8 @@ function endTest(){
 
 //是否正在试验中
 function isTesting (){
-  var TestModeCode = wx.getStorageSync('testModeCode');
+  var BaseTestData = wx.getStorageSync('BaseTestData');
+  var TestModeCode = BaseTestData.testModeCode;
   var content = "";
   switch (TestModeCode){
     case 'TQ':
@@ -78,6 +79,7 @@ function isTesting (){
     })
 }
 
+//综合测试类型
 function getModeType(){
   var TestModeCode = wx.getStorageSync('testModeCode');
   var ModeType;
@@ -95,8 +97,32 @@ function getModeType(){
   return ModeType;
 }
 
+
+//倒序排列
+ function sortBy (attr, rev) {
+  //第二个参数没有传递 默认升序排列
+  if (rev == undefined) {
+    rev = 1;
+  } else {
+    rev = (rev) ? 1 : -1;
+  }
+
+  return function (a, b) {
+    a = a[attr];
+    b = b[attr];
+    if (a < b) {
+      return rev * -1;
+    }
+    if (a > b) {
+      return rev * 1;
+    }
+    return 0;
+  }
+}
+
 module.exports = {
   endTest,
   isTesting,
-  getModeType
+  getModeType,
+  sortBy
 }

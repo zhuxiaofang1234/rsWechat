@@ -13,15 +13,18 @@ Page({
     depthList: [],
     baseInfoId:null,
     dGrade: '',
-    depthHeight: null,
+    depthHeight: 470,
     isTesting: 0
   },
 
   onLoad: function(options) {
     var baseInfoId = options.baseInfoId;
+    
+    var pileId = options.pileId;
     this.setData({
-      baseInfoId: baseInfoId
+      baseInfoId: baseInfoId,
     });
+    wx.setStorageSync('pileId', pileId);
    this.getTestDatadetails(baseInfoId);
   },
 
@@ -73,6 +76,9 @@ Page({
       });
       //缓存实验基本信息
       wx.setStorageSync('ZTBaseData', resData);
+
+    //缓存实验深度
+      wx.setStorageSync('depthList',resData.detailsData);
     })  
   },
   toTestList: function() {
@@ -120,9 +126,10 @@ Page({
   },
   //编辑实验深度
   toEditZTDepth:function(e){
-    console.log(e)
+    var Id = e.currentTarget.dataset.id;
+    var baseInfoId = this.data.baseInfoId;
     wx.navigateTo({
-      url: '/pages/test/EditZTdepth/EditZTdepth',
+      url: '/pages/test/EditZTdepth/EditZTdepth?Id=' + Id + '&baseInfoId=' + baseInfoId,
     })
   }
 
