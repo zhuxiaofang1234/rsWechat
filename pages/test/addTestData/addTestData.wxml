@@ -64,8 +64,33 @@
               </view>
             </view>
           </view>
+           <view class="weui-cells__title rs-title">检测起始标高（m）<span class="blue">*</span></view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="height1" value="{{height1}}" placeholder="请输入检测起始标高" placeholder-class="tipStyles"/>
+              </view>
+            </view>
+          </view>
+           <view class="weui-cells__title rs-title">设计地基标高(m)<span class="blue">*</span></view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="height2" value="{{height2}}" placeholder="请输入设计地基标高" placeholder-class="tipStyles"/>
+              </view>
+            </view>
+          </view>
+           <view class="weui-cells__title rs-title">设计承载力特征值(kPa)<span class="blue">*</span></view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="pileBearing" value="{{pileBearing}}" placeholder="请输入设计承载力特征值" placeholder-class="tipStyles"/>
+              </view>
+            </view>
+          </view>
+          
         </view>
-        <view class="details-container mt-30" bindtap="toEditTestPoint">
+        <!--view class="details-container mt-30" bindtap="toEditTestPoint">
           <view class="wt-items">
             <text class="wt-title">设计地基标高(m)</text>
             <text class="wt-info text-green">{{height2}}</text>
@@ -78,7 +103,7 @@
             <text class="wt-title">设计承载力特征值(Kpa)</text>
             <text class="wt-info text-green">{{pileBearing}}</text>
           </view>
-        </view>
+        </view-->
       </scroll-view>
     </view>
     <!--main结束->

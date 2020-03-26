@@ -12,7 +12,7 @@
               </view>
             </view>
           </view>
-           <view class="weui-cells__title rs-title">实测锤击数</view>
+           <view class="weui-cells__title rs-title">实测锤击数<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">

@@ -65,8 +65,13 @@ Page({
     var queryData= {
       'BaseInfoId': baseInfoId
     }
+    wx.showLoading({
+      title: '加载中',
+    });
+
     WXAPI.GetZTDatadetails(queryData).then(res=>{
       var resData = res.result;
+      wx.hideLoading();
       that.setData({
         details: resData,
         dGrade: resData.dGrade,

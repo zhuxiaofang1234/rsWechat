@@ -1,6 +1,7 @@
 // pages/test/addTestData/addTestData.js
 const App = getApp();
-const WXAPI = require('../../../utils/main.js')
+const WXAPI = require('../../../utils/main.js');
+var flag = true;
 Page({
   /**
    * 页面的初始数据
@@ -146,8 +147,12 @@ Page({
     data.testTime = this.data.testTime;
     data.gpsIsValid = this.data.gpsIsValid,
     data.gpsLatitude = this.data.gpsLatitude,
-    data.gpsLongitude = this.data.gpsLongitude,
-    this.submit(data);
+    data.gpsLongitude = this.data.gpsLongitude;
+    console.log(flag);
+      if (flag) {
+      flag = false;
+      this.submit(data);
+    }   
   },
   //提交数据
   submit: function (data) {
@@ -159,35 +164,16 @@ Page({
         duration: 3000,
         mask: true,
         success: function () {
+          flag = true;
           var pages = getCurrentPages();
           var prevPage = pages[pages.length - 2];
           var  preDetail =  prevPage.details;
-          // console.log(preDetail);
-          
-          // preDetail.pileNo = data.pileNo;
-          // preDetail.orderNo = data.orderNo;
-          // preDetail.machineId = data.machineId;
-          // preDetail.testType = data.testType;
-          // preDetail.machineId = data.machineId;
-          // preDetail.rdjlx = data.rdjlx;
-         
-          // preDetail.dValue = data.dValue; //地基承载力特征值
-          // preDetail.jcqsbg = data.jcqsbg; //检测起始标高
-
-          // prevPage.setData({
-          //   detail: preDetail
-          // });
           prevPage.getTestDatadetails(data.baseInfoId);
            App.back();  
         }
       })
     }, err => {
-      wx.showModal({
-        title: '操作失败',
-        content: '当前状态已锁定',
-        showCancel: false,
-        confirmColor: '#4cd964'
-      })
+      flag = true
     });
   },
 

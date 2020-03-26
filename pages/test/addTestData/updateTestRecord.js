@@ -1,6 +1,8 @@
 // pages/test/addTestData/testRecord.js
 const App = getApp();
 const WXAPI = require('../../../utils/main.js')
+var flag = true;
+
 Page({
   /**
    * 页面的初始数据
@@ -78,7 +80,8 @@ Page({
     data.correctValue = hammerValue;
     data.description = this.data.description;
     data.remark = this.data.remark;
-
+  if(flag){
+    flag = false;
     WXAPI.UpdateDepthDetails(data).then(res=>{
       wx.showToast({
         title: '操作成功',
@@ -86,6 +89,7 @@ Page({
         duration: 3000,
         mask: true,
         success: function () {
+          flag = true;
           setTimeout(function () {
             //返回上一页并刷新页面 
             var pages = getCurrentPages();
@@ -98,13 +102,9 @@ Page({
         }
       })
     },err=>{
-      wx.showModal({
-        title: '操作失败',
-        content: '当前状态已锁定',
-        showCancel: false,
-        confirmColor: '#4cd964'
-      })
+      flag = true;
     })
+  }
   },
   //获取测点详情信息
   getDepthDetails: function(id) {

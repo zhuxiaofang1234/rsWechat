@@ -85,6 +85,12 @@ Page({
   onReachBottom: function() {
 
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
 
   //选择试验方法
   radioChange: function(e) {

@@ -4,7 +4,7 @@
     <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
    <view class="details-container no-padding pb-10 bg-gray38">
         <form bindsubmit='reg'>
-          <view class="weui-cells__title rs-title">当前深度(m)</view>
+          <view class="weui-cells__title rs-title">当前深度(m)<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
@@ -13,7 +13,7 @@
             </view>
           </view>
 
-          <view class="weui-cells__title rs-title">实测锤击数</view>
+          <view class="weui-cells__title rs-title">实测锤击数<span class="blue">*</span></view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">

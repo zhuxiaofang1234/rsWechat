@@ -9,7 +9,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="pileNo" value="{{pileNo}}" />
+                <input class="weui-input rs-text" name="pileNo" value="{{pileNo}}"/>
               </view>
             </view>
           </view>
@@ -34,7 +34,6 @@
             </view>
           </view>
           <view class="weui-cells__title rs-title">每级测试深度值(m)
-            <span class="blue">*</span>
           </view>
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">

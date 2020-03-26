@@ -27,6 +27,7 @@ const request = (url, method, data) => {
         if (code == 200){
             resolve(request.data)
         } else if (code == 401){
+          
             App.redirectToLogin();
            //token过期，清除缓存的数据
             App.removeLoginInfo();

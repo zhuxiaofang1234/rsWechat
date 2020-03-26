@@ -29,3 +29,8 @@
   padding-left: 50rpx;
   color: #4cd964;
 }
+.hover-blue{
+  background-color:rgb(0, 216, 255) !important;
+  color:#fff !important;
+}
+

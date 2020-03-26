@@ -17,7 +17,7 @@ Page({
     id:null,
     pileNo: '请选择测点号',
     orderNo: '',
-    pileBearing: '',
+    pileBearing: '', //地基承载力特征值
     height1: '', //检测起始标高
     height2: '', //
     showTopTips: false,
@@ -133,6 +133,33 @@ Page({
         dGrade: data.dGrade
       });
     }
+    if (!data.height1) {
+      erroInfo = "请填写检测起始标高";
+      this.errorTips(erroInfo);
+      return;
+    } else if (!App.isNumber(data.height1)) {
+      erroInfo = "检测起始标高只能为数值";
+      this.errorTips(erroInfo);
+      return;
+    }
+    if (!data.height2) {
+      erroInfo = "请填写设计地基标高";
+      this.errorTips(erroInfo);
+      return;
+    } else if (!App.isNumber(data.height2)) {
+      erroInfo = "设计地基标高只能为数值";
+      this.errorTips(erroInfo);
+      return;
+    }
+    if (!data.pileBearing) {
+      erroInfo = "请填写设计承载力特征值";
+      this.errorTips(erroInfo);
+      return;
+    } else if (!App.isNumber(data.pileBearing)) {
+      erroInfo = "设计承载力特征值只能为数值";
+      this.errorTips(erroInfo);
+      return;
+    }
     var baseInfoId = this.data.baseInfoId;
     data.baseInfoId = baseInfoId;
     data.testModeCode = wx.getStorageSync('testModeCode');
@@ -140,9 +167,9 @@ Page({
     data.foundationType = wx.getStorageSync('foundationType');
     data.rdjlx = this.data.rdjlxCode;
     data.testType = this.data.testTypeCode;
-    data.dValue = this.data.pileBearing;
-    data.jcqsbg = this.data.height1; //检测起始标高
-    data.sjdjbg = this.data.height2; //地基设计标高
+    data.dValue = data.pileBearing;
+    data.jcqsbg = data.height1; //检测起始标高
+    data.sjdjbg = data.height2; //地基设计标高
     var nowDate = new Date();
     data.testTime = App.format(nowDate);
     data.pileId = this.data.id;
@@ -186,13 +213,7 @@ Page({
         }
       })
     },err=>{
-      flag = true;
-      wx.showModal({
-        title: '操作失败',
-        content: '当前状态已锁定',
-        showCancel: false,
-        confirmColor: '#4cd964'
-      })
+      flag = true
     });
   },
   //检测数据唯一标识
