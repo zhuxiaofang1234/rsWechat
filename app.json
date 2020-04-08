@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/testLandscape/testLandscape",
-    "pages/drawSignature/drawSignature",
     "pages/index/index",
     "pages/login/login",
+    "pages/testLandscape/testLandscape",
     "pages/ZXSceneRecordBaseData/ZXSceneRecordBaseData",
     "pages/SceneRecordZXsample/SceneRecordZXsample",
     "pages/SceneRecordZXDefect/SceneRecordZXDefect",

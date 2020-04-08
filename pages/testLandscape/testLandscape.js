@@ -9,13 +9,7 @@ var arry = [];
 var arrz = [];
 var canvasw = 0;
 var canvash = 0;
-//获取系统信息
-wx.getSystemInfo({
-  success: function(res) {
-    canvasw = res.windowWidth; //设备宽度
-    canvash = res.windowHeight; //设备高度
-  }
-});
+
 //注册页面
 Page({
   canvasIdErrorCallback: function(e) {
@@ -157,7 +151,6 @@ Page({
       //获取图片的src
       WXAPI.GetPic(userStamp).then(res => {
         var base64Code = "data:image/jpg;base64," + res.result;
-
         //声明文件系统
         const fs = wx.getFileSystemManager();
         //随机定义路径名称
