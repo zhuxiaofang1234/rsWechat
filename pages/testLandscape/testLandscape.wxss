@@ -1,0 +1,45 @@
+/* pages/testLandscape/testLandscape.wxss */
+page{
+  background-color: #fff;
+}
+.wrapper{
+   height:100vh;
+   width:100%;
+   display: flex;
+   flex-direction: column;
+}
+.signatureArea{
+  flex:1;
+  border:4rpx dashed #e9e9e9;
+  background-color: #fff;
+  margin-left:20rpx;
+  margin-right:20rpx;
+  margin-top:20rpx;
+}
+.handWriting{
+  width:100%;
+  height:100%;
+}
+.btnArea{
+  height:50px;
+  width:100%;
+  display: flex;
+  justify-content: space-between;  
+}
+
+.btn{
+  margin-top:10px;
+  width:64px;
+  height:30px;
+  line-height:30px;
+  font-size:14px;
+}
+
+.subBtn{
+  background-color: #26abf3;
+  color:#fff;
+  text-align:center;
+}
+.subBtn:hover{
+   background-color: #008ef6!important;
+}

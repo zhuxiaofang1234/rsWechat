@@ -105,11 +105,14 @@ Page({
     var that = this;
     WXAPI.GetUserData().then(res=>{
       var resData = res.result.user;
+      console.log(resData)
       var userName = resData.name;
-      var userAccount = resData.userName
+      var userAccount = resData.userName;
+      var userStamp = resData.userStamp;
 
       wx.setStorageSync('userAccount', userAccount);
       wx.setStorageSync('userName', userName);
+      wx.setStorageSync('userStamp', userStamp);
       
       that.setData({
         loginName: userName,

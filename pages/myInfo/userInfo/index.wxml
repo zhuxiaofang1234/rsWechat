@@ -1,6 +1,6 @@
 <view class="hidden">
-<block wx:if="{{accessToken}}">
-  <view class="headImage-wrap">
+  <block wx:if="{{accessToken}}">
+    <view class="headImage-wrap">
       <image src="../../../images/profile-pic.jpg" class="headImage"></image>
     </view>
     <view class="accountInfo">
@@ -8,24 +8,31 @@
         <label class="accountTitle">用户名</label>
         <text class="accountText">{{userName}}</text>
       </view>
-        <view class="accountItem">
+      <view class="accountItem">
         <label class="accountTitle">账号信息</label>
         <text class="accountText">{{userAccount}}</text>
+      </view>
+      <view class="accountItem">
+        <navigator url="/pages/testLandscape/testLandscape" hover-class="navigator-hover">
+         <label class="accountTitle">用户签名</label>
+          <text class="text-green toSignature">{{isSign}}</text>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
       </view>
     </view>
     <view class="bottom-wrap">
       <button class="rs-btn btn-blue btn-lg" plain="true" bindtap="loginOut">退出登录</button>
-    </view> 
-</block>
- <block wx:else>
-     <view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
-        <view class="noData-tip-content">
-          <view class="img-wrap">
-            <image src="../../../images/noMsg.png" class="img-response"></image>
-          </view>
-          <view class="login-tips">点击登录获取用户信息</view>
-           <button class="rs-btn gologinBtn" plain="true" bindtap="toLogin">登录</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+      <view class="noData-tip-content">
+        <view class="img-wrap">
+          <image src="../../../images/noMsg.png" class="img-response"></image>
         </view>
+        <view class="login-tips">点击登录获取用户信息</view>
+        <button class="rs-btn gologinBtn" plain="true" bindtap="toLogin">登录</button>
       </view>
+    </view>
   </block>
 </view>

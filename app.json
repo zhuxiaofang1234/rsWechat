@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/testLandscape/testLandscape",
+    "pages/drawSignature/drawSignature",
     "pages/index/index",
     "pages/login/login",
     "pages/ZXSceneRecordBaseData/ZXSceneRecordBaseData",

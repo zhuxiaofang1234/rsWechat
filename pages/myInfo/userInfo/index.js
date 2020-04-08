@@ -7,7 +7,8 @@ Page({
   data: {
     userAccount:'',
     userName:'',
-    accessToken:''
+    accessToken:'',
+    isSign:"去查看"
   },
   /**
    * 生命周期函数--监听页面加载
@@ -17,10 +18,18 @@ Page({
     if (accessToken){
       var userAccount = wx.getStorageSync('userAccount');
       var userName = wx.getStorageSync('userName');
+      var userStamp = wx.getStorageSync('userStamp');
+      var isSign;
+      if (userStamp){
+        isSign = "去查看";
+      }else{
+        isSign = "去设置";
+      }
       this.setData({
         userAccount: userAccount,
         userName: userName,
-        accessToken: accessToken
+        accessToken: accessToken,
+        isSign: isSign
       });
     }  
   },

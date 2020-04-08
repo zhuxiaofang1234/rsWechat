@@ -1,0 +1,17 @@
+<!--pages/testLandscape/testLandscape.wxml-->
+<view class="wrapper">
+  <view class="signatureArea">
+    <canvas class="handWriting" canvas-id="canvas" 
+      disable-scroll="true"
+      bindtouchstart="canvasStart"
+      bindtouchmove="canvasMove"
+      bindtouchend="canvasEnd"
+      touchcancel="canvasEnd" 
+      binderror="canvasIdErrorCallback" 
+    ></canvas>
+  </view>
+  <view class="btnArea">
+    <button catchtap="cleardraw" class="delBtn btn">重写</button>
+    <button catchtap="subCanvas" class="subBtn btn">完成</button>
+  </view>
+</view>

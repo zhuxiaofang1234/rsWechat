@@ -148,6 +148,20 @@
 					"id": -1,
 					"name": "editTestData",
 					"pathName": "pages/test/editTestData/editTestData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "drawSignature",
+					"pathName": "pages/drawSignature/drawSignature",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "testLandscape",
+					"pathName": "pages/testLandscape/testLandscape",
 					"scene": null
 				}
 			]

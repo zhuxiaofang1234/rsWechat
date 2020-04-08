@@ -163,6 +163,12 @@ module.exports = {
   },
   DeleteZxHoleSampleDepth: (id) => {//删除芯样取样，持力层取样信息
     return request('/api/services/app/ZXData/DeleteZxHoleSampleDepth?Id=' + id, 'DELETE')
+  },
+  ModifyUserStamp:(data)=>{//修改当前用户签章
+    return request('/api/services/app/Session/ModifyUserStamp', 'POST',data)
+  },
+  GetPic:(hash)=>{//获取图片
+    return request('/api/Resurce/Base64/'+hash,'GET')
   }
 }
 
