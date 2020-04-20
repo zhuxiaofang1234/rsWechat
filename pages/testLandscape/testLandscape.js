@@ -72,6 +72,7 @@ Page({
 
   //提交签名到后台
   subCanvas: function() {
+    var that = this;
     if (!isReDraw){
       return;
     }
@@ -116,6 +117,9 @@ Page({
                   wx.navigateBack({
                     delta: 1
                   })
+
+                  //更新签名缓存
+                  that.updateUserStamp()
                 }
               })
             }, err => {
@@ -143,7 +147,7 @@ Page({
     context.setLineWidth(4);
     context.setLineCap('round');
     context.setLineJoin('round');
-
+   
     //获取hash值
     var userStamp = wx.getStorageSync('userStamp');
     if (userStamp) {
@@ -168,5 +172,12 @@ Page({
         });
       })
     }
-  }
+  },
+  //更新 userStamp的缓存
+updateUserStamp(){
+  WXAPI.GetUserStamp().then(res=>{
+    var newUserStamp = res.result;
+    wx.setStorageSync('userStamp', newUserStamp)
+  })
+}
 })

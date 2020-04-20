@@ -1,0 +1,26 @@
+<form bindsubmit='submitEditzxSampleData'>
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<view class="details-container no-padding bg-gray38">
+				<view class="weui-cells__title rs-title">取样编号</view>
+				<view class="rs_input_wrap">
+					<input class="rs-input rs-text" type="text" name="sampleNo" value="{{zxSampleData.sampleNo}}" />
+				</view>
+				<view class="weui-cells__title rs-title">深度起至位置(m)</view>
+				<view class="rs_input_wrap rs-inline">
+					<input class="rs-input rs-text" type="text" name="startPosition" value="{{zxSampleData.startPosition}}" />
+				</view>
+				<span style="color:#666">~</span>
+				<view class="rs_input_wrap rs-inline">
+					<input class="rs-input rs-text" type="text" name="endPosition" value="{{zxSampleData.endPosition}}" />
+				</view>
+			</view>
+		</view>
+		<!--main结束-->
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+		</view>
+	</view>
+</form>

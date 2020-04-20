@@ -15,7 +15,23 @@
   right:-7px;
   left:unset;
   color: #fff;
-  webkit-transform: unset;
+  -webkit-transform: unset;
   transform: unset;
   z-index: 99
+}
+.weui-upload-status{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:2px;
+  font-size:12px;
+  color:#fff;
+  text-align: center;
+}
+.upload-sucess{
+  background-color: #4cd964; 
+}
+.upload-error{
+  background-color: crimson;
 }

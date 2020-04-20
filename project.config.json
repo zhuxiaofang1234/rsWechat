@@ -162,6 +162,13 @@
 					"id": -1,
 					"name": "testLandscape",
 					"pathName": "pages/testLandscape/testLandscape",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "SceneRecordZXDefect",
+					"pathName": "pages/SceneRecordZXDefect/SceneRecordZXDefect",
 					"scene": null
 				}
 			]

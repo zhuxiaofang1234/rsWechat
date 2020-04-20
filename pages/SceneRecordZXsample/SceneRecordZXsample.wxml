@@ -21,7 +21,7 @@
         <block wx:if="{{sampleList.length>0}}">
           <movable-area class="movable-area" wx:for="{{sampleList}}" wx:key="{{index}}">
             <movable-view class="movable-view">
-              <view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="ZxHoleForceLayerEdit" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
+              <view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="ZxHoleSampleDepthEdit" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
                 <view class="content">
                   <view class="content-number">{{item.sampleNo}}</view>
                   <view class="content-info">{{item.startPosition}}~{{item.endPosition}}m</view>

@@ -18,15 +18,15 @@ Page({
       },
       {
         name: '灌注桩钻芯',
-        value: 'q'
+        value: 'ZG'
       },
       {
         name: '搅拌桩钻芯',
-        value: 'e'
+        value: 'ZJ'
       },
       {
         name: '岩基钻芯',
-        value: 'r'
+        value: 'ZY'
       }
     ],
     loginName: '未登录',
@@ -105,7 +105,6 @@ Page({
     var that = this;
     WXAPI.GetUserData().then(res=>{
       var resData = res.result.user;
-      console.log(resData)
       var userName = resData.name;
       var userAccount = resData.userName;
       var userStamp = resData.userStamp;

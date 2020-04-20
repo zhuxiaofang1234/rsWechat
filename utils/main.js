@@ -140,8 +140,11 @@ module.exports = {
   TaskSure: (data) => {//工作确认或者驳回
     return request('/api/services/app/WorkSures/WorkSure', 'POST', data)  
   },
-  GetZXPileList: (data)=> { //获取钻芯待检测桩列表
+  GetZXPileList: (data)=> { //获取钻芯检测完成孔列表
     return request('/api/services/app/ZXData/GetPileList','GET',data)
+  },
+  GetHoleList: (PileId)=>{ //根据桩id获取钻芯孔的列表信息
+    return request('/api/services/app/ZXData/GetHoleList?PileId='+PileId,'GET') 
   },
   EndHole: (data)=> {
     return request('/api/services/app/ZXData/EndHole', 'PUT', data)
@@ -169,6 +172,9 @@ module.exports = {
   },
   GetPic:(hash)=>{//获取图片
     return request('/api/Resurce/Base64/'+hash,'GET')
+  },
+  GetUserStamp:()=>{//获取用户签章
+    return request('/api/services/app/Session/GetUserStamp', 'GET')
   }
 }
 

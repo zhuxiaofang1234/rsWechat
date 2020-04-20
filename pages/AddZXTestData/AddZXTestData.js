@@ -10,7 +10,8 @@ Page({
     showTopTips: false,
     erroInfo: "错误提示",
     baseInfoId: "",
-    detailsData:null,
+    pileData:null,
+    holeData:null,
     endHoleInfo:null,
     holeId:null
   },
@@ -19,7 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    var SerialNo = wx.getStorageSync('serialNo');
+    this.setData({
+      SerialNo:SerialNo
+    }); 
   },
 
   /**
@@ -32,18 +36,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var detailsData = this.data.detailsData,
-        holeId = this.data.holeId;
-    if (detailsData){
-         //加载该孔的详情信息
-      if (detailsData.id != holeId){
-        this.setData({
-          holeId: detailsData.id
-        });
-        this.getHoleDetailInfo(detailsData.id);
+    var holeData = this.data.holeData;
+    if(holeData){
+      var holeId = holeData.id;
+      this.setData({
+        holeId: holeId
+      });
+      //加载孔的详情信息
+      if(holeId){
+        this.getHoleDetailInfo(holeId);
       }
-    }
-    console.log(this.data.detailsData);
+    }  
   },
 
   /**
@@ -75,11 +78,42 @@ Page({
       });
     }, 3000);
   },
-  
+
+  //选择孔号
+  toChoseHole:function(e){
+    var pileData = this.data.pileData;
+    if(pileData && pileData.id){
+        wx.navigateTo({
+          url: '/pages/HoleList/index?pileId='+ pileData.id,
+        })
+    }else{
+      wx.showModal({
+        title: '操作提示',
+        content: '请先选择桩号',
+        showCancel: false,
+        confirmColor: '#4cd964'
+      })
+    }
+  },
+
   //跳转到添加钻进记录
   toAddZXTestData:function(){
-     var url = '/pages/AddZXRecordData/AddZXRecordData?id='
-    this.isNavigateTo(url)
+
+    if(this.data.pileData && this.data.pileData.id){
+      var pileId =  this.data.pileData.id
+      var holeId = this.data.holeId;
+      if(holeId){
+        var url = '/pages/AddZXRecordData/AddZXRecordData?pileId='+ pileId +'&holeId='+holeId;
+        this.isNavigateTo(url)
+      }else{
+        wx.showModal({
+          title: '操作提示',
+          content: '请先选择孔号',
+          showCancel: false,
+          confirmColor: '#4cd964'
+        })
+      }
+    }   
   },
   //跳转到终孔操作
   toEndHole:function(){
@@ -94,16 +128,12 @@ Page({
   },
   //是否跳转
   isNavigateTo:function(_url){
-    var detailsData = this.data.detailsData;
-    if (detailsData) {
-      var id = detailsData.id;
-      if (id) {
-        if (detailsData) {
-          wx.navigateTo({
-            url: _url + id
-          })
-        }
-      }
+    var holeId = this.data.holeId;
+    console.log(holeId)
+    if (holeId) {
+      wx.navigateTo({
+        url: _url
+      })
     } else {
       wx.showModal({
         title: '操作提示',

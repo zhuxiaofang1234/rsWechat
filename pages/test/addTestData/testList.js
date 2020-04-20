@@ -23,8 +23,7 @@ Page({
       TestModeCode: TestModeCode,
       SerialNo:SerialNo,
       loadingPage: false //显示加载页面
-    }); 
-     
+    });      
      //加载桩列表
     that.getPileList();
   },
@@ -85,16 +84,15 @@ Page({
         //返回上一页并刷新页面 
         var pages = getCurrentPages();
         var prevPage = pages[pages.length - 2];
-
+     
         var obj={};
         var TestModeCode = this.data.TestModeCode
         switch (TestModeCode){
           case 'ZG':
           case 'ZJ':
           case 'ZY':
-            obj = this.refreshZXPile(pileList[i])
-            prevPage.setData({
-              detailsData: obj
+            prevPage.setData({ 
+              pileData: pileList[i]
             });
           break;
           case 'TQ':
@@ -163,13 +161,14 @@ Page({
   //更新钻芯数据
   refreshZXPile: function (pileList){
     var obj = {
-      id: pileList.basicInfoId,
+      id: pileList.id,
       serialNo: this.data.SerialNo,
       pileNo: pileList.pileNo,
       pileBearing: pileList.pileBearing, //单桩承载力特征值
       tempStr4: pileList.tempStr4, //沉渣厚度
+      pileLength:pileList.pileLength,  //桩长
       pileDiameter: pileList.pileDiameter, //桩径(mm)
-      pileType: pileList.pileType
+      pileType: pileList.pileType  //桩型
     }
     return obj
   },

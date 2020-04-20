@@ -1,57 +1,54 @@
 <view class="details-wrap">
-  <view class="main">
-    <scroll-view class="main-wrapper" scroll-y style="height:100%">
-      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-      <view class="details-container no-padding pb-10 bg-gray38">
-        <form bindsubmit='reg'>
-          <view class="weui-cells__title rs-title">缺陷起始位置(m)</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" type="number" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" focus="{{autoFocus}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">缺陷终止位置(m)</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" type="number" name="hammerValue" value="{{hammerValue}}" bindblur="getHammerValue" focus="{{autoFocus}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">缺陷类型
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="轻度蜂窝麻面，中度蜂窝麻面，重度蜂窝麻面,骨料分布不均匀,芯样破碎"/>
-              </view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
-          </view>
-        </form>
-      </view>
-      <block wx:if="{{depthList.length>0}}">
-        <view class="details-container no-padding mt-20" wx:for="{{depthList}}" wx:key="{{index}}">
-          <navigator url="/pages/test/addTestData/updateTestRecord?id={{item.id}}" class="weui-cell weui-cell_access">
-            <view class="depthNum">{{index+1}}</view>
-            <view class="weui-cell__bd weui-flex" style="color:#fff;">
-              <view class="weui-flex__item">{{item.depth}}</view>
-              <view class="weui-flex__item">
-                <text class="testNum">{{item.hammerValue}}</text>
-                <text wx:if="{{item.correctValue}}">（{{item.correctValue}})</text>
-              </view>
-            </view>
-            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-          </navigator>
-        </view>
-      </block>
-    </scroll-view>
-  </view>
-  <view class="footer backfooter">
-    <button class="rs-btn backbtn mr-50" plain="true" bindtap="">取消</button>
-    <button class="rs-btn backbtn btn-green" plain="true" bindtap="submitRecord">保存</button>
-  </view>
+	<form bindsubmit='reg' class="rs-form">
+		<view class="main">
+			<scroll-view class="main-wrapper" scroll-y style="height:100%">
+				<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+				<view class="details-container no-padding pb-10 bg-gray38">
+					<view class="weui-cells__title rs-title">缺陷起止位置(m)</view>
+					<view class="rs_input_wrap rs-inline">
+						<input class="rs-input rs-text" type="text" name="startPosition" value="{{startPosition}}" />
+					</view>
+					<span style="color:#666">~</span>
+					<view class="rs_input_wrap rs-inline">
+						<input class="rs-input rs-text" type="text" name="endPosition" value="{{endPosition}}" />
+					</view>
+					<view class="weui-cells__title rs-title">缺陷类型
+						<span class="blue">*</span>（可多选）
+					</view>
+					<view class="weui-cells weui-cells_after-title">
+						<checkbox-group bindchange="checkboxChange">
+							<label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+								<checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+								<view class="weui-cell__hd weui-check__hd_in-checkbox">
+									<icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+									<icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+								</view>
+								<view class="weui-cell__bd">{{item.name}}</view>
+							</label>
+						</checkbox-group>
+						<view class="rs_input_wrap other">
+							<input class="rs-input rs-text" type="text" name="endPosition" placeholder="请输入其他缺陷类型" placeholder-class="tipStyles"/>
+						</view>
+					</view>
+				</view>
+				<block wx:if="{{sampleList.length>0}}">
+					<movable-area class="movable-area" wx:for="{{sampleList}}" wx:key="{{index}}">
+						<movable-view class="movable-view">
+							<view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="ZxHoleSampleDepthEdit" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
+								<view class="content">
+									<view class="content-number">{{item.sampleNo}}</view>
+									<view class="content-info">{{item.startPosition}}~{{item.endPosition}}m</view>
+								</view>
+								<view class="del" catchtap="del" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+							</view>
+						</movable-view>
+					</movable-area>
+				</block>
+			</scroll-view>
+		</view>
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" form-type="reset">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+		</view>
+	</form>
 </view>

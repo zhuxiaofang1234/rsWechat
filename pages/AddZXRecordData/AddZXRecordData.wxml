@@ -111,6 +111,7 @@
                           <view class="weui-uploader__file-content" catchtap="delUploaderImg">
                             <icon type="clear" size="16" color="#F43530"></icon>
                           </view>
+                          <view class="weui-upload-status {{uploadFlag ? 'upload-sucess' : 'upload-error'}}">{{uploadtext}}</view>
                         </view>
                       </block>
                     </view>
@@ -125,10 +126,9 @@
         </view>
       </scroll-view>
     </view>
-    <!--main结束->
-    <!--弹出框结束-->
+    <!--main结束-->
     <view class="footer backfooter">
-      <button class="rs-btn btn-blue backbtn mr-50" plain="true" form-type="reset">取消</button>
+      <button class="rs-btn btn-blue backbtn mr-50" plain="true"  bindtap="cancel">取消</button>
       <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
     </view>
   </view>

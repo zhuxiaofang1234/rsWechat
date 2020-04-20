@@ -3,31 +3,40 @@
     <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
     <view class="main">
       <scroll-view class="main-wrapper" scroll-y style="height:100%">
+       <view class="details-container no-padding bg-gray38">
+          <view class="weui-cells__title rs-title">桩号</view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
+              <view class="weui-cell__bd rs-text">{{pileData.pileNo ? pileData.pileNo: '请选择桩号'}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+        </view>
         <view class="details-container no-padding bg-gray38">
           <view class="weui-cells__title rs-title">孔号</view>
           <view class="weui-cells weui-cells_after-title bg-black">
-            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
-              <view class="weui-cell__bd rs-text">{{detailsData.pileNo ? detailsData.pileNo: '请选择孔号'}}</view>
+            <view class="weui-cell weui-cell_access rs-weui-cell" bindtap="toChoseHole">
+              <view class="weui-cell__bd rs-text">{{holeData.holeNo ? holeData.holeNo: '请选择孔号'}}</view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
+            </view>
           </view>
         </view>
         <view class="details-container mt-30">
           <view class="details-item">
             <view class="details-title">测试流水号</view>
-            <view class="details-info rs-text mt-20">{{detailsData.serialNo ? detailsData.serialNo : '-'}}</view>
+            <view class="details-info rs-text mt-20">{{SerialNo ? SerialNo : '-'}}</view>
           </view>
           <view class="details-item">
             <view class="details-title">桩型</view>
-            <view class="details-info rs-text mt-20">-</view>
+            <view class="details-info rs-text mt-20">{{pileData.pileType ? pileData.pileType : '-'}}</view>
           </view>
           <view class="details-item">
             <view class="details-title">桩径(mm)</view>
-            <view class="details-info rs-text mt-20">-</view>
+            <view class="details-info rs-text mt-20">{{pileData.pileDiameter ? pileData.pileDiameter : '-'}}</view>
           </view>
           <view class="details-item">
             <view class="details-title">设计桩长(m)</view>
-            <view class="details-info rs-text mt-20">-</view>
+            <view class="details-info rs-text mt-20">{{pileData.pileLength ? pileData.pileLength : '-'}}</view>
           </view>
            <view class="details-item">
             <view class="details-title">实际桩长(m)</view>

@@ -25,6 +25,7 @@ Page({
     var type = options.type;
     //获取缓存钻芯孔的数据
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
+   
     var sampleList = [];
     ZXHoleDetails.zxHoleSampleDepthList.forEach(function(v, i) {
       if (v.type == type) {
@@ -32,12 +33,18 @@ Page({
         sampleList.push(v)
       }
     });
-    console.log(sampleList);
+    //获取最后一个深度的取样编号
+    var sampleNo ;
+    if(sampleList.length==0){
+      sampleNo=0;
+    }else{
+      var sampleNo = sampleList[sampleList.length-1].sampleNo;
+    } 
     this.setData({
       sampleList: sampleList,
       zxHoleId: ZXHoleDetails.id,
       ZXHoleDetails: ZXHoleDetails,
-      sampleNo: sampleList.length + 1,
+      sampleNo: sampleNo + 1,
       type: type
     });
   },
@@ -107,9 +114,22 @@ Page({
         }
       })
     })
-
   },
 
+  //编辑钻芯取样深度
+  ZxHoleSampleDepthEdit:function(e){
+    var id = e.currentTarget.dataset.id;
+    console.log(this.data.sampleList);
+    if(id){
+      var currentDepth = this.data.sampleList.filter(function(item,index){
+        return item.id == id
+      });
+      wx.navigateTo({
+        url: '/pages/EditZXSample/index?zxSampleData='+JSON.stringify(currentDepth[0]),
+      })
+    } 
+  },
+  
   //手指触摸动作开始，记录起点x坐标
   touchstart: function(e) {
     //开始触摸时重置所有删除

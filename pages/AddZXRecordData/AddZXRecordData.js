@@ -19,19 +19,23 @@ Page({
     endLength:0,
     startLength:0,
     xyResidual:0,
-    Imghash:""
+    Imghash:"",
+    uploadtext:'上传成功',
+    uploadFlag:true
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var date = App.format(new Date()) ;
     var zxDate = date.substring(0, 10);
     this.setData({
       currentTime: date.substring(date.length - 9),
       hcStartTime: zxDate,
       hcEndTime: zxDate,
-      holeId: options.id
+      holeId: options.holeId,
+      pileId:options.pileId
     });
   },
   /**
@@ -88,7 +92,8 @@ Page({
     var data = e.detail.value;
     console.log(data);
     /**表单验证 */
-    data.zxHoleId = this.data.holeId
+    data.zxHoleId = this.data.holeId;
+    data.pileId = this.data.pileId;
     var erroInfo;
     if (!data.hcNo) {
       erroInfo = "请填写回次编号";
@@ -261,15 +266,25 @@ Page({
         'Authorization': "Bearer " + wx.getStorageSync('rsAccessToken')
       },
       success: function (res) { //当调用uploadFile成功之后，再次调用后台修改的操作
+        console.log(res)
         if(res.statusCode = 200) {
          var responseData = JSON.parse(res.data);
+         if(responseData.result){
           var Imghash = responseData.result[0].hash;
           that.setData({
-            Imghash: Imghash
+            Imghash: Imghash,
+            uploadtext:'上传成功',
+            uploadFlag:true
           });
+         }else{
+          that.setData({
+            uploadtext:'上传失败',
+            uploadFlag:false
+          });
+         }    
         }
       } 
-    });  
+    }); 
   },
   //提交回次记录
   cancel: function () {
