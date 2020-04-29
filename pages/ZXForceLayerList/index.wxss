@@ -1,3 +1,4 @@
+/* pages/ZXForceLayerList/index.wxss */
 /* pages/ZXsampleList/index.wxss */
 @import "../../Iconfont.wxss";
 .fixedArea {
@@ -6,9 +7,6 @@
 }
 .main-container.main{
   top:134rpx; 
-}
-.main.rs-main{
-  bottom:0
 }
 
 

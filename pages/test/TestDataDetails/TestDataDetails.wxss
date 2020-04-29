@@ -57,7 +57,7 @@
   color:#4cd964;
 }
 .operation_bar  .depth-icon{
-  font-size:22px;
+  font-size:18px;
   line-height:22px;
    margin-top:10rpx;
 }
@@ -73,9 +73,9 @@
   color:red;
 }
 
-.edit-baseInfo.icon-edit{
+.edit-baseInfo.icon-bianji1{
   float:right;
-  font-size:28px;
+  font-size:22px;
   line-height:28px;
   margin-left:80rpx;
 }

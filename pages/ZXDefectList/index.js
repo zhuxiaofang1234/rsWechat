@@ -7,55 +7,83 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sampleNo: 1,
+    index: 1,
     ZXHoleDetails: '',
-    sampleList: [],
-    zxHoleId: null,
+    zxHoleCoreDefectList: [],
     startPosition: "",
     endPosition: "",
-    type: "",
     startX: 0,
     startY: 0,
     loadingPage: true,
     isShowDialog: false,
+    checkboxItems: [{
+        name: '轻度蜂窝麻面',
+        value: '0',
+        checked: true
+      },
+      {
+        name: '中度蜂窝麻面',
+        value: '1'
+      },
+      {
+        name: '重度蜂窝麻面',
+        value: '2'
+      },
+      {
+        name: '沟槽',
+        value: '3'
+      },
+      {
+        name: '骨料分布不均匀',
+        value: '4'
+      },
+      {
+        name: '芯样破碎',
+        value: '5'
+      },
+      {
+        name: '芯样松散',
+        value: '6'
+      },
+      {
+        name: '夹泥',
+        value: '7'
+      },
+      {
+        name: '夹粉状物',
+        value: '8'
+      },
+      {
+        name: '断口',
+        value: '9'
+      }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var type = options.type;
-    var title;
-    if (type == 1) {
-      title = "芯样取样"
-    } else if (type == 2) {
-      title = "持力层取样"
-    }
-    wx.setNavigationBarTitle({
-      title: title
-    })
+  onLoad: function () {
+
     //获取缓存钻芯孔的数据
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-    var sampleList = [];
-    ZXHoleDetails.zxHoleSampleDepthList.forEach(function (v, i) {
-      if (v.type == type) {
-        v.isTouchMove = false
-        sampleList.push(v)
-      }
+    var zxHoleCoreDefectList = [];
+    ZXHoleDetails.zxHoleCoreDefectList.forEach(function (v, i) {
+      v.isTouchMove = false
+      zxHoleCoreDefectList.push(v)
     });
     //获取最后一个深度的取样编号
-    var sampleNo;
-    if (sampleList.length == 0) {
-      sampleNo = 0;
+    var index;
+    if (zxHoleCoreDefectList.length == 0) {
+      index = 0;
     } else {
-      var sampleNo = parseInt(sampleList[sampleList.length - 1].sampleNo);
+      var index = parseInt(zxHoleCoreDefectList[zxHoleCoreDefectList.length - 1].index);
     }
     this.setData({
-      sampleList: sampleList,
+      zxHoleCoreDefectList: zxHoleCoreDefectList,
       zxHoleId: ZXHoleDetails.id,
       ZXHoleDetails: ZXHoleDetails,
-      sampleNo: sampleNo + 1,
-      type: type
+      index: index + 1
     });
   },
   //表单验证
@@ -63,22 +91,32 @@ Page({
     var that = this;
     var erroInfo;
     var data = e.detail.value;
-    var zxHoleId = this.data.zxHoleId;
-    if (!data.sampleNo) {
-      erroInfo = "请填写取样编号";
+
+    var defactType = data.defactType;
+    var otherDefact = data.otherDefact;
+    if (defactType.length == 0 && !otherDefact) {
+      erroInfo = "请选择缺陷类型";
       this.errorTips(erroInfo);
       return;
-    } else if (!App.isInt(data.sampleNo)) {
-      erroInfo = "取样编号请输入整数";
-      this.errorTips(erroInfo);
-      return
+    } else {
+      var checkboxItems = this.data.checkboxItems;
+      var type="";
+      for (var i = 0; i < checkboxItems.length; i++) {
+        var item = checkboxItems[i];
+        for (var j = 0; j < defactType.length; j++) {
+            if(item.value == defactType[j]){
+              type+=item.name+',';
+            }
+        }
+      }
     }
+
     if (!data.startPosition) {
       erroInfo = "请填写深度起始位置";
       this.errorTips(erroInfo);
       return;
     } else if (!App.isNumber(data.startPosition)) {
-      erroInfo = "深度起始位置只能是整数";
+      erroInfo = "深度起始位置只能是数值";
       this.errorTips(erroInfo);
       return
     }
@@ -87,20 +125,20 @@ Page({
       this.errorTips(erroInfo);
       return;
     } else if (!App.isNumber(data.endPosition)) {
-      erroInfo = "深度终止位置只能是整数";
+      erroInfo = "深度终止位置只能是数值";
       this.errorTips(erroInfo);
       return
     }
     data.id = null;
-    data.zxHoleId = zxHoleId;
-    data.type = this.data.type;
-
+    data.index = this.data.index;
+    data.zxHoleId = this.data.zxHoleId;
+    data.type = type+otherDefact;
     this.submit(data);
   },
   //提交
   submit: function (data) {
     var that = this;
-    WXAPI.UpdateZxHoleSampleDepth(data).then(res => {
+    WXAPI.UpdateZxHoleCoreDefect(data).then(res => {
       data.id = res.result.id
       wx.showToast({
         title: '操作成功',
@@ -109,13 +147,13 @@ Page({
         mask: true,
         success: function (res) {
           //更新钻芯的数据
-          var sampleList = that.data.sampleList;
+          var zxHoleCoreDefectList = that.data.zxHoleCoreDefectList;
           var ZXHoleDetails = that.data.ZXHoleDetails;
-          sampleList.push(data);
-          ZXHoleDetails.zxHoleSampleDepthList.push(data);
+          zxHoleCoreDefectList.push(data);
+          ZXHoleDetails.zxHoleCoreDefectList.push(data);
           that.setData({
-            sampleList: sampleList,
-            sampleNo: parseInt(data.sampleNo) + 1,
+            zxHoleCoreDefectList: zxHoleCoreDefectList,
+            index: parseInt(data.index) + 1,
             startPosition: '',
             endPosition: ''
           });
@@ -125,19 +163,19 @@ Page({
       })
     })
   },
-  toAddZxSample: function (e) {
+  toAddZxDefact: function (e) {
     this.showModal();
   },
 
   //编辑钻芯取样深度
-  ZxHoleSampleDepthEdit: function (e) {
+  ZxDefactEdit: function (e) {
     var id = e.currentTarget.dataset.id;
     if (id) {
-      var currentDepth = this.data.sampleList.filter(function (item, index) {
+      var currentDefactList = this.data.zxHoleCoreDefectList.filter(function (item, index) {
         return item.id == id
       });
       wx.navigateTo({
-        url: '/pages/EditZXSample/index?zxSampleData=' + JSON.stringify(currentDepth[0]),
+        url: '/pages/EditZXDefact/index?zxDefactData=' + JSON.stringify(currentDefactList[0]),
       })
     }
   },
@@ -145,7 +183,7 @@ Page({
   //手指触摸动作开始，记录起点x坐标
   touchstart: function (e) {
     //开始触摸时重置所有删除
-    this.data.sampleList.forEach(function (v, i) {
+    this.data.zxHoleCoreDefectList.forEach(function (v, i) {
       if (v.isTouchMove) {
         v.isTouchMove = false;
       }
@@ -153,7 +191,7 @@ Page({
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      sampleList: this.data.sampleList
+      zxHoleCoreDefectList: this.data.zxHoleCoreDefectList
     })
   },
 
@@ -174,7 +212,7 @@ Page({
         X: touchMoveX,
         Y: touchMoveY
       });
-    that.data.sampleList.forEach(function (v, i) {
+    that.data.zxHoleCoreDefectList.forEach(function (v, i) {
       v.isTouchMove = false
       //滑动角度超过30度角，return 
       if (Math.abs(angle) > 30) return;
@@ -189,7 +227,7 @@ Page({
 
     //更新数据
     that.setData({
-      sampleList: that.data.sampleList
+      zxHoleCoreDefectList: that.data.zxHoleCoreDefectList
     })
   },
 
@@ -209,19 +247,21 @@ Page({
       itemList: ['确认删除'],
       itemColor: '#FF5B5B',
       success(res) {
-        WXAPI.DeleteZxHoleSampleDepth(id).then(res => {});
-        that.data.sampleList.splice(e.currentTarget.dataset.index, 1);
-        that.setData({
-          sampleList: that.data.sampleList,
-        });
-        var zxHoleSampleDepthList = that.data.ZXHoleDetails.zxHoleSampleDepthList;
-        zxHoleSampleDepthList.forEach(function (v, i) {
-          if (v.id = id) {
-            zxHoleSampleDepthList.splice(i, 1)
-          }
-        });
-        //更新孔的详情信息缓存
+        WXAPI.DeleteZxHoleCoreDefect(id).then(res => {
+
+          that.data.zxHoleCoreDefectList.splice(e.currentTarget.dataset.index, 1);
+          that.setData({
+            zxHoleCoreDefectList: that.data.zxHoleCoreDefectList,
+          });
+          var zxHoleCoreDefectList = that.data.ZXHoleDetails.zxHoleCoreDefectList;
+          zxHoleCoreDefectList.forEach(function (v, i) {
+            if (v.id = id) {
+              zxHoleCoreDefectList.splice(i, 1)
+            }
+          });
+            //更新孔的详情信息缓存
         wx.setStorageSync('ZXHoleDetails', that.data.ZXHoleDetails);
+        });  
       },
       fail(res) {
         console.log(res.errMsg)
@@ -293,5 +333,23 @@ Page({
         isShowDialog: false
       })
     }, 200)
+  },
+  //缺陷类型
+  checkboxChange: function (e) {
+    var checkboxItems = this.data.checkboxItems,
+      values = e.detail.value;
+    for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+      checkboxItems[i].checked = false;
+
+      for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (checkboxItems[i].value == values[j]) {
+          checkboxItems[i].checked = true;
+          break;
+        }
+      }
+    }
+    this.setData({
+      checkboxItems: checkboxItems
+    });
   }
 })

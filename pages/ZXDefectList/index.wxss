@@ -1,3 +1,4 @@
+/* pages/ZXDefectList/index.wxss */
 /* pages/ZXsampleList/index.wxss */
 @import "../../Iconfont.wxss";
 .fixedArea {
@@ -6,9 +7,6 @@
 }
 .main-container.main{
   top:134rpx; 
-}
-.main.rs-main{
-  bottom:0
 }
 
 
@@ -163,5 +161,22 @@ details-container{
   background-color: #383838;
 }
 
+.defactTypeList{
+  height:480rpx;
+}
+.weui-cells_after-title{
+  background-color: #383838;
+  color:#fff;
+}
+.weui-cell:before {
+  border-top: 1rpx solid #555;
+  }
 
-  
+  .other-defactReason{
+    border-top:1rpx solid #555;
+    margin-left:30rpx;
+    padding:20rpx 0;
+  }
+  .rs-input.otherDefact{
+    border:1rpx solid #555;
+  }

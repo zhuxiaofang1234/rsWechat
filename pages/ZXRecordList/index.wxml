@@ -1,0 +1,23 @@
+<view class="details-wrap">
+<view class="loading-container" hidden="{{loadingPage}}"><image src="../../images/loading.gif" class="img-loading"></image></view>
+  <view class="fixedArea">
+    <button class="rs-btn btn-blue testDataEnter" plain="true" bindtap="toAddZXRecord">新增钻进记录</button>
+  </view>
+  <view class="main main-container">
+   	<scroll-view class="main-wrapper" scroll-y style="height:100%">
+			<block wx:if="{{zxHoleDrillingRecordList.length>0}}">
+				<movable-area class="movable-area" wx:for="{{zxHoleDrillingRecordList}}" wx:key="{{index}}">
+					<movable-view class="movable-view">
+						<view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
+							<view class="content">
+								<view class="content-number">{{item.hcNo}}</view>
+								<view class="content-info">{{item.endLength/1000}}~{{item.startLength/1000}}m</view>
+							</view>
+							<view class="del" catchtap="del" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+						</view>
+					</movable-view>
+				</movable-area>
+			</block>
+		</scroll-view>
+  </view>
+</view>

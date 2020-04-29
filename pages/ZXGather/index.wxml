@@ -1,0 +1,214 @@
+<form bindsubmit='reg'>
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<scroll-view class="main-wrapper" scroll-y style="height:100%">
+				<view class="details-container no-padding bg-gray38">
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{ZXType}}" disabled="true" />
+							</view>
+						</view>
+					</view>
+					<!--灌注桩-->
+					<block wx:if="{{pileType==0}}">
+						<view class="weui-cells__title rs-title">芯样完整性
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="weui-cells weui-cells_after-title bg-black">
+								<view class="section section_gap">
+									<radio-group class="radio-group" bindchange="zxCompleteChange">
+										<radio class="radio" wx:for-items="{{zxCompleteItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+											<text>{{item.zxCompleteText}}</text>
+										</radio>
+									</radio-group>
+								</view>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">骨料分布
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="section section_gap">
+								<radio-group class="radio-group" bindchange="aggregateCoverChange">
+									<radio class="radio" wx:for-items="{{AggregateCoverItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+										<text>{{item.AggregateCoverText}}</text>
+									</radio>
+								</radio-group>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">胶结
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="section section_gap">
+								<radio-group class="radio-group" bindchange="cementationChange">
+									<radio class="radio" wx:for-items="{{cementationItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+										<text>{{item.cementationText}}</text>
+									</radio>
+								</radio-group>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">侧表面
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="weui-cell weui-cell_select">
+								<view class="weui-cell__bd">
+									<picker bindchange="bindSideSurfaceChange" value="{{SideSurface[sideSurfaceIndex]}}" range="{{SideSurface}}">
+										<view class="weui-select">{{SideSurface[sideSurfaceIndex]}}</view>
+									</picker>
+								</view>
+							</view>
+						</view>
+					</block>
+					<!--搅拌桩-->
+					<block wx:else>
+						<view class="weui-cells__title rs-title">芯样呈
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="section section_gap">
+								<radio-group class="radio-group" bindchange="coreStateChange">
+									<radio class="radio more-radio" wx:for-items="{{coreStateItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+										<text>{{item.coreStateText}}</text>
+									</radio>
+								</radio-group>
+							</view>
+							<view class="weui-cells weui-cells_after-title bg-black" hidden="{{!coreStateFlag}}">
+								<view class="weui-cell weui-cell_input ">
+									<view class="weui-cell__bd">
+										<input class="weui-input zx-input rs-inline bg-gray38" value="{{coreState}}" name="coreState" /><text class="rs-text">m 破碎块或松散</text>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">断口
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="section section_gap">
+								<radio-group class="radio-group" bindchange="fractureChange">
+									<radio class="radio more-radio" wx:for-items="{{fractureItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+										<text>{{item.fractureText}}</text>
+									</radio>
+								</radio-group>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">水泥搅拌
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="section section_gap">
+								<radio-group class="radio-group" bindchange="cementSoilMixingChange">
+									<radio class="radio more-radio" wx:for-items="{{cementSoilMixingItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+										<text>{{item.cementSoilMixingText}}</text>
+									</radio>
+								</radio-group>
+							</view>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black" hidden="{{!cementSoilMixingFlag}}">
+							<view class="weui-cell weui-cell_input">
+								<view class="weui-cell__bd">
+									<input class="weui-input zx-input rs-inline bg-gray38" value="{{otherCementSoilMixing}}" name="otherCementSoilMixing" /><text class="rs-text">m 不均匀</text>
+								</view>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">胶结
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="section section_gap">
+								<radio-group class="radio-group" bindchange="ZJcementationChange">
+									<radio class="radio more-radio" wx:for-items="{{ZJcementationItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+										<text>{{item.cementationText}}</text>
+									</radio>
+								</radio-group>
+							</view>
+							<view class="weui-cells weui-cells_after-title bg-black" hidden="{{!ZJcementationFlag}}">
+								<view class="weui-cell weui-cell_input ">
+									<view class="weui-cell__bd">
+										<input class="weui-input zx-input rs-inline bg-gray38" value="{{ZJcementation}}" name="ZJcementation" /><text class="rs-text">m 较差</text>
+									</view>
+								</view>
+							</view>
+						</view>
+						<view class="weui-cells__title rs-title">其他
+						</view>
+						<textarea class="rs-input rs-text otherDefact" name="other" style="height:4.5em;" placeholder="芯样其他情况补充" placeholder-class="tipStyles"></textarea>
+					</block>
+					<view class="weui-cells__title rs-title">砼底情况
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="section section_gap">
+							<radio-group class="radio-group" bindchange="bottomStateChange">
+								<radio class="radio" wx:for-items="{{bottomStateItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+									<text>{{item.bottomStateText}}</text>
+								</radio>
+							</radio-group>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">沉渣情况
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="section section_gap">
+							<radio-group class="radio-group" bindchange="sedimentStateChange">
+								<radio class="radio" wx:for-items="{{sedimentStateItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+									<text>{{item.sedimentStatetext}}</text>
+								</radio>
+							</radio-group>
+						</view>
+					</view>
+					<view hidden="{{!sedimentStateFlag}}">
+						<view class="weui-cells__title rs-title">沉渣厚度(cm)
+							<span class="blue">*</span>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<view class="weui-cell weui-cell_input">
+								<view class="weui-cell__bd">
+									<input class="weui-input rs-text" value="{{sedimentState}}" name="sedimentState" />
+								</view>
+							</view>
+						</view>
+						<textarea class="rs-input rs-text otherDefact" name="sedimentDescribe" style="height:4em;" placeholder="沉渣情况描述(选填)" placeholder-class="tipStyles"></textarea>
+					</view>
+					<view class="weui-cells__title rs-title">芯样汇总图片</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<view class="weui-uploader">
+									<view class="weui-uploader__bd">
+										<view class="weui-uploader__files" id="uploaderFiles">
+											<block wx:for="{{files}}" wx:key="*this">
+												<view class="weui-uploader__file weui-uploader_status" bindtap="previewImage" id="{{item}}">
+													<image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+													<view class="weui-uploader__file-content" catchtap="delUploaderImg">
+														<icon type="clear" size="16" color="#F43530"></icon>
+													</view>
+													<view class="weui-upload-status {{uploadFlag ? 'upload-sucess' : 'upload-error'}}">{{uploadtext}}</view>
+												</view>
+											</block>
+										</view>
+										<view class="weui-uploader__input-box" hidden="{{isShowUploader}}">
+											<view class="weui-uploader__input" bindtap="chooseImage"></view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!--弹出框结束-->
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">下一步</button>
+		</view>
+	</view>
+	<!--details-wrap结束-->
+</form>

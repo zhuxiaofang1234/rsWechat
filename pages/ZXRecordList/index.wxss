@@ -1,4 +1,4 @@
-/* pages/ZXsampleList/index.wxss */
+/* pages/ZXForceLayerList/index.wxss */
 @import "../../Iconfont.wxss";
 .fixedArea {
   height: 114rpx;
@@ -7,10 +7,6 @@
 .main-container.main{
   top:134rpx; 
 }
-.main.rs-main{
-  bottom:0
-}
-
 
 .rs-btn.testDataEnter {
   position: absolute;
@@ -115,53 +111,3 @@ details-container{
   transform: translateX(0);
 }
 
-/*模态框*/
-.mask{
-  background-color: rgba(0,0,0,0.6);
-  overflow: hidden;
-  position: fixed;
-  bottom:0;
-  top:0;
-  right:0;
-  left:0;
-  z-index:9;
-}
-
-.bottom-dialog{
-  width:100%;
-  background-color: #fff;
-  position: fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  z-index: 10;
-}
-.header-dialog{
-  position:relative;
-  padding:5rpx;
-}
-
-.header-dialog .close-icon{
-  position:absolute;
-  right:8px;
-  top:2px;
-  font-size:20px;
-  padding:10rpx;
-}
-.body-dialog {
-  padding:40rpx 0 30rpx 0;
-}
-
-.footer-dialog{
-  text-align: center;
-  border-top:4px solid #000;
-}
-.dialog-btn{
-  color: rgb(76, 217, 100);
-  letter-spacing: 4px;
-  border-radius: 0;
-  background-color: #383838;
-}
-
-
-  

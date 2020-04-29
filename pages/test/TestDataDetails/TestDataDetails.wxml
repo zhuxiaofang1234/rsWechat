@@ -5,7 +5,7 @@
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
             <view class="weui-navbar__title rs-inline">{{item}}</view>
               <view bindtap="toEditTestData" class="rs-inline" wx:if="{{index==0}}" hidden="{{activeIndex!=0}}">
-                <span class="iconfont icon-edit edit-baseInfo"></span>
+                <span class="iconfont icon-bianji1 edit-baseInfo"></span>
               </view>     
           </view>
         </block>

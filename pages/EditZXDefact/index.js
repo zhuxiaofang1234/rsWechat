@@ -1,4 +1,4 @@
-// pages/EditZXSample/index.js
+// pages/EditZXDefact/index.js
 const App = getApp();
 const until = require('../../utils/util.js');
 const WXAPI = require('../../utils/main.js')
@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    zxSampleData: null
+    zxDefactData: null
   },
 
   /**
@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      zxSampleData: JSON.parse(options.zxSampleData)
+      zxDefactData: JSON.parse(options.zxDefactData)
     });
   },
 
@@ -35,20 +35,20 @@ Page({
   },
 
   //提交修改的取样深度
-  submitEditzxSampleData: function (e) {
+  submitEditzxDefactData: function (e) {
     var data = e.detail.value;
-    var zxSampleData = this.data.zxSampleData;
+    var zxDefactData = this.data.zxDefactData;
     var that = this;
     var erroInfo;
-    var sampleNo = data.sampleNo;
+    var index = data.index;
     var startPosition = data.startPosition;
     var endPosition = data.endPosition;
-
-    if (!sampleNo) {
+    var type = data.type;
+    if (!index) {
       erroInfo = "请填写取样编号";
       this.errorTips(erroInfo);
       return;
-    } else if (!App.isInt(sampleNo)) {
+    } else if (!App.isInt(index)) {
       erroInfo = "取样编号请输入整数";
       this.errorTips(erroInfo);
       return
@@ -58,7 +58,7 @@ Page({
       this.errorTips(erroInfo);
       return;
     } else if (!App.isNumber(startPosition)) {
-      erroInfo = "深度起始位置只能是整数";
+      erroInfo = "深度起始位置只能是数值";
       this.errorTips(erroInfo);
       return
     }
@@ -67,24 +67,29 @@ Page({
       this.errorTips(erroInfo);
       return;
     } else if (!App.isNumber(endPosition)) {
-      erroInfo = "深度终止位置只能是整数";
+      erroInfo = "深度终止位置只能是数值";
       this.errorTips(erroInfo);
       return
     }
-    data.id = zxSampleData.id;
-    data.sampleNo = sampleNo;
-    data.zxHoleId = zxSampleData.zxHoleId;
+    if (!type) {
+      erroInfo = "请填写芯样缺陷描述"
+      this.errorTips(erroInfo);
+      return;
+    }
+    data.id = zxDefactData.id;
+    data.index = index;
+    data.zxHoleId = zxDefactData.zxHoleId;
     data.startPosition = startPosition;
     data.endPosition = endPosition;
-    data.type = zxSampleData.type;
-    this.UpdateZxHoleSampleDepth(data);
+    data.type = type;
+    this.UpdateZXDefact(data);
   },
   //更新钻芯取样深度
-  UpdateZxHoleSampleDepth: function (data) {
+  UpdateZXDefact: function (data) {
     wx.showLoading({
       title: '保存中....',
     })
-    WXAPI.UpdateZxHoleSampleDepth(data).then(res => {
+    WXAPI.UpdateZxHoleCoreDefect(data).then(res => {
       wx.hideLoading();
       wx.showToast({
         title: '操作成功',
@@ -94,31 +99,26 @@ Page({
         success: function () {
           //更新孔的基本信息
           var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-          var zxHoleSampleDepthList = ZXHoleDetails.zxHoleSampleDepthList;
+          var zxHoleCoreDefectList = ZXHoleDetails.zxHoleCoreDefectList;
           //根据id找出修改元素的位置
           var currentIndex;
-          for (var i = 0; i < zxHoleSampleDepthList.length; i++) {
-            if (zxHoleSampleDepthList[i].id == data.id) {
+          for (var i = 0; i < zxHoleCoreDefectList.length; i++) {
+            if (zxHoleCoreDefectList[i].id == data.id) {
               currentIndex = i
             }
           }
-          zxHoleSampleDepthList.splice(currentIndex, 1, data);
-
-          var newSampleList = zxHoleSampleDepthList.filter(function (item) {
-            return item.type == data.type
-          });
+          zxHoleCoreDefectList.splice(currentIndex, 1, data);
           //返回上一页并刷新页面 
           var pages = getCurrentPages();
           var prevPage = pages[pages.length - 2];
           prevPage.setData({
-            sampleList: newSampleList
+            zxHoleCoreDefectList: zxHoleCoreDefectList
           });
           wx.navigateBack({
             delta: 1 //想要返回的层级
           })
-
-        //更新缓存孔的信息
-        wx.setStorageSync('ZXHoleDetails',ZXHoleDetails)
+          //更新缓存孔的信息
+          wx.setStorageSync('ZXHoleDetails', ZXHoleDetails)
         }
       });
 

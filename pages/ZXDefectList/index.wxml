@@ -1,0 +1,71 @@
+<view class="details-wrap">
+	<view class="loading-container" hidden="{{loadingPage}}">
+		<image src="../../images/loading.gif" class="img-loading"></image>
+	</view>
+	<view class="fixedArea">
+		<button class="rs-btn btn-blue testDataEnter" plain="true" bindtap="toAddZxDefact">新增缺陷数据</button>
+	</view>
+	<view class="main main-container">
+		<scroll-view class="main-wrapper" scroll-y style="height:100%">
+			<block wx:if="{{zxHoleCoreDefectList.length>0}}">
+				<movable-area class="movable-area" wx:for="{{zxHoleCoreDefectList}}" wx:key="{{index}}">
+					<movable-view class="movable-view">
+						<view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="ZxDefactEdit" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
+							<view class="content">
+								<view class="content-number">{{item.index}}</view>
+								<view class="content-info">{{item.startPosition}}~{{item.endPosition}}m</view>
+							</view>
+							<view class="del" catchtap="del" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+						</view>
+					</movable-view>
+				</movable-area>
+			</block>
+		</scroll-view>
+	</view>
+</view>
+
+<!---弹框-->
+<view class="mask" hidden="{{!isShowDialog}}"></view>
+<view class="bottom-dialog bg-gray38" hidden="{{!isShowDialog}}" animation='{{animationData}}'>
+	<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+	<form bindsubmit="reg">
+		<view class="header-dialog">
+			<text class="iconfont icon-chuyidong close-icon" bindtap="hideModal"></text>
+		</view>
+		<view class="body-dialog">
+			<view class="weui-cells__title rs-title">缺陷起止位置(m)</view>
+			<view class="rs_input_wrap rs-inline">
+				<input class="rs-input rs-text" type="text" name="startPosition" value="{{startPosition}}" />
+			</view>
+			<span style="color:#666">~</span>
+			<view class="rs_input_wrap rs-inline">
+				<input class="rs-input rs-text" type="text" name="endPosition" value="{{endPosition}}" />
+			</view>
+			<view class="weui-cells__title rs-title">缺陷类型
+				<span class="blue">*</span>（可多选）
+			</view>
+			<view class="weui-cells weui-cells_after-title">
+				<scroll-view class="defactTypeList" scroll-y="true">
+					<checkbox-group bindchange="checkboxChange" name="defactType">
+						<label class="weui-cell weui-check__label" wx:for="{{checkboxItems}}" wx:key="value">
+							<checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+							<view class="weui-cell__hd weui-check__hd_in-checkbox">
+								<icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+								<icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+							</view>
+							<view class="weui-cell__bd">{{item.name}}</view>
+						</label>
+					</checkbox-group>
+					<view class="other-defactReason">
+						<textarea class="rs-input rs-text otherDefact" name="otherDefact" style="height:3.3em;width:90%" placeholder="补充其他缺陷(选填)" placeholder-class="tipStyles"></textarea>
+						</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="footer-dialog">
+			<button class="dialog-btn" formType="submit">
+				确定
+			</button>
+		</view>
+	</form>
+</view>

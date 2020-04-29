@@ -1,0 +1,41 @@
+<view class="details-wrap">
+  <form bindsubmit='reg' class="rs-form">
+    <view class="main">
+      <scroll-view class="main-wrapper" scroll-y style="height:100%">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+        <view class="details-container no-padding pb-10 bg-gray38">
+
+          <view class="weui-cells__title rs-title">取样编号</view>
+          <view class="rs_input_wrap">
+            <input class="rs-input rs-text" type="text" name="index" value="{{ZXForceLayer.index}}" />
+          </view>
+          <view class="weui-cells__title rs-title">岩层起至深度(m)</view>
+          <view class="rs_input_wrap rs-inline">
+            <input class="rs-input rs-text" type="text" name="startPosition" value="{{ZXForceLayer.startPosition}}" />
+          </view>
+          <span style="color:#666">~</span>
+          <view class="rs_input_wrap rs-inline">
+            <input class="rs-input rs-text" type="text" name="endPosition" value="{{ZXForceLayer.endPosition}}" />
+          </view>
+
+          <view class="weui-cells__title rs-title">风化程度(m)</view>
+          <view class="rs_input_wrap">
+            <input class="rs-input rs-text" type="text" name="weatheringDegree" value="{{ZXForceLayer.weatheringDegree}}" />
+          </view>
+          <view class="weui-cells__title rs-title">岩土类别</view>
+          <view class="rs_input_wrap">
+            <input class="rs-input rs-text" type="text" name="type" value="{{ZXForceLayer.type}}" />
+          </view>
+          <view class="weui-cells__title rs-title">岩土描述</view>
+          <view class="rs_input_wrap">
+            <textarea class="rs-textarea rs-text" name="describition" value="{{ZXForceLayer.describition}}" style="height: 3.3em;" />
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="footer backfooter">
+      <button class="rs-btn btn-blue backbtn mr-50" plain="true" form-type="reset">取消</button>
+      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+    </view>
+  </form>
+</view>

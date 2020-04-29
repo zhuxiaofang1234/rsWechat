@@ -130,6 +130,10 @@ page {
   overflow: hidden;
 }
 
+.tipStyles{
+  font-size:24rpx;
+}
+
 /*******************竖向固定区域*******************************/
 
 .details-wrap {
@@ -446,6 +450,10 @@ padding-bottom:8px;
   padding-left: 50rpx;
   color: #4cd964;
 }
+
+.weui-check__label:active{
+  background-color:#383838
+  }
 
 
 

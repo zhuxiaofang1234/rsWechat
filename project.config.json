@@ -169,6 +169,48 @@
 					"id": -1,
 					"name": "SceneRecordZXDefect",
 					"pathName": "pages/SceneRecordZXDefect/SceneRecordZXDefect",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXsampleList",
+					"pathName": "pages/ZXsampleList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXDefectList/index",
+					"pathName": "pages/ZXDefectList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXDefectList",
+					"pathName": "pages/ZXDefectList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "EditZXDefact",
+					"pathName": "pages/EditZXDefact/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXGather",
+					"pathName": "pages/ZXGather/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXresult",
+					"pathName": "pages/ZXresult/index",
 					"scene": null
 				}
 			]

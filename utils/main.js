@@ -158,14 +158,23 @@ module.exports = {
   UpdateZxHoleSampleDepth:(data)=>{ //更新钻芯取样
     return request('/api/services/app/ZXData/UpdateZxHoleSampleDepth', 'PUT', data);
   },
+  UpdateZxHoleCoreDefect:(data)=>{ //更新芯样缺陷
+    return request('/api/services/app/ZXData/UpdateZxHoleCoreDefect', 'PUT', data);
+  },
   UpdateZxHoleForceLayer:(data)=>{ //更新持力层信息
     return request('/api/services/app/ZXData/UpdateZxHoleForceLayer', 'PUT', data);
+  },
+  UpdateHole:(data)=>{ //更新孔的信息
+    return request('/api/services/app/ZXData/UpdateHole', 'PUT', data);
   },
   DeleteZxHoleForceLayer:(id)=> {//删除持力层信息
     return request('/api/services/app/ZXData/DeleteZxHoleForceLayer?Id='+id,'DELETE')
   },
   DeleteZxHoleSampleDepth: (id) => {//删除芯样取样，持力层取样信息
     return request('/api/services/app/ZXData/DeleteZxHoleSampleDepth?Id=' + id, 'DELETE')
+  },
+  DeleteZxHoleCoreDefect:(id) =>{ //删除芯样缺陷描述
+    return request('/api/services/app/ZXData/DeleteZxHoleCoreDefect?Id=' + id, 'DELETE')   
   },
   ModifyUserStamp:(data)=>{//修改当前用户签章
     return request('/api/services/app/Session/ModifyUserStamp', 'POST',data)

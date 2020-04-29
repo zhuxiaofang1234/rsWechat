@@ -68,7 +68,7 @@
     </dialog>
     <!--弹出框结束-->
     <view class="footer">
-      <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toAddZXTestData">添加钻进记录</button>
+      <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toAddZXTestData">钻进记录表</button>
       <button class="rs-btn btn-blue ml-50 mt-20" plain="true" bindtap="toEndHole">添加终孔操作</button>
       <button class="rs-btn btn-blue mt-20 ml-50" plain="true" bindtap="toZXSceneRecord">现场编录表</button>
       <button class="rs-btn btn-blue ml-50" plain="true" bindtap="toTestData">查看</button>

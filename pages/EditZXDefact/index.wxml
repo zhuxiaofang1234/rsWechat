@@ -1,0 +1,30 @@
+<form bindsubmit='submitEditzxDefactData'>
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<view class="details-container no-padding bg-gray38">
+				<view class="weui-cells__title rs-title">取样编号</view>
+				<view class="rs_input_wrap">
+					<input class="rs-input rs-text" type="text" name="index" value="{{zxDefactData.index}}" />
+				</view>
+				<view class="weui-cells__title rs-title">深度起至位置(m)</view>
+				<view class="rs_input_wrap rs-inline">
+					<input class="rs-input rs-text" type="text" name="startPosition" value="{{zxDefactData.startPosition}}" />
+				</view>
+				<span style="color:#666">~</span>
+				<view class="rs_input_wrap rs-inline">
+					<input class="rs-input rs-text" type="text" name="endPosition" value="{{zxDefactData.endPosition}}" />
+				</view>
+				<view class="weui-cells__title rs-title">芯样缺陷描述</view>
+				<view class="rs_input_wrap">
+					<textarea class="rs-input rs-text rs-textarea" name="type" style="width:90%; height:3.3em" value="{{zxDefactData.type}}"/>
+				</view>
+			</view>
+		</view>
+		<!--main结束-->
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+		</view>
+	</view>
+</form>
