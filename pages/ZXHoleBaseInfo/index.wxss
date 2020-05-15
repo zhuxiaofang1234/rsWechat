@@ -1,0 +1,51 @@
+/* pages/testCanvas/index.wxss */
+.canvas-wrap{
+  width:100%;
+  height:200px;
+}
+.zxCanvas{
+ width:60%;
+ height:100%;
+ background-color: #fff;
+}
+.wrap{
+  height:800px;
+  width:100%;
+  background-color: burlywood;
+
+}
+
+.zx-footer{
+  width:100%;
+  height:90px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align: center;
+}
+
+.section_gap {
+  padding: 15px 15px;
+  color: #fff;
+}
+
+.radio {
+  width: 35%;
+}
+
+.zx-input {
+  width: 300rpx;
+  border: 1px solid #555;
+  border-radius: 10rpx;
+  margin: 12rpx 10rpx;
+  padding: 6rpx;
+  color: #4cd964;
+  text-align: center;
+}
+
+.rs-text {
+  font-size: 32rpx;
+}
+
+
