@@ -1,123 +1,106 @@
 <form bindsubmit='reg'>
-  <view class="details-wrap">
-    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-    <view class="main">
-      <scroll-view class="main-wrapper" scroll-y style="height:100%">
-        <view class="details-container no-padding bg-gray38">
-          <view class="weui-cells__title rs-title">测点号<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
-              <view class="weui-cell__bd rs-text">{{pileNo}}</view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
-          </view>
-          <view class="weui-cells__title rs-title">现场记录号<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" placeholder="请输入现场记录号" placeholder-class="tipStyles"/>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">设备编号<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="machineId"  value="{{machineId}}" placeholder="请输入设备编号" placeholder-class="tipStyles"/>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">每级测试深度值(m)<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade" placeholder="请输入每级测试深度" placeholder-class="tipStyles"/>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">测试类型<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_select">
-              <view class="weui-cell__bd">
-                <picker bindchange="bindTestTypeChange" value="{{testTypeCode[testTypeIndex]}}" range="{{testType}}">
-                  <view class="weui-select">{{testType[testTypeIndex]}}</view>
-                </picker>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">天然地基岩土性状<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_select">
-              <view class="weui-cell__bd">
-                <picker bindchange="bindRdjlxTypeChange" value="{{rdjlxIndex}}" range="{{rdjlx}}">
-                  <view class="weui-select">{{rdjlx[rdjlxIndex]}}</view>
-                </picker>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">GPS位置</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_switch">
-              <view class="weui-cell__bd rs-text">{{gpstext}}</view>
-              <view class="weui-cell__ft">
-                <switch checked="{{gpsIsValid}}" bindchange="switchChange" />
-              </view>
-            </view>
-          </view>
-           <view class="weui-cells__title rs-title">检测起始标高（m）<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="height1" value="{{height1}}" placeholder="请输入检测起始标高" placeholder-class="tipStyles"/>
-              </view>
-            </view>
-          </view>
-           <view class="weui-cells__title rs-title">设计地基标高(m)<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="height2" value="{{height2}}" placeholder="请输入设计地基标高" placeholder-class="tipStyles"/>
-              </view>
-            </view>
-          </view>
-           <view class="weui-cells__title rs-title">设计承载力特征值(kPa)<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="pileBearing" value="{{pileBearing}}" placeholder="请输入设计承载力特征值" placeholder-class="tipStyles"/>
-              </view>
-            </view>
-          </view>
-          
-        </view>
-        <!--view class="details-container mt-30" bindtap="toEditTestPoint">
-          <view class="wt-items">
-            <text class="wt-title">设计地基标高(m)</text>
-            <text class="wt-info text-green">{{height2}}</text>
-          </view>
-          <view class="wt-items">
-            <text class="wt-title">检测起始标高(m)</text>
-            <text class="wt-info text-green">{{height1}}</text>
-          </view>
-          <view class="wt-items">
-            <text class="wt-title">设计承载力特征值(Kpa)</text>
-            <text class="wt-info text-green">{{pileBearing}}</text>
-          </view>
-        </view-->
-      </scroll-view>
-    </view>
-    <!--main结束->
-  
-    <!--弹出框组件-->
-    <dialog id='dialog' title='温馨提示' content='小程序需要您的授权获取地理位置' confirmText='去设置'
-      bind:myconfirmEvent='confirmEvent' 
-      bind:bindopensetting='getSetting'>
-    </dialog>
-    <!--弹出框结束-->
-    <view class="footer backfooter">
-      <button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
-      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">开始试验</button>
-    </view>
-  </view>
-  <!--details-wrap结束-->
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<scroll-view class="main-wrapper" scroll-y style="height:100%">
+				<view class="details-container no-padding bg-gray38">
+					<view class="weui-cells__title rs-title">测点号<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
+							<view class="weui-cell__bd rs-text">{{pileNo}}</view>
+							<view class="weui-cell__ft weui-cell__ft_in-access"></view>
+						</navigator>
+					</view>
+					<view class="weui-cells__title rs-title">现场记录号<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" placeholder="请输入现场记录号" placeholder-class="tipStyles" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">设备编号<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="machineId" value="{{machineId}}" placeholder="请输入设备编号" placeholder-class="tipStyles" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">每级测试深度值(m)<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{dGrade}}" name="dGrade" placeholder="请输入每级测试深度" placeholder-class="tipStyles" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">测试类型<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_select">
+							<view class="weui-cell__bd">
+								<picker bindchange="bindTestTypeChange" value="{{testTypeCode[testTypeIndex]}}" range="{{testType}}">
+									<view class="weui-select">{{testType[testTypeIndex]}}</view>
+								</picker>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">天然地基岩土性状<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_select">
+							<view class="weui-cell__bd">
+								<picker bindchange="bindRdjlxTypeChange" value="{{rdjlxIndex}}" range="{{rdjlx}}">
+									<view class="weui-select">{{rdjlx[rdjlxIndex]}}</view>
+								</picker>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">GPS位置</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_switch">
+							<view class="weui-cell__bd rs-text">{{gpstext}}</view>
+							<view class="weui-cell__ft">
+								<switch checked="{{gpsIsValid}}" bindchange="switchChange"/>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">检测起始标高（m）<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="height1" value="{{height1}}" placeholder="请输入检测起始标高" placeholder-class="tipStyles" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">设计地基标高(m)<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="height2" value="{{height2}}" placeholder="请输入设计地基标高" placeholder-class="tipStyles" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">设计承载力特征值(kPa)<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="pileBearing" value="{{pileBearing}}" placeholder="请输入设计承载力特征值" placeholder-class="tipStyles" />
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!--main结束-->
+
+		<!--弹出框组件-->
+		<dialog id='dialog' title='温馨提示' content='小程序需要您的授权获取地理位置' confirmText='去设置' bind:myconfirmEvent='confirmEvent' bind:bindopensetting='getSetting'>
+		</dialog>
+		<!--弹出框结束-->
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">开始试验</button>
+		</view>
+	</view>
+	<!--details-wrap结束-->
 </form>

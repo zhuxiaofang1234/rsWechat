@@ -1,7 +1,9 @@
 /* pages/ZXresult/index.wxss */
 .rs-input.otherDefact{
   width:91%; 
-  padding: 26rpx 30rpx;
+  padding:20rpx;
+  min-height:32px;
+  font-size:28rpx;
 }
 .details-container.has-padding{
   padding:0 20rpx;
@@ -10,4 +12,5 @@
 .weui-cells__title.rs-title{
  padding:20rpx 0
 }
+
 

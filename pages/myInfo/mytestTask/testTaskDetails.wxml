@@ -1,63 +1,99 @@
 <view class="details-wrap">
-  <view class="main mt-20">
-    <scroll-view class="main-wrapper" scroll-y style="height: 100%">
-      <view class="details-container">
-        <view class="details-item">
-          <view class="details-title">委托编号</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">委托日期</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.creationTime}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">工程名称</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.projectName}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">工程地点</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.projectAddress}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">地基类型</view>
-          <view class="details-info rs-text mt-16" wx:if="{{wtDetails.foundationType}}">{{wtDetails.foundationType}}</view>
-          <view class="details-info rs-text mt-16" wx:else>-</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">检测数量</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.testMum}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">检测方法</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.testModeName}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">进场时间</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.workDate}}</view>
-        </view>
-        <view class="details-item">
-          <view class="details-title">预估完成时间</view>
-          <view class="details-info rs-text mt-16">{{wtDetails.finishDate}}</view>
-        </view>
-      </view>
-      <view class="test-item area-flex mt-20" wx:for="{{personList}}" wx:key="{{index}}">
-        <view class="test-number area-flex">{{index+1}}</view>
-        <view class="area-right test-content">
-          <view class="testInfo mb-32">
-            <view class="test-way-info">
-              <text class="testWay">{{item.personName}}</text>
-            </view>
-            <view class="testStatus text-orange" wx:if="{{item.confirmStatus==0}}">工作待确认</view>
-            <view class="testStatus" wx:elif="{{item.confirmStatus==1}}">已确认</view>
-            <view class="testStatus" wx:elif="{{item.confirmStatus==2}}">已驳回</view>
-          </view>
-          <view class="testInfo">{{item.personPhone}}</view>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-  <view class="footer backfooter" hidden="{{hidden}}">
-    <button class="rs-btn backbtn btn-orange mr-50" plain="true" bindtap="toWtReject">驳回</button>
-    <button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtSure">确认</button>
-  </view>
+	<view class="main mt-20">
+		<scroll-view class="main-wrapper" scroll-y style="height: 100%">
+			<view class="details-container">
+				<view class="details-item">
+					<view class="details-title">委托编号</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">委托日期</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.creationTime}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程名称</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.projectName}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程地点</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.projectAddress}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">地基类型</view>
+					<view class="details-info rs-text mt-16" wx:if="{{wtDetails.foundationType}}">{{wtDetails.foundationType}}</view>
+					<view class="details-info rs-text mt-16" wx:else>-</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测数量</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.testMum}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测方法</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.testModeName}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">进场时间</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.workDate}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">预估完成时间</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.finishDate}}</view>
+				</view>
+			</view>
+			<view class="test-item area-flex mt-20" wx:for="{{personList}}" wx:key="{{index}}">
+				<view class="test-number area-flex">{{index+1}}</view>
+				<view class="area-right test-content">
+					<view class="testInfo mb-32">
+						<view class="test-way-info">
+							<text class="testWay">{{item.personName}}</text>
+						</view>
+						<view class="testStatus text-orange" wx:if="{{item.confirmStatus==0}}">工作待确认</view>
+						<view class="testStatus" wx:elif="{{item.confirmStatus==1}}">已确认</view>
+						<view class="testStatus" wx:elif="{{item.confirmStatus==2}}">已驳回</view>
+					</view>
+					<view class="testInfo">{{item.personPhone}}</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="footer backfooter" hidden="{{hidden}}">
+		<block wx:if="{{confirmStatus==0}}">
+			<button class="rs-btn backbtn btn-orange mr-50" plain="true" bindtap="toWtReject">驳回</button>
+			<button class="rs-btn backbtn btn-green" plain="true" bindtap="toWtSure">确认</button>
+		</block>
+    <block wx:elif="{{confirmStatus==1}}">
+			<button class="rs-btn backbtn" plain="true" bindtap="toDoDetect">确认进场</button>
+		</block>
+     <block wx:elif="{{confirmStatus==3}}">
+			<button class="rs-btn backbtn" plain="true" bindtap="toWtSure">确认出场</button>
+		</block>
+	</view>
+</view>
+
+<!---弹框-->
+<view class="mask" hidden="{{!isShowDialog}}"></view>
+<view class="bottom-dialog bg-gray38" hidden="{{!isShowDialog}}" animation='{{animationData}}'>
+	<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+	<form bindsubmit="reg">
+		<view class="header-dialog">
+			<text class="iconfont icon-chuyidong close-icon" bindtap="hideModal"></text>
+		</view>
+		<view class="body-dialog">
+			<view class="weui-cells__title rs-title">{{timeLabel}}</view>
+			<view class="weui-cells weui-cells_after-title bg-black">
+				<view class="weui-cell weui-cell_select">
+					<view class="weui-cell__bd">
+						<picker mode="date" bindchange="bindDateChange" value="{{Date}}" start="2019-11-01" end="2020-11-01">
+							<view class="weui-select">{{Date}}</view>
+						</picker>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="footer-dialog">
+			<button class="dialog-btn" formType="submit">
+				确定
+			</button>
+		</view>
+	</form>
 </view>

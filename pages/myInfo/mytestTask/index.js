@@ -216,8 +216,7 @@ Page({
   //检测任务详情页
   toTestTaskDetails: function (e) {
     var id = e.currentTarget.dataset.id;
-    var confirm = e.currentTarget.dataset.confirm;
-    
+    var confirm = e.currentTarget.dataset.confirm;  
     wx.navigateTo({
       //去根目录下找pages
       url: '/pages/myInfo/mytestTask/testTaskDetails?Id=' + id + '&confirm=' + confirm

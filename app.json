@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/login/login",
     "pages/ZXRecordList/index",
     "pages/ZXDefectList/index",
     "pages/ZXsampleList/index",
     "pages/ZXForceLayerList/index",
-    "pages/index/index",
-    "pages/login/login",
     "pages/testLandscape/testLandscape",
     "pages/EditZXSample/index",
     "pages/EditZXDefact/index",
@@ -14,6 +14,7 @@
     "pages/ZXresult/index",
     "pages/ZXSceneRecordData/ZXSceneRecordData",
     "pages/ZXBaseData/ZXBaseData",
+    "pages/ZXHoleBaseInfo/index",
     "pages/EndHole/EndHole",
     "pages/AddZXTestData/AddZXTestData",
     "pages/HoleList/index",
@@ -44,7 +45,9 @@
     "pages/myInfo/mytestTask/workReject",
     "pages/myInfo/userInfo/index",
     "pages/myInfo/systemInfo/index",
-    "pages/myInfo/deviceInfo/index",
+    "pages/myInfo/workSurvey/index",
+    "pages/myInfo/workSurvey/details",
+    "pages/myInfo/workSurvey/add",
     "pages/testIndex/testIndex"
   ],
   "window": {

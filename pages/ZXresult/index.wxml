@@ -4,14 +4,14 @@
 		<view class="main">
 			<scroll-view class="main-wrapper" scroll-y style="height:100%">
 				<view class="details-container has-padding bg-gray38">		
-						<view class="weui-cells__title rs-title">混凝土芯样汇总描述
+						<view class="weui-cells__title rs-title">{{labelText}}芯样汇总描述
 							<span class="blue">*</span>
 						</view>
-						<textarea class="rs-input rs-text otherDefact" name="pileXyDescribe" value="{{pileXyDescribe}}" auto-height="true"  placeholder="混凝土芯样情况描述" placeholder-class="tipStyles"></textarea>
+						<textarea class="rs-input rs-text otherDefact" name="pileXyDescribe" value="{{pileXyDescribe}}" auto-height="true" maxlength="-1" placeholder="混凝土芯样情况描述" placeholder-class="tipStyles"></textarea>
             	<view class="weui-cells__title rs-title mt-20">岩层芯样汇总描述
 							<span class="blue">*</span>
 						</view>
-						<textarea class="rs-input rs-text otherDefact" name="rockXyDescribe" value="{{rockXyDescribe}}" auto-height="true"  placeholder="岩层芯样汇总描述" placeholder-class="tipStyles"></textarea>
+						<textarea class="rs-input rs-text otherDefact" name="rockXyDescribe" value="{{rockXyDescribe}}" auto-height="true"  placeholder="岩层芯样汇总描述" maxlength="-1" placeholder-class="tipStyles"></textarea>
 				</view>
 			</scroll-view>
 		</view>

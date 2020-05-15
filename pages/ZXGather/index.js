@@ -1,90 +1,83 @@
 // pages/test/addTestData/addTestData.js
 const App = getApp();
+const WXAPI = require('../../utils/main.js')
+const until = require('../../utils/util.js')
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    coreStateFlag:false,
     sedimentStateFlag: false, //有无沉渣标识
     SideSurface: ['光滑', '较光滑', '气孔', '蜂窝麻面'],
     SideSurfaceText: '光滑',
     sideSurfaceIndex: 0,
     ZXComplete: '连续完整',
+    ZGgatherInfo: "", //混凝土汇总试验信息
+    ZJgatherInfo: "", //搅拌桩汇总信息
     zxCompleteItems: [{ //芯样完整性
-        name: 'zxComplete',
         zxCompleteText: '连续完整',
-        value: 0,
         checked: 'true'
       },
       {
-        name: 'zxComplete',
         zxCompleteText: '基本完整',
         value: 1
       }
     ],
     AggregateCover: '均匀',
     AggregateCoverItems: [{ //骨料分布
-        name: ' AggregateCover',
         AggregateCoverText: '均匀',
         value: 0,
         checked: 'true'
       },
       {
-        name: ' AggregateCover',
         AggregateCoverText: '基本均匀',
         value: 1,
       }
     ],
+    coreStateFlag: false,
     coreState: '长柱状',
+    otherCoreState: "",
     coreStateItems: [{
-        name: 'coreState',
         coreStateText: '长柱状',
         value: 0,
         checked: 'true'
       },
       {
-        name: 'coreState',
         coreStateText: '柱状',
         value: 1
       },
       {
-        name: 'coreState',
         coreStateText: '其他',
         value: 2
       },
     ],
+    fracture: '吻合',
     fractureItems: [{ //搅拌桩断口
-        name: 'fracture',
         fractureText: '吻合',
         value: 0,
         checked: 'true'
       }, {
-        name: 'fracture',
         fractureText: '基本吻合',
         value: 1
       },
       {
-        name: 'fracture',
         fractureText: '不吻合',
         value: 2
       }
     ],
-    cementSoilMixingFlag:false,
-    cementSoilMixingItems:[ //水泥搅拌
+    cementSoilMixing: "均匀",
+    cementSoilMixingFlag: false,
+    cementSoilMixingItems: [ //水泥搅拌
       {
-        name: 'cementSoilMixing',
         cementSoilMixingText: '均匀',
         value: 0,
         checked: 'true'
       },
       {
-        name: 'cementSoilMixing',
         cementSoilMixingText: '较均匀',
         value: 1
       },
       {
-        name: 'cementSoilMixing',
         cementSoilMixingText: '不均匀',
         value: 2
       },
@@ -102,34 +95,30 @@ Page({
         value: 0
       }
     ],
-    ZJcementationFlag:false,
-    ZJcementation: '',
+    ZJcementationFlag: false,
+    ZJcementation: '好',
+    otherZJcementation: '',
     ZJcementationItems: [{ //胶结
-        name: 'ZJcementationItems',
         cementationText: '好',
         value: 0,
         checked: 'true'
       },
       {
-        name: 'ZJcementationItems',
         cementationText: '较好',
         value: 1
       },
       {
-        name: 'ZJcementationItems',
         cementationText: '较差',
         value: 2
       }
     ],
     bottomState: '清晰',
     bottomStateItems: [{ //砼底情况
-        name: 'bottomState',
         bottomStateText: '清晰',
         value: 0,
         checked: 'true'
       },
       {
-        name: 'bottomState',
         bottomStateText: '不清晰',
         value: 1
 
@@ -159,21 +148,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     var TestModeCode = wx.getStorageSync('testModeCode');
+    //获取钻芯汇总信息
+    var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
+
     var pileType, ZXType;
     if (TestModeCode == 'ZG') {
-      pileType = 0,
-        ZXType = '混凝土芯样情况'
+      pileType = 0
+      ZXType = '混凝土芯样情况'
+      this.showZGgatherInfo(ZXHoleDetails);
     } else {
-      pileType = 1,
-        ZXType = '搅拌桩芯样情况'
+      pileType = 1
+      ZXType = '搅拌桩芯样情况'
+      this.showZJgatherInfo(ZXHoleDetails)
     }
-    console.log(TestModeCode);
     this.setData({
       pileType: pileType,
       ZXType: ZXType
     });
+
+    this.showZXGatherInfo(ZXHoleDetails);
   },
 
   /**
@@ -231,44 +225,69 @@ Page({
   //搅拌桩芯样呈
   coreStateChange: function (e) {
     var value = e.detail.value;
+    var coreStateFlag;
+    var checkedCoreState = this.data.coreStateItems.filter(function (item) {
+      return item.value == e.detail.value;
+    });
+
     if (value == 2) {
-        this.setData({
-          coreStateFlag:true
-        });
-    }else{
-      this.setData({
-        coreStateFlag:false
-      });
+      coreStateFlag = true
+    } else {
+      coreStateFlag = false
     }
+    this.setData({
+      coreStateFlag: coreStateFlag,
+      coreState: checkedCoreState[0].coreStateText
+    });
   },
 
   //水泥搅拌
-  cementSoilMixingChange:function(e){
-    var value = e.detail.value,
-    cementSoilMixingFlag; 
-      if (value == 2) {
-        cementSoilMixingFlag = true
-      } else {
-        cementSoilMixingFlag = false
-      }
-      this.setData({
-        cementSoilMixingFlag: cementSoilMixingFlag
-      });
+  cementSoilMixingChange: function (e) {
+    var value = e.detail.value;
+    var cementSoilMixingFlag;
+    var checkedcementSoilMixing = this.data.cementSoilMixingItems.filter(function (item) {
+      return item.value == e.detail.value;
+    });
+
+    if (value == 2) {
+      cementSoilMixingFlag = true
+    } else {
+      cementSoilMixingFlag = false
+    }
+    this.setData({
+      cementSoilMixingFlag: cementSoilMixingFlag,
+      cementSoilMixing: checkedcementSoilMixing[0].cementSoilMixingText
+    });
   },
-  
-  //搅拌桩
-  ZJcementationChange:function(e){
+
+  //搅拌桩胶结
+  ZJcementationChange: function (e) {
     var value = e.detail.value,
-    ZJcementationFlag; 
-      if (value == 2) {
-        ZJcementationFlag = true
-      } else {
-        ZJcementationFlag = false
-      }
-      this.setData({
-        ZJcementationFlag: ZJcementationFlag
-      });
+      ZJcementationFlag;
+    var checkedZJcementation = this.data.ZJcementationItems.filter(function (item) {
+      return item.value == e.detail.value;
+    });
+    if (value == 2) {
+      ZJcementationFlag = true
+    } else {
+      ZJcementationFlag = false
+    }
+    this.setData({
+      ZJcementationFlag: ZJcementationFlag,
+      ZJcementation: checkedZJcementation[0].cementationText
+    });
   },
+
+  //断口
+  fractureChange: function (e) {
+    var checkedFractureItems = this.data.fractureItems.filter(function (item) {
+      return item.value == e.detail.value;
+    });
+    this.setData({
+      fracture: checkedFractureItems[0].fractureText
+    });
+  },
+
 
   //芯样完整性
   zxCompleteChange: function (e) {
@@ -285,7 +304,7 @@ Page({
     var checkedaggregateCover = this.data.AggregateCoverItems.filter(function (item) {
       return item.value == e.detail.value
     })
-    console.log(checkedaggregateCover);
+
     this.setData({
       AggregateCover: checkedaggregateCover[0].AggregateCoverText
     });
@@ -378,6 +397,9 @@ Page({
   uploadFile: function () {
     var that = this;
     var files = this.data.files;
+    wx.showLoading({
+      title: '上传中...',
+    })
     wx.uploadFile({
       url: wx.getStorageSync('rshostName') + '/api/Resurce/Upload', //上传图片服务器API接口的路径 
       filePath: files[0], //要上传文件资源的路径 String类型
@@ -386,18 +408,23 @@ Page({
         "Content-Type": "multipart/form-data", //记得设置
         'Authorization': "Bearer " + wx.getStorageSync('rsAccessToken')
       },
+
       success: function (res) { //当调用uploadFile成功之后，再次调用后台修改的操作
         if (res.statusCode = 200) {
           var responseData = JSON.parse(res.data);
           if (responseData.result) {
             var Imghash = responseData.result[0].hash;
             console.log(Imghash)
-            that.setData({
-              xyAttachment: Imghash,
-              uploadtext: '上传成功',
-              uploadFlag: true
-            });
+            if (Imghash) {
+              wx.hideLoading();
+              that.setData({
+                xyAttachment: Imghash,
+                uploadtext: '上传成功',
+                uploadFlag: true
+              });
+            }
           } else {
+            wx.hideLoading();
             that.setData({
               uploadtext: '上传失败',
               uploadFlag: false
@@ -410,14 +437,40 @@ Page({
   reg: function (e) {
     var data = e.detail.value;
     var submitData = {};
+    var that = this;
+    //灌注桩
     submitData.pileType = this.data.pileType;
-    submitData.coreSample = this.data.ZXComplete; //芯样完整性
+    if (this.data.pileType == 0) {
+      submitData.coreSample = this.data.ZXComplete; //芯样完整性
+      submitData.aggregateCover = this.data.AggregateCover; //骨料分布
+      submitData.cementation = this.data.cementation; //胶结
+      submitData.sideSurface = this.data.SideSurfaceText; //侧表面
+    } else {
+      //搅拌桩
+      if (data.coreState == 2) { //芯样状态
+        submitData.coreState = data.otherCoreState + "m破碎块或松散";
+      } else {
+        submitData.coreState = this.data.coreState;
+      }
+      submitData.fracture = this.data.fracture; //断口
+
+      if (data.cementSoilMixing == 2) {
+        submitData.cementSoilMixing = data.otherCementSoilMixing + "m不均匀";
+      } else {
+        submitData.cementSoilMixing = this.data.cementSoilMixing; //水泥土搅拌
+      }
+
+      if (data.ZJcementation == 2) {
+        submitData.cementation = data.otherZJcementation + "m较差";
+      } else {
+        submitData.cementation = this.data.ZJcementation; //水泥土搅拌
+      }
+      submitData.other = data.other;
+    }
     submitData.bottomState = this.data.bottomState; //砼底情况
-    submitData.aggregateCover = this.data.AggregateCover; //骨料分布
-    submitData.cementation = this.data.cementation; //胶结
     submitData.sedimentState = data.sedimentState; //沉渣厚度
-    submitData.sideSurface = this.data.SideSurfaceText; //侧表面
-    submitData.xyAttachment = this.data.xyAttachment; //芯样附件
+
+    console.log(submitData);
 
     if (this.data.sedimentStateFlag) { //沉渣厚度
       var erroInfo;
@@ -437,10 +490,250 @@ Page({
       submitData.sedimentState = 0
     }
     //缓存部分汇总信息
-    wx.setStorageSync('zxGather', submitData);
+    wx.showLoading({
+      title: '汇总中...',
+    })
+    setTimeout(function () {
+      submitData.xyAttachment = that.data.xyAttachment; //芯样附件
+      wx.setStorageSync('zxGather', submitData);
+      wx.hideLoading();
+      wx.navigateTo({
+        url: '/pages/ZXresult/index',
+      })
+    }, 600)
+  },
 
-    wx.navigateTo({
-      url: '/pages/ZXresult/index',
+  //回显混凝土试验汇总情况
+  showZGgatherInfo: function (ZXHoleDetails) {
+    //芯样完整性
+    var coreSample = ZXHoleDetails.coreSample;
+    var zxCompleteItems = this.data.zxCompleteItems;
+    for (var i = 0, len = zxCompleteItems.length; i < len; ++i) {
+      var text = zxCompleteItems[i].zxCompleteText;
+      zxCompleteItems[i].checked = text == coreSample;
+    }
+    this.setData({
+      zxCompleteItems: zxCompleteItems
+    });
+
+    //骨料分布
+    var AggregateCoverItems = this.data.AggregateCoverItems;
+    for (var i = 0, len = AggregateCoverItems.length; i < len; ++i) {
+      var text = AggregateCoverItems[i].AggregateCoverText;
+      AggregateCoverItems[i].checked = text == ZXHoleDetails.aggregateCover;
+    }
+    this.setData({
+      AggregateCoverItems: AggregateCoverItems
+    });
+
+    //胶结
+    var cementation = ZXHoleDetails.cementation;
+    var cementationItems = this.data.cementationItems;
+    for (var i = 0, len = cementationItems.length; i < len; ++i) {
+      var text = cementationItems[i].cementationText;
+      cementationItems[i].checked = text == cementation;
+    }
+    this.setData({
+      cementationItems: cementationItems
+    });
+
+    //侧表面
+    var str = ZXHoleDetails.sideSurface;
+    var index = this.data.SideSurface.indexOf(str);
+    console.log(index);
+    this.setData({
+      sideSurfaceIndex: index,
+      SideSurfaceText: str
+    });
+
+  },
+  //回显搅拌桩试验汇总情况
+  showZJgatherInfo: function (ZXHoleDetails) {
+    //芯样呈
+    var coreState = ZXHoleDetails.coreState;
+    console.log(coreState)
+    var coreStateText, coreStateFlag, otherCoreState;
+    if ((coreState != '长柱状' && coreState != '柱状') && coreState) {
+      coreStateText = '其他',
+        coreStateFlag = true,
+        otherCoreState = coreState.substring(0, coreState.length - 7);
+    } else {
+        coreStateText = coreState,
+        coreStateFlag = false,
+        otherCoreState = ""
+    }
+
+    var coreStateItems = this.data.coreStateItems;
+    for (var i = 0, len = coreStateItems.length; i < len; ++i) {
+      var text = coreStateItems[i].coreStateText;
+      coreStateItems[i].checked = text == coreStateText;
+    }
+    this.setData({
+      coreStateItems: coreStateItems,
+      coreStateFlag: coreStateFlag,
+      otherCoreState: otherCoreState
+    });
+
+
+    //断口
+    var fractureText = ZXHoleDetails.fracture;
+    var fractureItems = this.data.fractureItems;
+    for (var i = 0, len = fractureItems.length; i < len; ++i) {
+      var text = fractureItems[i].fractureText;
+      fractureItems[i].checked = text == fractureText;
+    }
+    this.setData({
+      fractureItems: fractureItems
+    });
+
+    //水泥搅拌
+    var cementSoilMixing = ZXHoleDetails.cementSoilMixing;
+    var cementSoilMixingText, cementSoilMixingFlag, otherCementSoilMixing;
+    if ((cementSoilMixing != '均匀' && cementSoilMixing != '较均匀') && cementSoilMixing) {
+      cementSoilMixingText = '不均匀';
+      cementSoilMixingFlag = true;
+      otherCementSoilMixing = cementSoilMixing.substring(0, cementSoilMixing.length - 4);
+
+    } else {
+      cementSoilMixingText = cementSoilMixing;
+      cementSoilMixingFlag = false;
+      otherCementSoilMixing = "";
+    }
+
+    var cementSoilMixingItems = this.data.cementSoilMixingItems;
+    for (var i = 0, len = cementSoilMixingItems.length; i < len; ++i) {
+      var text = cementSoilMixingItems[i].cementSoilMixingText;
+      cementSoilMixingItems[i].checked = text == cementSoilMixingText;
+    }
+    this.setData({
+      cementSoilMixingItems: cementSoilMixingItems,
+      cementSoilMixingFlag: cementSoilMixingFlag,
+      otherCementSoilMixing: otherCementSoilMixing
+    });
+
+    //搅拌桩胶结
+    var ZJcementation = ZXHoleDetails.cementation;
+    var ZJcementationText, ZJcementationFlag, otherZJcementation;
+    if ((ZJcementation != '好' && ZJcementation != '较好') && ZJcementation) {
+      ZJcementationText = '较差';
+      ZJcementationFlag = true;
+      otherZJcementation = ZJcementation.substring(0, ZJcementation.length - 3);
+
+    } else {
+      ZJcementationText = ZJcementation;
+      ZJcementationFlag = false;
+      otherZJcementation = "";
+    }
+
+    var ZJcementationItems = this.data.ZJcementationItems;
+    for (var i = 0, len = ZJcementationItems.length; i < len; ++i) {
+      var text = ZJcementationItems[i].cementationText;
+      ZJcementationItems[i].checked = text == ZJcementationText;
+    }
+
+    this.setData({
+      ZJcementationItems: ZJcementationItems,
+      ZJcementationFlag: ZJcementationFlag,
+      otherZJcementation: otherZJcementation
+    });
+
+    //其他
+    this.setData({
+      other: ZXHoleDetails.other
+    });
+  },
+
+  //共同的显示
+  showZXGatherInfo: function (ZXHoleDetails) {
+    var that = this;
+    //砼底情况
+    var bottomStateItems = this.data.bottomStateItems;
+    var bottomStateText = ZXHoleDetails.bottomState;
+    for (var i = 0, len = bottomStateItems.length; i < len; ++i) {
+      var text = bottomStateItems[i].bottomStateText;
+      bottomStateItems[i].checked = text == bottomStateText;
+    }
+
+    //沉渣情况
+    var sedimentStatetext, sedimentStateFlag, sedimentDescribe;
+    var sedimentState = ZXHoleDetails.sedimentState;
+    if (sedimentState == 0) {
+      sedimentStatetext = "无"
+      sedimentStateFlag = false
+      sedimentDescribe = ""
+    } else {
+      sedimentStatetext = "有"
+      sedimentStateFlag = true
+      sedimentDescribe = ZXHoleDetails.sedimentDescribe
+    }
+    var sedimentStateItems = this.data.sedimentStateItems;
+    for (var i = 0, len = sedimentStateItems.length; i < len; ++i) {
+      var text = sedimentStateItems[i].sedimentStatetext;
+      sedimentStateItems[i].checked = text == sedimentStatetext;
+    }
+
+    this.setData({
+      sedimentStateItems: sedimentStateItems,
+      sedimentStateFlag: sedimentStateFlag,
+      sedimentDescribe: sedimentDescribe,
+      sedimentState: sedimentState
+    });
+
+    //芯样汇总图片
+    var xyAttachment = ZXHoleDetails.xyAttachment;
+
+    var chooseImage;
+
+    //根据hash值获取图片base64 
+    if (xyAttachment) {
+      chooseImage = false
+      WXAPI.GetPic(xyAttachment).then(res => {
+        that.setData({
+          base64Code: res.result
+        });
+      })
+
+      that.setData({
+        xyAttachment: xyAttachment,
+        chooseImage: chooseImage
+      });
+    } else {
+      that.setData({
+        chooseImage: true
+      });
+    }
+  },
+
+  //显示图片
+  previewGatherPic: function () {
+    var base64 = 'data:image/jpg;base64,' + this.data.base64Code;
+    until.base64src(base64, res => {
+      console.log(res) // 返回图片地址，直接赋值到image标签即可
+      wx.previewImage({
+        current: res,
+        urls: [res]
+      })
+    });
+  },
+
+  //删除之前的图片
+  delBeforeImg: function () {
+    var that = this;
+    wx.showModal({
+      title: '操作提醒',
+      content: '确定要删除当前图片吗？',
+      confirmColor: '#4cd964',
+      success(res) {
+        if (res.confirm) {
+          that.setData({
+            files: [],
+            xyAttachment: "",
+            chooseImage: true
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消');
+        }
+      }
     })
   }
 })

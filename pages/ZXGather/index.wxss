@@ -1,77 +1,99 @@
 /* pages/SceneRecordZXGather/SceneRecordZXGather.wxss */
-.section_gap{
-  padding:15px 15px;
-  color:#fff;
-}
-.radio{
-  width:35%;
-}
-.weui-uploader{
-  padding:10px 0 5px  0;
-}
-.otherDefact{
-  width:100%;
-  box-sizing: border-box;
-  border-left:0;
-  border-right:0;
-  border-radius: 0; 
-  margin-top:10rpx;
+.section_gap {
+  padding: 15px 15px;
+  color: #fff;
 }
 
-.weui-uploader{
-  padding:10px 0 5px  0;
+.radio {
+  width: 35%;
 }
-.weui-uploader_status{
-  position:relative;
+
+.weui-uploader {
+  padding: 10px 0 5px 0;
 }
+
+.otherDefact {
+  width: 100%;
+  box-sizing: border-box;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  margin-top: 10rpx;
+}
+
+.weui-uploader {
+  padding: 10px 0 5px 0;
+}
+
+.weui-uploader_status {
+  position: relative;
+}
+
 .weui-uploader__bd {
-  overflow:unset;
+  overflow: unset;
 }
 
 .weui-uploader__file-content {
   position: absolute;
   top: -9px;
-  right:-7px;
-  left:unset;
+  right: -7px;
+  left: unset;
   color: #fff;
   -webkit-transform: unset;
   transform: unset;
   z-index: 99
 }
-.weui-upload-status{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:2px;
-  font-size:12px;
-  color:#fff;
+
+.weui-upload-status {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2px;
+  font-size: 12px;
+  color: #fff;
   text-align: center;
 }
-.upload-sucess{
-  background-color: #4cd964; 
+
+.upload-sucess {
+  background-color: #4cd964;
 }
-.upload-error{
+
+.upload-error {
   background-color: crimson;
 }
 
-.radio-group{
-  display:flex;
+.radio-group {
+  display: flex;
 }
 
-.radio.more-radio{
-  flex:1;
+.radio.more-radio {
+  flex: 1;
 }
 
-.zx-input{
-    width:300rpx;
-    border:1px solid #555;
-    border-radius: 10rpx;
-    margin:12rpx 10rpx;
-    padding:6rpx;
-    color:#4cd964;
+.zx-input {
+  width: 300rpx;
+  border: 1px solid #555;
+  border-radius: 10rpx;
+  margin: 12rpx 10rpx;
+  padding: 6rpx;
+  color: #4cd964;
+  text-align: center;
 }
-.rs-text{
-  color:#fff;
-  font-size:32rpx;
+
+.rs-text {
+  font-size: 32rpx;
+}
+
+.GatherPicWrap{
+  position: absolute;
+  width: 77px;
+  height: 77px;
+  z-index: 99;
+  top: 0;
+  left: 0;
+}
+.GatherPic{
+  width:100%;
+  height:100%;
 }

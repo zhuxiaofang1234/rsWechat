@@ -1,7 +1,8 @@
 const App = getApp();
 const WXAPI = require('./main.js')
+const FILE_BASE_NAME = 'tmp_base64src'; //自定义文件名
 
-function endTest(){
+function endTest() {
   var BaseTestData = wx.getStorageSync('BaseTestData');
   var baseInfoId = BaseTestData.baseInfoId;
   var serialNo = BaseTestData.serialNo;
@@ -11,10 +12,10 @@ function endTest(){
     confirmColor: '#4cd964',
     success(res) {
       if (res.confirm) {
-        var queryData =  {
+        var queryData = {
           "BaseInfoId": baseInfoId
         }
-        WXAPI.FinishZTtest(queryData).then(res=>{
+        WXAPI.FinishZTtest(queryData).then(res => {
           wx.showToast({
             title: '当前试验已结束',
             icon: 'success',
@@ -32,7 +33,7 @@ function endTest(){
               })
             }
           })
-        },err=>{
+        }, err => {
           wx.showModal({
             title: '操作失败',
             content: '当前状态已锁定',
@@ -48,39 +49,39 @@ function endTest(){
 }
 
 //是否正在试验中
-function isTesting (){
+function isTesting() {
   var BaseTestData = wx.getStorageSync('BaseTestData');
   var TestModeCode = BaseTestData.testModeCode;
   var content = "";
-  switch (TestModeCode){
+  switch (TestModeCode) {
     case 'TQ':
-      content+= '有中断的轻型动力触探试验，是否继续？'
+      content += '有中断的轻型动力触探试验，是否继续？'
       break;
-      case 'TZ':
+    case 'TZ':
       content += '有中断的重型动力触探试验，是否继续？'
-    break;
+      break;
   }
-    wx.showModal({
-      title: '温馨提示',
-      content: content,
-      cancelText: '结束试验',
-      cancelColor: '#ddd',
-      confirmText: '继续试验',
-      confirmColor: '#4cd964',
-      success(res) {
-        if (res.confirm) {
-          wx.navigateTo({
-            url: '/pages/test/addTestData/testRecord',
-          });
-        } else if (res.cancel) {
-         endTest();
-        }
+  wx.showModal({
+    title: '温馨提示',
+    content: content,
+    cancelText: '结束试验',
+    cancelColor: '#ddd',
+    confirmText: '继续试验',
+    confirmColor: '#4cd964',
+    success(res) {
+      if (res.confirm) {
+        wx.navigateTo({
+          url: '/pages/test/addTestData/testRecord',
+        });
+      } else if (res.cancel) {
+        endTest();
       }
-    })
+    }
+  })
 }
 
 //综合测试类型
-function getModeType(){
+function getModeType() {
   var TestModeCode = wx.getStorageSync('testModeCode');
   var ModeType;
   switch (TestModeCode) {
@@ -99,7 +100,7 @@ function getModeType(){
 
 
 //倒序排列
- function sortBy (attr, rev) {
+function sortBy(attr, rev) {
   //第二个参数没有传递 默认升序排列
   if (rev == undefined) {
     rev = 1;
@@ -120,9 +121,32 @@ function getModeType(){
   }
 }
 
+
+function base64src(base64data, cb) {
+  const [, format, bodyData] = /data:image\/(\w+);base64,(.*)/.exec(base64data) || [];
+  if (!format) {
+    return (new Error('ERROR_BASE64SRC_PARSE'));
+  }
+  const filePath = `${wx.env.USER_DATA_PATH}/${FILE_BASE_NAME}.${format}`;
+  const buffer = wx.base64ToArrayBuffer(bodyData);
+  const fsm = wx.getFileSystemManager();
+  fsm.writeFile({
+    filePath,
+    data: buffer,
+    encoding: 'binary',
+    success() {
+      cb(filePath);
+    },
+    fail() {
+      return (new Error('ERROR_BASE64SRC_WRITE'));
+    },
+  });
+};
+
 module.exports = {
   endTest,
   isTesting,
   getModeType,
-  sortBy
+  sortBy,
+  base64src
 }

@@ -119,7 +119,10 @@ page {
 }
 
 .text-orange {
-  color: #ff7e00;
+  color: #ff7e00 !important;
+}
+.text-red {
+  color: #ff0000 !important;
 }
 
 .overflow {

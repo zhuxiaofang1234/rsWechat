@@ -1,86 +1,86 @@
 <form bindsubmit='reg'>
-  <view class="details-wrap">
-    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-    <view class="main">
-      <scroll-view class="main-wrapper" scroll-y style="height:100%">
-        <view class="details-container no-padding bg-gray38">
-          <view class="weui-cells__title rs-title">上岗证号</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">钻机编号</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="machineId" value="{{machineId}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">钻机架空(m)<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="machineId" value="{{machineId}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">孔径(mm)<span class="blue">*</span></view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="machineId" value="{{machineId}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">设计桩顶标高以上
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_select">
-              <view class="weui-cell__bd">
-                <picker bindchange="bindHeightChange" value="{{height[heightIndex]}}" range="{{height}}">
-                  <view class="weui-select">{{height[heightIndex]}}</view>
-                </picker>
-              </view>
-            </view>
-          </view>
-          <view hidden="{{isShowHeight}}">
-            <view class="weui-cells weui-cells_after-title bg-black">
-              <view class="weui-cell weui-cell_input">
-                <view class="weui-cell__bd">
-                  <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade"/>
-                </view>
-              </view>
-            </view>
-          </view>
-            <view class="weui-cells__title rs-title">
-            <span class="blue">*</span>检测时间</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_select">
-              <view class="weui-cell__bd">
-                <picker mode="date" bindchange="bindStartDateChange" value="{{startDate}}" start="2019-11-01" end="2020-11-01">
-                  <view class="weui-select">{{startDate}}</view>
-                </picker>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">开孔位置示意图</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-
-          </view>
-        </view>
-      </scroll-view>
-    </view>
-    <!--main结束-->
-    <!--弹出框结束-->
-    <view class="footer backfooter">
-      <button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
-      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
-    </view>
-  </view>
-  <!--details-wrap结束-->
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<scroll-view class="main-wrapper" scroll-y style="height:100%">
+				<view class="details-container no-padding bg-gray38">
+					<view class="weui-cells__title rs-title">上岗证号</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">钻机编号</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="machineId" value="{{machineId}}" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">钻机架空(m)<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="machineId" value="{{machineId}}" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">孔径(mm)<span class="blue">*</span></view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="machineId" value="{{machineId}}" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">桩顶标高以上
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="section section_gap">
+							<radio-group class="radio-group" bindchange="coreStateChange" name="coreState">
+								<radio class="radio more-radio" wx:for-items="{{coreStateItems}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+									<text>{{item.coreStateText}}</text>
+								</radio>
+							</radio-group>
+						</view>
+						<view class="weui-cells weui-cells_after-title bg-black" hidden="{{!isShowHeight}}">
+							<view class="weui-cell weui-cell_input ">
+								<view class="weui-cell__bd">
+									<input class="weui-input zx-input rs-inline bg-gray38" value="{{otherOverPileHeight}}" name="otherOverPileHeight" /><text class="rs-text">m</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">
+						<span class="blue">*</span>检测时间</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_select">
+							<view class="weui-cell__bd">
+								<picker mode="date" bindchange="bindStartDateChange" value="{{startDate}}" start="2019-11-01" end="2020-11-01">
+									<view class="weui-select">{{startDate}}</view>
+								</picker>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">开孔位置示意图</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="canvas-wrap">
+							<canvas id="myCanvas" type="2d" class="zxCanvas"></canvas>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!--main结束-->
+		<!--弹出框结束-->
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+		</view>
+	</view>
+	<!--details-wrap结束-->
 </form>

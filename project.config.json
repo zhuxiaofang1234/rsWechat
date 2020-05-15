@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.7",
+	"libVersion": "2.8.3",
 	"appid": "wxa98e67a22359a1d3",
 	"projectname": "rsWechat",
 	"debugOptions": {
@@ -76,27 +76,6 @@
 				},
 				{
 					"id": -1,
-					"name": "SceneRecordZXForceLayer",
-					"pathName": "pages/SceneRecordZXForceLayer/SceneRecordZXForceLayer",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "SceneRecordZXFlSample",
-					"pathName": "pages/SceneRecordZXFlSample/SceneRecordZXFlSample",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "addTestData",
-					"pathName": "pages/test/addTestData/addTestData",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "choseList",
 					"pathName": "pages/test/addTestData/testList",
 					"query": "",
@@ -104,50 +83,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "TestDataDetails",
-					"pathName": "pages/test/TestDataDetails/TestDataDetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "TestDataDetails",
-					"pathName": "pages/test/TestDataDetails/TestDataDetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "/testData/index",
 					"pathName": "pages/test/testData/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "editTestData",
-					"pathName": "pages/test/editTestData/editTestData",
 					"query": "",
 					"scene": null
 				},
@@ -167,36 +104,8 @@
 				},
 				{
 					"id": -1,
-					"name": "SceneRecordZXDefect",
-					"pathName": "pages/SceneRecordZXDefect/SceneRecordZXDefect",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "ZXsampleList",
 					"pathName": "pages/ZXsampleList/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ZXDefectList/index",
-					"pathName": "pages/ZXDefectList/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ZXDefectList",
-					"pathName": "pages/ZXDefectList/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "EditZXDefact",
-					"pathName": "pages/EditZXDefact/index",
 					"query": "",
 					"scene": null
 				},
@@ -211,6 +120,27 @@
 					"id": -1,
 					"name": "ZXresult",
 					"pathName": "pages/ZXresult/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXBaseData",
+					"pathName": "pages/ZXBaseData/ZXBaseData",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXHoleBaseInfo",
+					"pathName": "pages/ZXHoleBaseInfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "AddworkSurvey",
+					"pathName": "pages/myInfo/workSurvey/add",
 					"scene": null
 				}
 			]

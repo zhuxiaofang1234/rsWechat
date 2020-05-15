@@ -184,6 +184,21 @@ module.exports = {
   },
   GetUserStamp:()=>{//获取用户签章
     return request('/api/services/app/Session/GetUserStamp', 'GET')
+  },
+  DoDetect:(data)=>{ //进场
+    return request('/api/services/app/WorkSures/DoDetect', 'PUT',data)
+  },
+  FinishDetect:(data)=>{//出场
+    return request('/api/services/app/WorkSures/FinishDetect', 'PUT',data)
+  },
+  SurveyRecord:(data)=>{ //获取现场踏勘
+    return request('/api/services/app/SurveyRecord/GetPaged', 'GET',data)   
+  },
+  SurveyRecordDetails:(data)=>{//踏勘记录详情
+    return request('/api/services/app/SurveyRecord/GetById','GET',data)
+  },
+  AddSurveyRecord:(data)=>{ //新增踏勘记录
+    return request('/api/services/app/SurveyRecord/AddRecord','POST',data)
   }
 }
 
