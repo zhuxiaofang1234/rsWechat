@@ -10,7 +10,12 @@
 width:300rpx;
 word-wrap:break-word;
 word-break:break-all;
+font-size: 30rpx;
 }
 .weui-cells.weui-cells_after-title{
-  background: #383838;
+  background: #000;
+}
+.weui-cells__title{
+  color:#fff;
+  font-size: 30rpx;
 }

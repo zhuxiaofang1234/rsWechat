@@ -22,7 +22,7 @@ Page({
   onLoad: function (options) {
     var wtId = options.Id;
     var confirmStatus = options.confirm;
-    if (confirmStatus == 0 || confirmStatus == 1 || confirmStatus == 3) {
+    if (confirmStatus == 0 || confirmStatus == 1 || confirmStatus == 30) {
       this.setData({
         hidden: false,
       });
@@ -200,8 +200,9 @@ Page({
     var data = {};
     data.id = this.data.wtId;
     var date = this.data.Date;
+    var that = this;
 
-    if (operationFlag == 'toDetect') {
+    if (operationFlag == 'toDetect') { //待进场
       data.startDate = date
       WXAPI.DoDetect(data).then(res => {
         wx.hideLoading()
@@ -210,7 +211,11 @@ Page({
           icon: 'success',
           duration: 2000,
           mask: true,
-          success: function (res) {}
+          success: function (res) {
+            setTimeout(() => {
+              App.back();
+            }, 600)
+          }
         })
       }, err => {
         wx.hideLoading()
@@ -225,11 +230,27 @@ Page({
           icon: 'success',
           duration: 2000,
           mask: true,
-          success: function (res) {}
+          success: function (res) {
+            setTimeout(() => {
+              App.back();
+            }, 600)
+          }
         })
       }, err => {
         wx.hideLoading()
       })
     }
+  },
+  goBack: function () {
+    //返回列表页
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      inputVal: '',
+      page: 0,
+      testList: []
+    });
+    prevPage.getPage();
+    App.back();
   }
 })

@@ -7,8 +7,8 @@ Page({
    */
   data: {
     wtId: "",
-    startDate: "2016-09-01",
-    endDate: "2019-06-06",
+    startDate: "2020-05-01",
+    endDate: "2020-05-20",
     message: ''
   },
 

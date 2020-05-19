@@ -233,9 +233,6 @@ Page({
           console.log('执行完毕')
           console.log('成功：' + successNum + " 失败：" + failNum);
          
-          // that.setData({
-          //   ImghashList: ImghashList
-          // });
           //收集表单数据，并提交
           var recordData = data.submitData;
           recordData.imageList = ImghashList
@@ -263,8 +260,12 @@ Page({
         duration: 2000,
         mask: true,
         success: function (res) {
-         
-        }
+          //跳转到详情页
+          var pages = getCurrentPages();
+          var prevPage = pages[pages.length - 2];  
+          prevPage.getSurveyRecordDetails(prevPage.data.wtId);
+          App.back();     
+      }
       })
 
     },err=>{

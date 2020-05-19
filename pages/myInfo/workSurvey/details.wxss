@@ -97,6 +97,10 @@
   margin-left: 80rpx;
 }
 
+.no-pic{
+  font-size:24rpx;
+}
+
 .add-wrap {
   position: fixed;
   width: 104rpx;
@@ -124,3 +128,17 @@
   height:77px;
   margin-right:10rpx;
 }
+
+.rs-btn.detailBtn {
+  color: rgb(0, 216, 255);
+  border-color: rgb(0, 216, 255);
+  background-color: transparent;
+  display: inline-block;
+  padding: 0;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  box-sizing: border-box; 
+  }
+  

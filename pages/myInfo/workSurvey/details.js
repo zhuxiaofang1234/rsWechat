@@ -14,7 +14,7 @@ Page({
     recordList: [],
     wtId: null,
     imageList: [],
-    base64CodeList:[]
+    base64codeList: []
   },
 
   onLoad: function (options) {
@@ -25,7 +25,6 @@ Page({
   },
 
   tabClick: function (e) {
-    var that = this;
     var curIndex = e.currentTarget.id;
     this.setData({
       activeIndex: curIndex
@@ -47,29 +46,10 @@ Page({
 
     WXAPI.SurveyRecordDetails(queryData).then(res => {
       var resData = res.result;
-      var recordList = resData.recordList;
-      console.log(recordList);
-  
-      for (var i = 0; i < recordList.length; i++) {
-        var item = recordList[i];
-        var imageLength = item.imageList.length;
-        if (imageLength != 0) {
-          for (var j = 0; j < imageLength; j++) {
-            var hash = item.imageList[j];
-            that.data.base64CodeList = [];
-          
-            that.getPicBase64(hash).then(res=>{
-              console.log(res)
-            })
-          }
-        }
-      }
-    
       that.setData({
         SurveyRecord: resData,
         recordList: resData.recordList
       });
-
       wx.hideLoading();
     })
   },
@@ -85,27 +65,34 @@ Page({
       url: '/pages/myInfo/workSurvey/add?Id=' + id
     })
   },
-  //显示图片
-  previewPic: function () {
-    var base64 = 'data:image/jpg;base64,' + this.data.base64Code;
-    until.base64src(base64, res => {
-      console.log(res) // 返回图片地址，直接赋值到image标签即可
-      wx.previewImage({
-        current: res,
-        urls: [res]
-      })
-    });
-  },
+
   //获取图片base64
   getPicBase64(hash) {
-    // var that = this;
-    return new Promise(function(resolve,reject){
-      WXAPI.GetPic(hash).then(res => {
-        resolve(res.result)
-        // var base64Code = res.result
-        // that.data.base64CodeList.push(base64Code);
+    return WXAPI.GetPic(hash).then(res => {
+      return res.result
+    })
+  },
+  //点击查看图片
+  toPreviewImg: function (e) {
+    var that = this;
+    var hashList = e.currentTarget.dataset.list;
+    if (hashList.length != 0) {
+      var urls=[];
+      for (var i = 0; i < hashList.length; i++) {
+        var host =  wx.getStorageSync('rshostName');
+        var url = host+'/api/Resurce/FileResult/'+hashList[i];
+        urls.push(url)
+      }
+      wx.previewImage({
+        current: urls[0],
+        urls:urls,
+        success:function(data){
+          console.log(data)
+        },
+        fail:function(err){
+          console.log(err)
+        }
       })
-    });
-    
+    }
   }
 })

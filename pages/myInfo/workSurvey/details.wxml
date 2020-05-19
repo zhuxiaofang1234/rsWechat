@@ -84,9 +84,13 @@
 										<view class="details-title">现场照片</view>
 										<view class="details-info rs-text mt-20">
 											<view class="recordImgWrap">
-												<block wx:if="{{item.imageList.length!=0}}" wx:for="{{item.imageList}}" wx:for-item="j">
-													<image src="data:image/jpg;base64,{{getPicBase64(j)}}"class="recordImg" bindtap="previewPic"></image>
-												</block>					
+												<block wx:if="{{item.imageList.length!=0}}">
+													<!-- <text class="rs-text">{{item.imageList.length}}</text> -->
+													<button class="rs-btn detailBtn" plain="true" data-list="{{item.imageList}}" bindtap="toPreviewImg">点击查看</button>
+												</block>
+													<block wx:else>
+													<text class="no-pic">暂无现场照片</text>
+												</block>															
 											</view>
 										</view>
 									</view>

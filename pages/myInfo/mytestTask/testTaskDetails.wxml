@@ -64,8 +64,8 @@
     <block wx:elif="{{confirmStatus==1}}">
 			<button class="rs-btn backbtn" plain="true" bindtap="toDoDetect">确认进场</button>
 		</block>
-     <block wx:elif="{{confirmStatus==3}}">
-			<button class="rs-btn backbtn" plain="true" bindtap="toWtSure">确认出场</button>
+     <block wx:elif="{{confirmStatus==30}}">
+			<button class="rs-btn backbtn" plain="true" bindtap="toFinishDetect">确认出场</button>
 		</block>
 	</view>
 </view>

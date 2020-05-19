@@ -40,8 +40,8 @@
 							</view>
 							<view class="testStatus text-orange" wx:if="{{item.confirmStatus==0}}">待确认</view>
 							<view class="testStatus text-orange" wx:elif="{{item.confirmStatus==1}}">待进场</view>
-							<view class="testStatus text-orange" wx:elif="{{item.confirmStatus==3}}">待出场</view>
-							<view class="testStatus" wx:elif="{{item.confirmStatus==4}}">已出场</view>
+							<view class="testStatus text-orange" wx:elif="{{item.confirmStatus==30}}">待出场</view>
+							<view class="testStatus" wx:elif="{{item.confirmStatus==40}}">已出场</view>
 							<view class="testStatus" wx:elif="{{item.confirmStatus==2}}">已驳回</view>
 							<view class="testStatus" wx:else>未知状态</view>
 						</view>

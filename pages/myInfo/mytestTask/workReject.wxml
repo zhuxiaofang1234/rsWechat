@@ -1,12 +1,13 @@
+<form bindsubmit='reg'>
 <view class="details-wrap">
-  <view class="main">
-    <scroll-view class="main-wrapper">
-        <view class="weui-cells__title">驳回原因</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入文本" style="height:4.6em" bindblur="messageConfirm"/>
-                    <view class="weui-textarea-counter">0/200</view>
+	<view class="main">
+		<scroll-view class="main-wrapper">
+			<view class="weui-cells__title">驳回原因</view>
+			<view class="weui-cells weui-cells_after-title">
+				<view class="weui-cell">
+					<view class="weui-cell__bd">
+						<textarea class="weui-textarea" placeholder="请输入文本" style="height:4.6em" name="message"/>
+						<view class="weui-textarea-counter">0/200</view>
                 </view>
             </view>
         </view>
@@ -14,6 +15,7 @@
   </view>
   <view class="footer backfooter">
     <button class="rs-btn backbtn btn-blue mr-50" plain="true" bindtap="toList">取消</button>
-    <button class="rs-btn backbtn btn-green" plain="true" bindtap="toReject">提交</button>
+    <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">提交</button>
   </view>
 </view>
+</form>

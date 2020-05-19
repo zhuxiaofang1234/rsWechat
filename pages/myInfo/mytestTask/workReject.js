@@ -24,21 +24,15 @@ Page({
   onReady: function () {
   },
 
-  //详情信息
-  messageConfirm: function (e) {
-    this.setData({
-      message: e.detail.value
-    });
-  },
   toList: function () {
     wx.navigateBack({
       delta: 1
     })
   },
-  toReject: function (e) {
-
-    var message = this.data.message;
+  reg: function (e) {
     var that = this;
+    var message = e.detail.value.message; 
+    console.log(message);
     if (message.length==0) {
       wx.showModal({
         title: '错误提示',
