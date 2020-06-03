@@ -1,0 +1,4 @@
+<!--component/suspendBtn/index.wxml-->
+	<view class="add-wrap"  style="bottom:{{bottom}}rpx">
+		<image class="add-image" src="../../images/add_icon.png" bindtap="clickBtn"></image>
+	</view>

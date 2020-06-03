@@ -1,0 +1,31 @@
+<view class="loading-container" hidden="{{loadingPage}}">
+	<image src="../../images/loading.gif" class="img-loading"></image>
+</view>
+<block wx:if="{{testList.length>0}}">
+	<scroll-view scroll-y style="height:calc(100vh); margin-top:20rpx" bindscrolltolower="loadMore" lower-threshold="100">
+		<view class="test-item area-flex" data-id="{{item.baseInfoId}}" wx:if="{{testList.length>0}}" wx:for="{{testList}}" wx:key="{{index}}"  bindtap="toJZMonitorDetails">
+			<view class="test-number area-flex">{{index+1}}</view>
+			<view class="area-right test-content">
+				<view class="testInfo mb-32">{{item.projectName ? item.projectName : '-'}}</view>
+				<view class="testInfo mb-32">
+					<view class="test-way-info text-white">
+						<text class="testWay">{{item.serialNo ? item.serialNo : '-'}}</text>
+					</view>
+					<view class="testStatus">{{item.pileNo ? item.pileNo: '-'}}</view>
+				</view>
+				<view class="testInfo mb-32 text-green">{{item.testType ? item.testType : '-'}}</view>
+				<view class="testInfo">{{item.startTime}}</view>
+			</view>
+		</view>
+	</scroll-view>
+</block>
+<block wx:else>
+	<view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+		<view style="margin-top:200rpx;">
+			<view class="img-wrap">
+				<image src="../../images/noData.png" class="img-response"></image>
+			</view>
+			<view class="error-tips">暂无记录</view>
+		</view>
+	</view>
+</block>

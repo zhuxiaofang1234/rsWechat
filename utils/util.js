@@ -2,6 +2,36 @@ const App = getApp();
 const WXAPI = require('./main.js')
 const FILE_BASE_NAME = 'tmp_base64src'; //自定义文件名
 
+const TestMode = {
+        "DC": "动测",
+        "DY": "低应变",
+        "GY": "高应变",
+        "SC": "声波透射",
+        "ZX": "钻芯",
+        "ZG": "灌注桩钻芯",
+        "ZJ": "搅拌桩钻芯",
+        "ZY": "岩基钻芯",
+        "JZ": "静载",
+        "KY": "抗压静载",
+        "KB": "抗拔静载",
+        "SP": "水平多循环静载",
+        "ZP": "自平衡静载",
+        "PB": "平板试验",
+        "PT": "天然地基平板",
+        "PF": "复合地基平板",
+        "PC": "处理土地基平板",
+        "YJ": "岩基载荷试验",
+        "BG": "标准贯入试验",
+        "ZT": "触探",
+        "TQ": "轻型动力触探",
+        "TZ": "重型动力触探",
+        "MG": "锚杆",
+        "JM": "基础锚杆试验",
+        "ZM": "支护锚杆试验",
+        "SM": "支护锚索试验",
+        "TB": "土钉抗拔试验"
+};
+
 function endTest() {
   var BaseTestData = wx.getStorageSync('BaseTestData');
   var baseInfoId = BaseTestData.baseInfoId;
@@ -148,5 +178,6 @@ module.exports = {
   isTesting,
   getModeType,
   sortBy,
-  base64src
+  base64src,
+  TestMode
 }

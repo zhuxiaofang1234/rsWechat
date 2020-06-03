@@ -60,6 +60,7 @@ Page({
       'IsTesting':0
     }
     var modeType = until.getModeType();
+    console.log(modeType);
     WXAPI.GetPileList(queryData, modeType).then(res=>{
   
       that.setData({

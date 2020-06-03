@@ -10,11 +10,26 @@ Page({
     radioItems: [{
         name: '轻型动力触探',
         value: 'TQ',
-        checked: true
       },
       {
         name: '重型动力触探',
         value: 'TZ'
+      },
+      {
+        name: '抗压静载',
+        value: 'KY'
+      },
+      {
+        name: '抗拔静载',
+        value: 'KB'
+      },
+      {
+        name: '水平多循环静载',
+        value: 'SP'
+      },
+      {
+        name: '自平衡静载',
+        value: 'ZP'
       },
       {
         name: '灌注桩钻芯',
@@ -42,7 +57,7 @@ Page({
     //更新main.js内的Token和host
     WXAPI.getToken();
     WXAPI.getHost();
-    wx.setStorageSync('testModeCode', this.data.curTestMode);
+   // wx.setStorageSync('testModeCode', this.data.curTestMode);
     /*根据token判断用户是否登录*/
     if (accessToken) {
       this.setData({
@@ -67,9 +82,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    //选中当前检测方法
-    var TestModeCode = wx.getStorageSync('testModeCode');
-    this.checkedTestMode(TestModeCode);
+    // //选中当前检测方法
+    // var TestModeCode = wx.getStorageSync('testModeCode');
+    // this.checkedTestMode(TestModeCode);
   },
 
   /**
@@ -94,10 +109,10 @@ Page({
 
   //选择试验方法
   radioChange: function(e) {
-    var curTestMode = e.detail.value;
-    this.checkedTestMode(curTestMode);
-    //更换检测方法
-    wx.setStorageSync('testModeCode', curTestMode);
+    // var curTestMode = e.detail.value;
+    // this.checkedTestMode(curTestMode);
+    // //更换检测方法
+    // wx.setStorageSync('testModeCode', curTestMode);
   },
 
   //获取用户信息
@@ -108,10 +123,12 @@ Page({
       var userName = resData.name;
       var userAccount = resData.userName;
       var userStamp = resData.userStamp;
-
+      var jobScope = res.result.jobScope;
+     
       wx.setStorageSync('userAccount', userAccount);
       wx.setStorageSync('userName', userName);
       wx.setStorageSync('userStamp', userStamp);
+      wx.setStorageSync('jobScope', jobScope);
       
       that.setData({
         loginName: userName,

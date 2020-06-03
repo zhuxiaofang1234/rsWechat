@@ -1,0 +1,19 @@
+/* component/suspendBtn/index.wxss */
+
+.add-wrap {
+  position: fixed;
+  width: 104rpx;
+  height: 104rpx;
+  display: flex;
+  justify-content: center;
+  right: 30rpx;
+  bottom: 80rpx;
+}
+
+.add-image {
+  width: 98rpx;
+  height: 98rpx;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+}

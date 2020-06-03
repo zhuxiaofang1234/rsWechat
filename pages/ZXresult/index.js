@@ -24,11 +24,8 @@ Page({
   onReady: function () {
     //钻芯汇总信息
     var zxGatherInfo = wx.getStorageSync('zxGather');
-
     //钻芯孔的基本信息
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-    console.log(ZXHoleDetails);  
-
     this.setData({
       zxGatherInfo: zxGatherInfo,
       ZXHoleDetails: ZXHoleDetails,
@@ -52,7 +49,7 @@ Page({
   //表单
   reg: function (e) {
     var hzInfo = this.data.zxGatherInfo;
-    console.log(hzInfo);
+    
     var data = e.detail.value;
     var pileXyDescribe = data.pileXyDescribe;
     var erroInfo;
@@ -63,7 +60,6 @@ Page({
     }
     hzInfo.pileXyDescribe = pileXyDescribe;
     hzInfo.rockXyDescribe = data.rockXyDescribe;
-    console.log(hzInfo);
     this.submitZXgatherInfo(hzInfo);
   },
   //桩芯样描述
@@ -73,7 +69,6 @@ Page({
     var PileXyDescribe = "";
     var str = zxGatherInfo.coreSample + ',' + '骨料分布' + zxGatherInfo.aggregateCover + ',' + '胶结' + zxGatherInfo.cementation + ',' +
       '侧表面' + zxGatherInfo.sideSurface+'。';
-      console.log(str);
 
     if (zxHoleCoreDefectList.length != 0) {
       zxHoleCoreDefectList.forEach(function (item) {
@@ -83,7 +78,6 @@ Page({
     } else {
       PileXyDescribe += '所有砼芯' + str
     }
-    console.log(PileXyDescribe);
     this.setData({
       pileXyDescribe: PileXyDescribe
     });
@@ -93,7 +87,6 @@ Page({
   getZJXyDescribe: function (zxGatherInfo) {
     var PileXyDescribe = "";
     var zxHoleCoreDefectList = this.data.ZXHoleDetails.zxHoleCoreDefectList;
-    console.log(zxHoleCoreDefectList);
     var str = zxGatherInfo.coreState + ',' + '断口' + zxGatherInfo.fracture + ',' + '水泥搅拌' + zxGatherInfo.cementSoilMixing + ',' +
       '胶结' + zxGatherInfo.cementation+','+zxGatherInfo.other;
     if (zxHoleCoreDefectList.length != 0) {

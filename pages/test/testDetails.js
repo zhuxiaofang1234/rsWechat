@@ -1,6 +1,6 @@
 // pages/test/testDetails.js
 const App = getApp();
-const WXAPI = require('../../utils/main.js')
+const WXAPI = require('../../utils/main.js');
 
 Page({
 

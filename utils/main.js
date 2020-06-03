@@ -33,6 +33,15 @@ const request = (url, method, data) => {
             App.removeLoginInfo();
             reject(request)
       
+        }else if(code==403){
+          wx.showModal({
+            title: '温馨提示',
+            content: '无访问权限！',
+            showCancel: false,
+            confirmColor: '#4cd964'
+          })  
+          reject(request)
+
         } else{
           wx.showModal({
             title: '温馨提示',
@@ -199,6 +208,9 @@ module.exports = {
   },
   AddSurveyRecord:(data)=>{ //新增踏勘记录
     return request('/api/services/app/SurveyRecord/AddRecord','POST',data)
+  },
+  JZMonitorList:(data)=>{//获取测试中的数据
+    return request('/api/services/app/Monitor/Testing','GET',data)
   }
 }
 

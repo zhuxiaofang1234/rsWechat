@@ -1,28 +1,15 @@
 // pages/test/test.js
 const App = getApp();
-const WXAPI = require('../../../utils/main.js')
+const WXAPI = require('../../../utils/main.js');
+var sliderWidth = 36; // 需要设置slider的宽度，用于计算中间位置
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    selectArray: [{
-      "code": "",
-      "text": "全部"
-    },
-    {
-      "code": "2",
-      "text": "待检测"
-    },
-    {
-      "code": "5",
-      "text": "检测中"
-    }, {
-      "code": "6",
-      "text": "已检测"
-    }
-    ],
+    testModeName:'全部',
+    testModeCode:'',
     inputShowed: false,
     inputVal: "",
     accessToken: '',
@@ -34,7 +21,12 @@ Page({
     loadingText: '加载中.....',
     /***数据是否正在加载**/
     hidden: true,
-    loadingPage: true
+    ConfirmStatus: "",
+    loadingPage: false,
+    tabs: ["全部", "待确认", "待进场", "待出场"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0
   },
 
   /**
@@ -49,10 +41,21 @@ Page({
       })
     } else {
       App.redirectToLogin();
-    }  
+    }
+
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowWidth);
+        that.setData({
+          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
   },
 
-   /**
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
@@ -68,7 +71,7 @@ Page({
           testList: []
         });
         that.getPage();
-      }, 500)
+      }, 200)
     }
   },
 
@@ -82,12 +85,12 @@ Page({
       wx.hideNavigationBarLoading();
     }, 2000)
     if (this.data.accessToken) {
-    this.setData({
-      inputVal: '',
-      page: 0,
-      testList: []
-    });
-    this.getPage();
+      this.setData({
+        inputVal: '',
+        page: 0,
+        testList: []
+      });
+      this.getPage();
     }
   },
 
@@ -129,7 +132,6 @@ Page({
     console.log('页面上拉触底');
   },
 
-
   /***搜索***/
   showInput: function () {
     this.setData({
@@ -159,19 +161,19 @@ Page({
         testList: []
       });
       that.getPage();
-    }, 500)
+    }, 100)
   },
   //获取列表数据
   getPage: function () {
     var that = this;
     var hidden = this.data.hidden;
     var page = this.data.page;
-    var total = this.data.totalCount;
     var Filter = this.data.inputVal;
+    var ConfirmStatus = this.data.ConfirmStatus;
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
     var hidden = this.data.hidden;
-    var TestModeCode = wx.getStorageSync('testModeCode');
+    var TestModeCode = this.data.testModeCode;
     if (hidden) {
       this.setData({
         "hidden": false
@@ -181,14 +183,11 @@ Page({
       'SkipCount': SkipCount,
       'MaxResultCount': MaxResultCount,
       'TestModeCode': TestModeCode,
+      'ConfirmStatus': ConfirmStatus,
       'Filter': Filter
     };
     WXAPI.GetMyTestTask(queryData).then(res => {
       wx.hideLoading();
-      that.setData({
-        loadingPage: true
-      });
-
       var resData = res.result;
       //数据总条数小于每页要显示的总条数
       var curList = that.data.testList;
@@ -205,6 +204,11 @@ Page({
         "hidden": true,
         'loadingData': true
       });
+      setTimeout(()=>{
+        that.setData({
+          'loadingPage': true
+        },100);
+      })
 
     }, err => {
       //请求出错也关闭加载状态页面
@@ -216,10 +220,51 @@ Page({
   //检测任务详情页
   toTestTaskDetails: function (e) {
     var id = e.currentTarget.dataset.id;
-    var confirm = e.currentTarget.dataset.confirm;  
+    var confirm = e.currentTarget.dataset.confirm;
     wx.navigateTo({
       //去根目录下找pages
       url: '/pages/myInfo/mytestTask/testTaskDetails?Id=' + id + '&confirm=' + confirm
+    })
+  },
+  //切换状态
+  tabClick: function (e) {
+    var id = e.currentTarget.id;
+    var that = this;
+    switch (id) {
+      case "0":
+        ConfirmStatus = "";
+        break;
+      case "1":
+        ConfirmStatus = 0;
+        break;
+      case "2":
+        ConfirmStatus = 1;
+        break;
+      case "3":
+        ConfirmStatus = 30;
+        break;
+      default:
+        ConfirmStatus = "";
+    };
+
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id,
+      ConfirmStatus: ConfirmStatus,
+      inputVal: '',
+      page: 0,
+      testList: [],
+      loadingPage:false  
+    });
+    setTimeout(()=>{
+      this.getPage();
+    },200)
+  
+  },
+  //选择检测方法
+  toSelectTestMode:function(e){
+    wx.navigateTo({
+      url:  "/pages/test/testMode",
     })
   }
 })

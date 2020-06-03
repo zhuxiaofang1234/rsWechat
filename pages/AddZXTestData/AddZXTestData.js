@@ -13,7 +13,8 @@ Page({
     pileData: null,
     holeData: null,
     endHoleInfo: null,
-    holeId: null
+    holeId: null,
+    showMenu: false
   },
 
   /**
@@ -98,16 +99,52 @@ Page({
 
   //跳转到添加钻进记录
   toAddZXTestData: function () {
+    var pileId = this.data.pileId;
+    wx.navigateTo({
+      url: '/pages/ZXRecordList/index?pileId=' + pileId,
+    });
+    this.setData({
+      showMenu: false
+    });
+  },
+  //跳转到终孔操作
+  AddEndhole: function () {
+    wx.navigateTo({
+      url: '/pages/EndHole/EndHole?id=',
+    });
+    this.setData({
+      showMenu: false
+    });
+  },
+
+  //关闭菜单
+  closeMenu: function () {
+    this.setData({
+      showMenu: false
+    });
+  },
+
+  //打开菜单
+  showMenu: function () {
+    this.isNavigateTo();
+  },
+  //跳转现场编录表
+  toZXSceneRecord: function () {
+    wx.navigateTo({
+      url: '/pages/ZXSceneRecordData/ZXSceneRecordData?id=',
+    });
+    this.setData({
+      showMenu: false
+    });
+  },
+  //是否跳转
+  isNavigateTo: function () {
     if (this.data.pileData && this.data.pileData.id) {
-      var pileId = this.data.pileData.id
       var holeId = this.data.holeId;
-
       if (holeId) {
-        // var url = '/pages/AddZXRecordData/AddZXRecordData?pileId='+ pileId +'&holeId='+holeId;
-        var url = '/pages/ZXRecordList/index?pileId=' + pileId;
-
-
-        this.isNavigateTo(url)
+        this.setData({
+          showMenu: true
+        });
       } else {
         wx.showModal({
           title: '操作提示',
@@ -120,33 +157,6 @@ Page({
       wx.showModal({
         title: '操作提示',
         content: '请先选择桩号',
-        showCancel: false,
-        confirmColor: '#4cd964'
-      })
-    }
-  },
-  //跳转到终孔操作
-  toEndHole: function () {
-    var url = '/pages/EndHole/EndHole?id=';
-    this.isNavigateTo(url);
-
-  },
-  //跳转现场编录表
-  toZXSceneRecord: function () {
-    var url = '/pages/ZXSceneRecordData/ZXSceneRecordData?id=';
-    this.isNavigateTo(url);
-  },
-  //是否跳转
-  isNavigateTo: function (_url) {
-    var holeId = this.data.holeId;
-    if (holeId) {
-      wx.navigateTo({
-        url: _url
-      })
-    } else {
-      wx.showModal({
-        title: '操作提示',
-        content: '请先选择孔号',
         showCancel: false,
         confirmColor: '#4cd964'
       })

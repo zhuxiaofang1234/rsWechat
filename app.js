@@ -6,7 +6,8 @@ App({
     wx.getSystemInfo({
       success(res) {
         that.globalData.navHeight = res.statusBarHeight + 46;
-        that.globalData.windowHeight = res.windowHeight
+        that.globalData.windowHeight = res.windowHeight;
+        that.globalData.windowWidth = res.windowWidth;
       }
     });
   },
@@ -14,7 +15,8 @@ App({
   globalData: {
     userInfo: null,
     statusBarHeight: 0,
-    windowHeight:0
+    windowHeight:0,
+    windowWidth:0,
   },
   back:function(){
     wx.navigateBack({

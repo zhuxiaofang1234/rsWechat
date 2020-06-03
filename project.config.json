@@ -4,13 +4,21 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
-		"es6": true,
+		"urlCheck": true,
+		"es6": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"coverView": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.8.3",
@@ -62,22 +70,8 @@
 				},
 				{
 					"id": -1,
-					"name": "AddZXRecordData",
-					"pathName": "pages/AddZXRecordData/AddZXRecordData",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "AddZXTestData",
 					"pathName": "pages/AddZXTestData/AddZXTestData",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "choseList",
-					"pathName": "pages/test/addTestData/testList",
 					"query": "",
 					"scene": null
 				},
@@ -90,34 +84,6 @@
 				},
 				{
 					"id": -1,
-					"name": "drawSignature",
-					"pathName": "pages/drawSignature/drawSignature",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "testLandscape",
-					"pathName": "pages/testLandscape/testLandscape",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ZXsampleList",
-					"pathName": "pages/ZXsampleList/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ZXGather",
-					"pathName": "pages/ZXGather/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "ZXresult",
 					"pathName": "pages/ZXresult/index",
 					"query": "",
@@ -125,22 +91,16 @@
 				},
 				{
 					"id": -1,
-					"name": "ZXBaseData",
-					"pathName": "pages/ZXBaseData/ZXBaseData",
+					"name": "mytestTask",
+					"pathName": "pages/myInfo/mytestTask/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "ZXHoleBaseInfo",
-					"pathName": "pages/ZXHoleBaseInfo/index",
+					"name": "AddZXTestData",
+					"pathName": "pages/AddZXTestData/AddZXTestData",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "AddworkSurvey",
-					"pathName": "pages/myInfo/workSurvey/add",
 					"scene": null
 				}
 			]

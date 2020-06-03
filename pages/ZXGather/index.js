@@ -140,7 +140,7 @@ Page({
     files: [],
     isShowUploader: false,
     xyAttachment: "",
-    uploadtext: '上传成功',
+    uploadtext: '上传中...',
     uploadFlag: true
   },
 
@@ -351,6 +351,7 @@ Page({
     });
   },
 
+  //选择图片
   chooseImage: function (e) {
     var that = this;
     wx.chooseImage({
@@ -385,7 +386,9 @@ Page({
           that.setData({
             files: [],
             xyAttachment: "",
-            isShowUploader: false
+            isShowUploader: false,
+            uploadtext: '上传中...',
+            uploadFlag: true
           });
         } else if (res.cancel) {
           console.log('用户点击取消');
@@ -558,7 +561,7 @@ Page({
         coreStateFlag = true,
         otherCoreState = coreState.substring(0, coreState.length - 7);
     } else {
-        coreStateText = coreState,
+      coreStateText = coreState,
         coreStateFlag = false,
         otherCoreState = ""
     }

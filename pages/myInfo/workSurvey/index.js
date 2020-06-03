@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    testModeName:'全部',
+    testModeCode:'',
     inputShowed: false,
     inputVal: "",
     accessToken: '',
@@ -18,7 +20,7 @@ Page({
     loadingText: '加载中.....',
     /***数据是否正在加载**/
     hidden: true,
-    loadingPage: true
+    loadingPage: false
   },
 
   /**
@@ -30,7 +32,8 @@ Page({
     if (accessToken) {
       this.setData({
         "accessToken": accessToken
-      })
+      });
+      this.getPage();
     } else {
       App.redirectToLogin();
     }  
@@ -40,20 +43,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.accessToken) {
-      var that = this;
-      this.setData({
-        loadingPage: false
-      });
-      setTimeout(function () {
-        that.setData({
-          inputVal: '',
-          page: 0,
-          testList: []
-        });
-        that.getPage();
-      }, 500)
-    }
+    
   },
 
   /**
@@ -96,7 +86,7 @@ Page({
       });
       setTimeout(function () {
         that.getPage()
-      }, 600)
+      }, 100)
 
     } else {
       this.setData({
@@ -134,16 +124,14 @@ Page({
   search: function (e) {
     var that = this;
     this.setData({
-      loadingPage: false
+      loadingPage: false,
+      inputVal: e.detail.value,
+      page: 0,
+      testList: []
     });
-    setTimeout(function () {
-      that.setData({
-        inputVal: e.detail.value,
-        page: 0,
-        testList: []
-      });
-      that.getPage();
-    }, 500)
+
+    that.getPage();
+   
   },
   //获取列表数据
   getPage: function () {
@@ -155,7 +143,7 @@ Page({
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
     var hidden = this.data.hidden;
-    var TestModeCode = wx.getStorageSync('testModeCode');
+    var TestModeCode = this.data.testModeCode;
     if (hidden) {
       this.setData({
         "hidden": false
@@ -167,12 +155,10 @@ Page({
       'TestModeCode': TestModeCode,
       'Filter': Filter
     };
+
     WXAPI.SurveyRecord(queryData).then(res => {
       wx.hideLoading();
-      that.setData({
-        loadingPage: true
-      });
-
+  
       var resData = res.result;
       //数据总条数小于每页要显示的总条数
       var curList = that.data.testList;
@@ -189,7 +175,12 @@ Page({
         "hidden": true,
         'loadingData': true
       });
-
+      setTimeout(()=>{
+        that.setData({
+          'loadingPage': true
+        },100);
+      })
+      
     }, err => {
       //请求出错也关闭加载状态页面
       that.setData({
@@ -203,6 +194,12 @@ Page({
     wx.navigateTo({
       //去根目录下找pages
       url: '/pages/myInfo/workSurvey/details?Id=' + id
+    })
+  },
+   //选择检测方法
+   toSelectTestMode:function(e){
+    wx.navigateTo({
+      url:  "/pages/test/testMode",
     })
   }
 })

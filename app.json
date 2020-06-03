@@ -2,6 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
+    "pages/test/testMode",
+    "pages/JZmonitor/album",
+    "pages/JZmonitor/photo", 
+    "pages/JZmonitor/location",
+    "pages/JZmonitor/index",
+    "pages/WebView/index",
     "pages/ZXRecordList/index",
     "pages/ZXDefectList/index",
     "pages/ZXsampleList/index",
@@ -22,7 +28,6 @@
     "template/loadingPage/loadingPage",
     "template/noDataPage/noDataPage",
     "pages/test/test",
-    "pages/testMode/index",
     "pages/test/TestDataDetails/TestDataDetails",
     "pages/test/addTestData/addTestData",
     "pages/test/EditZTdepth/EditZTdepth",
@@ -47,8 +52,7 @@
     "pages/myInfo/systemInfo/index",
     "pages/myInfo/workSurvey/index",
     "pages/myInfo/workSurvey/details",
-    "pages/myInfo/workSurvey/add",
-    "pages/testIndex/testIndex"
+    "pages/myInfo/workSurvey/add"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -74,6 +78,12 @@
         "iconPath": "images/test@2x.png",
         "selectedIconPath": "images/stest@2x.png",
         "text": "现场记录"
+      },
+      {
+        "pagePath": "pages/JZmonitor/index",
+        "iconPath": "images/monitor@2x.png",
+        "selectedIconPath": "images/smonitor@2x.png",
+        "text": "静载监控"
       },
       {
         "pagePath": "pages/myInfo/myInfo",

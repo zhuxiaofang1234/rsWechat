@@ -183,6 +183,7 @@ Page({
   //批量上传图片
   uploadFiles: function (submitData) { //触发图片上传
     var files = this.data.files;
+    console.log(files);
     wx.showLoading({
       title: '提交中....',
     })
@@ -203,6 +204,7 @@ Page({
       successNum = data.successNum ? data.successNum : 0, //上传成功的个数
       failNum = data.failNum ? data.failNum : 0, //失败的个数
       ImghashList = data.ImghashList ? data.ImghashList : []; //存储图片的hash值
+      console.log(data.path[i])
     wx.uploadFile({
       filePath: data.path[i],
       name: 'file',
@@ -214,6 +216,7 @@ Page({
       formData: null,
       success: (res) => {
         if (res.statusCode = 200) {
+          console.log('上传成功')
           successNum++;
           var responseData = JSON.parse(res.data);
           if (responseData.result) {
@@ -225,6 +228,7 @@ Page({
         }
       },
       fail: (res) => {
+        console.log('上传失败')
         failNum++;
       },
       complete: () => {

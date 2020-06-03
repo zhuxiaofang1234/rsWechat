@@ -1,0 +1,9 @@
+/* pages/test/testMode.wxss */
+.weui-cell.weui-check__label{
+  padding:18rpx 60rpx;
+  background-color: #000;
+  color:#fff;
+  font-size:28rpx;
+}
+
+.weui-cell:before{border-top:1rpx solid #898989;}
