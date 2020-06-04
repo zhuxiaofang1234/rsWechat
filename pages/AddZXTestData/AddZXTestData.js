@@ -25,13 +25,14 @@ Page({
     this.setData({
       SerialNo: SerialNo
     });
+    this.getbaseInfoId();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getbaseInfoId();
+
   },
   /**
    * 生命周期函数--监听页面显示
@@ -87,6 +88,9 @@ Page({
       wx.navigateTo({
         url: '/pages/HoleList/index?pileId=' + pileData.id,
       })
+      this.setData({
+        pileId:pileData.id
+      });
     } else {
       wx.showModal({
         title: '操作提示',
@@ -131,7 +135,7 @@ Page({
   //跳转现场编录表
   toZXSceneRecord: function () {
     wx.navigateTo({
-      url: '/pages/ZXSceneRecordData/ZXSceneRecordData?id=',
+      url: '/pages/ZXSceneRecordData/ZXSceneRecordData',
     });
     this.setData({
       showMenu: false

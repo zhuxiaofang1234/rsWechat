@@ -244,6 +244,10 @@ button.rs-btn {
 button.rs-btn.btn-blue{
    color: rgb(0, 216, 255);
   border-color: rgb(0, 216, 255);
+}
+
+.button-hover{
+  background-color: #555;
 
 }
 
@@ -360,11 +364,6 @@ padding-bottom:8px;
   text-align: center;
 }
 
-.login-tips{
-  font-size:28rpx;
-  margin-top:20rpx;
-  text-align: center;
-}
 .login-tips{
   font-size:32rpx;
   margin-top:20rpx;

@@ -1,0 +1,51 @@
+<view class="details-container depth-container mt-20">
+	<view class="details-item">
+		<view class="details-title">回次编号</view>
+		<view class="details-info rs-text mt-20">{{recordData.hcNo}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">芯样数量</view>
+		<view class="details-info rs-text mt-20">{{recordData.hcXyCount}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">开钻时间</view>
+		<view class="details-info rs-text mt-20">{{recordData.hcStartTime}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">结束时间</view>
+		<view class="details-info rs-text mt-20">{{recordData.hcEndTime}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">到底时余尺(m)</view>
+		<view class="details-info rs-text mt-20">{{recordData.endLength/1000}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">提钻时余尺(m)</view>
+		<view class="details-info rs-text mt-20">{{recordData.startLength/1000}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">芯样长度(m)</view>
+		<view class="details-info rs-text mt-20">{{recordData.xyLength/1000}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">残留芯样(m)</view>
+		<view class="details-info rs-text mt-20">{{recordData.xyResidual/1000}}</view>
+	</view>
+  	<view class="details-item">
+		<view class="details-title">备注</view>
+		<view class="details-info rs-text mt-20">{{recordData.remark}}</view>
+	</view>
+	<view class="details-item">
+		<view class="details-title">现场照片</view>
+		<view class="details-info rs-text mt-20">
+			<view class="recordImgWrap">
+				<block wx:if="{{recordData.zxXyImageHash}}">
+					<button class="rs-btn detailBtn" plain="true" data-hash="{{recordData.zxXyImageHash}}" bindtap="toPreviewImg">点击查看</button>
+				</block>
+				<block wx:else>
+					<text class="no-pic">暂无现场照片</text>
+				</block>
+			</view>
+		</view>
+	</view>
+</view>

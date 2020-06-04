@@ -85,12 +85,11 @@
 										<view class="details-info rs-text mt-20">
 											<view class="recordImgWrap">
 												<block wx:if="{{item.imageList.length!=0}}">
-													<!-- <text class="rs-text">{{item.imageList.length}}</text> -->
 													<button class="rs-btn detailBtn" plain="true" data-list="{{item.imageList}}" bindtap="toPreviewImg">点击查看</button>
 												</block>
-													<block wx:else>
+												<block wx:else>
 													<text class="no-pic">暂无现场照片</text>
-												</block>															
+												</block>
 											</view>
 										</view>
 									</view>

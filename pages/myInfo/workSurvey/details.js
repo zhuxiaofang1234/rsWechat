@@ -66,12 +66,6 @@ Page({
     })
   },
 
-  //获取图片base64
-  getPicBase64(hash) {
-    return WXAPI.GetPic(hash).then(res => {
-      return res.result
-    })
-  },
   //点击查看图片
   toPreviewImg: function (e) {
     var that = this;

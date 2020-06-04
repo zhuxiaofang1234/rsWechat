@@ -5,7 +5,8 @@
   position: relative;
 }
 .main-container.main{
-  top:134rpx; 
+  top:134rpx;
+  bottom:0
 }
 
 .rs-btn.testDataEnter {

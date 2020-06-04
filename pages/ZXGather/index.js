@@ -151,6 +151,7 @@ Page({
     var TestModeCode = wx.getStorageSync('testModeCode');
     //获取钻芯汇总信息
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
+    console.log(ZXHoleDetails)
 
     var pileType, ZXType;
     if (TestModeCode == 'ZG') {
@@ -542,12 +543,15 @@ Page({
 
     //侧表面
     var str = ZXHoleDetails.sideSurface;
-    var index = this.data.SideSurface.indexOf(str);
-    console.log(index);
-    this.setData({
-      sideSurfaceIndex: index,
-      SideSurfaceText: str
-    });
+    console.log(str)
+    if(str){
+      var index = this.data.SideSurface.indexOf(str);
+      this.setData({
+        sideSurfaceIndex: index,
+        SideSurfaceText: str
+      });
+    }
+  
 
   },
   //回显搅拌桩试验汇总情况

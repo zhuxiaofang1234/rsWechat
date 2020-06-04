@@ -192,7 +192,7 @@ Page({
     data['hcEndDepth'] = hcEndDepth
     data['hcStartTime'] = this.data.hcStartTime + this.data.currentTime;
     data['hcEndTime'] = this.data.hcEndTime + this.data.currentTime;
-    data['Imghash'] = this.data.Imghash;
+    data['zxXyImageHash'] = this.data.Imghash;
     this.submit(data);
   },
 
@@ -200,6 +200,9 @@ Page({
   submit: function (data) {
     var that = this;
     WXAPI.CreateZxHoleDrillingRecord(data).then(res => {
+      var recordId =  res.result.id;
+      data.id = recordId;
+      console.log(data);
       wx.showToast({
         title: '操作成功',
         icon: 'success',
@@ -212,11 +215,28 @@ Page({
             files: [],
             isShowUploader: false,
             hcXyCount: "",
+            Imghash:"",
             xyLength: "",
             endLength: "",
             startLength: "",
             xyResidual: "",
           });
+
+        //更新孔的基本信息
+        var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
+        var zxHoleDrillingRecordList = ZXHoleDetails.zxHoleDrillingRecordList;
+         zxHoleDrillingRecordList.push(data);
+      
+         //返回上一页并刷新页面 
+         var pages = getCurrentPages();
+         var prevPage = pages[pages.length - 2];
+         prevPage.setData({
+          zxHoleDrillingRecordList: zxHoleDrillingRecordList
+         });
+
+           //更新孔的详情信息缓存
+           wx.setStorageSync('ZXHoleDetails', ZXHoleDetails)     
+
         }
       })
     });

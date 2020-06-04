@@ -1,0 +1,14 @@
+/* pages/ZXRecordDetails/index.wxss */
+.rs-btn.detailBtn {
+  color: rgb(0, 216, 255);
+  border-color: rgb(0, 216, 255);
+  background-color: transparent;
+  display: inline-block;
+  padding: 0;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  box-sizing: border-box; 
+  }
+  
