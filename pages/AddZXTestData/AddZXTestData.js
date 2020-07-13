@@ -113,12 +113,23 @@ Page({
   },
   //跳转到终孔操作
   AddEndhole: function () {
-    wx.navigateTo({
-      url: '/pages/EndHole/EndHole?id=',
-    });
-    this.setData({
-      showMenu: false
-    });
+    /*如果钻进记录为0，不能进行终孔操作*/
+    var zxHoleDrillingRecordList = this.data.zxHoleDrillingRecordList;
+    if(zxHoleDrillingRecordList.length!=0){
+      wx.navigateTo({
+        url: '/pages/EndHole/EndHole',
+      });
+      this.setData({
+        showMenu: false
+      });
+    }else{
+      wx.showModal({
+        title: '操作提示',
+        content: '请先完善钻进记录表的信息',
+        showCancel: false,
+        confirmColor: '#4cd964'
+      })
+    }
   },
 
   //关闭菜单
@@ -173,7 +184,19 @@ Page({
     };
     WXAPI.GetHoleDetailsInfo(queryData).then(res => {
       //缓存孔的基本信息
+      var resData =  res.result ;
       wx.setStorageSync('ZXHoleDetails', res.result);
+      var endHoleInfo = {};
+      var zxHoleDrillingRecordList = resData.zxHoleDrillingRecordList; 
+      endHoleInfo.tongLength = resData.tongLength;
+      endHoleInfo.startTime = resData.startTime;
+      endHoleInfo.endTime = resData.endTime; 
+      endHoleInfo.endHoleRemark = resData.endHoleRemark;
+      endHoleInfo.remark = resData.remark;
+      this.setData({
+        endHoleInfo:endHoleInfo,
+        zxHoleDrillingRecordList:zxHoleDrillingRecordList
+      });
     })
   },
   cancel: function () {

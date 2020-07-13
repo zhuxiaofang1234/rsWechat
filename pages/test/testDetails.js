@@ -72,6 +72,7 @@ Page({
     WXAPI.GetEntrustDetails(queryData).then(res => {
       wx.hideLoading();
       var resData = res.result;
+      console.log(resData)
       that.setData({
         wtDetails: resData,
         testStandard: resData.testStandard,

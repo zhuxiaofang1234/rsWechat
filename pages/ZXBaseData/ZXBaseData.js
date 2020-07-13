@@ -53,7 +53,6 @@ Page({
     const width = res[0].width
     const height = res[0].height
    
-
     const canvas = res[0].node
     const ctx = canvas.getContext('2d');
     this.drawCanvas(width,height,ctx);

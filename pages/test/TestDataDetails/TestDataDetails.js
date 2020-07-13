@@ -79,10 +79,8 @@ Page({
         recordCount: resData.recordCount,
         isTesting: resData.isTesting
       });
-      //缓存实验基本信息
       wx.setStorageSync('ZTBaseData', resData);
 
-    //缓存实验深度
       wx.setStorageSync('depthList',resData.detailsData);
     })  
   },
@@ -94,7 +92,6 @@ Page({
   },
   //继续试验
   continueTest: function(e) {
-    //判断上一次试验的缓存是否还在
     var resData = this.data.details;
     var BaseTestData = wx.getStorageSync('BaseTestData');
    

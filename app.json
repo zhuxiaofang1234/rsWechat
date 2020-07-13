@@ -75,18 +75,6 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/test/test",
-        "iconPath": "images/test@2x.png",
-        "selectedIconPath": "images/stest@2x.png",
-        "text": "现场记录"
-      },
-      {
-        "pagePath": "pages/JZmonitor/index",
-        "iconPath": "images/monitor@2x.png",
-        "selectedIconPath": "images/smonitor@2x.png",
-        "text": "静载监控"
-      },
-      {
         "pagePath": "pages/myInfo/myInfo",
         "iconPath": "images/myInfo@2x.png",
         "selectedIconPath": "images/smyInfo@2x.png",

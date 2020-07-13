@@ -6,8 +6,8 @@ Page({
   data: {
     account:'',
     paasword:'',
-    serverType: ["佛山南海检测站",'武汉岩海检测'],
-    serverValue: ["https://nanhai.rocksea.vip/", 'https://oa.rocksea.net.cn'],
+    serverType: ["佛山南海检测站",'武汉岩海检测','嘉测演示平台'],
+    serverValue: ["https://nanhai.rocksea.vip/", 'https://oa.rocksea.net.cn','https://demo.rocksea.net.cn'],
     serverIndex: 0,
     defaultPicker:'请选择服务器',
   },

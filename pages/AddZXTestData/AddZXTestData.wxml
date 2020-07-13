@@ -40,23 +40,23 @@
 					</view>
 					<view class="details-item">
 						<view class="details-title">实际桩长(m)</view>
-						<view class="details-info rs-text mt-20">-</view>
+						<view class="details-info rs-text mt-20">{{endHoleInfo.tongLength ? endHoleInfo.tongLength : '-'}}</view>
 					</view>
 					<view class="details-item">
 						<view class="details-title">开孔时间</view>
-						<view class="details-info rs-text mt-20">2019-08-04 15:23:04</view>
+						<view class="details-info rs-text mt-20">{{endHoleInfo.startTime ? endHoleInfo.startTime : '-'}}</view>
 					</view>
 					<view class="details-item">
 						<view class="details-title">终孔时间</view>
-						<view class="details-info rs-text mt-20">2019-08-04 15:23:04</view>
+						<view class="details-info rs-text mt-20">{{endHoleInfo.endTime ? endHoleInfo.endTime : '-'}}</view>
 					</view>
 					<view class="details-item">
 						<view class="details-title">终孔原因</view>
-						<view class="details-info rs-text mt-20">达到预定深度</view>
+						<view class="details-info rs-text mt-20">{{endHoleInfo.endHoleRemark ? endHoleInfo.endHoleRemark : '-'}}</view>
 					</view>
 					<view class="details-item">
 						<view class="details-title">备注</view>
-						<view class="details-info rs-text mt-20">----</view>
+						<view class="details-info rs-text mt-20">{{endHoleInfo.remark ? endHoleInfo.remark : '-'}}</view>
 					</view>
 				</view>
 			</scroll-view>

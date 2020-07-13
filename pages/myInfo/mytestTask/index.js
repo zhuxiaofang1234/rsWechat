@@ -189,7 +189,6 @@ Page({
     WXAPI.GetMyTestTask(queryData).then(res => {
       wx.hideLoading();
       var resData = res.result;
-      //数据总条数小于每页要显示的总条数
       var curList = that.data.testList;
       if (resData.totalCount < MaxResultCount) {
         that.setData({
@@ -222,7 +221,6 @@ Page({
     var id = e.currentTarget.dataset.id;
     var confirm = e.currentTarget.dataset.confirm;
     wx.navigateTo({
-      //去根目录下找pages
       url: '/pages/myInfo/mytestTask/testTaskDetails?Id=' + id + '&confirm=' + confirm
     })
   },

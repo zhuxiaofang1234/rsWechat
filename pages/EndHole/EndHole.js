@@ -9,7 +9,7 @@ Page({
     EndHoleReson: ["钻到钢筋", "偏出桩外", "涌砂", '砼胶结质量差','达到预定深度','其他'],
     reasonIndex:4,
     isShowEndHole:true,
-    endHoleRemark:"",
+    endHoleRemark:"达到预定深度",
     endTime:"",
     innerEndTime:"",
     holeId:null,
@@ -21,16 +21,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      holeId: options.id
-    });
+     
+    //获取缓存钻芯孔的数据
+    var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
+  
     var date = new Date();
     var endTime = App.format(date);
     this.setData({
       endTime: endTime.substring(0,10),
       currentTime: endTime.substring(endTime.length - 9),
-      innerEndTime: endTime
+      innerEndTime: endTime,
+      holeId:ZXHoleDetails.id,
+      tongLength:ZXHoleDetails.tongLength,
+      holeLength:ZXHoleDetails.holeLength
     });
+
+    //展示终孔操作信息
+    var endHoleRemark = ZXHoleDetails.endHoleRemark;
+    var isEndHole;
+    if(endHoleRemark){
+      isEndHole = true;
+    }else{
+      isEndHole = false;
+    }
+    this.setData({
+      isEndHole:isEndHole,
+      ZXHoleDetails:ZXHoleDetails
+    });
+
   },
 
   /**
@@ -113,7 +131,6 @@ Page({
       return;
     }
     //终孔原因
-    var endHoleRemark;
     var reasonIndex = this.data.reasonIndex;
     if (reasonIndex==5){
       if (!data.otherEndHoleReason) {
@@ -141,15 +158,7 @@ Page({
         duration: 2000,
         mask: true,
         success: function () {
-          setTimeout(function () {
-            //返回上一页并刷新页面 
-            var pages = getCurrentPages();
-            var prevPage = pages[pages.length - 2];
-            prevPage.setData({
-              endHoleInfo:data
-            });
-            that.cancel();
-          }, 2000)
+          that.cancel();
         }
       })
     })   

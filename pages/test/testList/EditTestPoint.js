@@ -350,6 +350,11 @@ new Page({
       this.errorTips(erroInfo);
       return;
     } else {
+      if(data.tubeNumber==0){
+        erroInfo = "孔数值必须大于0";
+        this.errorTips(erroInfo);
+        return;
+      }
       postData.tubeNumber = data.tubeNumber;
     }
     if (!data.pileDiameter) {

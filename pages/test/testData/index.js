@@ -1,7 +1,9 @@
 // pages/test/testData/index.js
 const App = getApp();
 var until = require('../../../utils/util.js');
-const WXAPI = require('../../../utils/main.js')
+const WXAPI = require('../../../utils/main.js');
+var TestModeCode = wx.getStorageSync('testModeCode');
+
 Page({
 
   /**
@@ -62,7 +64,6 @@ Page({
     var modeType = until.getModeType();
     console.log(modeType);
     WXAPI.GetPileList(queryData, modeType).then(res=>{
-  
       that.setData({
         loadingPage: true
       });
@@ -83,7 +84,6 @@ Page({
       until.isTesting();  
     }else{
       var url;
-      var TestModeCode = wx.getStorageSync('testModeCode');
       switch (TestModeCode) {
         case 'TQ':
         case 'TZ':
@@ -102,10 +102,12 @@ Page({
   },
   //查看数据详情
   toTestDataDetails: function(e) {
-    var baseInfoId = e.currentTarget.dataset.id;
-    var pileId = e.currentTarget.dataset.pileid;
-    wx.navigateTo({
-      url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId + '&pileId=' + pileId
-    })
+    if(TestModeCode=='TQ' || TestModeCode=='TZ'){
+      var baseInfoId = e.currentTarget.dataset.id;
+      var pileId = e.currentTarget.dataset.pileid;
+      wx.navigateTo({
+        url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId + '&pileId=' + pileId
+      })
+    } 
   }
 })

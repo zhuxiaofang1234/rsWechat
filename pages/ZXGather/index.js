@@ -16,6 +16,7 @@ Page({
     ZJgatherInfo: "", //搅拌桩汇总信息
     zxCompleteItems: [{ //芯样完整性
         zxCompleteText: '连续完整',
+        value: 0,
         checked: 'true'
       },
       {
@@ -292,9 +293,11 @@ Page({
 
   //芯样完整性
   zxCompleteChange: function (e) {
+    console.log(e)
     var checkedZXComplete = this.data.zxCompleteItems.filter(function (item) {
       return item.value == e.detail.value
     })
+    console.log(checkedZXComplete)
     this.setData({
       ZXComplete: checkedZXComplete[0].zxCompleteText
     });
@@ -543,7 +546,6 @@ Page({
 
     //侧表面
     var str = ZXHoleDetails.sideSurface;
-    console.log(str)
     if(str){
       var index = this.data.SideSurface.indexOf(str);
       this.setData({
@@ -551,8 +553,6 @@ Page({
         SideSurfaceText: str
       });
     }
-  
-
   },
   //回显搅拌桩试验汇总情况
   showZJgatherInfo: function (ZXHoleDetails) {
