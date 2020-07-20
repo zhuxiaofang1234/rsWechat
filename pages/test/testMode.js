@@ -1,5 +1,4 @@
 const util = require('../../utils/util.js');
-const TestMode = util.TestMode;
 
 Page({
   /**
@@ -8,31 +7,50 @@ Page({
   data: {
     testModeList: [],
     hasVaildPile: true,
-    loadingPage: true
+    loadingPage: true,
+    pageFlag: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const TestModeGroup = util.TestModeGroup;
     var jobScope = wx.getStorageSync('jobScope');
-     
     //根据工作范围筛选出检测方法
-    var testModeList = [{
-      "testModeName": '全部',
-      "testModeCode": 'All'
-    },];
-    for(var key in  TestMode){
-     if(jobScope.indexOf(key)!=-1){
-       var item ={};
-       item.testModeName = TestMode[key];
-       item.testModeCode =key;
-       testModeList.push(item);
-     } 
+    var filterTestModeGroup = [];
+    var map = [];
+    for (var i = 0; i < TestModeGroup.length; i++) {
+      var TestModeGroupItem = TestModeGroup[i];
+      if (TestModeGroupItem.children.length !== 0) {
+        for (var j = 0; j < TestModeGroupItem.children.length; j++) {
+          var key = TestModeGroupItem.children[j].code;
+          if (jobScope.indexOf(key) !== -1) {
+            var item = {};
+            var n = TestModeGroupItem.code;
+            item.code = TestModeGroupItem.code;
+            item.name = TestModeGroupItem.name;
+            item.children = [];
+
+            if (!map[n]) { //如果不存在
+              map[n] = TestModeGroupItem.code;
+              item.children.push(TestModeGroupItem.children[j]);
+              filterTestModeGroup.push(item)
+            } else {
+              for (var k = 0; k < filterTestModeGroup.length; k++) {
+                var aj = filterTestModeGroup[k];
+                if (aj.code == n) {
+                  filterTestModeGroup[k].children.push(TestModeGroupItem.children[j])
+                }
+              }
+            }
+          }
+        }
+      }
     }
     this.setData({
       loadingPage: true, //显示加载页面
-      testModeList:testModeList
+      TestModeGroup: filterTestModeGroup
     });
   },
 
@@ -56,7 +74,6 @@ Page({
   onHide: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -78,20 +95,23 @@ Page({
 
   //选择测点号
   radioChange: function (e) {
+    var that = this;
     var testCode = e.detail.value;
-    console.log(testCode);
-    var testModeList = this.data.testModeList;
-    var selectedTestModeName,selectTestCode;
-    for (var i = 0, len = testModeList.length; i < len; ++i) {
-      var testModeCode = testModeList[i].testModeCode;
-      testModeList[i].checked = testModeCode == testCode;
-      if (testModeCode == testCode) {
-        selectedTestModeName = testModeList[i].testModeName;
-        selectTestCode = testModeCode;
+    var TestModeGroup = this.data.TestModeGroup;
+    var selectedTestModeName, selectTestCode;
+    for (var i = 0, len = TestModeGroup.length; i < len; i++) {
+      for (var j = 0, length = TestModeGroup[i].children.length; j < length; j++) {
+        var childrenItem = TestModeGroup[i].children[j];
+        var code = childrenItem.code;
+        childrenItem.checked = code == testCode
+        if (code == testCode) {
+          selectedTestModeName = childrenItem.name;
+          selectTestCode = code;
+        }
       }
     }
-    this.setData({
-      testModeList: testModeList
+    that.setData({
+      TestModeGroup: TestModeGroup
     });
 
     if (selectTestCode == "All") {

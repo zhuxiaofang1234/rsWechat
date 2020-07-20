@@ -124,6 +124,9 @@ page {
 .text-red {
   color: #ff0000 !important;
 }
+.text-blue{
+  color:#2198f2 !important;
+}
 
 .overflow {
   overflow: auto;

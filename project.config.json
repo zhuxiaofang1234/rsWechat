@@ -63,43 +63,22 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/index/index",
+					"name": "testModeCode",
+					"pathName": "pages/testModeCode/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "index",
 					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "AddZXTestData",
-					"pathName": "pages/AddZXTestData/AddZXTestData",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "/testData/index",
-					"pathName": "pages/test/testData/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ZXresult",
-					"pathName": "pages/ZXresult/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "mytestTask",
-					"pathName": "pages/myInfo/mytestTask/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "AddZXTestData",
-					"pathName": "pages/AddZXTestData/AddZXTestData",
+					"name": "pages/test/testMode",
+					"pathName": "pages/test/testMode",
 					"query": "",
 					"scene": null
 				}

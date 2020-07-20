@@ -202,7 +202,6 @@ Page({
     WXAPI.CreateZxHoleDrillingRecord(data).then(res => {
       var recordId =  res.result.id;
       data.id = recordId;
-      console.log(data);
       wx.showToast({
         title: '操作成功',
         icon: 'success',

@@ -1,5 +1,6 @@
 /* pages/index/index.wxss */
 page {
+  background-color:#efeff4;
   overflow: auto;
 }
 .page{
@@ -7,79 +8,37 @@ page {
 }
 .index-title{
   font-size:36rpx;
-  padding:50rpx;
-  color:#fff;
+  padding:40rpx 50rpx 36rpx 30rpx;
+  color:#000;
 }
-.loginWrap{
-  padding:30rpx 40rpx;
-  background: #000;
-  margin:0 50rpx;
-  border-radius:10rpx; 
-}
-.headImg-wrap{
-  width:120rpx;
-  height:120rpx;
-  border-radius: 50%;
-  background: #fff;
-}
-.headImg{
-  width:100%;
-  height:100%;
-  border-radius:50% 
-}
-.login-status{
-  font-size:36rpx;
-  color:#fff;
-  margin-left:50rpx;
-}
-.item-wrap{
+
+.main-grid{
   display: flex;
-  margin-top:40rpx;
+  padding: 0 18rpx;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: space-between;
 }
+
 .item{
+  width:49%;
+  padding:45rpx 0;
+  background-color:#fff;
   text-align: center;
-   flex-grow: 1;
-}
-.item-img{
-  width:40rpx;
-  height:40rpx;
-}
-.item-desc{
-  font-size:28rpx;
-  color:#fff;
-  margin-top:6rpx;
+  margin-bottom:14rpx;
 }
 
-.testMode-wrap{
-  margin:20rpx 0;
-  background: #000;
-}
-.testMode-title{
-  display:inline-block ;
-  font-size:36rpx;
-  padding:30rpx 0 30rpx 30rpx;
-  color:#fff;
-}
-.weui-cells_after-title{
-  background-color: #000;
+.item-icon{
+  width:100rpx;
+  height:100rpx;
+  border-radius:50%;
 }
 
-.logo-img{
-  width:120rpx;
-  height:120rpx;
+.isTestingImg{
+  width:140rpx;
+  height:70rpx;
+  position:absolute;
+  top:32rpx;
+  right:0
 }
-
-.testMode-name{
-  font-size:36rpx;
-  color:#fff;
-  margin-left:30rpx;
-}
-.testMode-name.cur{
-  color:#4cd964
-}
-.weui-cell:before {
-border-top: 1rpx solid #898989;
-}
-.weui-check__label:active{
-  background-color:#000
-  }

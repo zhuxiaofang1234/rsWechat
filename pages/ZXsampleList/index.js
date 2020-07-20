@@ -36,7 +36,6 @@ Page({
     })
     //获取缓存钻芯孔的数据
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-    console.log(ZXHoleDetails);
     var sampleList = [];
     ZXHoleDetails.zxHoleSampleDepthList.forEach(function (v, i) {
       if (v.type == type) {

@@ -6,7 +6,7 @@
 				<view class="details-container no-padding bg-gray38">
 					<view class="weui-cells__title rs-title">桩号</view>
 					<view class="weui-cells weui-cells_after-title bg-black">
-						<navigator url="/pages/test/addTestData/testList" class="weui-cell weui-cell_access rs-weui-cell">
+						<navigator url="/pages/ZT/addZTData/testList" class="weui-cell weui-cell_access rs-weui-cell">
 							<view class="weui-cell__bd rs-text">{{pileData.pileNo ? pileData.pileNo: '请选择桩号'}}</view>
 							<view class="weui-cell__ft weui-cell__ft_in-access"></view>
 						</navigator>

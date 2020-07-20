@@ -7,12 +7,4 @@
         <view class="weui-cell__bd">系统消息</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <navigator url="/pages/myInfo/mytestTask/index"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd">检测任务</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-    <navigator url="/pages/myInfo/workSurvey/index" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd">现场踏勘</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
 </view>

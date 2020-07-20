@@ -107,13 +107,6 @@ Page({
 
   },
 
-  //选择试验方法
-  radioChange: function(e) {
-    // var curTestMode = e.detail.value;
-    // this.checkedTestMode(curTestMode);
-    // //更换检测方法
-    // wx.setStorageSync('testModeCode', curTestMode);
-  },
 
   //获取用户信息
   getUserData: function() {
@@ -148,6 +141,66 @@ Page({
     }
   },
 
+  //静载监控
+  goJZmonitor:function(){
+    var accessToken = this.data.accessToken;
+    if (accessToken) {
+      wx.navigateTo({
+        url: '/pages/JZmonitor/index'
+      })
+    } else {
+      App.redirectToLogin();
+    }
+  },
+
+  //工作确认
+  goWrokSure:function(){
+    var accessToken = this.data.accessToken;
+    if (accessToken) {
+      wx.navigateTo({
+        url: '/pages/workSure/index'
+      })
+    } else {
+      App.redirectToLogin();
+    }
+  },
+
+  //现场踏勘
+  goWorkSurvey:function(){
+    var accessToken = this.data.accessToken;
+    if (accessToken) {
+      wx.navigateTo({
+        url: '/pages/workSurvey/index'
+      })
+    } else {
+      App.redirectToLogin();
+    }
+  },
+
+  //现场记录
+  goWorkRecord:function(){
+    var accessToken = this.data.accessToken;
+    if (accessToken) {
+      wx.navigateTo({
+        url: '/pages/workRecord/index?flag=wrokRecod'
+      })
+    } else {
+      App.redirectToLogin();
+    }   
+  },
+
+  //现场试验
+  goRecordTest:function(){
+    var accessToken = this.data.accessToken;
+    if (accessToken) {
+      wx.navigateTo({
+        url: '/pages/workRecord/index?flag=RecordTest'
+      })
+    } else {
+      App.redirectToLogin();
+    }
+  },
+
   //跳转到进行中试验
   toTestRecord: function() { 
     var accessToken = this.data.accessToken;
@@ -158,7 +211,7 @@ Page({
         var baseInfoId = BaseTestData.baseInfoId;
         var pileId = BaseTestData.pileId
         wx.navigateTo({
-          url: '/pages/test/TestDataDetails/TestDataDetails?baseInfoId=' + baseInfoId + '&pileId=' + pileId,
+          url: '/pages/ZT/ZTDataDetails/index?baseInfoId=' + baseInfoId + '&pileId=' + pileId,
         });
       }else{
         wx.showModal({
@@ -177,6 +230,23 @@ Page({
       App.redirectToLogin();
     }
   },
+
+  //数据中心
+  goDataCenter:function(){
+      var accessToken = this.data.accessToken;
+      if (accessToken) {
+        wx.navigateTo({
+          url: '/pages/dataCenter/index'
+        })
+      } else {
+        App.redirectToLogin();
+      }    
+  },
+
+  //报告管理
+  goReportCenter:function(){
+
+  },
   goLogin: function() {
     var accessToken = this.data.accessToken;
     if (!accessToken) {
@@ -185,6 +255,7 @@ Page({
       })
     }
   },
+
   checkedTestMode: function (curTestMode){
     var radioItems = this.data.radioItems;
     for (var i = 0, len = radioItems.length; i < len; ++i) {

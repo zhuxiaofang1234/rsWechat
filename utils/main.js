@@ -211,6 +211,9 @@ module.exports = {
   },
   JZMonitorList:(data)=>{//获取测试中的数据
     return request('/api/services/app/Monitor/Testing','GET',data)
+  },
+  GetTestData:(data)=>{ //获取检测数据
+   return request('/api/services/app/TestData/GetPaged','GET',data)
   }
 }
 

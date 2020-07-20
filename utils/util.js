@@ -3,34 +3,145 @@ const WXAPI = require('./main.js')
 const FILE_BASE_NAME = 'tmp_base64src'; //自定义文件名
 
 const TestMode = {
-        "DC": "动测",
-        "DY": "低应变",
-        "GY": "高应变",
-        "SC": "声波透射",
-        "ZX": "钻芯",
-        "ZG": "灌注桩钻芯",
-        "ZJ": "搅拌桩钻芯",
-        "ZY": "岩基钻芯",
-        "JZ": "静载",
-        "KY": "抗压静载",
-        "KB": "抗拔静载",
-        "SP": "水平多循环静载",
-        "ZP": "自平衡静载",
-        "PB": "平板试验",
-        "PT": "天然地基平板",
-        "PF": "复合地基平板",
-        "PC": "处理土地基平板",
-        "YJ": "岩基载荷试验",
-        "BG": "标准贯入试验",
-        "ZT": "触探",
-        "TQ": "轻型动力触探",
-        "TZ": "重型动力触探",
-        "MG": "锚杆",
-        "JM": "基础锚杆试验",
-        "ZM": "支护锚杆试验",
-        "SM": "支护锚索试验",
-        "TB": "土钉抗拔试验"
+  "DC": "动测",
+  "DY": "低应变",
+  "GY": "高应变",
+  "SC": "声波透射",
+  "ZX": "钻芯",
+  "ZG": "灌注桩钻芯",
+  "ZJ": "搅拌桩钻芯",
+  "ZY": "岩基钻芯",
+  "JZ": "静载",
+  "KY": "抗压静载",
+  "KB": "抗拔静载",
+  "SP": "水平多循环静载",
+  "ZP": "自平衡静载",
+  "PB": "平板试验",
+  "PT": "天然地基平板",
+  "PF": "复合地基平板",
+  "PC": "处理土地基平板",
+  "YJ": "岩基载荷试验",
+  "BG": "标准贯入试验",
+  "ZT": "触探",
+  "TQ": "轻型动力触探",
+  "TZ": "重型动力触探",
+  "MG": "锚杆",
+  "JM": "基础锚杆试验",
+  "ZM": "支护锚杆试验",
+  "SM": "支护锚索试验",
+  "TB": "土钉抗拔试验"
 };
+const TestModeGroup = [{
+    code: 'ZT',
+    name: '动力触探',
+    children: [{
+        code: 'TQ',
+        name: '轻型动力触探',
+      },
+      {
+        code: 'TZ',
+        name: '重型动力触探',
+      }
+    ]
+  },
+  {
+    code: 'ZX',
+    name: '钻芯',
+    children: [{
+        code: 'ZG',
+        name: '灌注桩钻芯',
+      },
+      {
+        code: 'ZJ',
+        name: '搅拌桩钻芯',
+      },
+      {
+        code: 'ZY',
+        name: '岩基钻芯',
+      },
+    ]
+  },
+  {
+    code: 'DC',
+    name: '动测',
+    children: [{
+        code: 'DY',
+        name: '低应变',
+      },
+      {
+        code: 'GY',
+        name: '高应变',
+      },
+      {
+        code: 'SC',
+        name: '声波透射',
+      },
+    ]
+  },
+  {
+    code: 'JZ',
+    name: '静载',
+    children: [{
+        code: 'KY',
+        name: '抗压静载',
+      },
+      {
+        code: 'KB',
+        name: '抗拔静载',
+      },
+      {
+        code: 'SP',
+        name: '水平多循环静载',
+      }
+    ]
+  },
+  {
+    code: 'PB',
+    name: '平板',
+    children: [{
+        code: 'PT',
+        name: '天然地基平板',
+      },
+      {
+        code: 'PF',
+        name: '复合地基平板',
+      },
+      {
+        code: 'PC',
+        name: '处理土地基平板',
+      },
+      {
+        code: 'YJ',
+        name: '岩基载荷试验',
+      },
+      {
+        code: 'BG',
+        name: '标准贯入试验',
+      }
+    ]
+  },
+  {
+    code: 'MG',
+    name: '锚杆',
+    children: [{
+        code: 'JM',
+        name: '基础锚杆试验',
+      },
+      {
+        code: 'ZM',
+        name: '支护锚杆试验',
+      },
+      {
+        code: 'SM',
+        name: '支护锚索试验',
+      },
+      {
+        code: 'TB',
+        name: '土钉抗拔试验',
+      }
+    ]
+  },
+];
 
 function endTest() {
   var BaseTestData = wx.getStorageSync('BaseTestData');
@@ -54,12 +165,13 @@ function endTest() {
             success: function () {
               //跳转到检测数据列表页
               wx.setStorageSync('isTesting', 0);
-              //清除上一条的数据
+              //清除上一条记录的数据
               wx.removeStorageSync('lastDepthData');
               //清除基本数据
               wx.removeStorageSync('BaseTestData');
+
               wx.redirectTo({
-                url: '/pages/test/testData/index?serialNo=' + serialNo
+                url: '/pages/dataCenter/testList?serialNo=' + serialNo
               })
             }
           })
@@ -101,7 +213,7 @@ function isTesting() {
     success(res) {
       if (res.confirm) {
         wx.navigateTo({
-          url: '/pages/test/addTestData/testRecord',
+          url: '/pages/ZT/addZTData/testRecord',
         });
       } else if (res.cancel) {
         endTest();
@@ -124,6 +236,14 @@ function getModeType() {
     case 'ZY':
       ModeType = 'ZX';
       break;
+    case 'KY':
+    case 'KB':
+    case 'SP':
+    case 'ZP':
+      ModeType = 'JZ';
+      break;
+      defalut:
+        TestModeCode
   }
   return ModeType;
 }
@@ -179,5 +299,6 @@ module.exports = {
   getModeType,
   sortBy,
   base64src,
-  TestMode
+  TestMode,
+  TestModeGroup
 }

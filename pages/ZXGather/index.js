@@ -477,8 +477,6 @@ Page({
     submitData.bottomState = this.data.bottomState; //砼底情况
     submitData.sedimentState = data.sedimentState; //沉渣厚度
 
-    console.log(submitData);
-
     if (this.data.sedimentStateFlag) { //沉渣厚度
       var erroInfo;
       if (!data.sedimentState) {

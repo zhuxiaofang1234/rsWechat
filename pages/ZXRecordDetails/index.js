@@ -15,7 +15,6 @@ Page({
       //获取缓存钻芯孔的数据
       var recordId = options.id;
       var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-      console.log(ZXHoleDetails);
       var zxHoleDrillingRecordList = ZXHoleDetails.zxHoleDrillingRecordList;
     
       if(zxHoleDrillingRecordList.length!=0){

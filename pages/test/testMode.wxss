@@ -4,5 +4,14 @@
   background-color: #000;
   color:#fff;
 }
-
 .weui-cell:before{border-top:1rpx solid #898989;}
+.weui-cell:first-child:before {
+   display: inline-block;
+  }
+  .groupTitle{
+    color: #4cd964 !important;
+  }
+  .groupTitle:before{
+    border-top: 0;
+  }
+

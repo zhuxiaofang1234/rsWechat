@@ -1,29 +1,32 @@
 <view class="page">
-<view class="loading-container" hidden="{{loadingPage}}"><image src="../../images/loading.gif" class="img-loading"></image></view>
-<block  wx:if="{{hasVaildPile}}">
-<view class="weui-cells weui-cells_after-title mt-20">
-    <radio-group bindchange="radioChange">
-      <label class="weui-cell weui-check__label" wx:for="{{testModeList}}" wx:key="value">
-        <radio class="weui-check" value="{{item.testModeCode}}" data-codeName="{{item.testModeName}}" checked="{{item.checked}}" />
-        <view class="weui-cell__bd">
-        <text> {{item.testModeName ? item.testModeName:'-'}}</text> 
-        </view>
-        <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
-          <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
-        </view>
-      </label>
-    </radio-group>
-  </view>
-</block>
- <block wx:else>
-     <view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
-        <view class="noData-tip-content">
-          <view class="img-wrap">
-            <image src="../../../images/noMsg.png" class="img-response"></image>
-          </view>
-          <view class="login-tips">测点信息不完善，去完善？</view>
-           <button class="rs-btn gologinBtn" plain="true" bindtap="toUpdateTestList">完善测点信息</button>
-        </view>
-      </view>
-  </block>
+	<view class="loading-container" hidden="{{loadingPage}}">
+		<image src="../../images/loading.gif" class="img-loading"></image>
+	</view>
+	<block wx:if="{{hasVaildPile}}">
+		<radio-group bindchange="radioChange">
+			<view class="weui-cells weui-cells_after-title mt-20" wx:for="{{TestModeGroup}}"  wx:if="{{item.children.length!==0}}">
+				<view class="weui-cell.weui-check__label groupTitle" >{{item.name}}</view>
+				<label class="weui-cell weui-check__label" wx:for="{{item.children}}" wx:key="value"  wx:for-item="item2">
+					<radio class="weui-check" value="{{item2.code}}" data-codeName="{{item2.name}}" checked="{{item2.checked}}" />
+					<view class="weui-cell__bd">
+						<text> {{item2.name ? item2.name:'-'}}</text>
+					</view>
+					<view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item2.checked}}">
+						<icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+					</view>
+				</label>
+			</view>
+		</radio-group>
+	</block>
+	<block wx:else>
+		<view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+			<view class="noData-tip-content">
+				<view class="img-wrap">
+					<image src="../../../images/noMsg.png" class="img-response"></image>
+				</view>
+				<view class="login-tips">测点信息不完善，去完善？</view>
+				<button class="rs-btn gologinBtn" plain="true" bindtap="toUpdateTestList">完善测点信息</button>
+			</view>
+		</view>
+	</block>
 </view>

@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "Select":"/component/select/select"
-  },
-  "navigationBarTitleText": "检测任务记录"
-}
