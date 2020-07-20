@@ -1,0 +1,100 @@
+<form bindsubmit='reg'>
+  <view class="details-wrap">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+    <view class="main">
+      <scroll-view class="main-wrapper" scroll-y style="height:100%">
+        <view class="details-container no-padding bg-gray38">
+          <view class="weui-cells__title rs-title">测点号
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="pileNo" value="{{pileNo}}"/>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">现场记录号
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="orderNo" value="{{orderNo}}" placeholder="请输入现场记录号" placeholder-class="tipStyles" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">设备编号
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="machineId" value="{{machineId}}" placeholder="请输入设备编号" placeholder-class="tipStyles" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">每级测试深度值(m)
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" value="{{dGrade}}" name="dGrade" placeholder="请输入每级测试深度" placeholder-class="tipStyles" disabled="true"/>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">测试类型
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_select">
+              <view class="weui-cell__bd">
+                <picker bindchange="bindTestTypeChange" value="{{testTypeCode}}" range="{{testType}}">
+                  <view class="weui-select">{{testType[testTypeIndex]}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__title rs-title">天然地基岩土性状
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_select">
+              <view class="weui-cell__bd">
+                <picker bindchange="bindRdjlxTypeChange" value="{{rdjlxIndex}}" range="{{rdjlx}}">
+                  <view class="weui-select">{{rdjlx[rdjlxIndex]}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          
+           <view class="weui-cells__title rs-title">检测起始标高（m）
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="jcqsbg" value="{{jcqsbg}}" />
+              </view>
+            </view>
+          </view> 
+           <view class="weui-cells__title rs-title">地基承载力特征值(kPa)
+            <span class="blue">*</span>
+          </view>
+          <view class="weui-cells weui-cells_after-title bg-black">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <input class="weui-input rs-text" name="dValue" value="{{dValue}}" />
+              </view>
+            </view>
+          </view>      
+        </view>
+      </scroll-view>
+    </view>
+    <!--main结束->
+    <!--弹出框结束-->
+    <view class="footer backfooter">
+      <button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+    </view>
+  </view>
+</form>

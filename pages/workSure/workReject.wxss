@@ -1,0 +1,9 @@
+/* pages/workSure/workReject.wxss */
+.weui-cells.weui-cells_after-title{
+  background: #000;
+  color:#b2b2b2;
+}
+.weui-cells__title{
+  color:#fff;
+  font-size: 30rpx;
+}

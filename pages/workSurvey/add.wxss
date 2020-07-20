@@ -1,0 +1,38 @@
+/* pages/AddZXRecordData/AddZXRecordData.wxss */
+.weui-input{
+  width:100%;
+  line-height:1.2;
+  padding:20rpx;
+  box-sizing: border-box;
+  min-height:280rpx;
+}
+
+.weui-uploader{
+  padding:10px 0 5px  0;
+}
+.weui-uploader_status {
+  position: relative;
+}
+.weui-uploader__bd {
+  overflow: unset;
+}
+
+.weui-uploader__file-content {
+  position: absolute;
+  top: -9px;
+  right: -7px;
+  left: unset;
+  color: #fff;
+  -webkit-transform: unset;
+  transform: unset;
+  z-index: 99
+}
+.section_gap {
+  padding: 15px 15px;
+  color: #fff;
+}
+
+.radio {
+  width: 35%;
+}
+

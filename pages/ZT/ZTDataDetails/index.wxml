@@ -1,0 +1,113 @@
+<view class="details-wrap">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title rs-inline">{{item}}</view>
+              <view bindtap="toEditTestData" class="rs-inline" wx:if="{{index==0}}" hidden="{{activeIndex!=0}}">
+                <span class="iconfont icon-bianji1 edit-baseInfo"></span>
+              </view>     
+          </view>
+        </block>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content mt-20" hidden="{{activeIndex != 0}}">
+          <scroll-view scroll-y style="height:calc(100vh - 136rpx);">
+           <!--view class="operation_bar"><span class="iconfont icon-edit"></span></view-->
+            <view class="details-container">
+              <view class="details-item">
+                <view class="details-title">测点号</view>
+                <view class="details-info rs-text mt-20">{{details.pileNo}}</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">现场记录号</view>
+                <view class="details-info rs-text mt-20">{{details.orderNo}}</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">设备编号</view>
+                <view class="details-info rs-text mt-20">{{details.machineId}}</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">每级测试深度值(m)</view>
+                <view class="details-info rs-text mt-20">{{details.dGrade}}</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">测试时间</view>
+                <view class="details-info rs-text mt-20">{{details.testTime}}</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">测试类型</view>
+                <view class="details-info rs-text mt-20" wx:if="{{details.testType==10}}">N10轻型</view>
+                <view class="details-info rs-text mt-20" wx:elif="{{details.testType==63}}">N63.5重型</view>
+                <view class="details-info rs-text mt-20" wx:elif="{{details.testType==120}}">N120超重型</view>
+                <view class="details-info rs-text mt-20" wx:else>未知</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">天然地基岩土性状</view>
+                <view class="details-info rs-text mt-20" wx:if="{{details.rdjlx==0}}">一般黏性土</view>
+                <view class="details-info rs-text mt-20" wx:elif="{{details.rdjlx==1}}">粘性素填土</view>
+                <view class="details-info rs-text mt-20" wx:elif="{{details.rdjlx==2}}">粉土、粉细砂土</view>
+                <view class="details-info rs-text mt-20" wx:else>未知</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">GPS位置</view>
+                <view class="details-info rs-text mt-20" wx:if="{{details.gpsIsValid==0}}">GPS无效</view>
+                <view class="details-info rs-text mt-20" wx:elif="{{details.gpsIsValid==1}}">GPS有效</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">检测起始标高(m)</view>
+                <view class="details-info rs-text mt-20">{{details.jcqsbg}}</view>
+              </view>
+              <view class="details-item">
+                <view class="details-title">地基承载力特征值(kPa)</view>
+                <view class="details-info rs-text mt-20">{{details.dValue}}</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <!--深度值-->
+        <view class="weui-tab__content mt-20 depth_content" hidden="{{activeIndex != 1}}">
+          <view class="depth_body">
+            <scroll-view scroll-y style="height:100%;">
+              <block wx:if="{{depthList.length>0}}" wx:for="{{depthList}}" wx:key="{{index}}">
+                <view class="details-container depth-container {{index !==0 ? 'mt-20':''}}">
+                <view class="operation_bar">
+                    <span class="iconfont depth-icon icon-bianji" data-id="{{item.id}}" bindtap="toEditZTDepth"></span>
+                </view>
+                  <view class="details-item">
+                    <view class="details-title">深度(m)</view>
+                    <view class="details-info rs-text mt-20">{{item.depth}}</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">实测锤击数</view>
+                    <view class="details-info rs-text mt-20">{{item.hammerValue}}</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">修正锤击数</view>
+                    <view class="details-info rs-text mt-20" wx:if="{{item.correctValue}}">{{item.correctValue}}</view>
+                    <view class="details-info rs-text mt-20" wx:else>-</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">土层描述</view>
+                    <view class="details-info rs-text mt-20" wx:if="{{item.description}}">{{item.description}}</view>
+                    <view class="details-info rs-text mt-20" wx:else>-</view>
+                  </view>
+                  <view class="details-item">
+                    <view class="details-title">备注</view>
+                    <view class="details-info rs-text mt-20" style="line-height:1.5" wx:if="{{item.remark}}">{{item.remark}}</view>
+                    <view class="details-info rs-text mt-20" wx:else>-</view>
+                  </view>
+                </view>
+              </block>
+            </scroll-view>
+          </view>
+          <block wx:if="{{details.isTesting==1}}">
+            <view class="footer backfooter">
+              <button class="rs-btn backbtn btn-blue mr-50" plain="true"bindtap="endTest">结束实验</button>
+              <button class="rs-btn backbtn btn-green" plain="true" bindtap="continueTest">继续试验</button>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+</view>

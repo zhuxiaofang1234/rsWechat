@@ -1,0 +1,82 @@
+/* pages/test/TestDataDetails/TestDataDetails.wxss */
+@import "../../../Iconfont.wxss";
+.weui-navbar{
+  border-bottom:none;
+}
+.depth_content{
+ display: flex;
+ flex-direction: column;
+ width:100%; 
+}
+.depth_body{
+  flex: 1;
+}
+
+
+.weui-navbar__item{
+  background-color: #000;
+  color:#fff;
+  border-right:1rpx solid #898989;
+}
+.weui-navbar__item:last-child{
+  border-right:none;
+}
+.depth-container.details-container{
+  padding-left:0
+}
+.depth-container  .details-item{
+  margin-left:30rpx;
+}
+.details-item{
+  border-bottom:1rpx solid #898989;
+}
+.details-item:last-child{
+  border-bottom:none;
+}
+.details-title{
+  color:#ddd;
+  font-size:30rpx;
+}
+
+.details-info{
+  line-height: 1;
+}
+.rs-text.text-c{
+  text-align: center;
+  color:#fff;
+}
+
+.noTestRecord{
+ flex-direction:column;
+  justify-content: center;
+}
+.operation_bar{
+  height:60rpx;
+  background: #000;
+  border-bottom:1rpx solid #898989;
+  color:#4cd964;
+}
+.operation_bar  .depth-icon{
+  font-size:18px;
+  line-height:22px;
+   margin-top:10rpx;
+}
+.operation_bar  .icon-bianji{
+  float:right;
+  margin-right:20rpx;
+ 
+}
+
+.operation_bar  .icon-shanchu{
+  float:right;
+  margin-right:20rpx;
+  color:red;
+}
+
+.edit-baseInfo.icon-bianji1{
+  float:right;
+  font-size:22px;
+  line-height:28px;
+  margin-left:80rpx;
+}
+

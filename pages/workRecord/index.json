@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "Select":"/component/select/select"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance":20
+}

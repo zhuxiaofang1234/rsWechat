@@ -1,0 +1,49 @@
+<view class="details-wrap">
+	<view class="main mt-20">
+		<scroll-view class="main-wrapper" scroll-y style="height: 100%">
+			<view class="details-container">
+				<view class="details-item">
+					<view class="details-title">委托编号</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">委托日期</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.creationTime}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程名称</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.projectName}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程地点</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.projectAddress}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">地基类型</view>
+					<view class="details-info rs-text mt-16" wx:if="{{wtDetails.foundationType}}">{{wtDetails.foundationType}}</view>
+					<view class="details-info rs-text mt-16" wx:else>-</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测数量</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.testMum}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测方法</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.testModeName}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">进场时间</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.workDate}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">预估完成时间</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.finishDate}}</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+  <!--添加踏勘记录悬浮按钮-->
+	<view class="add-wrap">
+		<image class="add-image" src="../../images/add_icon.png" bindtap="toAddRecord"></image>
+	</view>
+</view>

@@ -1,0 +1,143 @@
+/* pages/test/TestDataDetails/TestDataDetails.wxss */
+@import "../../Iconfont.wxss";
+
+.weui-navbar {
+  border-bottom: none;
+}
+
+.icon-add1 {
+  font-size: 30rpx;
+  margin-left: 80rpx;
+}
+
+.depth_content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.depth_body {
+  flex: 1;
+}
+
+.weui-navbar__item {
+  background-color: #000;
+  color: #fff;
+  border-right: 1rpx solid #898989;
+}
+
+.weui-navbar__item:last-child {
+  border-right: none;
+}
+
+.depth-container.details-container {
+  padding-left: 0
+}
+
+.depth-container .details-item {
+  margin-left: 30rpx;
+}
+
+.details-item {
+  border-bottom: 1rpx solid #898989;
+}
+
+.details-item:last-child {
+  border-bottom: none;
+}
+
+.details-title {
+  color: #ddd;
+  font-size: 30rpx;
+}
+
+.details-info {
+  line-height: 1;
+}
+
+.rs-text.text-c {
+  text-align: center;
+  color: #fff;
+}
+
+.noTestRecord {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.operation_bar {
+  height: 60rpx;
+  background: #000;
+  border-bottom: 1rpx solid #898989;
+  color: #4cd964;
+}
+
+.operation_bar .depth-icon {
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 10rpx;
+}
+
+.operation_bar .icon-bianji {
+  float: right;
+  margin-right: 20rpx;
+
+}
+
+.operation_bar .icon-shanchu {
+  float: right;
+  margin-right: 20rpx;
+  color: red;
+}
+
+.edit-baseInfo.icon-bianji1 {
+  float: right;
+  font-size: 22px;
+  line-height: 28px;
+  margin-left: 80rpx;
+}
+
+.no-pic{
+  font-size:24rpx;
+}
+
+.add-wrap {
+  position: fixed;
+  width: 104rpx;
+  height: 104rpx;
+  display: flex;
+  justify-content: center;
+  right: 30rpx;
+  bottom: 80rpx;
+}
+
+.add-image {
+  width: 98rpx;
+  height: 98rpx;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.recordImgWrap{
+  width:100%;
+}
+.recordImg{
+  width:77px;
+  height:77px;
+  margin-right:10rpx;
+}
+
+.rs-btn.detailBtn {
+  color: rgb(0, 216, 255);
+  border-color: rgb(0, 216, 255);
+  background-color: transparent;
+  display: inline-block;
+  padding: 0;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  box-sizing: border-box; 
+  }
+  

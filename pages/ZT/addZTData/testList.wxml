@@ -1,0 +1,31 @@
+<view class="page">
+	<view class="loading-container" hidden="{{loadingPage}}">
+		<image src="../../../images/loading.gif" class="img-loading"></image>
+	</view>
+	<block wx:if="{{hasVaildPile}}">
+		<view class="weui-cells weui-cells_after-title mt-20">
+			<radio-group bindchange="radioChange">
+				<label class="weui-cell weui-check__label" wx:for="{{pileList}}" wx:key="value" wx:if="{{item.pileNo!=''}}">
+					<radio class="weui-check" value="{{item.id}}" checked="{{item.checked}}" />
+					<view class="weui-cell__bd">
+						<text class="{{item.isStartTest ? 'text-green': 'red'}}"> {{item.pileNo ? item.pileNo:'-'}}</text>
+					</view>
+					<view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+						<icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+					</view>
+				</label>
+			</radio-group>
+		</view>
+	</block>
+	<block wx:else>
+		<view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+			<view class="noData-tip-content">
+				<view class="img-wrap">
+					<image src="../../../images/noMsg.png" class="img-response"></image>
+				</view>
+				<view class="login-tips">测点信息不完善，去完善？</view>
+				<button class="rs-btn gologinBtn" plain="true" bindtap="toUpdateTestList">完善测点信息</button>
+			</view>
+		</view>
+	</block>
+</view>

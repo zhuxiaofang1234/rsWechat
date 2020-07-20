@@ -1,0 +1,115 @@
+/* pages/test/test.wxss */
+.details-wrap{
+  display: flex;
+  flex-direction: column;
+}
+.search-area {
+  padding: 14rpx;
+}
+
+.weui-search-bar-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.search-form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+  flex: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #dfdfdf;
+  box-sizing: border-box;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 28rpx;
+  left: 10px;
+}
+
+.searchInput {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.delsearchIcon {
+  position: absolute;
+  top: 20rpx;
+  right: 10px;
+}
+
+.weui-search-bar__cancel-btn {
+  margin-left: 10px;
+  line-height: 80rpx;
+  font-size: 18px;
+}
+
+.weui-search-bar__label {
+  line-height: 40px;
+  border-radius: 5px;
+  background-color: #dfdfdf;
+}
+
+.weui-icon-search {
+  margin-top: 6px;
+}
+
+.weui-search-bar__text {
+  font-size: 18px;
+}
+
+.nodata {
+  background-color: #383838;
+  color: #fff;
+  text-align: center;
+}
+
+
+.loading-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #373737;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+}
+
+.img-loading {
+  width: 750rpx;
+  height: 422rpx;
+  margin-top: 240rpx;
+}
+
+/**tab切换**/
+.weui-navbar {
+  border-bottom: 0;
+}
+
+.weui-navbar__item {
+  padding: 0
+}
+
+.weui-navbar__title {
+  color: #fff;
+}
+.weui-navbar__item.weui-bar__item_on .weui-navbar__title{
+  color:#1aad19;
+}
+
+.weui-tab__panel {
+  padding-top: 30px;
+}
+
+.weui-navbar__slider{
+  width:2em;
+}
+

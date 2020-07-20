@@ -1,0 +1,88 @@
+/* pages/dataCenter/index.wxss */
+/* pages/workRecord/index.wxss */
+.weui-search-bar-1{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  box-sizing:border-box;
+}
+  .search-form{
+    position:relative;
+    -webkit-box-flex:1;
+    -webkit-flex:auto;
+    flex:auto;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background-color:#dfdfdf;  
+    box-sizing:border-box;
+  }
+
+  .searchIcon{
+    position:absolute;
+     top:28rpx;
+     left:10px;  
+  }
+ 
+  .searchInput{
+    height:80rpx;
+    line-height:80rpx;
+    font-size:18px;
+    padding:0 10px;
+  }
+
+  .delsearchIcon{
+    position:absolute;
+    top:20rpx;
+    right:10px;
+  }
+ 
+  .weui-search-bar__cancel-btn{
+      margin-left:10px;
+      line-height:80rpx;
+      font-size:18px;
+  }
+
+  .weui-search-bar__label{
+    line-height:40px;
+    border-radius:5px;
+    background-color:#dfdfdf;  
+  }
+  .weui-icon-search{
+    margin-top:6px;
+  }
+  .weui-search-bar__text{
+    font-size:18px;
+  }
+  /******加载更多******/
+.search-area {
+padding: 14rpx;
+}
+
+.details-wrap{
+  position:relative;
+}
+
+.selectContent{
+  margin-left:6rpx;
+  margin-right:30rpx;
+  height:92rpx;
+  line-height:92rpx;
+}
+.arrow_down{
+  height:16rpx;
+  width:25rpx;
+  margin-left:20rpx;
+  vertical-align: middle;
+}
+
+.selected-item{
+  width:72rpx;
+  display: inline-block;
+  font-size:36rpx;
+  color:#fff;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
