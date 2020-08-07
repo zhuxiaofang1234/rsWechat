@@ -4,7 +4,7 @@
 		<image class="isTestingImg" src="../../images/isTesting@2x.png"></image>
 	</view>
 	<view class="main-grid">
-		<view class="item">
+		<view class="item" bindtap="goWrokSchedule">
 			<image class="item-icon" src="../../images/wrokSchedule@2x.png"></image>
 			<view class="item-text">工作安排</view>
 		</view>

@@ -25,7 +25,7 @@
           <view class="weui-cells weui-cells_after-title bg-black">
             <view class="weui-cell weui-cell_input">
               <view class="weui-cell__bd">
-                <input class="weui-input rs-text" type="text" name="correctValue" value="{{correctValue}}" bindblur="getcorrectValue" focus="{{autoFocus}}"/>
+                <input class="weui-input rs-text" type="text" name="correctValue" value="{{correctValue}}" bindblur="getcorrectValue"/>
               </view>
             </view>
           </view>

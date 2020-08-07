@@ -39,3 +39,8 @@
   font-size:36rpx;
   color: rgb(76, 217, 100)
 }
+
+sup{
+  font-size: 10px;
+  vertical-align:8px;
+}

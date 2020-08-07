@@ -1,51 +1,53 @@
 <form bindsubmit='reg'>
-  <view class="details-wrap">
-    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-    <view class="main">
-      <scroll-view class="main-wrapper" scroll-y style="height:100%">
-        <view class="details-container no-padding bg-gray38">
-          <block wx:for="{{pileItems}}" wx:key="{{index}}">
-            <block wx:if="{{item.code =='pileDate'}}">
-              <view class="weui-cells__title rs-title">{{item.name}}<span class="blue">*</span></view>
-              <view class="weui-cells weui-cells_after-title bg-black">
-                <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                    <picker mode="date" bindchange="bindDateChange" value="{{date}}" start="2019-11-01" end="2020-11-01">
-                      <view class="weui-select">{{date}}</view>
-                    </picker>
-                  </view>
-                </view>
-              </view>
-            </block>
-            <block wx:elif="{{item.code =='powerLevel'}}"><!--设计强度等级-->
-              <view class="weui-cells__title rs-title">{{item.name}}<span class="blue">*</span></view>
-              <view class="weui-cells weui-cells_after-title bg-black">
-                <view class="weui-cell weui-cell_select">
-                  <view class="weui-cell__bd">
-                    <picker bindchange="bindPowerLevelChange" value="{{LevelIndex}}" range="{{powerLevel}}">
-                      <view class="weui-select">{{powerLevel[LevelIndex]}}</view>
-                    </picker>
-                  </view>
-                </view>
-              </view>
-            </block>
-            <block wx:else>
-              <view class="weui-cells__title rs-title">{{item.name}}<span class="blue">*</span></view>
-              <view class="weui-cells weui-cells_after-title bg-black">
-                <view class="weui-cell weui-cell_input">
-                  <view class="weui-cell__bd">
-                    <input class="weui-input rs-text" focus="{{focus}}" type="text" name="{{item.code}}" value="{{item.value}}" />
-                  </view>
-                </view>
-              </view>
-            </block>
-          </block>
-        </view>
-      </scroll-view>
-    </view>
-    <view class="footer backfooter">
-      <button class="rs-btn backbtn btn-blue mr-50" plain="true" bindtap="cancel">取消</button>
-      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">提交</button>
-    </view>
-  </view>
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<scroll-view class="main-wrapper" scroll-y style="height:100%">
+				<view class="details-container no-padding bg-gray38">
+					<block wx:for="{{pileItems}}" wx:key="{{index}}">
+						<block wx:if="{{item.code =='pileDate'}}">
+							<view class="weui-cells__title rs-title">{{item.name}}<span class="blue">*</span></view>
+							<view class="weui-cells weui-cells_after-title bg-black">
+								<view class="weui-cell weui-cell_select">
+									<view class="weui-cell__bd">
+										<picker mode="date" bindchange="bindDateChange" value="{{date}}" start="2019-11-01" end="2020-11-01">
+											<view class="weui-select">{{date}}</view>
+										</picker>
+									</view>
+								</view>
+							</view>
+						</block>
+						<block wx:elif="{{item.code =='powerLevel'}}">
+							<!--设计强度等级-->
+							<view class="weui-cells__title rs-title">{{item.name}}<span class="blue">*</span></view>
+							<view class="weui-cells weui-cells_after-title bg-black">
+								<view class="weui-cell weui-cell_select">
+									<view class="weui-cell__bd">
+										<picker bindchange="bindPowerLevelChange" value="{{LevelIndex}}" range="{{powerLevel}}">
+											<view class="weui-select">{{powerLevel[LevelIndex]}}</view>
+										</picker>
+									</view>
+								</view>
+							</view>
+						</block>
+						<block wx:else>
+							<view class="weui-cells__title rs-title" wx:if='{{item.code == "ybmj"}}'>{{item.name}}(m<sup>2</sup>)<span class="blue">*</span></view>
+							<view class="weui-cells__title rs-title" wx:else>{{item.name}}<span class="blue">*</span></view>
+							<view class="weui-cells weui-cells_after-title bg-black">
+								<view class="weui-cell weui-cell_input">
+									<view class="weui-cell__bd">
+										<input class="weui-input rs-text" focus="{{focus}}" type="text" name="{{item.code}}" value="{{item.value}}" />
+									</view>
+								</view>
+							</view>
+						</block>
+					</block>
+				</view>
+			</scroll-view>
+		</view>
+		<view class="footer backfooter">
+			<button class="rs-btn backbtn btn-blue mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">提交</button>
+		</view>
+	</view>
 </form>

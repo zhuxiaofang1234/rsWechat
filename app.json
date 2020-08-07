@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/ZXRecordDetails/index",
     "pages/workSure/index",
     "pages/workSure/details",
@@ -11,6 +12,7 @@
     "pages/workRecord/index",
     "pages/workRecord/details",
     "pages/workRecord/EditTestList",
+    "pages/WorkSchedule/index",
     "pages/workTest/details",
     "pages/ZT/addZTData/addTestData",
     "pages/ZT/addZTData/testList",
@@ -21,7 +23,6 @@
     "pages/ZT/editZTData/editDepth",
     "pages/dataCenter/index",
     "pages/dataCenter/testList",
-    "pages/index/index",
     "pages/login/login",
     "pages/test/testMode",
     "pages/JZmonitor/album",

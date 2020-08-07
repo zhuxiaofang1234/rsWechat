@@ -63,13 +63,6 @@
 				},
 				{
 					"id": -1,
-					"name": "testModeCode",
-					"pathName": "pages/testModeCode/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "index",
 					"pathName": "pages/index/index",
 					"query": "",

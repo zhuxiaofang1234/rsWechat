@@ -201,7 +201,7 @@ module.exports = {
     return request('/api/services/app/WorkSures/FinishDetect', 'PUT',data)
   },
   SurveyRecord:(data)=>{ //获取现场踏勘
-    return request('/api/services/app/SurveyRecord/GetPaged', 'GET',data)   
+    return request('/api/services/app/SurveyRecord/GetPaged?Sorting=id%20desc', 'GET',data)   
   },
   SurveyRecordDetails:(data)=>{//踏勘记录详情
     return request('/api/services/app/SurveyRecord/GetById','GET',data)
@@ -214,9 +214,8 @@ module.exports = {
   },
   GetTestData:(data)=>{ //获取检测数据
    return request('/api/services/app/TestData/GetPaged','GET',data)
+  },
+  GetWorkSchedule:(data)=>{//获取工作安排列表
+    return request('/api/services/app/WorkSchedule/GetPaged?Sorting=id%20desc','GET',data)
   }
 }
-
-
-
-

@@ -43,9 +43,7 @@ Page({
     if (accessToken){
       if(options.flag ==="RecordTest"){ //现场试验
         this.setData({
-          "pageFlag":options.flag,
-          "testModeName":'轻型动力触探',
-          "testModeCode":'TQ'
+          "pageFlag":options.flag
         })
       }
       this.setData({

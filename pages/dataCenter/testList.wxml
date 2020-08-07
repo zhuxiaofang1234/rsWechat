@@ -9,8 +9,14 @@
         </view>
       </block>
       <block wx:else>
-        <import src="../../template/noDataPage/noDataPage.wxml"/>
-        <template is="noData-page"></template>
+       <view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+					<view style="margin-top:200rpx;">
+						<view class="img-wrap">
+							<image src="../../images/noData.png" class="img-response"></image>
+						</view>
+						<view class="error-tips">暂无记录</view>
+					</view>
+				</view>
       </block>
     </scroll-view>
   </view>

@@ -65,7 +65,7 @@
 				<view style="margin-top:200rpx;">
 					<view class="img-wrap">
 					</view>
-					<view class="error-tips">暂无检测数据</view>
+					<view class="error-tips">暂无已检测数据</view>
 				</view>
 			</view>
 		</block>

@@ -1,0 +1,81 @@
+<view class='search-area area-flex'>
+	<view class="selectContent" bindtap="toSelectTestMode">
+		<view class="selected-item">{{testModeName}}</view>
+		<image src="../../images/Path@2x.png" class="arrow_down"></image>
+	</view>
+	<view class="area-right">
+		<view class="weui-search-bar-1">
+			<view class="search-form">
+				<!--搜索框-->
+				<view class="weui-search-bar__box">
+					<icon class="searchIcon" type="search" size="18"></icon>
+					<input type="text" class="searchInput" placeholder="检测编号" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
+					<view class="delsearchIcon" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+						<icon type="clear" size="18"></icon>
+					</view>
+				</view>
+				<!--input搜索框结束-->
+				<label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+					<icon class="weui-icon-search" type="search" size="18"></icon>
+					<view class="weui-search-bar__text">检测编号</view>
+				</label>
+			</view>
+			<view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+		</view>
+	</view>
+</view>
+<view class="weui-tab">
+	<view class="loading-container" hidden="{{loadingPage}}">
+		<image src="../../images/loading.gif" class="img-loading"></image>
+	</view>
+	<view class="weui-navbar">
+		<block wx:for="{{tabs}}" wx:key="*this">
+			<view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+				<view class="weui-navbar__title">{{item}}</view>
+			</view>
+		</block>
+		<view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+	</view>
+	<view class="weui-tab__panel">
+		<view class="weui-tab__content">
+			<block wx:if="{{testList.length>0}}">
+				<scroll-view scroll-y style="height:calc(100vh - 60rpx);" bindscrolltolower="loadMore" lower-threshold="100">
+					<view class="test-item area-flex" bindtap='toTestTaskDetails' data-id="{{item.id}}" wx:if="{{testList.length>0}}" wx:for="{{testList}}" wx:key="{{index}}" data-confirm="{{item.confirmStatus}}">
+						<view class="test-number area-flex">{{index+1}}</view>
+						<view class="area-right test-content">
+							<view class="testInfo mb-32">{{item.projectName}}</view>
+							<view class="testInfo mb-32">{{item.serialNo}}</view>
+							<view class="testInfo">
+								<view class="test-way-info">
+									<text class="testWay">{{item.testModeName}}</text>
+									<text class="testWay-num">({{item.testMum}})</text>
+								</view>
+								<view class="testStatus text-orange" wx:if="{{item.testStatus==1}}">工作待安排</view>
+								<view class="testStatus text-orange" wx:elif="{{item.testStatus==11}}">待踏勘</view>
+								<view class="testStatus text-orange" wx:elif="{{item.testStatus==12}}">人员待安排</view>
+								<view class="testStatus text-orange" wx:elif="{{item.testStatus==13}}">人员待确认</view>
+								<view class="testStatus" wx:elif="{{item.testStatus==21}}">待进场</view>
+								<view class="testStatus" wx:elif="{{item.testStatus==31}}">检测中</view>
+								<view class="testStatus" wx:elif="{{item.testStatus==32}}">检测已完成</view>
+								<view class="testStatus" wx:else>未知状态</view>
+							</view>
+						</view>
+					</view>
+					<view class='data-loading' hidden='{{hidden}}'>
+						{{loadingText}}
+					</view>
+				</scroll-view>
+			</block>
+			<block wx:else>
+				<view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+					<view style="margin-top:200rpx;">
+						<view class="img-wrap">
+							<image src="../../images/noData.png" class="img-response"></image>
+						</view>
+						<view class="error-tips">暂无记录</view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>

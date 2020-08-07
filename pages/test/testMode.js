@@ -6,7 +6,6 @@ Page({
    */
   data: {
     testModeList: [],
-    hasVaildPile: true,
     loadingPage: true,
     pageFlag: ''
   },
@@ -18,7 +17,7 @@ Page({
     const TestModeGroup = util.TestModeGroup;
     var jobScope = wx.getStorageSync('jobScope');
     //根据工作范围筛选出检测方法
-    var filterTestModeGroup = [];
+    var filterTestModeGroup = [{'code':'All','name':'全部',children:[{'code':'All','name':'全部'}]}];
     var map = [];
     for (var i = 0; i < TestModeGroup.length; i++) {
       var TestModeGroupItem = TestModeGroup[i];
@@ -129,6 +128,8 @@ Page({
       inputVal: '',
       page: 0,
     });
+
+
     prevPage.getPage();
     wx.navigateBack(1);
   }

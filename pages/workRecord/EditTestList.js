@@ -20,12 +20,12 @@ new Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     var id = options.id;
     //渲染空页面
     var pileItems = this.fromType();
     this.setData({
-      pileItems:pileItems
+      pileItems: pileItems
     });
     this.getPileDetails(id);
   },
@@ -33,28 +33,28 @@ new Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    
+  onReady: function () {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   //提交表单
-  reg: function(e) {
+  reg: function (e) {
     var postData = this.data.pileDetails;
     var data = e.detail.value;
     var TestModeCode = wx.getStorageSync('testModeCode');
     switch (TestModeCode) {
-        case 'KY':
-        case 'KB':
-        case 'SP':
-        case 'ZP':
-          this.validJZFrom(data, postData);
+      case 'KY':
+      case 'KB':
+      case 'SP':
+      case 'ZP':
+        this.validJZFrom(data, postData);
         break;
       case 'TQ':
       case 'TZ':
@@ -63,18 +63,24 @@ new Page({
       case 'ZG':
       case 'ZJ':
       case 'ZY':
-        this.validZXFrom(data, postData)
+        this.validZXFrom(data, postData);
+        break;
+      case 'PT':
+      case 'PF':
+      case 'YJ':
+      case 'PC':
+        this.validPBFrom(data, postData);
         break;
     }
   },
   //错误提示
-  errorTips: function(erroInfo) {
+  errorTips: function (erroInfo) {
     var that = this;
     this.setData({
       showTopTips: true,
       erroInfo: erroInfo
     });
-    setTimeout(function() {
+    setTimeout(function () {
       that.setData({
         showTopTips: false
       });
@@ -82,7 +88,7 @@ new Page({
   },
 
   //提交数据
-  submit: function(data) {
+  submit: function (data) {
     var that = this;
     var index = parseInt(data.index);
     if (flag) {
@@ -93,25 +99,24 @@ new Page({
           icon: 'success',
           duration: 3000,
           mask: true,
-          success: function() {
-            flag = true    
+          success: function () {
+            flag = true
             var pages = getCurrentPages();
-            var prevPage = pages[pages.length - 2]; 
+            var prevPage = pages[pages.length - 2];
             var pileList = prevPage.data.pileList;
-             pileList[index - 1] = data;    
-              prevPage.setData({
-                pileList: pileList
-              });
-      
-              setTimeout(() => {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 600)
-          
+            pileList[index - 1] = data;
+            prevPage.setData({
+              pileList: pileList
+            });
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 600)
+
           }
         })
-      },err=>{
+      }, err => {
         flag = true;
         var errmsg = err.data.message;
         wx.showModal({
@@ -119,18 +124,18 @@ new Page({
           content: errmsg,
           showCancel: false,
           confirmColor: '#4cd964'
-        })  
+        })
       })
     }
   },
-  cancel: function() {
+  cancel: function () {
     wx.navigateBack({
       delta: 1 //想要返回的层级
     })
   },
 
   //获取单根桩的详情信息
-  getPileDetails: function(id) {
+  getPileDetails: function (id) {
     var that = this;
     wx.showLoading({
       title: '加载中',
@@ -141,6 +146,7 @@ new Page({
     WXAPI.GetPileDetails(queryData).then(res => {
       wx.hideLoading();
       var resData = res.result;
+      console.log(resData)
       that.setData({
         pileDetails: resData
       });
@@ -150,62 +156,62 @@ new Page({
     })
   },
   //根据检测方法渲染页面
-  fromType: function() {
+  fromType: function () {
     var TestModeCode = wx.getStorageSync('testModeCode');
     var pileItems = [];
     switch (TestModeCode) {
-        case 'KY':
-        case 'KB':
-        case 'SP':
-        case 'ZP':
-           pileItems = [{
-              'code': 'pileNo',
-              'name': '桩号',
-              'value': ''
-            },
-            {
-              'code': 'pileDiameter',
-              'name': '桩径(mm)',
-              'value': ''
-            },
-            {
-              'code': 'pileLength',
-              'name': '桩长(m)',
-              'value': ''
-            },
-            {
-              'code': 'pileAxis',
-              'name': '桩位轴线',
-              'value': ''
-            },
-            {
-              'code': 'pileDate',
-              'name': '成桩日期',
-              'value': ''
-            },
-            {
-              'code': 'powerLevel',
-              'name': '设计强度',
-              'value': ''
-            },
-            {
-              'code': 'pileBearing',
-              'name': '单桩承载力特征值(kN)',
-              'value': ''
-            },
-          
-            {
-              'code': 'testLoad',
-              'name': '最大试验荷载(kN)',
-              'value': ''
-            },
-            {
-              'code': 'forceLayer',
-              'name': '设计桩端持力层',
-              'value': ''
-            },
-          ]
-            break;
+      case 'KY':
+      case 'KB':
+      case 'SP':
+      case 'ZP':
+        pileItems = [{
+            'code': 'pileNo',
+            'name': '桩号',
+            'value': ''
+          },
+          {
+            'code': 'pileDiameter',
+            'name': '桩径(mm)',
+            'value': ''
+          },
+          {
+            'code': 'pileLength',
+            'name': '桩长(m)',
+            'value': ''
+          },
+          {
+            'code': 'pileAxis',
+            'name': '桩位轴线',
+            'value': ''
+          },
+          {
+            'code': 'pileDate',
+            'name': '成桩日期',
+            'value': ''
+          },
+          {
+            'code': 'powerLevel',
+            'name': '设计强度',
+            'value': ''
+          },
+          {
+            'code': 'pileBearing',
+            'name': '单桩承载力特征值(kN)',
+            'value': ''
+          },
+
+          {
+            'code': 'testLoad',
+            'name': '最大试验荷载(kN)',
+            'value': ''
+          },
+          {
+            'code': 'forceLayer',
+            'name': '设计桩端持力层',
+            'value': ''
+          },
+        ]
+        break;
       case 'TQ':
       case 'TZ':
         pileItems = [{
@@ -290,23 +296,51 @@ new Page({
             'value': ''
           },
         ]
+        break;
+      case 'PT':
+      case 'PF':
+      case 'YJ':
+      case 'PC':
+        pileItems = [
+          {
+            'code': 'pileAxis',
+            'name': '轴线位置',
+            'value': ''
+          },
+          {
+            'code': 'ybmj',
+            'name': '压板面积',
+            'value': ''
+          },
+          {
+            'code': 'pileBearing',
+            'name': '承载力特征值(kPa)',
+            'value': ''
+          },
+          {
+            'code': 'testLoad',
+            'name': '最大试验荷载(kN)',
+            'value': ''
+          }
+        ]
+        break;
     }
     return pileItems
   },
   //给页面赋值
-  setValue: function(resData) {
+  setValue: function (resData) {
     var pileItems = this.fromType();
     for (var i = 0; i < pileItems.length; i++) {
-      var code = pileItems[i].code 
+      var code = pileItems[i].code
       if (resData.hasOwnProperty(code)) {
-          //砼强度等级
-          if(code==="powerLevel"){
-            var powerLevel = resData[code];
-            var index = this.data.powerLevel.indexOf(powerLevel);
-            var slectedIndex = index == -1 ? 0 : index;
-            this.setData({
-              LevelIndex: slectedIndex
-            });
+        //砼强度等级
+        if (code === "powerLevel") {
+          var powerLevel = resData[code];
+          var index = this.data.powerLevel.indexOf(powerLevel);
+          var slectedIndex = index == -1 ? 0 : index;
+          this.setData({
+            LevelIndex: slectedIndex
+          });
         }
         pileItems[i].value = resData[code]
       }
@@ -316,14 +350,14 @@ new Page({
     });
   },
   //成桩日期
-  bindDateChange: function(e) {
+  bindDateChange: function (e) {
     this.setData({
       date: e.detail.value
     })
   },
   //选择砼强度等级
-  bindPowerLevelChange: function(e) {
-    var LevelIndex =  e.detail.value;
+  bindPowerLevelChange: function (e) {
+    var LevelIndex = e.detail.value;
     this.setData({
       LevelIndex: e.detail.value,
       selectPowerLevel: this.data.powerLevel[LevelIndex]
@@ -331,7 +365,7 @@ new Page({
   },
 
   //圆锥动力触探表单验证
-  validZTFrom: function(data, postData) {
+  validZTFrom: function (data, postData) {
     var erroInfo;
     if (!data.pileAxis) {
       erroInfo = "请填写轴线位置";
@@ -365,7 +399,7 @@ new Page({
     this.submit(postData)
   },
   //钻芯表单验证
-  validZXFrom: function(data, postData) {
+  validZXFrom: function (data, postData) {
     var erroInfo;
     if (!data.pileNo) {
       erroInfo = "请填写桩号";
@@ -379,7 +413,7 @@ new Page({
       this.errorTips(erroInfo);
       return;
     } else {
-      if(data.tubeNumber==0){
+      if (data.tubeNumber == 0) {
         erroInfo = "孔数值必须大于0";
         this.errorTips(erroInfo);
         return;
@@ -441,7 +475,7 @@ new Page({
   },
 
   //静载表单验证
-  validJZFrom: function(data, postData) {
+  validJZFrom: function (data, postData) {
     var erroInfo;
     if (!data.pileNo) {
       erroInfo = "请填写桩号";
@@ -481,5 +515,32 @@ new Page({
     postData.powerLevel = this.data.selectPowerLevel;
     postData.pileDate = this.data.date;
     this.submit(postData);
+  },
+
+  //平板表单验证
+  validPBFrom:function(data,postData){
+    var erroInfo;
+    if (!data.pileAxis) {
+      erroInfo = "请填写轴线位置";
+      this.errorTips(erroInfo);
+      return;
+    } else {
+      postData.pileNo = data.pileAxis;
+    }
+
+    if (!data.pileBearing) {
+      erroInfo = "请填写单桩承载力特征值";
+      this.errorTips(erroInfo);
+      return;
+    } else {
+      postData.pileBearing = data.pileBearing;
+    }
+    if (!data.testLoad) {
+      erroInfo = "请填写最大试验荷载";
+      this.errorTips(erroInfo);
+      return;
+    } else {
+      postData.testLoad = data.testLoad;
+    }
   }
 })

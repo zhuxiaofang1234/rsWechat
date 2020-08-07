@@ -7,47 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    radioItems: [{
-        name: '轻型动力触探',
-        value: 'TQ',
-      },
-      {
-        name: '重型动力触探',
-        value: 'TZ'
-      },
-      {
-        name: '抗压静载',
-        value: 'KY'
-      },
-      {
-        name: '抗拔静载',
-        value: 'KB'
-      },
-      {
-        name: '水平多循环静载',
-        value: 'SP'
-      },
-      {
-        name: '自平衡静载',
-        value: 'ZP'
-      },
-      {
-        name: '灌注桩钻芯',
-        value: 'ZG'
-      },
-      {
-        name: '搅拌桩钻芯',
-        value: 'ZJ'
-      },
-      {
-        name: '岩基钻芯',
-        value: 'ZY'
-      }
-    ],
     loginName: '未登录',
     headImg: '/images/noLogin@2x.png',
     accessToken: null,
-    curTestMode: 'TQ'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -57,7 +19,7 @@ Page({
     //更新main.js内的Token和host
     WXAPI.getToken();
     WXAPI.getHost();
-   // wx.setStorageSync('testModeCode', this.data.curTestMode);
+  
     /*根据token判断用户是否登录*/
     if (accessToken) {
       this.setData({
@@ -153,6 +115,17 @@ Page({
     }
   },
 
+  //工作安排
+  goWrokSchedule:function(){
+    var accessToken = this.data.accessToken;
+    if (accessToken) {
+      wx.navigateTo({
+        url: '/pages/WorkSchedule/index'
+      })
+    } else {
+      App.redirectToLogin();
+    }
+  },
   //工作确认
   goWrokSure:function(){
     var accessToken = this.data.accessToken;
@@ -254,16 +227,5 @@ Page({
         url: '/pages/login/login'
       })
     }
-  },
-
-  checkedTestMode: function (curTestMode){
-    var radioItems = this.data.radioItems;
-    for (var i = 0, len = radioItems.length; i < len; ++i) {
-      radioItems[i].checked = radioItems[i].value == curTestMode;
-    }
-    this.setData({
-      radioItems: radioItems,
-      curTestMode: curTestMode
-    });
   }
 })
