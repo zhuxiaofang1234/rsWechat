@@ -60,7 +60,7 @@
 						<view class="weui-cell weui-cell_switch">
 							<view class="weui-cell__bd rs-text">{{gpstext}}</view>
 							<view class="weui-cell__ft">
-								<switch checked="{{gpsIsValid}}" bindchange="switchChange"/>
+								<switch checked="{{gpsIsValid}}" bindchange="switchChange" />
 							</view>
 						</view>
 					</view>

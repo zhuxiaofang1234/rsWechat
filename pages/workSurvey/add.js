@@ -210,10 +210,9 @@ Page({
         "Content-Type": "multipart/form-data", //记得设置
         'Authorization': "Bearer " + wx.getStorageSync('rsAccessToken')
       },
-      formData: null,
+      formData:{"DictTypeCodeAndCode":"UploadDocType_2"},
       success: (res) => {
         if (res.statusCode = 200) {
-          console.log('上传成功')
           successNum++;
           var responseData = JSON.parse(res.data);
           if (responseData.result) {
