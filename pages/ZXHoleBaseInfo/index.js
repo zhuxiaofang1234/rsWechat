@@ -1,11 +1,6 @@
 // pages/test/addTestData/addTestData.js
 const App = getApp();
-const WXAPI = require('../../utils/main.js')
-
-const x_MARGIN = 10;
-const y_MARGIN = 10;
-
-
+const WXAPI = require('../../utils/main.js');
 Page({
   /**
    * 页面的初始数据
@@ -29,12 +24,15 @@ Page({
     gpstext: 'GPS无效',
     gpsLongitude: '',
     gpsLatitude: '',
+    holeImageString:'',
+    holeXPosition:'',
+    holeYPosition:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
     //默认加载GPS
     this.getGps();
     let windowHeight = wx.getSystemInfoSync().windowHeight // 屏幕的高度
@@ -44,6 +42,9 @@ Page({
 
     //获取钻芯汇总信息
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
+    console.log(ZXHoleDetails)
+    var id = ZXHoleDetails.id;
+    var pileDiameter = ZXHoleDetails.pileDiameter;
     var zxHoleBaseInfo = {};
     zxHoleBaseInfo.overhead = ZXHoleDetails.overhead; //钻机架空
     zxHoleBaseInfo.overPileHeight = ZXHoleDetails.ZXHoleDetails; //设计桩顶标高
@@ -57,6 +58,8 @@ Page({
     const testTime = App.format(nowDate);
     //检测日期默认当前时间
     this.setData({
+      id:id,
+      pileDiameter:pileDiameter,
       zxHoleBaseInfo: zxHoleBaseInfo,
       testDate: testTime.substring(0, 10)
     })
@@ -66,24 +69,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // 通过 SelectorQuery 获取 Canvas 节点
-    wx.createSelectorQuery()
-      .select('#myCanvas')
-      .fields({ //获取节点的相关信息。需要获取的字段在fields中指定
-        node: true,
-        size: true,
-      })
-      .exec(this.init.bind(this))
   },
-  init(res) {
-    const width = res[0].width
-    const height = res[0].height
-    const canvas = res[0].node
-    const ctx = canvas.getContext('2d');
-    this.drawCanvas(width, height, ctx);
-  },
-
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -169,101 +156,43 @@ Page({
         this.errorTips(erroInfo);
         return;
       } else {
-        submitData.overPileHeight = "有" + data.otherOverPileHeight + "m";
+        submitData.overPileHeight = data.otherOverPileHeight + "m";
       }
     }
-    console.log(submitData);
+    var holeXPosition = this.data.holeXPosition;
+    var holeYPosition = this.data.holeYPosition;
+   
+    if(holeXPosition && holeYPosition){
+      submitData.holeXPosition =  holeXPosition;
+      submitData.holeYPosition =  holeYPosition;
+      submitData.holeImageString = this.data.holeImageString;
+    }else{
+      erroInfo = "请选择检测孔位置";
+      this.errorTips(erroInfo);
+      return;
+    }
+
+    wx.showLoading({
+      title: '提交中...',
+    }) 
+    var zxData = {id:this.data.id};
+    zxData.baseInfo = submitData;
+    WXAPI.UpdateHole(zxData).then(res=>{
+      wx.hideLoading();
+      wx.showToast({
+        title: '操作成功',
+        icon: 'success',
+        duration: 2000,
+        mask: true
+      })
+    })
   },
 
   //返回上一级
   cancel: function () {
     App.back()
   },
-  //画钻芯的孔位置
-  drawCanvas: function (width, height, ctx) {
-    //圆心坐标
-    var ORIGIN = {
-      x: width / 2,
-      y: height / 2
-    }
-    //x轴的起点坐标
-    var X_ORIGIN = {
-      x: x_MARGIN,
-      y: height / 2
-    }
-
-    //x轴的终点坐标
-    var X_END = {
-      x: width - x_MARGIN,
-      y: height / 2
-    }
-
-    //y轴的起点坐标
-    var Y_ORIGIN = {
-      x: width / 2,
-      y: height - y_MARGIN
-    }
-
-    //y轴的终点坐标
-    var Y_END = {
-      x: width / 2,
-      y: y_MARGIN
-    }
-
-    //定义箭头长，宽
-
-    var ARROW = {
-      length: 5,
-      width: 2
-    }
-
-    //x轴箭头坐标
-    var X_TOP_ARROW = {
-      x: X_END.x - ARROW.length,
-      y: X_END.y - ARROW.width
-    }
-
-    var X_BOTTOM_ARROW = {
-      x: X_END.x - ARROW.length,
-      y: X_END.y + ARROW.width
-    }
-
-    //y轴箭头坐标
-    var Y_LEFT_ARROW = {
-      x: width / 2 - ARROW.width,
-      y: Y_END.y + ARROW.length,
-    }
-    var Y_RIGHT_ARROW = {
-      x: width / 2 + ARROW.width,
-      y: Y_END.y + ARROW.length,
-    }
-
-
-    ctx.beginPath();
-    ctx.moveTo(X_ORIGIN.x, X_ORIGIN.y);
-    ctx.lineTo(X_END.x, X_END.y);
-    ctx.moveTo(X_TOP_ARROW.x, X_TOP_ARROW.y)
-    ctx.lineTo(X_END.x, X_END.y)
-    ctx.lineTo(X_BOTTOM_ARROW.x, X_BOTTOM_ARROW.y)
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(Y_ORIGIN.x, Y_ORIGIN.y);
-    ctx.lineTo(Y_END.x, Y_END.y);
-    ctx.moveTo(Y_LEFT_ARROW.x, Y_LEFT_ARROW.y)
-    ctx.lineTo(Y_END.x, Y_END.y)
-    ctx.lineTo(Y_RIGHT_ARROW.x, Y_RIGHT_ARROW.y)
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.arc(ORIGIN.x, ORIGIN.y, 50, 0, 2 * Math.PI);
-    ctx.stroke();
-
-    //填充文字
-    ctx.fillText('E', X_END.x - 5, X_END.y - 10)
-    ctx.fillText('N', Y_END.x + 10, Y_END.y + 5)
-
-  },
+ 
   //打开GPS
   switchChange: function (e) {
     var GPSIspen = e.detail.value;

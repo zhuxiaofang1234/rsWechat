@@ -1,0 +1,8 @@
+<!--pages/ZXHoleBaseInfo/HolePic.wxml-->
+<canvas id="myCanvas" type="2d" class="zxCanvas" bindtouchstart="getPosition"></canvas>
+<view class="footer-content">
+	<view class="btn-wrap">
+		<button class="rs-btn btn-blue" plain="true" bindtap="cancel">取消</button>
+		<button class="rs-btn btn-green" plain="true" bindtap="getInfo">确定</button>
+	</view>
+</view>

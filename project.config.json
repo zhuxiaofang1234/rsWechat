@@ -74,6 +74,19 @@
 					"pathName": "pages/test/testMode",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ZXHoleBaseInfo",
+					"pathName": "pages/ZXHoleBaseInfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "HolePic",
+					"pathName": "pages/ZXHoleBaseInfo/HolePic",
+					"scene": null
 				}
 			]
 		}

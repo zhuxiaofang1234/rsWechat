@@ -1,136 +1,136 @@
 <form bindsubmit='reg'>
-  <view class="details-wrap">
-    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
-    <view class="main">
-      <scroll-view class="main-wrapper" scroll-y style="height:100%">
-        <view class="details-container no-padding bg-gray38">
-          <view class="weui-cells__title rs-title">回次编号
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="hcNo" value="{{hcNo}}"/>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">芯样数量
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" name="hcXyCount" value="{{hcXyCount}}" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">
-            开钻时间
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_select">
-              <view class="weui-cell__bd">
-                <picker mode="date" bindchange="bindStartDateChange" value="{{hcStartTime}}" start="2019-11-01">
-                  <view class="weui-select">{{hcStartTime}}</view>
-                </picker>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">
-            结束时间
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_select">
-              <view class="weui-cell__bd">
-                <picker mode="date" bindchange="bindEndDateChange" value="{{hcEndTime}}" start="{{hcStartTime}}">
-                  <view class="weui-select">{{hcEndTime}}</view>
-                </picker>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">到底时余尺(m)
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{endLength}}" name="endLength" bindblur="getEndLength"/>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">提钻时余尺(m)
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{startLength}}" name="startLength" bindblur="getStartLength"/>
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">芯样长度(m)
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{xyLength}}" name="xyLength" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">残留芯样(m)
-            <span class="blue">*</span>
-          </view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{xyResidual}}" name="xyResidual" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">备注</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <input class="weui-input rs-text" value="{{remark}}" name="remark" />
-              </view>
-            </view>
-          </view>
-          <view class="weui-cells__title rs-title">芯样图片</view>
-          <view class="weui-cells weui-cells_after-title bg-black">
-            <view class="weui-cell weui-cell_input">
-              <view class="weui-cell__bd">
-                <view class="weui-uploader">
-                  <view class="weui-uploader__bd">
-                    <view class="weui-uploader__files" id="uploaderFiles">
-                      <block wx:for="{{files}}" wx:key="*this">
-                        <view class="weui-uploader__file weui-uploader_status" bindtap="previewImage" id="{{item}}">
-                          <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
-                          <view class="weui-uploader__file-content" catchtap="delUploaderImg">
-                            <icon type="clear" size="16" color="#F43530"></icon>
-                          </view>
-                          <view class="weui-upload-status {{uploadFlag ? 'upload-sucess' : 'upload-error'}}">{{uploadtext}}</view>
-                        </view>
-                      </block>
-                    </view>
-                    <view class="weui-uploader__input-box" hidden="{{isShowUploader}}">
-                      <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </scroll-view>
-    </view>
-    <!--main结束-->
-    <view class="footer backfooter">
-      <button class="rs-btn btn-blue backbtn mr-50" plain="true"  bindtap="cancel">取消</button>
-      <button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
-    </view>
-  </view>
-  <!--details-wrap结束-->
+	<view class="details-wrap">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{erroInfo}}</view>
+		<view class="main">
+			<scroll-view class="main-wrapper" scroll-y style="height:100%">
+				<view class="details-container no-padding bg-gray38">
+					<view class="weui-cells__title rs-title">回次编号
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="hcNo" value="{{hcNo}}" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">芯样数量
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" name="hcXyCount" value="{{hcXyCount}}" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">
+						开钻时间
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_select">
+							<view class="weui-cell__bd">
+								<picker mode="time" bindchange="bindStartTimeChange" value="{{hcStartTime}}">
+									<view class="weui-select">{{hcStartTime}}</view>
+								</picker>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">
+						结束时间
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_select">
+							<view class="weui-cell__bd">
+								<picker mode="time" bindchange="bindEndTimeChange" value="{{hcEndTime}}" start="{{hcStartTime}}">
+									<view class="weui-select">{{hcEndTime}}</view>
+								</picker>
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">到底时余尺(m)
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{endLength}}" name="endLength" bindblur="getEndLength" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">提钻时余尺(m)
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{startLength}}" name="startLength" bindblur="getStartLength" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">芯样长度(m)
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{xyLength}}" name="xyLength" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">残留芯样(m)
+						<span class="blue">*</span>
+					</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{xyResidual}}" name="xyResidual" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">备注</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<input class="weui-input rs-text" value="{{remark}}" name="remark" />
+							</view>
+						</view>
+					</view>
+					<view class="weui-cells__title rs-title">芯样图片</view>
+					<view class="weui-cells weui-cells_after-title bg-black">
+						<view class="weui-cell weui-cell_input">
+							<view class="weui-cell__bd">
+								<view class="weui-uploader">
+									<view class="weui-uploader__bd">
+										<view class="weui-uploader__files" id="uploaderFiles">
+											<block wx:for="{{files}}" wx:key="*this">
+												<view class="weui-uploader__file weui-uploader_status" bindtap="previewImage" id="{{item}}">
+													<image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+													<view class="weui-uploader__file-content" catchtap="delUploaderImg">
+														<icon type="clear" size="16" color="#F43530"></icon>
+													</view>
+													<view class="weui-upload-status {{uploadFlag ? 'upload-sucess' : 'upload-error'}}">{{uploadtext}}</view>
+												</view>
+											</block>
+										</view>
+										<view class="weui-uploader__input-box" hidden="{{isShowUploader}}">
+											<view class="weui-uploader__input" bindtap="chooseImage"></view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!---main结束--->
+		<view class="footer backfooter">
+			<button class="rs-btn btn-blue backbtn mr-50" plain="true" bindtap="cancel">取消</button>
+			<button class="rs-btn backbtn btn-green" plain="true" form-type="submit">保存</button>
+		</view>
+	</view>
+	<!--details-wrap结束-->
 </form>

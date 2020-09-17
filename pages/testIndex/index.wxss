@@ -1,0 +1,7 @@
+/* pages/testIndex/index.wxss */
+#myCanvas{
+  background-color: cornsilk;
+  width:300px;
+  height:300px;
+  margin:80rpx auto;
+}

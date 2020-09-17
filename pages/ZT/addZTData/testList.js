@@ -8,7 +8,7 @@ Page({
    */
   data: {
     pileList: [],
-    pileListStore:[],
+    pileListStore: [],
     hasVaildPile: true,
     loadingPage: false,
     inputShowed: false,
@@ -70,21 +70,21 @@ Page({
       inputShowed: true
     });
     this.setData({
-      pileList:this.data.pileListStore
+      pileList: this.data.pileListStore
     });
   },
-   //取消搜索
+  //取消搜索
   hideInput: function () {
     this.setData({
       inputVal: "",
       inputShowed: false,
-      pileList:this.data.pileListStore
+      pileList: this.data.pileListStore
     });
   },
   clearInput: function () {
     this.setData({
       inputVal: "",
-      pileList:this.data.pileListStore
+      pileList: this.data.pileListStore
     });
 
   },
@@ -93,8 +93,8 @@ Page({
     var index = parseInt(e.detail.value);
     var plieList = this.data.pileList;
     var newPlieList = [];
-    var  newPlieList = plieList.filter(function(item){
-          return item.index == index
+    var newPlieList = plieList.filter(function (item) {
+      return item.index == index
     });
     this.setData({
       inputVal: e.detail.value,
@@ -158,22 +158,32 @@ Page({
   getPileList: function () {
     var that = this;
     var modeType = Until.getModeType();
+    this.setData({
+      modeType: modeType
+    });
     var wtId = wx.getStorageSync('wtId');
     WXAPI.GetPileListByEntrustId(wtId, modeType).then(res => {
       var resData = res.result;
+      console.log(resData);
       if (resData.length != 0) {
+        var newPileList;
         //过滤测点号不存在的列表
-        var newPileList = resData.filter(function (item) {
-          return item.pileAxis != "" && item.pileAxis != "-";
-        });
-
+        if (modeType == 'ZX') {
+          newPileList = resData.filter(function (item) {
+            return item.pileNo != "" && item.pileNo != "-";
+          });
+        } else {
+          newPileList = resData.filter(function (item) {
+            return item.pileAxis != "" && item.pileAxis != "-";
+          });
+        }
         if (newPileList.length != 0) {
+          console.log(newPileList)
           that.setData({
-            loadingPage: true, //隐藏加载页面啊  
+            loadingPage: true, //隐藏加载页面  
             hasVaildPile: true, //显示有效桩列表
             pileList: newPileList.sort(this.compare('isStartTest')),
             pileListStore: newPileList.sort(this.compare('isStartTest'))
-
           });
         } else {
           that.setData({

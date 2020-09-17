@@ -1,0 +1,39 @@
+/* pages/ZXHoleBaseInfo/HolePic.wxss */
+page {
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.zxCanvas {
+  width: 300px;
+  height: 300px;
+  margin: 80rpx auto;
+}
+
+.footer-content {
+  background-color: #383838;
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0
+}
+
+.hole-position {
+  padding: 40rpx 30rpx;
+  border-bottom:1px solid #444 
+}
+
+.hole-position .row-item {
+  margin-top:20rpx;
+}
+
+.row-item-input .rs-input {
+  width: 360rpx;
+  margin-left: 30rpx
+}
+
+.btn-wrap{
+  display: flex;
+  justify-content: space-around;
+  margin:30rpx 0;
+}

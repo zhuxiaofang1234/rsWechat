@@ -91,6 +91,7 @@ Page({
       destHeight: 100,
       fileType: 'png',
       success: function(res) {
+        console.log(res)
         wx.getFileSystemManager().readFile({
           filePath: res.tempFilePath, //选择图片返回的相对路径
           encoding: 'base64', //编码格式

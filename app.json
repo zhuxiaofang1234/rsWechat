@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/testIndex/index",
     "pages/index/index",
     "pages/ZXRecordDetails/index",
     "pages/workSure/index",
@@ -41,7 +42,7 @@
     "pages/ZXGather/index",
     "pages/ZXresult/index",
     "pages/ZXSceneRecordData/ZXSceneRecordData",
-    "pages/ZXBaseData/ZXBaseData",
+    "pages/ZXHoleBaseInfo/HolePic",
     "pages/ZXHoleBaseInfo/index",
     "pages/EndHole/EndHole",
     "pages/AddZXTestData/AddZXTestData",
