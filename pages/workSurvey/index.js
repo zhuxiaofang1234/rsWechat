@@ -9,9 +9,7 @@ Page({
   data: {
     testModeName:'全部',
     testModeCode:'',
-    inputShowed: false,
     inputVal: "",
-    accessToken: '',
     totalCount: 0,
     MaxResultCount: 10,
     page: 0,
@@ -20,7 +18,7 @@ Page({
     loadingText: '加载中.....',
     /***数据是否正在加载**/
     hidden: true,
-    loadingPage: false
+    loadingPage: true
   },
 
   /**
@@ -28,15 +26,7 @@ Page({
    */
   onLoad: function (options) {
     //初始化页面
-    var accessToken = wx.getStorageSync('rsAccessToken');
-    if (accessToken) {
-      this.setData({
-        "accessToken": accessToken
-      });
-      this.getPage();
-    } else {
-      App.redirectToLogin();
-    }  
+    this.getPage();
   },
 
    /**
@@ -55,14 +45,12 @@ Page({
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading();
     }, 2000)
-    if (this.data.accessToken) {
     this.setData({
       inputVal: '',
       page: 0,
       testList: []
     });
     this.getPage();
-    }
   },
 
   //加载更多
@@ -105,40 +93,40 @@ Page({
 
 
   /***搜索***/
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  search: function (e) {
+  cancelSearch: function (e) {
+    if (!this.data.inputVal) {
+      return
+    }
     var that = this;
     this.setData({
-      loadingPage: false,
-      inputVal: e.detail.value,
+      loadingPage: true,
+      inputVal: "",
       page: 0,
       testList: []
     });
-
     that.getPage();
-   
   },
+
+  search: function (e) {
+    var that = this;
+    this.setData({
+      loadingPage: true
+    });
+    setTimeout(function () {
+      that.setData({
+        inputVal: e.detail,
+        page: 0,
+        testList: []
+      });
+      that.getPage();
+    }, 100)
+  },
+ 
   //获取列表数据
   getPage: function () {
     var that = this;
     var hidden = this.data.hidden;
     var page = this.data.page;
-    var total = this.data.totalCount;
     var Filter = this.data.inputVal;
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
@@ -176,14 +164,14 @@ Page({
       });
       setTimeout(()=>{
         that.setData({
-          'loadingPage': true
+          'loadingPage': false
         },100);
       })
       
     }, err => {
       //请求出错也关闭加载状态页面
       that.setData({
-        loadingPage: true
+        loadingPage: false
       });
     });
   },
@@ -195,10 +183,15 @@ Page({
       url: '/pages/workSurvey/details?Id=' + id
     })
   },
-   //选择检测方法
-   toSelectTestMode:function(e){
+  
+  //选择检测方法
+  toSelectTestMode: function (e) {
+    var testModeCode = this.data.testModeCode;
+    if (testModeCode == "") {
+      testModeCode = "All"
+    }
     wx.navigateTo({
-      url:  "/pages/test/testMode",
+      url: "/pages/test/testMode?testModeCode=" + testModeCode
     })
   }
 })

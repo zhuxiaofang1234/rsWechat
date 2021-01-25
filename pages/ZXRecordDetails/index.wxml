@@ -1,4 +1,7 @@
 <view class="details-container depth-container mt-20">
+	<view class="operation_bar">
+		<span class="iconfont depth-icon icon-bianji" data-id="{{item.id}}" bindtap="toEditZXRecord"></span>
+	</view>
 	<view class="details-item">
 		<view class="details-title">回次编号</view>
 		<view class="details-info rs-text mt-20">{{recordData.hcNo}}</view>
@@ -31,7 +34,7 @@
 		<view class="details-title">残留芯样(m)</view>
 		<view class="details-info rs-text mt-20">{{recordData.xyResidual/1000}}</view>
 	</view>
-  	<view class="details-item">
+	<view class="details-item">
 		<view class="details-title">备注</view>
 		<view class="details-info rs-text mt-20">{{recordData.remark}}</view>
 	</view>

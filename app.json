@@ -1,7 +1,8 @@
 {
+  "entryPagePath":"pages/index/index",
   "pages": [
-    "pages/testIndex/index",
     "pages/index/index",
+    "pages/testIndex/index", 
     "pages/ZXRecordDetails/index",
     "pages/workSure/index",
     "pages/workSure/details",
@@ -26,9 +27,6 @@
     "pages/dataCenter/testList",
     "pages/login/login",
     "pages/test/testMode",
-    "pages/JZmonitor/album",
-    "pages/JZmonitor/photo", 
-    "pages/JZmonitor/location",
     "pages/JZmonitor/index",
     "pages/WebView/index",
     "pages/ZXRecordList/index",
@@ -48,9 +46,19 @@
     "pages/AddZXTestData/AddZXTestData",
     "pages/HoleList/index",
     "pages/AddZXRecord/AddZXRecord",
+    "pages/EditZXRecord/index",
     "pages/myInfo/myInfo",
     "pages/myInfo/userInfo/index",
-    "pages/myInfo/systemInfo/index"
+    "pages/myInfo/systemInfo/index",
+    "pages/log/index",
+    "pages/DCWebView/index",
+    "pages/TestReportsNav/index",
+    "pages/TestReports/index",
+    "pages/TestReports/details",
+    "pages/ZXDetails/index",
+    "pages/WorkSchedule/details",
+    "pages/WorkSchedule/selectPerson",
+    "pages/WorkSchedule/selectDevice"
   ],
   "window": {
     "backgroundTextStyle": "light",

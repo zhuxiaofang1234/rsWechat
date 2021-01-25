@@ -1,0 +1,129 @@
+<view class="details-wrap">
+	<view class="main mt-20">
+		<scroll-view class="main-wrapper" scroll-y style="height: 100%">
+			<view class="details-container">
+				<view class="details-item">
+					<view class="details-title">工程名称</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.projectName ? projectInfo.projectName :'-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程地点</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.projectAddress ? projectInfo.projectAddress : '-'}}
+					</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">结构形式</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.structureType ? projectInfo.structureType :  '-'}}
+					</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测方法</view>
+					<view class="details-info rs-text mt-20">{{projectData.planPileCount ? projectData.planPileCount :  '-'}}
+					</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">层数(层)</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.layersNum ? projectInfo.layersNum : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">建筑面积</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.ares ? projectInfo.ares : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">开工日期</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.startDate ? projectInfo.startDate : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">桩型</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.pileType ? projectInfo.pileType : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">桩径</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.pileDiameter ? projectInfo.pileDiameter : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">设计单桩抗拔承载力特征值</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.dzczltzz ? projectInfo.dzczltzz : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">要求最大抗拔试验荷载</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.yqzdhz ? projectInfo.yqzdhz : '-'}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程总桩数</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.designPileCount ? projectInfo.designPileCount: '-'}}
+					</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测桩数</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.planPileCount ? projectInfo.planPileCount: '-' }}
+					</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">设计桩长</view>
+					<view class="details-info rs-text mt-20">{{projectInfo.designPileLength ? projectInfo.designPileLength: '-' }}
+					</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">桩端持力层</view>
+					<view class="details-info rs-text mt-20">
+						{{projectInfo.pileEndBearingLayer ? projectInfo.pileEndBearingLayer : '-'}}</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="footer backfooter" wx:if="{{isShowBtn}}">
+		<block wx:if="{{pageType=='ReportSubmit'}}">
+			<button class="rs-btn btn-orange" plain="true" bindtap="ReportSubmit">提交报告</button>
+		</block>
+		<block wx:if="{{pageType=='ReportCheck'}}">
+			<button class="rs-btn btn-orange" plain="true" bindtap="toCheckReject">校核驳回</button>
+			<button class="rs-btn btn-green" plain="true" bindtap="toCheckPass">校核通过</button>
+		</block>
+		<block wx:if="{{pageType=='ReportVerify'}}">
+			<button class="rs-btn btn-orange" plain="true" bindtap="toVerifyReject">审核驳回</button>
+			<button class="rs-btn btn-green" plain="true" bindtap="toVerifyPass">审核通过</button>
+		</block>
+		<block wx:if="{{pageType=='ReportApproval'}}">
+			<button class="rs-btn btn-orange" plain="true" bindtap="toApprovalReject">批准驳回</button>
+			<button class="rs-btn btn-green" plain="true" bindtap="toApprovalPass">批准通过</button>
+		</block>
+		<block wx:if="{{pageType=='ReportSign' && reportFlag==45}}">
+			<button class="rs-btn btn-orange" plain="true" bindtap="toReportInvalid">申请作废</button>
+		</block>
+		<block wx:if="{{pageType=='ReportInValid' && reportcancelflag==91}}">
+			<button class="rs-btn btn-orange" plain="true" bindtap="toInvalidVerify">确认作废</button>
+			<button class="rs-btn btn-green" plain="true" bindtap="toInvalidRevoke">撤销作废</button>
+		</block>
+	</view>
+</view>
+
+<!--添加悬浮按钮-->
+<view class="add-wrap">
+	<image class="add-image" src="../../images/preview@2x.png" bindtap="toPreviewReport"></image>
+</view>
+
+<!--弹框-->
+<rs-popup visible="{{show}}" title="{{title}}" bindcancel="cancelBtn" bindsure="formSubmit">
+	<view slot="body" class="popbody">
+		<block wx:if="{{!showMessage}}">
+			<view class="weui-cells__title rs-title">{{personType}}</view>
+			<view class="weui-cells weui-cells_after-title bg-black">
+				<view class="weui-cell weui-cell_select">
+					<view class="weui-cell__bd">
+						<picker bindchange="bindPickerChange" range="{{personList}}" value="{{index}}" range-key="name">
+							<view class="weui-select">{{personList[index].name ? personList[index].name : '请选择'+ personType}}</view>
+						</picker>
+					</view>
+				</view>
+			</view>
+		</block>
+		<block wx:else>
+			<view class="rs_input_wrap">
+				<textarea class="rs-textarea rs-text" name="message" bindinput="bindKeyInput" value="{{message}}"
+					style="height: 3.3em;" placeholder="{{placeHolderText}}"
+					placeholder-class="tipStyles {{error ? 'errorTips' : ''}}" />
+				</view>
+		</block>
+	</view>
+</rs-popup>

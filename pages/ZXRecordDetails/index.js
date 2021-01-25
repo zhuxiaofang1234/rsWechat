@@ -16,15 +16,15 @@ Page({
       var recordId = options.id;
       var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
       var zxHoleDrillingRecordList = ZXHoleDetails.zxHoleDrillingRecordList;
-    
       if(zxHoleDrillingRecordList.length!=0){
         var curRecord = zxHoleDrillingRecordList.filter(function(item){
           return item.id == recordId
         })
-      }  
+      };
       this.setData({
         recordData:curRecord[0]
       });
+      wx.setStorageSync('ZXrecordData', this.data.recordData);
   },
 
   /**
@@ -38,7 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**
@@ -92,7 +92,12 @@ Page({
           console.log(err)
         }
       })
-  }
+  },
 
+  toEditZXRecord:function(e){
+    wx.navigateTo({
+      url: '/pages/EditZXRecord/index',
+    })
+  }
 
 })

@@ -1,0 +1,50 @@
+/* pages/EditZXRecord/index.wxss */
+.weui-uploader{
+  padding:10px 0 5px  0;
+}
+.weui-uploader_status{
+  position:relative;
+}
+.weui-uploader__bd {
+  overflow:unset;
+}
+
+.weui-uploader__file-content {
+  position: absolute;
+  top: -9px;
+  right:-7px;
+  left:unset;
+  color: #fff;
+  -webkit-transform: unset;
+  transform: unset;
+  z-index: 99
+}
+.weui-upload-status{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:2px;
+  font-size:12px;
+  color:#fff;
+  text-align: center;
+}
+.upload-sucess{
+  background-color: #4cd964; 
+}
+.upload-error{
+  background-color: crimson;
+}
+
+.GatherPicWrap{
+  position: absolute;
+  width: 77px;
+  height: 77px;
+  z-index: 99;
+  top: 0;
+  left: 0;
+}
+.GatherPic{
+  width:100%;
+  height:100%;
+}

@@ -10,7 +10,7 @@ Page({
     pileList: [],
     pileListStore: [],
     hasVaildPile: true,
-    loadingPage: false,
+    loadingPage: true,
     inputShowed: false,
     inputVal: ""
   },
@@ -180,21 +180,21 @@ Page({
         if (newPileList.length != 0) {
           console.log(newPileList)
           that.setData({
-            loadingPage: true, //隐藏加载页面  
+            loadingPage: false, //隐藏加载页面  
             hasVaildPile: true, //显示有效桩列表
             pileList: newPileList.sort(this.compare('isStartTest')),
             pileListStore: newPileList.sort(this.compare('isStartTest'))
           });
         } else {
           that.setData({
-            loadingPage: true,
+            loadingPage: false,
             hasVaildPile: false //显示去完善桩列表
           });
         }
       }
     }, err => {
       that.setData({
-        loadingPage: true
+        loadingPage: false
       });
     });
   },

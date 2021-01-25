@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "loading":"/component/loading/index"
+  },
   "navigationBarTitleText": "选择测点"
 }

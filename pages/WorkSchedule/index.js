@@ -10,9 +10,7 @@ Page({
   data: {
     testModeName: '全部',
     testModeCode: '',
-    inputShowed: false,
     inputVal: "",
-    accessToken: '',
     totalCount: 0,
     MaxResultCount: 10,
     page: 0,
@@ -22,8 +20,8 @@ Page({
     /***数据是否正在加载**/
     hidden: true,
     testStatus: "",
-    loadingPage: false,
-    tabs: ["全部", "待安排", "待踏勘", "待确认","待进场"],
+    loadingPage: true,
+    tabs: ["全部", "待安排", "待踏勘", "待确认", "待进场"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0
@@ -33,15 +31,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //初始化页面
-    var accessToken = wx.getStorageSync('rsAccessToken');
-    if (accessToken) {
-      this.setData({
-        "accessToken": accessToken
-      })
-    } else {
-      App.redirectToLogin();
+    var title;
+    if (options.type == 'WorkSchedule') {
+      title = '工作安排'
+    } else if (options.type == 'PersonSchedule') {
+      title = '人员安排'
     }
+    wx.setNavigationBarTitle({
+      title: title,
+    })
 
     var that = this;
     wx.getSystemInfo({
@@ -52,26 +50,24 @@ Page({
         });
       }
     });
+    this.setData({
+      type: options.type
+    })
+    setTimeout(function () {
+      that.setData({
+        inputVal: '',
+        page: 0,
+        testList: []
+      });
+      that.getPage();
+    }, 200)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.accessToken) {
-      var that = this;
-      this.setData({
-        loadingPage: false
-      });
-      setTimeout(function () {
-        that.setData({
-          inputVal: '',
-          page: 0,
-          testList: []
-        });
-        that.getPage();
-      }, 200)
-    }
+
   },
 
   /**
@@ -83,14 +79,13 @@ Page({
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading();
     }, 2000)
-    if (this.data.accessToken) {
-      this.setData({
-        inputVal: '',
-        page: 0,
-        testList: []
-      });
-      this.getPage();
-    }
+
+    this.setData({
+      inputVal: '',
+      page: 0,
+      testList: []
+    });
+    this.getPage();
   },
 
   //加载更多
@@ -131,47 +126,46 @@ Page({
     console.log('页面上拉触底');
   },
 
-  /***搜索***/
-  showInput: function () {
+
+  //取消搜索
+  cancelSearch: function (e) {
+    if (!this.data.inputVal) {
+      return
+    }
+    var that = this;
     this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
+      loadingPage: true,
       inputVal: "",
-      inputShowed: false
+      page: 0,
+      testList: []
     });
+    that.getPage();
   },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
+
   search: function (e) {
     var that = this;
     this.setData({
-      loadingPage: false
+      loadingPage: true
     });
     setTimeout(function () {
       that.setData({
-        inputVal: e.detail.value,
+        inputVal: e.detail,
         page: 0,
         testList: []
       });
       that.getPage();
     }, 100)
   },
+
   //获取列表数据
   getPage: function () {
     var that = this;
     var hidden = this.data.hidden;
     var page = this.data.page;
-    var Filter = this.data.inputVal;
+    var Filter = this.data.inputVal.trim();
     var TestStatus = this.data.testStatus;
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
-    var hidden = this.data.hidden;
     var TestModeCode = this.data.testModeCode;
     if (hidden) {
       this.setData({
@@ -185,7 +179,7 @@ Page({
       'TestStatus': TestStatus,
       'Filter': Filter
     };
-    WXAPI.GetWorkSchedule(queryData).then(res => {
+    WXAPI.GetWorkSchedule(this.data.type, queryData).then(res => {
       wx.hideLoading();
       var resData = res.result;
       var curList = that.data.testList;
@@ -204,22 +198,23 @@ Page({
       });
       setTimeout(() => {
         that.setData({
-          'loadingPage': true
+          'loadingPage': false
         }, 100);
       })
 
     }, err => {
       //请求出错也关闭加载状态页面
       that.setData({
-        loadingPage: true
+        loadingPage: false
       });
     });
   },
   //检测任务详情页
   toTestTaskDetails: function (e) {
     var id = e.currentTarget.dataset.id;
-    var confirm = e.currentTarget.dataset.confirm;
-  
+    wx.navigateTo({
+      url: '/pages/WorkSchedule/details?wtId=' + id + '&type=' + this.data.type,
+    })
   },
   //切换状态
   tabClick: function (e) {
@@ -238,7 +233,7 @@ Page({
       case "3":
         TestStatus = 13;
         break;
-        case "4":
+      case "4":
         TestStatus = 21;
         break;
       default:
@@ -252,7 +247,7 @@ Page({
       inputVal: '',
       page: 0,
       testList: [],
-      loadingPage: false
+      loadingPage: true
     });
 
     setTimeout(() => {
@@ -262,8 +257,12 @@ Page({
   },
   //选择检测方法
   toSelectTestMode: function (e) {
+    var testModeCode = this.data.testModeCode;
+    if (testModeCode == "") {
+      testModeCode = "All"
+    }
     wx.navigateTo({
-      url: "/pages/test/testMode",
+      url: "/pages/test/testMode?testModeCode=" + testModeCode
     })
   }
 })

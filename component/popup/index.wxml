@@ -1,0 +1,22 @@
+<view class="i-as-mask i-class-mask {{ visible ? 'i-as-mask-show' : '' }}" bindtap="handleClickMask"></view>
+<view class="i-as {{ visible ? 'i-as-show' : '' }}">
+	<view class="i-as-header i-class-header">
+		<view class="header-title_slot">
+			<slot name="header"></slot>
+		</view>
+		<view class="header-dialog">
+			<view class="header-title">{{title}}</view>
+			<view class="iconfont icon-chuyidong close-icon" bindtap="handleClickCancel"></view>
+		</view>
+	</view>
+	<view class="i-body">
+		<slot name="body"></slot>
+	</view>
+	<view class="i-as-cancel" bindtap="handleSure">
+		<view class="footer-dialog">
+			<button class="dialog-btn" formType="submit">
+				{{cancelText}}
+			</button>
+		</view>
+	</view>
+</view>

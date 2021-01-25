@@ -22,13 +22,18 @@
 							</view>
 						</view>
 						<view class="weui-cells__title rs-title">
+							开孔时间<span class="blue">*</span></view>
+						<view class="weui-cells weui-cells_after-title bg-black">
+							<pickerDate custom-class="myPickerDate" placeholder="{{placeholder}}" date="{{startTime}}" disabled="{{disabled}}" bind:onPickerChange="bindStartTimeChange" startDate="{{startDate}}" endDate="{{endDate}}">
+							</pickerDate>
+						</view>
+						<view class="weui-cells__title rs-title">
 							终孔时间<span class="blue">*</span></view>
 						<view class="weui-cells weui-cells_after-title bg-black">
 							<view class="weui-cell weui-cell_select">
 								<view class="weui-cell__bd">
-									<picker mode="date" bindchange="bindEndTimeChange" value="{{endTime}}" start="2019-11-01" end="2020-11-01">
-										<view class="weui-select">{{endTime}}</view>
-									</picker>
+									<pickerDate custom-class="myPickerDate" placeholder="{{placeholder}}" date="{{endTime}}" disabled="{{disabled}}" bind:onPickerChange="bindEndTimeChange" startDate="{{startDate}}" endDate="{{endDate}}">
+									</pickerDate>
 								</view>
 							</view>
 						</view>

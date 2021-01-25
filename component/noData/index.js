@@ -1,10 +1,17 @@
-// component/slideDialog/index.js
+// component/noData/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    tips:{
+      type:String,
+      value:'暂无数据'
+    },
+    showTips:{
+      type:Boolean,
+      value:false
+    }
   },
 
   /**

@@ -20,7 +20,7 @@
 					<view class="weui-cells weui-cells_after-title bg-black">
 						<view class="weui-cell weui-cell_input">
 							<view class="weui-cell__bd">
-								<input class="weui-input rs-text" name="hcXyCount" value="{{hcXyCount}}" />
+								<input class="weui-input rs-text" name="hcXyCount" value="{{hcXyCount}}" type="number"/>
 							</view>
 						</view>
 					</view>
@@ -31,9 +31,8 @@
 					<view class="weui-cells weui-cells_after-title bg-black">
 						<view class="weui-cell weui-cell_select">
 							<view class="weui-cell__bd">
-								<picker mode="time" bindchange="bindStartTimeChange" value="{{hcStartTime}}">
-									<view class="weui-select">{{hcStartTime}}</view>
-								</picker>
+								<pickerDate custom-class="myPickerDate" placeholder="{{placeholder}}"  disabled="{{disabled}}" bind:onPickerChange="bindStartTimeChange" startDate="{{startDate}}" endDate="{{endDate}}">
+								</pickerDate>
 							</view>
 						</view>
 					</view>
@@ -44,9 +43,8 @@
 					<view class="weui-cells weui-cells_after-title bg-black">
 						<view class="weui-cell weui-cell_select">
 							<view class="weui-cell__bd">
-								<picker mode="time" bindchange="bindEndTimeChange" value="{{hcEndTime}}" start="{{hcStartTime}}">
-									<view class="weui-select">{{hcEndTime}}</view>
-								</picker>
+								<pickerDate custom-class="myPickerDate" placeholder="{{placeholder}}"  disabled="{{disabled}}" bind:onPickerChange="bindEndTimeChange" startDate="{{endStartDate}}" endDate="{{endDate}}">
+								</pickerDate>
 							</view>
 						</view>
 					</view>

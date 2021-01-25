@@ -64,7 +64,6 @@
 .operation_bar  .icon-bianji{
   float:right;
   margin-right:20rpx;
- 
 }
 
 .operation_bar  .icon-shanchu{

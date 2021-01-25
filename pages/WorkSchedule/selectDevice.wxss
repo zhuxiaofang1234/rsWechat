@@ -1,0 +1,77 @@
+/* pages/WorkSchedule/selectDevice.wxss */
+.weui-cell.weui-check__label{
+  background-color: #000;
+  color:#fff;
+  font-size:36rpx;
+}
+.weui-cell.weui-check__label.weui-check-disabled{
+  opacity: 0.8;
+}
+
+.weui-cell:before{border-top:1rpx solid #898989;}
+
+.red{
+  color:red;
+}
+.green{
+  color:green;
+}
+.pileOrder{
+  font-size: 14px;
+  color:#dddd;
+  margin-right:40rpx;
+}
+/***搜索***/
+.weui-search-bar-1{
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  box-sizing:border-box;
+}
+  .search-form{
+    position:relative;
+    -webkit-box-flex:1;
+    -webkit-flex:auto;
+    flex:auto;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    background-color:#dfdfdf;  
+    box-sizing:border-box;
+  }
+
+  .searchIcon{
+    position:absolute;
+     top:28rpx;
+     left:10px;  
+  }
+ 
+  .searchInput{
+    height:80rpx;
+    line-height:80rpx;
+    font-size:18px;
+    padding:0 10px;
+  }
+
+  .delsearchIcon{
+    position:absolute;
+    top:20rpx;
+    right:10px;
+  }
+ 
+  .weui-search-bar__cancel-btn{
+      margin-left:10px;
+      line-height:80rpx;
+      font-size:18px;
+  }
+
+  .weui-search-bar__label{
+    line-height:40px;
+    border-radius:5px;
+    background-color:#dfdfdf;  
+  }
+  .weui-icon-search{
+    margin-top:6px;
+  }
+  .weui-search-bar__text{
+    font-size:18px;
+  }

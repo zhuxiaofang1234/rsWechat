@@ -13,15 +13,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     var baseInfoId = options.baseInfoId;
+    var type = options.type;
     var host = wx.getStorageSync('rshostName');
     var token = wx.getStorageSync('rsAccessToken');
     var windowWidth = App.globalData.windowWidth;
-
+   
     //获取系统信息
     if (host && baseInfoId) {
       this.setData({
-        url: host + '/h5app/index.html?baseInfoId=' + baseInfoId + '&host=' + host+'&token='+token + '&width='+ windowWidth
+        url: ' https://www.whjiace.com/_oa_app/h5app/index.html?baseInfoId=' + baseInfoId + '&host=' + host + '&token=' + token + '&width=' + windowWidth + '&type=' + type
       });
     }
   },
@@ -29,10 +31,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    console.log(this.data.url)
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示

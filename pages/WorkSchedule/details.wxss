@@ -1,0 +1,55 @@
+/* pages/WorkSchedule/details.wxss */
+.weui-cell_active{
+  background-color: #898989;
+}
+.weui-cell:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #898989;
+  color: #d9d9d9;
+  left: 15px;
+}
+.weui-cell.weui-cell_access{
+  font-size:30rpx
+}
+.weui-cell__bd  .nav-title{
+  color:#ddd;
+  font-size: 30rpx;
+}
+.details-item.area-flex{
+  justify-content: space-between;
+  font-size: 36rpx;
+}
+.details-item .text-item{
+  width: 300rpx;
+  color:#fff;
+  font-size:30rpx;
+}
+
+.details-item .delete-icon{
+  width:18px;
+  height:21px;
+}
+.addBtn{
+  padding:26rpx;
+  background-color: #000;
+  color:#fff;
+  text-align: center;
+} 
+.addBtn .add-icon{
+  width:18px;
+  height:18px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right:20rpx;
+}
+
+.addBtn .add-text{
+  vertical-align: middle;
+  display: inline-block;
+
+}

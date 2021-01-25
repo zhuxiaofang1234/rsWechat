@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "loading": "/component/loading/index",
+    "no-data":"/component/noData/index",
+    "rs-search":"/component/search/index"
+  },
   "navigationBarTitleText": "静载监控"
 }

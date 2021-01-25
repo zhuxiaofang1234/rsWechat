@@ -1,0 +1,132 @@
+@import "../../Iconfont.wxss";
+
+.i-as {
+	position: fixed;
+	width: 100%;
+	box-sizing: border-box;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #383838;
+	transform: translate3d(0, 100%, 0);
+	transform-origin: center;
+	transition: all .2s ease-in-out;
+	z-index: 900;
+	visibility: hidden
+}
+
+.i-as-show {
+	transform: translate3d(0, 0, 0);
+	visibility: visible
+}
+
+.i-as-mask {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgb(102, 102, 102, 0.9);
+	z-index: 900;
+	transition: all .2s ease-in-out;
+	opacity: 0;
+	visibility: hidden
+}
+
+.i-as-mask-show {
+	opacity: 1;
+	visibility: visible
+}
+
+
+.i-as-header {
+	background: #383838;
+	text-align: center;
+	position: relative;
+	font-size: 12px;
+	color: #80848f
+}
+
+.i-as-header::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200%;
+	height: 200%;
+	transform: scale(.5);
+	transform-origin: 0 0;
+	pointer-events: none;
+	box-sizing: border-box;
+	border: 0 solid #555;
+	border-bottom-width: 1px
+}
+
+.header-dialog {
+	position: relative;
+	text-align: left;
+	padding: 5rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+}
+
+.header-title {
+	display: inline-block;
+	font-size: 28rpx;
+	padding-left: 20rpx;
+	color: #fff
+}
+
+.header-dialog .close-icon {
+	position: absolute;
+	right: 8px;
+	top: 2px;
+	font-size: 20px
+}
+
+.i-as-cancel {
+	margin-top: 6px;
+	position: relative;
+}
+
+.i-as-cancel::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200%;
+	height: 200%;
+	transform: scale(.5);
+	transform-origin: 0 0;
+	pointer-events: none;
+	box-sizing: border-box;
+	border: 0 solid #666;
+	border-top-width: 1px
+}
+
+.header-title_slot:empty {
+	display: none
+}
+
+.header-title_slot:not(:empty)+.header-dialog {
+	display: none !important
+}
+
+
+@keyframes btn-spin {
+	0% {
+		transform: rotate(0)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+.dialog-btn {
+	color: rgb(76, 217, 100);
+	letter-spacing: 4px;
+	border-radius: 0;
+	border: none;
+	background-color: #383838;
+}

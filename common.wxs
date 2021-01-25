@@ -1,0 +1,128 @@
+//报告状态
+var ReportStatus = function (status) {
+  var data = {};
+  switch (status) {
+    case 0:
+      data.str = '待编制';
+      data.class = 'text-orange';
+      break;
+    case 1:
+      data.str = '编制中';
+      data.class = 'text-blue';
+      break;
+    case 11:
+      data.str = '待提交';
+      data.class = 'text-orange';
+      break;
+    case 12:
+      data.str = '待校核';
+      data.class = 'text-orange';
+      break;
+    case 21:
+      data.str = '校核驳回';
+      data.class = 'text-red';
+      break;
+    case 23:
+      data.str = '待审核';
+      data.class = 'text-orange';
+      break;
+    case 31:
+      data.str = '审核驳回';
+      data.class = 'text-red';
+      break;
+    case 34:
+      data.str = '待批准';
+      data.class = 'text-blue';
+      break;
+    case 41:
+      data.str = '批准驳回';
+      data.class = 'text-red';
+      break;
+    case 45:
+      data.str = '待签发';
+      data.class = 'text-orange';
+      break;
+    case 55:
+      data.str = '已签发';
+      data.class = 'text-blue';
+      break;
+    default:
+      str = '未知';
+  }
+  return data
+};
+
+var reportCancelFlag = function (status) {
+  var data = {};
+  switch (status) {
+    case 0:
+      data.str = '正常';
+      data.class = 'text-green';
+      break;
+    case 91:
+      data.str = '申请作废';
+      data.class = 'text-orange';
+      break;
+    case 99:
+      data.str = '作废存档';
+      data.class = 'text-red';
+      break;
+    default:
+      str = '未知';
+  }
+  return data
+};
+
+var workStatus = function (status) {
+  var data = {};
+  switch (status) {
+    case 1:
+      data.str = '工作待安排';
+      data.class = 'text-orange';
+      break;
+    case 11:
+      data.str = '待踏勘';
+      data.class = 'text-orange';
+      break;
+    case 12:
+      data.str = '人员待安排';
+      data.class = 'text-orange';
+      break;
+    case 13:
+      data.str = '人员待确认';
+      data.class = 'text-white';
+      break;
+    case 21:
+      data.str = '待进场';
+      data.class = 'text-white';
+      break;
+    case 31:
+      data.str = '检测中';
+      data.class = 'text-white';
+      break;
+    case 32:
+      data.str = '检测已完成';
+      data.class = 'text-white';
+      break;
+    default:
+      str = '未知';
+  }
+  return data
+}
+
+
+
+var forTimeDate = function (time) {
+  if (time) {
+    return time.substring(0, 10);
+  } else {
+    return '';
+  }
+}
+
+module.exports = {
+  ReportStatus: ReportStatus,
+  reportCancelFlag: reportCancelFlag,
+  workStatus:workStatus,
+  forTimeDate: forTimeDate
+}

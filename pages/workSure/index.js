@@ -8,9 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    testModeName:'全部',
-    testModeCode:'',
-    inputShowed: false,
+    testModeName: '全部',
+    testModeCode: '',
     inputVal: "",
     accessToken: '',
     totalCount: 0,
@@ -22,7 +21,7 @@ Page({
     /***数据是否正在加载**/
     hidden: true,
     ConfirmStatus: "",
-    loadingPage: false,
+    loadingPage: true,
     tabs: ["全部", "待确认", "待进场", "待出场"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -33,20 +32,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //初始化页面
-    var accessToken = wx.getStorageSync('rsAccessToken');
-    if (accessToken) {
-      this.setData({
-        "accessToken": accessToken
-      })
-    } else {
-      App.redirectToLogin();
-    }
-
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res.windowWidth);
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
@@ -59,20 +47,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.accessToken) {
-      var that = this;
-      this.setData({
-        loadingPage: false
+    var that = this;
+    this.setData({
+      loadingPage: true
+    });
+    setTimeout(function () {
+      that.setData({
+        inputVal: '',
+        page: 0,
+        testList: []
       });
-      setTimeout(function () {
-        that.setData({
-          inputVal: '',
-          page: 0,
-          testList: []
-        });
-        that.getPage();
-      }, 200)
-    }
+      that.getPage();
+    }, 200)
   },
 
   /**
@@ -132,37 +118,33 @@ Page({
     console.log('页面上拉触底');
   },
 
-  /***搜索***/
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
+  /*搜索 */
   search: function (e) {
     var that = this;
     this.setData({
-      loadingPage: false
+      loadingPage: true,
+      inputVal: e.detail,
+      page: 0,
+      testList: []
     });
-    setTimeout(function () {
-      that.setData({
-        inputVal: e.detail.value,
-        page: 0,
-        testList: []
-      });
-      that.getPage();
-    }, 100)
+    that.getPage();
   },
+
+  //取消搜索
+  cancelSearch: function (e) {
+    if (!this.data.inputVal) {
+      return
+    }
+    var that = this;
+    this.setData({
+      loadingPage: true,
+      inputVal: "",
+      page: 0,
+      testList: []
+    });
+    that.getPage();
+  },
+
   //获取列表数据
   getPage: function () {
     var that = this;
@@ -203,16 +185,16 @@ Page({
         "hidden": true,
         'loadingData': true
       });
-      setTimeout(()=>{
+      setTimeout(() => {
         that.setData({
-          'loadingPage': true
-        },100);
+          'loadingPage': false
+        }, 100);
       })
 
     }, err => {
       //请求出错也关闭加载状态页面
       that.setData({
-        loadingPage: true
+        loadingPage: false
       });
     });
   },
@@ -252,17 +234,21 @@ Page({
       inputVal: '',
       page: 0,
       testList: [],
-      loadingPage:false  
+      loadingPage: true
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getPage();
-    },200)
-  
+    }, 200)
+
   },
   //选择检测方法
-  toSelectTestMode:function(e){
+  toSelectTestMode: function (e) {
+    var testModeCode = this.data.testModeCode;
+    if (testModeCode == "") {
+      testModeCode = "All"
+    }
     wx.navigateTo({
-      url:  "/pages/test/testMode",
+      url: "/pages/test/testMode?testModeCode=" + testModeCode
     })
   }
 })

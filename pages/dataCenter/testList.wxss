@@ -16,22 +16,25 @@
   background-color: #000;
 }
 
-.pile-order {
+
+.pile-index {
   flex: 0 0 100rpx;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(223, 223, 223);
 }
 
-.pile-no {
-  flex: 1;
-  line-height: 50px;
-  padding-left: 50rpx;
+.pile-content {
   color: #4cd964;
+  padding:18rpx 50rpx
 }
-.hover-blue{
-  background-color:rgb(0, 216, 255) !important;
-  color:#fff !important;
+.pile-content .testTime{
+  font-size:28rpx;
+  margin-top:12rpx
 }
 
+.hover-blue {
+  background-color: rgb(0, 216, 255) !important;
+  color: #fff !important;
+}

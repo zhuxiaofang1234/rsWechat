@@ -3,99 +3,74 @@ const App = getApp();
 const until = require('../../utils/util.js')
 const WXAPI = require('../../utils/main.js')
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    testModeName:'全部',
-    testModeCode:'',
-    inputShowed: false,
+    testModeName: '全部',
+    testModeCode: '',
     inputVal: "",
-    accessToken: '',
     totalCount: 0,
     MaxResultCount: 10,
     page: 0,
     testList: [],
-    loadingData: true,
     loadingText: '加载中.....',
     /***数据是否正在加载**/
     hidden: true,
-    loadingPage:false,
-    pageFlag:""
+    loadingPage: true,
+    pageFlag: "",
+    showTips:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {  
-
+  onLoad: function (options) {
     if (options.flag == 'RecordTest') {
       title = "现场试验"
-    } else{
-      title = "现场检测"
+    } else {
+      title = "现场记录"
     }
     wx.setNavigationBarTitle({
       title: title
     })
 
-    var accessToken = wx.getStorageSync('rsAccessToken');
-    if (accessToken){
-      if(options.flag ==="RecordTest"){ //现场试验
-        this.setData({
-          "pageFlag":options.flag
-        })
-      }
+    if (options.flag === "RecordTest") { //现场试验
       this.setData({
-        "accessToken": accessToken,
+        "pageFlag": options.flag
       })
-      this.getPage();
-
-    }else{
-      App.redirectToLogin();
-    }  
+    }
+    this.getPage();
   },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },   
+  onShow: function () {},
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     wx.showNavigationBarLoading() //在标题栏中显示加载
 
-    setTimeout(function() {
+    setTimeout(function () {
       wx.stopPullDownRefresh();
       wx.hideNavigationBarLoading();
     }, 1000)
-    
-    if (this.data.accessToken) {
+
     this.setData({
       inputVal: '',
       page: 0,
       testList: []
     });
-      this.getPage();
-    }
+    this.getPage();
   },
 
   //加载更多
-  loadMore: function() {
+  loadMore: function () {
     var total = this.data.totalCount;
-    var loadingData = this.data.loadingData;
     //当前列表数据
     var testList = this.data.testList;
-
-    if (!loadingData) {
-      return;
-    }
-    this.setData({
-      loadingData: false
-    });
     var that = this;
-
     if (testList.length < total) {
       wx.showLoading({
         title: '加载中',
@@ -107,49 +82,49 @@ Page({
     } else {
       this.setData({
         "hidden": false,
-        'loadingText': '已加载完所有数据'
+        'loadingText': '已加载完所有数据了'
       });
+      return
     }
   },
 
-  /***搜索***/
-  showInput: function() {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function() {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function() {
-    this.setData({
-      inputVal: ""
-    });
-  },
   /*搜索 */
-  search:function(e){
+  search: function (e) {
     var that = this;
     this.setData({
-      loadingPage: false,
-      inputVal: e.detail.value,
+      loadingPage: true,
+      inputVal: e.detail,
       page: 0,
       testList: []
     });
     that.getPage();
   },
+
+  //取消搜索
+  cancelSearch: function (e) {
+    if (!this.data.inputVal) {
+      return
+    }
+    var that = this;
+    this.setData({
+      loadingPage: true,
+      inputVal: "",
+      page: 0,
+      testList: []
+    });
+    that.getPage();
+  },
+
   //跳转到查看详情
-  toTestDetails: function(e) {
+  toTestDetails: function (e) {
     var wtId = e.currentTarget.dataset.id;
-    var testModeCode =  e.currentTarget.dataset.testmodecode;
+    var testModeCode = e.currentTarget.dataset.testmodecode;
     //缓存检测方法
     wx.setStorageSync('testModeCode', testModeCode);
     var url;
-    if(this.data.pageFlag!='RecordTest'){
+    if (this.data.pageFlag != 'RecordTest') {
       url = '/pages/workRecord/details?wtId=' + wtId;
-    }else{
+    } else {
       url = '/pages/workTest/details?wtId=' + wtId;
     }
     wx.navigateTo({
@@ -157,10 +132,9 @@ Page({
       url: url,
     })
   },
-  getPage: function(){
+  getPage: function () {
     var that = this;
     var page = this.data.page;
-    var total = this.data.totalCount;
     var Filter = this.data.inputVal;
     var MaxResultCount = this.data.MaxResultCount;
     var SkipCount = (page) * MaxResultCount;
@@ -178,7 +152,6 @@ Page({
       'Filter': Filter
     };
     WXAPI.WorkRecordList(queryData).then(res => {
-       
       var resData = res.result;
       //数据总条数小于每页要显示的总条数
       var curList = that.data.testList;
@@ -193,25 +166,28 @@ Page({
         "totalCount": resData.totalCount,
         "page": page + 1,
         "hidden": true,
-        'loadingData': true
-      }); 
+      });
       wx.hideLoading();
       that.setData({
-        loadingPage: true
-      },500);
-
-        
-    },err=>{
+        loadingPage: false
+      }, 500);
+    }, err => {
       //请求出错也关闭加载状态页面
       that.setData({
-        loadingPage: true
+        loadingPage: false
       });
     });
-  }, 
+  },
 
-  toSelectTestMode:function(e){
+
+  //选择检测方法
+  toSelectTestMode: function (e) {
+    var testModeCode = this.data.testModeCode;
+    if (testModeCode == "") {
+      testModeCode = "All"
+    }
     wx.navigateTo({
-      url:  "/pages/test/testMode?pageFlag="+this.data.pageFlag,
+      url: "/pages/test/testMode?testModeCode=" + testModeCode + "&pageFlag=" + this.data.pageFlag
     })
   }
 })

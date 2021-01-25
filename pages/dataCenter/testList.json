@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "loading":"/component/loading/index"
+  },
   "navigationBarTitleText": "已检测数据列表"
 }

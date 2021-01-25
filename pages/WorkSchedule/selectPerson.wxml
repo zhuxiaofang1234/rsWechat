@@ -1,0 +1,34 @@
+<view class="details-wrap">
+	<loading show="{{loadingPage}}"></loading>
+	<!--主体区域-->
+	<view class="main mt-20">
+		<scroll-view class="main-wrapper" scroll-y style="height:100%" bindscrolltolower="loadMore" lower-threshold="100">
+			<block wx:if="{{personList.length>0}}">
+				<view class="weui-cells weui-cells_after-title">
+					<radio-group bindchange="radioChange">
+						<label class="weui-cell weui-check__label {{item.disabled ? 'weui-check-disabled': ''}}" wx:for="{{personList}}" wx:key="value">
+							<radio class="weui-check" value="{{item.personId}}" checked="{{item.checked}}" disabled="{{item.disabled}}"/>
+							<view class="weui-cell__bd">
+								<text class="pileOrder">{{index+1}}</text>
+								<text class="text-green">{{item.personName ? item.personName:'-'}}</text>
+							</view>
+							<view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+								<icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+							</view>
+						</label>
+					</radio-group>
+				</view>
+			</block>
+			<block wx:else>
+				<view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
+					<view style="margin-top:200rpx;">
+						<view class="img-wrap">
+							<image src="../../images/noData.png" class="img-response"></image>
+						</view>
+						<view class="error-tips">暂无可选人员</view>
+					</view>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+</view>

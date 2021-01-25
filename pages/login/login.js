@@ -1,5 +1,7 @@
 // pages/login/login.js
-var RSA = require('../../utils/wx_rsa.js')
+var RSA = require('../../utils/wx_rsa.js');
+var util = require('../../utils/util.js');
+
 Page({
   /**
    * 页面的初始数据
@@ -7,8 +9,8 @@ Page({
   data: {
     account: '',
     paasword: '',
-    serverType: ["佛山南海检测站", '武汉岩海检测', '嘉测演示平台','佛山禅城检测站'],
-    serverValue: ["https://nanhai.rocksea.vip/", 'https://oa.rocksea.net.cn', 'https://demo.rocksea.net.cn','https://fscc.rocksea.net.cn'],
+    serverType: ["佛山南海检测站",'深圳宝安检测站', '江门台山','武汉岩海检测', '嘉测演示平台','佛山禅城检测站'],
+    serverValue: ["https://nanhai.rocksea.vip/", "https://szba.rocksea.net.cn","https://jmts.rocksea.net.cn",'https://oa.rocksea.net.cn', 'https://demo.rocksea.net.cn','https://fscc.rocksea.net.cn'],
     serverIndex: 0,
     defaultPicker: '请选择服务器',
   },
@@ -18,7 +20,6 @@ Page({
    */
   onLoad: function (options) {
     //this.connectToSoap();
-
   },
   getAccount: function (e) {
     this.setData({
@@ -46,6 +47,8 @@ Page({
   login: function (e) {
     var account = this.data.account;
     var password = this.data.paasword;
+    var base = new util.Base64();
+    var key = base.encode(account);
     var host = wx.getStorageSync('rshostName');
     if (!host) {
       wx.showModal({
@@ -75,7 +78,8 @@ Page({
         data: {
           "userNameOrEmailAddress": account,
           "password": this.jiami(password),
-          "rememberClient": true
+          "rememberClient": true,
+          "key":key
         },
         header: {
           'content-type': 'application/json' // 默认值
@@ -97,6 +101,7 @@ Page({
             }
             //存储token值
             wx.setStorageSync('rsAccessToken', accessToken);
+            wx.setStorageSync('refreshToken', res.data.result.refreshToken);
 
             wx.showToast({
               title: '登录成功',
@@ -119,7 +124,14 @@ Page({
             })
           }
         },
-        fail(res) {},
+        fail(res) {
+          wx.showModal({
+            title: '登录失败',
+            content: '请联系管理员',
+            showCancel: false,
+            confirmColor: '#4cd964'
+          })
+        },
         complete() {
           wx.hideLoading()
         }

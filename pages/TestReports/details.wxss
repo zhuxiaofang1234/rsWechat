@@ -1,0 +1,29 @@
+/* pages/TestReports/details.wxss */
+.add-wrap{
+  top:40rpx
+ }
+
+ .popbody{
+   padding:10rpx;
+ }
+
+ .footer.backfooter {
+  flex: 0 0 170rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 0;
+}
+
+.rs-textarea{
+  border:1px solid #555;
+  width:unset;
+  background-color:#000;
+  border-radius: 15rpx;
+  padding:20rpx 30rpx;  
+}
+
+.tipStyles.errorTips{
+  color:red;
+}

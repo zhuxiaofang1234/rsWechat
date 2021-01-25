@@ -1,0 +1,20 @@
+/* pages/TestReportsNav/index.wxss */
+page {
+  overflow-y: hidden;
+  background-color: #383838;
+}
+.main-content{
+  padding:30rpx;
+}
+.box {
+  padding:40rpx;
+  background-color: #000;
+  border-radius: 20rpx;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.btnActive{
+  background-color:#111; 
+  opacity: 0.7;
+}

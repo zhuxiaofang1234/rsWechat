@@ -1,33 +1,14 @@
-<view class='search-area area-flex'>
-	<view class="selectContent" bindtap="toSelectTestMode">
-		<view class="selected-item">{{testModeName}}</view>
-		<image src="../../images/Path@2x.png" class="arrow_down"></image>
-	</view>
-	<view class="area-right">
-		<view class="weui-search-bar-1">
-			<view class="search-form">
-				<!--搜索框-->
-				<view class="weui-search-bar__box">
-					<icon class="searchIcon" type="search" size="18"></icon>
-					<input type="text" class="searchInput" placeholder="检测编号" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
-					<view class="delsearchIcon" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-						<icon type="clear" size="18"></icon>
-					</view>
-				</view>
-				<!--input搜索框结束-->
-				<label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-					<icon class="weui-icon-search" type="search" size="18"></icon>
-					<view class="weui-search-bar__text">检测编号</view>
-				</label>
-			</view>
-			<view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-		</view>
-	</view>
-</view>
+<!--搜索选择区域-->
+<rs-search searchText="检测编号"
+	 cancelText="取消" 
+	 selectedTestMode="{{testModeName}}"
+	 bindgetSearchResult="search"
+	 bindcancelSearch="cancelSearch"
+	 bindSelectTestMode="toSelectTestMode"
+	></rs-search>
+
 <view class="weui-tab">
-	<view class="loading-container" hidden="{{loadingPage}}">
-		<image src="../../images/loading.gif" class="img-loading"></image>
-	</view>
+	<loading show="{{loadingPage}}" custom-class="loading-class"></loading>
 	<view class="weui-navbar">
 		<block wx:for="{{tabs}}" wx:key="*this">
 			<view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
@@ -65,14 +46,7 @@
 				</scroll-view>
 			</block>
 			<block wx:else>
-				<view style="color:#fff; height:100%;" class="noData-wrap weui-flex">
-					<view style="margin-top:200rpx;">
-						<view class="img-wrap">
-							<image src="../../images/noData.png" class="img-response"></image>
-						</view>
-						<view class="error-tips">暂无记录</view>
-					</view>
-				</view>
+				<no-data tips="暂无记录" showTips="{{!(testList.length>0)}}"></no-data>
 			</block>
 		</view>
 	</view>

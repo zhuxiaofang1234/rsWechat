@@ -1,5 +1,4 @@
 /* pages/ZXForceLayerList/index.wxss */
-/* pages/ZXsampleList/index.wxss */
 @import "../../Iconfont.wxss";
 .fixedArea {
   height: 114rpx;
@@ -38,7 +37,7 @@ details-container{
   left:0;
   right:0;
   top:0;
-  bottom:158rpx;
+  bottom:10rpx;
 }
 .footer.backfooter {
   position:fixed;
@@ -159,6 +158,11 @@ details-container{
   letter-spacing: 4px;
   border-radius: 0;
   background-color: #383838;
+}
+
+.picker.rs-text{
+  margin-left:30rpx;
+  font-size: 30rpx;
 }
 
 

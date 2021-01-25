@@ -8,15 +8,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ZXForceLayer: null
+    ZXForceLayer: null,
+    weatheringDegreeType:[
+      '强风化',
+      '中风化',
+      '弱微风化',
+      '强~中风化',
+      '强~弱微风化',
+      '中~弱微风化'
+    ],
+    rockType:[
+      '灰色可塑状粉质粘土',
+      '灰色、浅灰色可塑状粉质粘土',
+      '灰色、灰黑色软塑状淤泥质粘土',
+      '黄色微风化细、中砂岩',
+      '红褐色弱微风化泥灰岩',
+      '红褐色可塑状粉质粘土',
+      '黄褐色可塑状粉质粘土',
+      '黑色粉砂粘土',
+      '灰色淤泥',
+      '红褐色弱微风化泥质粉砂岩'
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var ZXForceLayer  = JSON.parse(options.ZXForceLayer);
     this.setData({
-      ZXForceLayer: JSON.parse(options.ZXForceLayer)
+      ZXForceLayer: ZXForceLayer,
+      weatheringDegree:ZXForceLayer.weatheringDegree,
+      type:ZXForceLayer.type
     });
   },
 
@@ -27,11 +50,20 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+   //风化程度
+   bindweatherChange:function(e){
+    var index = e.detail.value;
+    this.setData({
+      weatheringDegree:this.data.weatheringDegreeType[index]
+    })
+  },
 
+ //岩土类别
+  bindrockTypeChange:function(e){
+    var index = e.detail.value;
+    this.setData({
+      type:this.data.rockType[index]
+    })
   },
 
   //提交修改的取样深度

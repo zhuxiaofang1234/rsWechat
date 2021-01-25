@@ -19,27 +19,34 @@ Page({
    */
   onLoad: function (options) {
     //获取缓存钻芯孔的数据
+    this.setData({
+      pileId: options.pileId,
+    });
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-   
     this.setData({
       zxHoleDrillingRecordList: ZXHoleDetails.zxHoleDrillingRecordList,
       ZXHoleDetails: ZXHoleDetails,
-      pileId: options.pileId,
-      holeId:ZXHoleDetails.id
-   });
+      holeId: ZXHoleDetails.id
+    });
   },
 
+
   //添加钻芯回次记录
-  toAddZXRecord:function(e){
+  toAddZXRecord: function (e) {
     wx.navigateTo({
-      url: '/pages/AddZXRecord/AddZXRecord?pileId='+this.data.pileId+'&holeId='+this.data.holeId,
+      url: '/pages/AddZXRecord/AddZXRecord?pileId=' + this.data.pileId + '&holeId=' + this.data.holeId,
     })
   },
   //钻芯详情信息
-  toZXRecordDetails:function(e){
+  toZXRecordDetails: function (e) {
     var id = e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/ZXRecordDetails/index?id='+ id,
+      url: '/pages/ZXRecordDetails/index?id=' + id,
     })
   }
 })

@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "Select":"/component/select/select"
+    "loading":"/component/loading/index",
+    "rs-search":"/component/search/index",
+    "no-data":"/component/noData/index"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance":20

@@ -1,35 +1,35 @@
 // pages/test/addTestData/addTestData.js
 const App = getApp();
-const WXAPI = require('../../utils/main.js')
+const WXAPI = require('../../utils/main.js');
+var flag = true;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    hcStartTime: '请选择',
-    hcEndTime: '请选择',
     hcNo: "",
     files: [],
     isShowUploader: false,
     currentTime: "",
     lastHcEndDepth: 0,
-    hcXyCount: "",
+    hcXyCount: 1,
     xyLength: 0,
     endLength: "", //到底时余尺
     startLength: "", //提钻时余尺
     xyResidual: 0, //残留芯样
     Imghash: "",
     uploadtext: '上传成功',
-    uploadFlag: true
+    uploadFlag: true,
+    placeholder: "",
+    startDate: '2020/01/01 12:37',
+    endDate: '2020/12/31 12:38',
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     var date = App.format(new Date());
-    var zxDate = date.substring(0, 10);
-    console.log(zxDate)
+    var zxDate = date.substring(0, 16);
     //获取缓存钻芯孔的数据
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
     var zxHoleDrillingRecordList = ZXHoleDetails.zxHoleDrillingRecordList;
@@ -45,7 +45,7 @@ Page({
       lastHcEndDepth = parseFloat(zxHoleDrillingRecordList[recordLen - 1].hcEndDepth);
     }
     this.setData({
-      zxDate: zxDate,
+      placeholder: zxDate,
       holeId: options.holeId,
       pileId: options.pileId,
       hcNo: hcNo + 1,
@@ -170,13 +170,7 @@ Page({
       this.errorTips(erroInfo);
       return;
     }
-    
-    if(this.data.hcStartTime=='请选择' || this.data.hcEndTime=='请选择'){
-      erroInfo = "请选择开钻时间和结束时间";
-      this.errorTips(erroInfo);
-      return;
-    }
-   
+
     var startLength, endLength, xyLength, xyResidual, hcDepth;
     startLength = parseFloat(data.startLength) * 1000; //提钻时余尺
     endLength = parseFloat(data.endLength) * 1000; //到底时余尺
@@ -194,10 +188,20 @@ Page({
     data['hcDepth'] = hcDepth
     data['hcStartDepth'] = hcStartDepth
     data['hcEndDepth'] = hcEndDepth
-    data['hcStartTime'] = this.data.zxDate +' '+ this.data.hcStartTime;
-    data['hcEndTime'] = this.data.zxDate +' '+this.data.hcEndTime;
+    if (this.data.hcStartTime && this.data.hcEndTime) {
+      data['hcStartTime'] = this.data.hcStartTime + ':00'
+      data['hcEndTime'] = this.data.hcEndTime + ':00'
+    } else {
+      data['hcStartTime'] = this.data.placeholder + ':00'
+      data['hcEndTime'] = this.data.placeholder + ':00'
+    }
+
     data['zxXyImageHash'] = this.data.Imghash;
-    this.submit(data);
+
+    if(flag){
+      flag = false;
+      this.submit(data);
+    }   
   },
 
   //提交表单
@@ -212,6 +216,7 @@ Page({
         duration: 2000,
         mask: true,
         success: function () {
+          flag = true;
           that.setData({
             lastHcEndDepth: data.hcEndDepth,
             hcNo: parseInt(data.hcNo) + 1,
@@ -236,24 +241,26 @@ Page({
           prevPage.setData({
             zxHoleDrillingRecordList: zxHoleDrillingRecordList
           });
-
           //更新孔的详情信息缓存
           wx.setStorageSync('ZXHoleDetails', ZXHoleDetails)
 
         }
       })
+    },err=>{
+      flag = true 
     });
   },
-  //开钻时间
+  //选择开钻时间
   bindStartTimeChange: function (e) {
     this.setData({
-      hcStartTime: e.detail.value
+      hcStartTime: e.detail.dateString,
+      endStartDate: e.detail.dateString
     })
   },
-  //结束时间
+  //选择结束时间
   bindEndTimeChange: function (e) {
     this.setData({
-      hcEndTime: e.detail.value
+      hcEndTime: e.detail.dateString
     })
   },
   chooseImage: function (e) {

@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "数据中心"
+  "usingComponents": {
+    "loading":"/component/loading/index",
+    "rs-search":"/component/search/index",
+    "no-data":"/component/noData/index"
+  },
+  "navigationBarTitleText": "检测数据"
 }

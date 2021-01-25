@@ -1,0 +1,30 @@
+<view class="main-content">
+  <!-- <view class="box" hover-class="btnActive" data-type="ReportSubmit"
+    wx:if="{{ReportAuth.indexOf('ReportSubmit') !== -1 ? true: false}}" bindtap="toTestReportOperate">
+    报告编写
+  </view> -->
+  <view class="box mt-30" hover-class="btnActive" data-type="ReportCheck"  wx:if="{{ReportCheck}}" 
+    bindtap="toTestReportOperate">
+    报告校核
+  </view>
+  <view class="box mt-30" hover-class="btnActive"  data-type="ReportVerify"   wx:if="{{ReportVerify}}" 
+    bindtap="toTestReportOperate">
+    报告审核
+  </view>
+  <view class="box mt-30" hover-class="btnActive" data-type="ReportApproval" wx:if="{{ReportApproval}}"
+    bindtap="toTestReportOperate">
+    报告批准
+  </view>
+  <view class="box mt-30" hover-class="btnActive" data-type="ReportSign" wx:if="{{ReportSign}}"
+    bindtap="toTestReportOperate">
+    报告签发
+  </view>
+  <view class="box mt-30" hover-class="btnActive"  data-type="ReportUpload" wx:if="{{ReportUpload}}"
+    bindtap="toTestReportOperate">
+    报告上传
+  </view>
+  <view class="box mt-30" hover-class="btnActive"  data-type="ReportInValid"  wx:if="{{ReportInValid}}"
+    bindtap="toTestReportOperate">
+    报告作废
+  </view>
+</view>

@@ -97,5 +97,11 @@
   transform: translateX(0);
 }
 
+.picker.rs-text{
+  margin-left:30rpx;
+  font-size: 30rpx;
+}
+
+
 
 

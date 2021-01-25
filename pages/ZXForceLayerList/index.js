@@ -2,6 +2,7 @@
 const App = getApp();
 const until = require('../../utils/util.js');
 const WXAPI = require('../../utils/main.js');
+var flag = true;
 
 Page({
 
@@ -11,11 +12,31 @@ Page({
   data: {
     ZXHoleDetails: '',
     ZxHoleForceLayerList: [],
+    weatheringDegreeType: [
+      '强风化',
+      '中风化',
+      '弱微风化',
+      '强~中风化',
+      '强~弱微风化',
+      '中~弱微风化'
+    ],
+    rockType: [
+      '灰色可塑状粉质粘土',
+      '灰色、浅灰色可塑状粉质粘土',
+      '灰色、灰黑色软塑状淤泥质粘土',
+      '黄色微风化细、中砂岩',
+      '红褐色弱微风化泥灰岩',
+      '红褐色可塑状粉质粘土',
+      '黄褐色可塑状粉质粘土',
+      '黑色粉砂粘土',
+      '灰色淤泥',
+      '红褐色弱微风化泥质粉砂岩'
+    ],
     zxHoleId: null,
     startPosition: '',
     endPosition: '',
-    startX:0,
-    startY:0,
+    startX: 0,
+    startY: 0,
     loadingPage: true,
     isShowDialog: false,
   },
@@ -26,32 +47,32 @@ Page({
   onLoad: function (options) {
     //获取缓存钻芯孔的数据
     var ZXHoleDetails = wx.getStorageSync('ZXHoleDetails');
-    var ZxHoleForceLayerList = ZXHoleDetails.zxHoleForceLayerList; 
-    ZxHoleForceLayerList.forEach(function(val,index){
+    var ZxHoleForceLayerList = ZXHoleDetails.zxHoleForceLayerList;
+    ZxHoleForceLayerList.forEach(function (val, index) {
       val.isTouchMove = false
     });
-     //获取最后一个深度的取样编号
-     var index;
-     if (ZxHoleForceLayerList.length == 0) {
-       index = 0;
-     } else {
-       var index = parseInt(ZxHoleForceLayerList[ZxHoleForceLayerList.length - 1].index);
-     }
-     this.setData({
-        ZxHoleForceLayerList: ZxHoleForceLayerList,
-        zxHoleId: ZXHoleDetails.id,
-        ZXHoleDetails: ZXHoleDetails,
-       index:index+1
-     });
+    //获取最后一个深度的取样编号
+    var index;
+    if (ZxHoleForceLayerList.length == 0) {
+      index = 0;
+    } else {
+      var index = parseInt(ZxHoleForceLayerList[ZxHoleForceLayerList.length - 1].index);
+    }
+    this.setData({
+      ZxHoleForceLayerList: ZxHoleForceLayerList,
+      zxHoleId: ZXHoleDetails.id,
+      ZXHoleDetails: ZXHoleDetails,
+      index: index + 1
+    });
   },
 
   //显示添加页面
-  toAddZXForceLayer:function(){
+  toAddZXForceLayer: function () {
     this.showModal()
   },
 
   //去编辑持力层
-  toEditZXForceLayer:function(e){
+  toEditZXForceLayer: function (e) {
     var id = e.currentTarget.dataset.id;
     if (id) {
       var currentForceLayer = this.data.ZxHoleForceLayerList.filter(function (item, index) {
@@ -63,12 +84,12 @@ Page({
     }
   },
   //获取表单数据，并验证
-  reg:function(e){
-  var data = e.detail.value;
-  var index = data.index;
-  var startPosition = data.startPosition;
-  var endPosition = data.endPosition;
-  
+  reg: function (e) {
+    var data = e.detail.value;
+    var index = data.index;
+    var startPosition = data.startPosition;
+    var endPosition = data.endPosition;
+
     var erroInfo;
     if (!index) {
       erroInfo = "请填写取样编号";
@@ -107,11 +128,30 @@ Page({
       this.errorTips(erroInfo);
       return;
     }
-    data.id=null,
-    data.zxHoleId = this.data.zxHoleId;  
-    this.submit(data)
+    data.id = null,
+      data.zxHoleId = this.data.zxHoleId;
+    if (flag) {
+      flag = false;
+      this.submit(data)
+    }
   },
-  submit:function(data){
+  //风化程度
+  bindweatherChange: function (e) {
+    var index = e.detail.value;
+    this.setData({
+      weatheringDegree: this.data.weatheringDegreeType[index]
+    })
+  },
+
+  //岩土类别
+  bindrockTypeChange: function (e) {
+    var index = e.detail.value;
+    this.setData({
+      type: this.data.rockType[index]
+    })
+  },
+
+  submit: function (data) {
     var that = this;
     WXAPI.UpdateZxHoleForceLayer(data).then(res => {
       data.id = res.result.id
@@ -121,6 +161,7 @@ Page({
         duration: 2000,
         mask: true,
         success: function (res) {
+          flag = true;
           //更新钻芯的数据
           var zxHoleForceLayerList = that.data.ZxHoleForceLayerList;
           var ZXHoleDetails = that.data.ZXHoleDetails;
@@ -134,13 +175,15 @@ Page({
             endPosition: ''
           });
           //更新孔的详情信息缓存
-          wx.setStorageSync('ZXHoleDetails', ZXHoleDetails)     
+          wx.setStorageSync('ZXHoleDetails', ZXHoleDetails)
         }
       })
+    }, err => {
+      flag = true
     })
   },
 
-//手指触摸动作开始，记录起点x坐标
+  //手指触摸动作开始，记录起点x坐标
   touchstart: function (e) {
     //开始触摸时重置所有删除
     this.data.ZxHoleForceLayerList.forEach(function (v, i) {
@@ -169,9 +212,9 @@ Page({
         X: startX,
         Y: startY
       }, {
-          X: touchMoveX,
-          Y: touchMoveY
-        });
+        X: touchMoveX,
+        Y: touchMoveY
+      });
     that.data.ZxHoleForceLayerList.forEach(function (v, i) {
       v.isTouchMove = false
       //滑动角度超过30度角，return 
@@ -200,21 +243,20 @@ Page({
   },
 
   //删除事件
-  del:function(e){
+  del: function (e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
     wx.showActionSheet({
       itemList: ['确认删除'],
-      itemColor:'#FF5B5B',
+      itemColor: '#FF5B5B',
       success(res) {
-        WXAPI.DeleteZxHoleForceLayer(id).then(res=>{
-        });
+        WXAPI.DeleteZxHoleForceLayer(id).then(res => {});
         that.data.ZxHoleForceLayerList.splice(e.currentTarget.dataset.index, 1);
         that.setData({
           ZxHoleForceLayerList: that.data.ZxHoleForceLayerList,
-        }); 
+        });
         //更新孔的详情信息缓存
-        wx.setStorageSync('ZXHoleDetails', that.data.ZXHoleDetails);   
+        wx.setStorageSync('ZXHoleDetails', that.data.ZXHoleDetails);
       },
       fail(res) {
         console.log(res.errMsg)
@@ -234,8 +276,8 @@ Page({
       });
     }, 3000);
   },
-   // 显示遮罩层 
-   showModal: function () {
+  // 显示遮罩层 
+  showModal: function () {
     var that = this;
     // 创建一个动画实例
     var animation = wx.createAnimation({

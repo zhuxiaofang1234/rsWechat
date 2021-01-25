@@ -1,0 +1,115 @@
+/* component/search/index.wxss */
+.search-area {
+  padding: 20rpx;
+}
+
+.area-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.area-right {
+  flex: 1;
+}
+
+/**选择检测方法*/
+.selectContent {
+  margin-left: 6rpx;
+  margin-right: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow_down {
+  height: 16rpx;
+  width: 25rpx;
+  margin-left: 20rpx;
+  vertical-align: middle;
+}
+
+.selected-item {
+  width: 72rpx;
+  display: inline-block;
+  font-size: 36rpx;
+  color: #fff;
+  vertical-align: middle;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/**搜索框***/
+.weui-search-bar-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.search-form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #dfdfdf;
+  box-sizing: border-box;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 24rpx;
+  left: 12rpx;
+}
+
+.searchInput {
+  height: 80rpx;
+  padding: 0 10px;
+  margin-left: 40rpx;
+}
+
+.delsearchIcon {
+  position: absolute;
+  top: 12rpx;
+  right: 10px;
+}
+
+.weui-search-bar__cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12rpx;
+  color: #09bb07;
+}
+
+/**不显示搜索输入框**/
+.weui-search-bar__label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+  color: #9b9b9b;
+  line-height: 40px;
+  border-radius: 5px;
+  background-color: #dfdfdf;
+}
+
+.weui-icon-search {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 18px;
+  margin-top:12rpx;
+  margin-right:20rpx;
+}
+
+.weui-search-bar__text {
+  font-size: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}

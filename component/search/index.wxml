@@ -1,0 +1,28 @@
+<!--component/search/index.wxml-->
+<view class='search-area area-flex'>
+  <view class="selectContent" bindtap="toSelectTestMode" wx:if="{{isSelectedTestMode}}">
+    <view class="selected-item">{{selectedTestMode}}</view>
+    <image src="../../images/Path@2x.png" class="arrow_down"></image>
+  </view>
+  <view class="area-right">
+    <view class="weui-search-bar-1">
+      <view class="search-form">
+        <!--搜索框-->
+        <view class="weui-search-bar__box">
+          <icon class="searchIcon" type="search" size="18"></icon>
+          <input type="text" class="searchInput" placeholder="{{searchText}}" value="{{inputVal}}"
+            focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
+          <view class="delsearchIcon" wx:if="{{inputVal.length > 0}}">
+            <icon type="clear" size="18" bindtap="clearInput"></icon>
+          </view>
+        </view>
+        <!--input搜索框结束-->
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="18"></icon>
+          <view class="weui-search-bar__text">{{searchText}}</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">{{cancelText}}</view>
+    </view>
+  </view>
+</view>

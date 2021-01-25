@@ -10,7 +10,8 @@
 			<block wx:if="{{ZxHoleForceLayerList.length>0}}">
 				<movable-area class="movable-area" wx:for="{{ZxHoleForceLayerList}}" wx:key="{{index}}">
 					<movable-view class="movable-view">
-						<view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="toEditZXForceLayer" bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
+						<view class="touch-item {{item.isTouchMove ? 'touch-move-active': ''}}" bindtap="toEditZXForceLayer"
+							bindtouchstart="touchstart" bindtouchmove="touchmove" data-id="{{item.id}}">
 							<view class="content">
 								<view class="content-number">{{item.index}}</view>
 								<view class="content-info">{{item.startPosition}}~{{item.endPosition}}m</view>
@@ -45,11 +46,25 @@
 			<view class="rs_input_wrap rs-inline">
 				<input class="rs-input rs-text" type="text" name="endPosition" value="{{endPosition}}" />
 			</view>
-			<view class="weui-cells__title rs-title">风化程度</view>
+			<view class="weui-cells__title rs-title">
+				<view class="picker-item rs-inline">风化程度</view>
+				<view class="rs-inline">
+					<picker bindchange="bindweatherChange" value="{{index}}" range="{{weatheringDegreeType}}">
+						<view class="picker rs-text">请选择</view>
+					</picker>
+				</view>
+			</view>
 			<view class="rs_input_wrap">
 				<input class="rs-input rs-text" type="text" name="weatheringDegree" value="{{weatheringDegree}}" />
 			</view>
-			<view class="weui-cells__title rs-title">岩土类别</view>
+			<view class="weui-cells__title rs-title">
+				<view class="picker-item rs-inline">岩土类别</view>
+				<view class="rs-inline">
+					<picker bindchange="bindrockTypeChange" value="{{index}}" range="{{rockType}}">
+						<view class="picker rs-text">请选择</view>
+					</picker>
+				</view>
+			</view>
 			<view class="rs_input_wrap">
 				<input class="rs-input rs-text" type="text" name="type" value="{{type}}" />
 			</view>

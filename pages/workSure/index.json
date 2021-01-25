@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "loading":"/component/loading/index",
+    "rs-search":"/component/search/index",
+    "no-data":"/component/noData/index"
+  },
   "navigationBarTitleText": "工作确认"
 }

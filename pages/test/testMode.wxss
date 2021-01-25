@@ -4,7 +4,14 @@
   background-color: #000;
   color:#fff;
 }
-.weui-cell:before{border-top:1rpx solid #898989;}
+.weui-cell:before{border-top:1rpx solid #555;}
+
+.weui-cells:first-child .weui-cell.weui-check__label:before{
+  border:none
+}
+.weui-cells:after {
+  border: 0;
+}
 .weui-cell:first-child:before {
    display: inline-block;
   }
@@ -15,3 +22,4 @@
     border-top: 0;
   }
 
+  

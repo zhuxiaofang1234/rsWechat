@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "rs-search":"/component/noData/index"
+  },
+  "navigationBarTitleText": "首页"
+}

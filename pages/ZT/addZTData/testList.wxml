@@ -1,7 +1,5 @@
 <view class="details-wrap">
-	<view class="loading-container" hidden="{{loadingPage}}">
-		<image src="../../../images/loading.gif" class="img-loading"></image>
-	</view>
+	<loading show="{{loadingPage}}"></loading>
 	<!--搜索选择区域-->
 	<view class='search-area area-flex'>
 		<view class="area-right">

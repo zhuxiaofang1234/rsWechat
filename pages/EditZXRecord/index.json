@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "pickerDate": "/component/pickerYMDHM/pickerYMDHM"
+  },
+  "navigationBarTitleText": "编辑钻进记录"
+}

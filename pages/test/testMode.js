@@ -14,10 +14,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var testModeCode = options.testModeCode;
+    this.setData({
+      testModeCode:testModeCode
+    })
+    this.getTestMode()
+  },
+
+  //获取检测方法
+  getTestMode() {
     const TestModeGroup = util.TestModeGroup;
     var jobScope = wx.getStorageSync('jobScope');
     //根据工作范围筛选出检测方法
-    var filterTestModeGroup = [{'code':'All','name':'全部',children:[{'code':'All','name':'全部'}]}];
+    var filterTestModeGroup;
+    if(this.data.testModeCode=="All"){
+       filterTestModeGroup = [{
+        'code': 'All',
+        'name': '全部',
+        children: [{
+          'code': 'All',
+          'name': '全部',
+          'checked':true
+        }]
+      }];
+    }else{
+     filterTestModeGroup = [{
+        'code': 'All',
+        'name': '全部',
+        children: [{
+          'code': 'All',
+          'name': '全部',
+        }]
+      }];
+    } 
     var map = [];
     for (var i = 0; i < TestModeGroup.length; i++) {
       var TestModeGroupItem = TestModeGroup[i];
@@ -25,6 +54,9 @@ Page({
         for (var j = 0; j < TestModeGroupItem.children.length; j++) {
           var key = TestModeGroupItem.children[j].code;
           if (jobScope.indexOf(key) !== -1) {
+          
+            TestModeGroupItem.children[j].checked = key== this.data.testModeCode
+            
             var item = {};
             var n = TestModeGroupItem.code;
             item.code = TestModeGroupItem.code;
@@ -52,7 +84,6 @@ Page({
       TestModeGroup: filterTestModeGroup
     });
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -128,7 +159,6 @@ Page({
       inputVal: '',
       page: 0,
     });
-
 
     prevPage.getPage();
     wx.navigateBack(1);

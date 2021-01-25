@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "rs-popup": "../../component/popup/index"
+  },
+  "navigationBarTitleText": "报告详情"
+}

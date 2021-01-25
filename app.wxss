@@ -386,23 +386,7 @@ padding-bottom:8px;
   box-sizing: border-box;
 }
 
-/***加载层***/
-.loading-container{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background-color: #373737;
-  z-index:99;
-  display: flex;
-  justify-content: center;
-}
-.img-loading{
-  width:750rpx;
-  height:422rpx;
-  margin-top:240rpx;
-}
+
 
 /**input框**/
 .rs_input_wrap{
@@ -484,6 +468,25 @@ padding-bottom:8px;
     overflow: hidden;
     white-space: nowrap;
   }
+
+  .add-wrap {
+    position: fixed;
+    width: 104rpx;
+    height: 104rpx;
+    display: flex;
+    justify-content: center;
+    right: 30rpx;
+    bottom: 80rpx;
+  }
+  
+  .add-image {
+    width: 98rpx;
+    height: 98rpx;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+  }
+  
 
 
 

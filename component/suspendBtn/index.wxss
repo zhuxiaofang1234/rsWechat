@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   right: 30rpx;
-  bottom: 80rpx;
 }
 
 .add-image {

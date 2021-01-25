@@ -1,0 +1,3 @@
+<view class="loading-container custom-class" hidden="{{!show}}">
+  <image src="../../images/loading.gif" class="img-loading"></image>
+</view>

@@ -1,0 +1,8 @@
+<view class="noData-wrap" wx:if="{{showTips}}">
+  <view class="tips-wrap">
+    <view class="img-wrap">
+      <image src="../../images/noData.png" class="img-response"></image>
+    </view>
+    <view class="error-tips">{{tips}}</view>
+  </view>
+</view>

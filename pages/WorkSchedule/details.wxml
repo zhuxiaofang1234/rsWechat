@@ -1,0 +1,80 @@
+<view class="details-wrap">
+	<view class="main mt-20">
+		<scroll-view class="main-wrapper" scroll-y style="height: 100%">
+			<view class="details-container">
+				<view class="details-item">
+					<view class="details-title">委托编号</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.entrustNo}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">委托日期</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.creationTime}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">工程名称</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.projectName}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测数量</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.testMum}}</view>
+				</view>
+				<view class="details-item">
+					<view class="details-title">检测方法</view>
+					<view class="details-info rs-text mt-16">{{wtDetails.testModeName}}</view>
+				</view>
+			</view>
+			<!--工作安排-->
+			<view class="details-container no-padding bg-gray38 mt-64">
+				<view class="weui-cells__title">安排检测人员</view>
+				<view class="weui-cells weui-cells_after-title bg-black">
+					<navigator
+						url="/pages/WorkSchedule/selectPerson?type=testLeader&wtId={{wtId}}&personId={{testLeader.testLeaderId}}"
+						class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:if="{{type=='WorkSchedule'}}">
+						<view class="weui-cell__bd"><text class="nav-title">检测负责人</text></view>
+						<view class="weui-cell__ft weui-cell__ft_in-access">
+							<text class="text-green" wx:if="{{testLeader.testLeaderName}}">{{testLeader.testLeaderName}}</text>
+							<text wx:else>请选择检测负责人(必选)</text>
+						</view>
+					</navigator>
+					<navigator
+						url="/pages/WorkSchedule/selectPerson?type=testPerson1&wtId={{wtId}}&personId={{testPerson1.testPerson1Id}}&disablePerson={{testPerson2.testPerson2Id}}&pageType={{type}}"
+						class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+						<view class="weui-cell__bd"><text class="text-white">检测员1</text></view>
+						<view class="weui-cell__ft weui-cell__ft_in-access">
+							<text class="text-green" wx:if="{{testPerson1.testPerson1Name}}">{{testPerson1.testPerson1Name}}</text>
+							<text wx:else>请选择检测员2</text>
+						</view>
+					</navigator>
+					<navigator
+						url="/pages/WorkSchedule/selectPerson?type=testPerson2&wtId={{wtId}}&personId={{testPerson2.testPerson2Id}}&disablePerson={{testPerson1.testPerson1Id}}&pageType={{type}}"
+						data-type="testPerson2" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+						<view class="weui-cell__bd"><text class="text-white">检测员2</text></view>
+						<view class="weui-cell__ft weui-cell__ft_in-access">
+							<text class="text-green" wx:if="{{testPerson2.testPerson2Name}}">{{testPerson2.testPerson2Name}}</text>
+							<text wx:else>请选择检测员2</text>
+						</view>
+					</navigator>
+				</view>
+				<view class="weui-cells__title">安排检测设备</view>
+				<view class="details-container">
+					<block wx:if="{{equipList.length>0}}" wx:for="{{equipList}}">
+						<view class="details-item area-flex">
+							<view class="text-item devicetype">{{item.equipName ? item.equipName :"-"}}-{{item.equipArchiveNo}}</view>
+							<view class="text-item deviceNo">{{item.equipNo ? item.equipNo :"-"}}</view>
+							<image class="delete-icon" src="../../images/delete_icon.png" data-id="{{item.equipId}}"
+								catchtap="toDeleteDevice"></image>
+						</view>
+					</block>
+					<view class="addBtn" bindtap="toDeviceList">
+						<image class="add-icon" src="../../images/add_icon@2x.png"></image>
+						<text class="add-text">添加设备</text>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="footer backfooter">
+		<button class="rs-btn backbtn btn-blue mr-50" plain="true" bindtap="toWtReject">取消</button>
+		<button class="rs-btn backbtn btn-green" plain="true" bindtap="toWorkSchedule">确定</button>
+	</view>
+</view>

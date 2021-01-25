@@ -1,4 +1,5 @@
 /* pages/ZXRecordDetails/index.wxss */
+@import "../../Iconfont.wxss";
 .rs-btn.detailBtn {
   color: rgb(0, 216, 255);
   border-color: rgb(0, 216, 255);
@@ -10,5 +11,34 @@
   line-height: 60rpx;
   font-size: 28rpx;
   box-sizing: border-box; 
+  }
+
+  .depth-container.details-container{
+    padding-left:0
+  }
+  .depth-container  .details-item{
+    margin-left:30rpx;
+  }
+  .details-item{
+    border-bottom:1rpx solid #898989;
+  }
+  .details-item:last-child{
+    border-bottom:none;
+  }
+
+  .operation_bar{
+    height:60rpx;
+    background: #000;
+    border-bottom:1rpx solid #898989;
+    color:#4cd964;
+  }
+  .operation_bar  .depth-icon{
+    font-size:18px;
+    line-height:22px;
+     margin-top:10rpx;
+  }
+  .operation_bar  .icon-bianji{
+    float:right;
+    margin-right:20rpx;
   }
   

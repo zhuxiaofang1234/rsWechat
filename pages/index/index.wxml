@@ -1,40 +1,53 @@
 <view class="page">
+	<loading show="{{loadingPage}}"></loading>
 	<view class="index-title">JC-ETMOP工程检测移动办公平台</view>
 	<view class="isTestingWrap" bindtap="toTestRecord">
 		<image class="isTestingImg" src="../../images/isTesting@2x.png"></image>
 	</view>
 	<view class="main-grid">
-		<view class="item" bindtap="goWrokSchedule">
-			<image class="item-icon" src="../../images/wrokSchedule@2x.png"></image>
-			<view class="item-text">工作安排</view>
-		</view>
-		<view class="item" bindtap="goWrokSure">
-			<image class="item-icon" src="../../images/workSure@2x.png"></image>
-			<view class="item-text">工作确认</view>
-		</view>
-		<view class="item" bindtap="goWorkSurvey">
-			<image class="item-icon" src="../../images/workSurvey@2x.png"></image>
-			<view class="item-text">现场踏勘</view>
-		</view>
-		<view class="item" bindtap="goWorkRecord">
-			<image class="item-icon" src="../../images/workRecord@2x.png"></image>
-			<view class="item-text">现场记录</view>
-		</view>
-		<view class="item" bindtap="goRecordTest">
-			<image class="item-icon" src="../../images/RecodTest@2x.png"></image>
-			<view class="item-text">现场试验</view>
-		</view>
-		<view class="item" bindtap="goDataCenter">
-			<image class="item-icon" src="../../images/dataCenter@2x.png"></image>
-			<view class="item-text">数据中心</view>
-		</view>
-		<view class="item" bindtap="goReportCenter">
-			<image class="item-icon" src="../../images/report@2x.png"></image>
-			<view class="item-text">报告管理</view>
-		</view>
-		<view class="item" bindtap="goJZmonitor">
-			<image class="item-icon" src="../../images/jzmonitor@2x.png"></image>
-			<view class="item-text">静载监控</view>
-		</view>
+		<block wx:if="{{hasAuthMenu && hasAuthMenu.length>0}}">
+			<view class="item" wx:for="{{hasAuthMenu}}" data-type="{{item.code}}" bindtap="homeNav">
+				<image class="item-icon" src="../../images/{{item.code}}@2x.png"></image>
+				<view class="item-text">{{item.name}}</view>
+			</view>
+		</block>
+		<block wx:else>
+			<view class="item" data-type="WorkSchedule" bindtap="homeNav">
+				<image class="item-icon" src="../../images/WorkSchedule@2x.png"></image>
+				<view class="item-text">工作安排</view>
+			</view>
+			<view class="item" data-type="PersonSchedule" bindtap="homeNav">
+				<image class="item-icon" src="../../images/PersonSchedule@2x.png"></image>
+				<view class="item-text">人员安排</view>
+			</view>
+			<view class="item" data-type="SurveyRecord" bindtap="homeNav">
+				<image class="item-icon" src="../../images/SurveyRecord@2x.png"></image>
+				<view class="item-text">现场踏勘</view>
+			</view>
+			<view class="item" data-type="WorkSures" bindtap="homeNav">
+				<image class="item-icon" src="../../images/WorkSures@2x.png"></image>
+				<view class="item-text">工作确认</view>
+			</view>
+			<view class="item" data-type="WorkRecord" bindtap="homeNav">
+				<image class="item-icon" src="../../images/WorkRecord@2x.png"></image>
+				<view class="item-text">现场记录</view>
+			</view>
+			<view class="item" data-type="WorkTest" bindtap="homeNav">
+				<image class="item-icon" src="../../images/WorkTest@2x.png"></image>
+				<view class="item-text">现场试验</view>
+			</view>
+			<view class="item" data-type="TestData" bindtap="homeNav">
+				<image class="item-icon" src="../../images/TestData@2x.png"></image>
+				<view class="item-text">数据中心</view>
+			</view>
+			<view class="item" data-type="ReportManage" bindtap="homeNav">
+				<image class="item-icon" src="../../images/ReportManage@2x.png"></image>
+				<view class="item-text">报告管理</view>
+			</view>
+			<view class="item" data-type="Monitor" bindtap="homeNav">
+				<image class="item-icon" src="../../images/Monitor@2x.png"></image>
+				<view class="item-text">静载监控</view>
+			</view>
+		</block>
 	</view>
 </view>

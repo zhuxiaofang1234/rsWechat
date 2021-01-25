@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "pickerDate": "/component/pickerYMDHM/pickerYMDHM"
+  },
   "navigationBarTitleText": "添加终孔操作"
 }

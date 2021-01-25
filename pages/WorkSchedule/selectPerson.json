@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "loading":"/component/loading/index"
+  },
+  "navigationBarTitleText": "选择检测人员"
+}

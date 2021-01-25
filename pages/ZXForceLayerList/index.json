@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "popup":"../../component/popup/index"
+  },
   "navigationBarTitleText": "持力层"
 }
