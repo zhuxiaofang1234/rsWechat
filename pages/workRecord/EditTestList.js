@@ -41,8 +41,7 @@ new Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
 
   //提交表单
   reg: function (e) {
@@ -496,11 +495,11 @@ new Page({
           this.setData({
             LevelIndex: slectedIndex
           });
-        }else if(code=="pileDate"){
-         var date =  resData[code] ? resData[code] :until.getDate();
-         console.log(until.getDate());
+        } else if (code == "pileDate") {
+          var date = resData[code] ? resData[code] : until.getDate();
+          console.log(until.getDate());
           this.setData({
-            date:date
+            date: date
           })
         }
         pileItems[i].value = resData[code]
@@ -669,7 +668,7 @@ new Page({
     } else {
       postData.pileNo = data.pileNo;
     }
-    
+
     postData.ybmj = data.ybmj;
     postData.pileAxis = data.pileAxis;
     postData.pileBearing = data.pileBearing;
@@ -677,7 +676,7 @@ new Page({
     this.submit(postData);
   },
 
-  
+
   //低应变表单验证
   validDYFrom: function (data, postData) {
     var erroInfo;
@@ -777,4 +776,24 @@ new Page({
     postData.pileDate = this.data.date;
     this.submit(postData);
   },
+
+  //锚杆表单验证
+  validMGFrom: function (data, postData) {
+    var erroInfo;
+    if (!data.pileNo) {
+      erroInfo = "请填写锚杆编号";
+      this.errorTips(erroInfo);
+      return;
+    } else {
+      postData.pileNo = data.pileNo;
+    }
+    postData.pileType = data.pileType;
+    postData.tempStr3 = data.tempStr3;
+    postData.tempStr2 = data.tempStr2;
+    postData.pileDate = this.data.date;
+    postData.tempStr1 = data.tempStr1;
+    postData.pileBearing = data.pileBearing;
+    postData.testLoad = data.testLoad;
+    this.submit(postData);
+  }
 })
